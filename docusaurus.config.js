@@ -77,16 +77,26 @@ module.exports = async function configCreatorAsync() {
           style: 'dark',
           links: [
             {
-              label: "Discord",
-              to: `https://discord.com/users/${contact_info.discord_user_id}`,
+              // label: "Discord",
+              // to: `https://discord.com/users/${contact_info.discord_user_id}`,
+              html: `
+              <a href="https://discord.com/users/${contact_info.discord_user_id}" class="footer__link-item">
+                <img src="https://api.iconify.design/skill-icons/discord.svg" /> Discord
+              </a>
+              `,
             },
             {
               label: "E-Mail",
               to: `mailto:${contact_info.email}`,
             },
             {
-              label: "GitHub",
-              to: "https://github.com/dsmtE",
+              // label: "GitHub",
+              // to: "https://github.com/dsmtE",
+              html: `
+              <a href="https://github.com/dsmtE" class="footer__link-item">
+                <img src="https://api.iconify.design/skill-icons/github-dark.svg" /> GitHub
+              </a>
+              `,
             },
           ],
 
