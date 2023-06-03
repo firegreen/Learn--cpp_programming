@@ -233,3 +233,7 @@ Syncing tab choices
 
 <VSCodeExtension id="ms-vscode.cpptools-extension-pack"/> 
 <VSCodeExtension id="twxs.cmake"/> 
+
+## Iconify
+
+<Icon icon="mdi:github" height="48" /> This is a GitHub icon.
