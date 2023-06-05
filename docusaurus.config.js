@@ -70,7 +70,6 @@ module.exports = async function configCreatorAsync() {
           },
           items: [
             {to: '/Lessons', label: 'Cours', position: 'left'},
-            {to: '/Test' , label: 'Test', position: 'left'},
           ],
         },
         footer: {
