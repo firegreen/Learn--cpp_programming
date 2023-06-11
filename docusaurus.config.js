@@ -13,7 +13,7 @@ module.exports = async function configCreatorAsync() {
   ).then((res) => res.data).catch((err) => ({}));
 
   return {
-    title: 'Cours de programmation c++',
+    title: 'Cours de programmation C++',
     tagline: '',
     url: `https://dsmte.github.io/`,
     baseUrl: '/Learn--cpp_programming/',
