@@ -31,6 +31,11 @@ module.exports = async function configCreatorAsync() {
       locales: ['fr'],
     },
 
+    markdown: {
+      mermaid: true,
+    },
+    themes: ['@docusaurus/theme-mermaid'],
+
     presets: [
       [
         'classic',
