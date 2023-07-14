@@ -15,7 +15,7 @@ Il possède de nombreuses fonctionnalités supplémentaires qui vous aideront à
 
 Ce cours va présenter principalement [Visual Studio Code](https://code.visualstudio.comp) (VSCode en abrégé) et je vous recommande fortement de l'utiliser pour débuter dans le monde de la programmation.
 
-Il existe évidemment de nombreuses alternatives et si vous savez déjà vous servir d'un **IDE** alors vous pouvez très bien l'tiliser si vous savez bien vous en servir, mais j'aurai peut-être plus de difficultés pour vous aider.
+Il existe évidemment de nombreuses alternatives et si vous savez déjà vous servir d'un **IDE** alors vous pouvez très bien l'utiliser si vous savez bien vous en servir, mais j'aurais peut-être plus de difficultés pour vous aider.
 
 # Installation
 
@@ -31,13 +31,12 @@ Elles sont listées [ici](https://marketplace.visualstudio.com/vscode) et vous p
 
 ![](IDE_imgs/VSCode_extensionsPanel.png)
 
-N'hésite pas à consulter les extensions recommandées par langage ou découvrir ce que d'autres personnes utilisent.
+N'hésitez pas à consulter les extensions recommandées par langage ou découvrir ce que d'autres personnes utilisent.
 
-Concernant le C++, nous avons besoin d'installer ces extensions:
-<VSCodeExtension id="ms-vscode.cpptools-extension-pack"/>
-<VSCodeExtension id="formulahendry.code-runner"/>
-<VSCodeExtension id="twxs.cmake"/>
+Concernant le C++, nous avons besoin au minimum d'installer ces extensions:
+- <VSCodeExtension id="ms-vscode.cpptools-extension-pack"/>
+- <VSCodeExtension id="twxs.cmake"/>
 
-Ces extensions vont nous permettre de lancer notre programme C++ sans difficultées.
+Ces extensions vont nous permettre de lancer notre programme C++ sans difficulté.
 
 Si vous voulez aller plus loin et connaître un peu mieux VSCode, je vous invite à aller regarder la page <Chip label="suivante" component="a" href="../../Annexes/VSCode" variant="outlined" clickable/>.

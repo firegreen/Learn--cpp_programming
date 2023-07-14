@@ -18,7 +18,7 @@ C'est alors qu'interviennent des outils comme CMake pour vous simplifier la tâc
 
 :::note
 
-Il en existe bien d'autres comme makefile que nous ne verrons pas car moins moderne et que je vous déconseille fortement d'utiliser.
+Il en existe bien d'autres comme **makefile** que nous ne verrons pas car moins moderne et que je vous déconseille fortement d'utiliser directement.
 
 :::
 
