@@ -58,7 +58,7 @@ Une fois compilé il suffit de l'exécuter avec la commande suivante :
 
 ## Utiliser CMake et VSCode
 
-C'est donc possible de le faire uniquement avec des lignes de commandes mais par simplicité nous allons dès maintenant utiliser **CMake** dont j'ai parlé précédement qui s'intègre facilement avec **VSCode**.
+C'est donc possible de le faire uniquement avec des lignes de commandes mais par simplicité nous allons dès maintenant utiliser **CMake** dont j'ai parlé précédemment qui s'intègre facilement avec **VSCode**.
 
 Pour utiliser **CMake** il faut tout d'abord créer un fichier nommé **CMakeLists.txt**
 Voici le premier qu'on va utiliser (quelques explications en commentaire **"#"** du fichier):
