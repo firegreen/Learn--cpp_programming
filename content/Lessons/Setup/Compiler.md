@@ -33,7 +33,7 @@ et de choisir la version **Community**
 
 Une fois l'installateur téléchargé il faut le lancer et choisir **"Desktop development with C++"** (vous devriez voir **MSVC** dans la liste à droite).
 
-Vous trouverez des infos suplémentaires ici dans la section pré-requis si nécessaire :
+Vous trouverez des infos supplémentaires ici dans la section pré-requis si nécessaire :
 - [visualstudio:config-msvc](https://code.visualstudio.com/docs/cpp/config-msvc#_prerequisites)
 
 </TabItem>
