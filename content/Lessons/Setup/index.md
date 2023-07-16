@@ -4,7 +4,6 @@ tags:
     - Tools
     - C++
     - IDE
-slug: ./Mise_en_place_des_outils
 
 sidebar_position: 1
 ---
