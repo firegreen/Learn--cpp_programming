@@ -134,7 +134,9 @@ Pour utiliser les fonctionnalités offertes par ce fichier, notamment écrire un
 
 :::info
 
-Retenez que **#include** nous permet d’importer des fichiers pour les inclure dans le programme que l'on est en train d'écrire, et je le détaillerai plus tard dans le semestre.
+```#include``` s'appelle une **directive préprocesseur**. Le **préprocesseur** est un programme exécuté lors de la première phase de la compilation qui effectue des modifications textuelles sur le fichier source à partir de directives. Ces directives commencent par le caractère <kbd>#</kbd> et doivent se terminer par un saut de ligne.
+
+Retenez simplement que ```#include``` nous permet d’importer des fichiers pour les inclure dans le programme que l'on est en train d'écrire, et je le détaillerai plus tard dans le semestre.
 
 :::
 
@@ -147,10 +149,12 @@ int main() {
 }
 ```
 
-Lorsqu’on lance le programme, celui-ci doit savoir par où commencer. On parle de point d’entrée. Ce point d'entrée doit être une fonction nommée **main** et renvoyer une valeur avec le mot clé **return**.
+Lorsqu’on lance le programme, celui-ci doit savoir par où commencer. On parle de point d’entrée. Ce point d'entrée **doit** être une **fonction** nommée **main** et renvoyer une valeur avec le mot clé **return**.
+
+Nous reviendrons sur les **fonctions** dans un autre chapitre mais retenez que c'est un ensemble d'instructions délimité par des accolades <kbd>{</kbd> et <kbd>}</kbd>.
 
 :::note
-La valeur de retour (de type int) du main indique si le programme s’est terminé sans erreur. Si tout se passe bien, il faut retourner **0**. N’importe quelle autre valeur indique une erreur.
+La valeur de retour (de type int) du **main** indique si le programme s’est terminé sans erreur. Si tout se passe bien, il faut retourner **0**. N’importe quelle autre valeur indique une erreur.
 :::
 
 ### Hello and welcome to IMAC !
@@ -168,5 +172,27 @@ std**::** permet d'indiquer que l'on veut utiliser une fonctionnalité particuli
 Il s’agit de l'objet (on parle de stream dans le jargon C++) permettant d'écrire sur la sortie standard du programme, généralement le terminal. Le **'c'** fait référence à **caractère** et **‘out’** indique **‘sortie’**.
 
 Enfin, **std::endl** indique ici "end-line" soit la **'fin de ligne'**.
+
+### Dernier point (virgule)
+
+Chaque instruction doit être identifiable afin de que compilateur puisse faire son travail et produire un programme exécutable.
+
+C'est le rôle du **point-virgule** <kbd>;</kbd> de délimiter chaque instruction et il est donc important de ne pas l'oublier.
+
+On le retrouve par exemple dans notre programme à la fin du ```return 0;```.
+
+:::caution
+Ce n'est pas le cas pour les **directives préprocesseur** comme ```#include``` vu précédemment qui, elles, doivent avoir leur **propre ligne** et ne doivent pas se terminer par un point-virgule <kbd>;</kbd> mais un saut de ligne.
+:::
+
+Les sauts de lignes et espacements sont là pour améliorer la lisibilité mais pas pour le bon fonctionnement du compilateur en lui même et on pourrait très bien écrire:
+```cpp
+#include <iostream>
+int main() { std::cout << "Hello and welcome to IMAC !" << std::endl; return 0; }
+```
+
+Je vous recommande tout de même d'utiliser des espacements et sauts de ligne pour mieux s'y retrouver et c'est ce que je vais faire tout au long de ce cours.
+
+---
 
 Et voilà ! Vous avez exécuté votre premier programme C++ à l'aide de VSCode ! 🎉
