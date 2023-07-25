@@ -29,10 +29,12 @@ Vous pouvez vous rendre <Chip label="ici" component="a" href="https://cmake.org/
 <Tabs groupId="operating-systems">
 
 <TabItem value="Windows" label="Windows">
-Choisi <b>Windows x64 Installer</b>.
+Choisis <b>Windows x64 Installer</b>.
 </TabItem>
 <TabItem value="Linux" label="Linux">
-Vous pouvez également passer par votre gestionnaire de paquets et simplement taper la commande suivante :
+Vous pouvez également utiliser votre gestionnaire de paquets. 
+
+Par exemple avec le gestionnaire de paquets **APT** vous pouvez simplement taper la commande suivante :
 
 ```bash
 sudo apt-get install cmake
