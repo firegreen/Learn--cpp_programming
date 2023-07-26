@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkprogramming_support_courses=self.webpackChunkprogramming_support_courses||[]).push([[121],{8070:p=>{p.exports=JSON.parse('[{"label":"Tools","permalink":"/Learn--cpp_programming/tags/tools","count":5},{"label":"IDE","permalink":"/Learn--cpp_programming/tags/ide","count":3},{"label":"C++","permalink":"/Learn--cpp_programming/tags/c","count":8}]')}}]);
