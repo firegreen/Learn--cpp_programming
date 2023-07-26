@@ -17,13 +17,14 @@ J'ai omis un type lors du précédent chapitre, il s'agit du **type booléen**, 
 Ce type peut prendre deux valeurs: soit **true**, signifiant vrai, soit **false** qui veut dire faux. C'est donc idéal pour stocker le résultat d'une condition.
 
 ```cpp title="Voici un petit exemple"
-int main() {
+int main()
+{
     bool const condition { true };
     return 0;
 }
 ```
 
-Cela va devenir intéressant grâce à ce que l'on appellele les **opérateurs de comparaison**.
+Cela va devenir intéressant grâce à ce que l'on appelle les **opérateurs de comparaison**.
 
 | Opérateur	| Signification	|
 |-|-|
@@ -38,7 +39,8 @@ Ces opérateurs vont nous permettre de créer des conditions (des valeurs boolé
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     float const a { 10.0f };
     float const b { 20.0f };
 
@@ -62,7 +64,8 @@ Il est possible de changer ce comportement en ajoutant un "modificateur" sur le 
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     float const a { 10.0f };
     float const b { 20.0f };
 
@@ -78,7 +81,7 @@ int main() {
 
 Maintenant que nous disposons d'un moyen d'obtenir une valeur booléenne (via les opérateurs de comparaison) nous allons pouvoir manipuler ces valeurs avec ce que l'on nomme des **opérateurs logiques**.
 
-Ces opérateurs vont permettre de combiner et modifier des valeurs booléennes afin d'en obtenir d'autres et faire ce que l'on appellele plus généralement de l’**algèbre booléenne**.
+Ces opérateurs vont permettre de combiner et modifier des valeurs booléennes afin d'en obtenir d'autres et faire ce que l'on appelle plus généralement de l’**algèbre booléenne**.
 Mais ne vous inquiétez pas, derrière ce nom très mathématique se cache des choses très simples.
 
 ### NOT: La négation
@@ -89,7 +92,7 @@ L'opérateur ```!``` (placé devant une valeur booléenne) permet d'exprimer la 
 C'est ici un opérateur dit **unaire** (qui s'applique sur une seule valeur) et donne en retour la condition inverse.
 :::
 
-Voici ce qu’on appellele la **table de vérité** de l’opérateur **NOT**, qui formalise les entrées et les sorties de cet opérateur.
+Voici ce qu’on appelle la **table de vérité** de l’opérateur **NOT**, qui formalise les entrées et les sorties de cet opérateur.
 
 | A     | Résultat |
 |-------|----------|
@@ -176,10 +179,12 @@ if( /* condtion */ )
 
 ```cpp title="Un petit exemple"
 #include <iostream>
-int main() {
+int main()
+{
     float price { 114.2f };
 
-    if ( price >= 100.f ) {
+    if ( price >= 100.f )
+    {
         // appliquer une réduction si l'on dépasse un certain prix
         price *= 0.9;
     }
@@ -233,14 +238,17 @@ On pourrait très bien enchaîner deux ```if``` avec la condition opposée:
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     float temperature { 24.0f };
 
-    if ( temperature >= 35.f ) {
+    if ( temperature >= 35.f )
+    {
         std::cout << "il fait chaud" << std::endl;
     }
 
-    if ( temperature < 35.f ) {
+    if ( temperature < 35.f )
+    {
         std::cout << "il fait froid" << std::endl;
     }
 
@@ -252,7 +260,8 @@ Mais c'est là que le mot-clé ```else``` (de l'anglais "sinon") nous permet d'e
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     float temperature { 24.0f };
 
     if ( temperature >= 35.f )
@@ -276,7 +285,8 @@ L'opérateur logique de négation <kbd>!</kbd> est parfois très utile dans le c
 Au lieu de faire :
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     bool condition { false };
 
     if ( condition )
@@ -296,10 +306,12 @@ Il est préférable de faire:
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     bool condition { false };
 
-    if ( !condition ) {
+    if ( !condition )
+    {
         // effectuer nos instructions
     }
 
@@ -316,7 +328,8 @@ On pourrait très bien chaîner plusieurs ```if``` et ```else``` imbriqués de c
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     float temperature { 24.0f };
 
     if ( /* condition1 */ )
@@ -352,7 +365,8 @@ Le C++ est bien fait et nous permet de d'utiliser la combinaison ```else if``` p
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     if ( /* condition1 */ )
     {
         // ...
@@ -384,7 +398,8 @@ Avec tous les opérateurs logiques vu précédemment il est même possible de te
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
 
     float temperature { 24.0f };
     bool const isRaining { false };

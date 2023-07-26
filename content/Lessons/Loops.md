@@ -312,7 +312,8 @@ Très souvent on veut tester la valeur d'une variable et effectuer telle ou tell
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     int value { 42 };
     if ( value == 12 )
     {
@@ -337,7 +338,8 @@ C'est avec le mot clé ```switch``` que l'on va pouvoir faire cela de façon plu
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     int value { 42 };
     switch (value)
     {
@@ -369,9 +371,11 @@ En effet la **totalité** des instructions suivant le ```case``` sont exécutée
 
 ```cpp
 #include <iostream>
-int main() {
+int main()
+{
     int value { 33 };
-    switch (value) {
+    switch (value)
+    {
         case 12:
             std::cout << "value est égale à 12" << std::endl;
         case 33:
@@ -391,6 +395,33 @@ value est différent de 12 ou 33
 ```
 
 Cela peut être parfois voulu mais ici on se rend bien compte qu'il y a un problème et il ne faut donc pas oublier le mot clé ```break```.
+
+Voici un exemple où cela peut être utile:
+
+```cpp
+#include <iostream>
+int main()
+{
+    char letter { 'e' };
+    switch(letter)
+    {
+        case 'a':
+        case 'e':
+        case 'i':
+        case 'o':
+        case 'u':
+        case 'y':
+            std::cout << "You entered a vowel." << std::endl;
+            break;
+        default:
+            std::cout << "You entered a consonant." << std::endl;
+            break;
+    }
+
+    return 0;
+}
+```
+
 :::
 
 ## Résumé

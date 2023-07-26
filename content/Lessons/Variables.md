@@ -21,7 +21,8 @@ Qui dit **chaîne de caractères** dit **caractères** et il est également poss
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << 'a' << std::endl;
     std::cout << '7' << std::endl;
     std::cout << '?' << std::endl;
@@ -32,7 +33,8 @@ int main() {
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << 'H' << 'e'  << 'l' << 'l' << 'o' << ' ' << 'I' << 'M' << 'A' << 'C' << '!' << std::endl;
     return 0;
 }
@@ -43,7 +45,8 @@ On pourrait simplement se contenter de caractères me direz vous mais c'est un p
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << "Hello IMAC!" << std::endl;
     return 0;
 }
@@ -60,13 +63,14 @@ Avez vous une idée de comment afficher des guillements ?
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << "Hello "IMAC"!" << std::endl;
     return 0;
 }
 ```
 
-Si j'essaie d'utiliser des guillemets cela va planter comme dans l'exemple ci-dessus.
+Si j'essaie d'utiliser des guillemets cela ne compile pas comme dans l'exemple ci-dessus.
 
 En effet, les guillements permettent déjà de signaler le début et la fin d'une chaîne de caractères.
 
@@ -78,7 +82,8 @@ Il faut donc préfixer les guillements du caractère <kbd>\</kbd> pour pouvoir l
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << "Hello \"IMAC\"!" << std::endl;
     return 0;
 }
@@ -101,7 +106,8 @@ On peut également manipuler des nombres.
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << -1 << std::endl;
     std::cout << 0 << std::endl;
     std::cout << 42 << std::endl;
@@ -114,7 +120,8 @@ On les appelle **nombres entiers** mais il est aussi possible d'utiliser des nom
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << 3.141593 << std::endl;
     std::cout << -1.5 << std::endl;
     return 0;
@@ -138,7 +145,8 @@ Concernant les nombres (entiers ou flottants) les **opérateurs arithmétiques**
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << "Opérateurs arithmétiques :" << std::endl;
     std::cout << "Addition: 1 + 2 = " << 1 + 2 << std::endl;
     std::cout << "Soustraction: 6 - 2 = " << 6 - 2 << std::endl;
@@ -158,7 +166,8 @@ C'est aussi vrai pour les règles de **distributivité**, **associativité**, **
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     td::cout << "Associativité :" << std::endl;
     std::cout << "2 + (3 + 6) = " << 2 + (3 + 6) << std::endl;
     std::cout << "(2 + 3) + 6 = " << (2 + 3) + 6 << std::endl;
@@ -205,30 +214,17 @@ Pour déclarer une variable en **C++**, il faut trois choses:
 #include <iostream>
 #include <string>
 
-int main() {
+int main()
+{
     int number { 42 };
     char letter { 'A' };
     float pi { 3.141592f };
-    double tau { 6.283184 };
+    double price { 4.14 };
     std::string text { "Hello IMAC!" };
 
     return 0;
 }
 ```
-
-Il est recommandé de faire la distinction entre **float** et **double** en ajoutant le suffixe <kbd>f</kbd> à la fin du nombre:
-```cpp
-#include <iostream>
-
-int main() {
-    float pi { 3.141592f };
-    double tau { 6.283184 };
-
-    return 0;
-}
-```
-
-Pour l'instant ça n'a pas beaucoup d'importance mais essayez de le mettre car c'est une bonne pratique et a son importance avec des concepts plus avancés en C++.
 
 :::info Syntaxe héritée
 
@@ -237,7 +233,8 @@ Il existe également une syntaxe alternative, de la forme ```type nom = valeur;`
 ```cpp
 #include <iostream>
 
-int main() {
+int main()
+{
     int number = 42;
     std::cout << number << std::endl;
 
@@ -258,6 +255,24 @@ Dans l'exemple précédent j'ai utilisé divers mots-clés qui font chacun réf�
 
 - Pour les **nombres entiers** c'est le mot-clé **int**, (abréviation de l’anglais **int**eger signifiant nombre entier). Grâce à ce type, on peut stocker des entiers **négatifs** ou **positifs**.
 - Pour les **flottants**(les nombres à virgule), nous avons le mot-clé **"float"**, (abréviation de **float**ing point numbers en anglais). Il existe aussi le mot clé **"double"** pour stocker des nombres à virgule plus précis quand c'est nécessaire.
+
+:::note
+Il est recommandé de faire la distinction entre **float** et **double** en ajoutant le suffixe <kbd>f</kbd> à la fin du nombre:
+```cpp
+#include <iostream>
+
+int main()
+{
+    float pi { 3.141592f };
+    double price { 4.14 };
+
+    return 0;
+}
+```
+
+Pour l'instant ça n'a pas beaucoup d'importance mais essayez de le mettre car c'est une bonne pratique et a son importance avec des concepts plus avancés en C++.
+:::
+
 - Pour les **caractères**, nous avons **char**.
 - Pour les **chaînes de caractères** nous avons **std::string**.
 
@@ -271,7 +286,8 @@ Ce sont des programmeurs experts qui ont codé ce type afin de manipuler aiséme
 #include <iostream>
 #include <string>
 
-int main() {
+int main()
+{
     std::string hello { "Hello IMAC!" };
     std::cout << hello << std::endl;
 
@@ -291,22 +307,33 @@ Il est possible d'utiliser des mot-clés modificateurs dans le type de la variab
 - ```long```: le nombre sera stocké sur 32 bits maximum (dans le cas de plus grands nombres)
 - ```long long```: le nombre sera stocké sur 64 bits maximum
 
-## Valeurs par défaut
+## Comportement indéterminé
 
-:::caution
-Mais qu'est ce qui se passe si je ne précise rien dans les accolades **{}** ?
-:::
+Mais qu'est ce qui se passe si je ne précise rien comme valeur pour ma variable (sans les accolades <kbd>{}</kbd>) ?
 
-En C++, si rien n'est précisé la variable va contenir une **valeur par défaut**.
+```cpp
+int my_varaible;
+```
 
-Ce sera par exemple une chaîne de caractères vide (```""```) pour les std::string ou un ```0``` dans le cas d'un entier.
+C'est ce qu'on appelle un **comportement indéterminé**, en anglais **"undefined behaviour"**. La variable se voit attribuée une valeur indéterminée. Cela peut être ```0``` comme ```142857```, on ne peut pas le prévoir.
+
+C'est donc quelque chose qu'il faut absolument éviter !
+
+**Il faut toujours initialiser ses variables.**
+
+:::note Valeur par défaut
+
+Si on ajoute les accolades mais sans préciser de valeur, notre variable va contenir une **valeur par défaut**.
+
+Ce sera par exemple une chaîne de caractères vide (```""```) pour les **std::string** ou un ```0``` dans le cas d'un **entier**.
 Je vous laisse essayer:
 
 ```cpp
 #include <iostream>
 #include <string>
 
-int main() {
+int main()
+{
     std::string default_string { };
     std::cout << default_string << std::endl; // ""
 
@@ -322,7 +349,8 @@ int main() {
 
 Pour commencer, nous écrirons toujours les valeurs explicitement pour éviter de mauvaise surprise...
 
-Plus tard, avec un peu plus de pratique, vous aurez la liberté d'utiliser l’initialisation par défaut, en connaissance de cause.
+Plus tard, avec un peu plus de pratique, vous aurez la liberté d'utiliser l’**initialisation par défaut**, en connaissance de cause.
+:::
 
 ## Quelques règles de nommage
 
@@ -335,7 +363,8 @@ Les noms des variables sont tout de même soumis à quelques règles de nommage.
 - Enfin, il n'est pas possible d'utiliser un **mot-clé** du C++ comme nom de variable. Par exemple, il est **interdit** de déclarer une variable s’appelant **int**.
 
 ```cpp title="Quelques exemples"
-int main() {
+int main()
+{
     int variable42 { 42 };
 
     int 42variable { 42 };
@@ -369,11 +398,11 @@ Une fois le code compilé, l'ordinateur ne fait aucune différence entre un nom 
 
 ### Quelques mauvais exemples
 
-- lpi: Un acronyme ? Que signifie t'il ?
-- value: Que stocke-t-elle ? Dans quel contexte ? Pourquoi existe-t-elle ?
-- multiplication_of_two_by_sqrt_of_pi: Clair mais un peu trop long.
-- dIsTanCe: Court et compréhensible mais les majuscules / minuscules peuvent rendre la lecture moins facile.
-- qsqffqedfqzdjzqoid: Surement un chat qui est passé sur mon clavier.
+- **lpi**: Un acronyme ? Que signifie t'il ?
+- **value**: Que stocke-t-elle ? Dans quel contexte ? Pourquoi existe-t-elle ?
+- **multiplication_of_two_by_sqrt_of_pi**: Clair mais un peu trop long.
+- **dIsTanCe**: Court et compréhensible mais les majuscules / minuscules peuvent rendre la lecture moins facile.
+- **qsqffqedfqzdjzqoid**: Surement un chat qui est passé sur mon clavier.
 
 Avec l'expérience et le temps vous arriverez à trouver plus facilement des noms clairs et simples.
 
@@ -399,7 +428,8 @@ enum class Season {
     Winter,
 };
 
-int main() {
+int main()
+{
     Season current_season { Season::Spring };
     return 0;
 }
@@ -433,7 +463,8 @@ enum EyesColor {
     Amber
 };
 
-int main() {
+int main()
+{
     
     // Ici Red fait référence à la valeur dans l'enum PrimaryColor
     std::cout << Red << std::endl;
@@ -451,60 +482,48 @@ On parle de "**Scoped enumerations**" avec ```enum class``` (autrement dit ayant
 Pour faire simple on écrira systématiquement ```enum class``` en **C++ moderne** pour s'éviter des problèmes.
 :::
 
-## Manipuler nos variables
+## Des opérateurs pour manipuler nos variables
 
-Il n'est pas seulement possible d'afficher nos variable (via ```std::cout```) mais il est possible de faire des opérations dessus:
+Il n'est pas seulement possible d'afficher nos variables (via ```std::cout```), il est aussi possible de faire des opérations dessus.
 
-```cpp
-#include <iostream>
+Pour cela nous allons utiliser des **opérateurs**.
 
-int main() {
-    int variable { 42 };
-    std::cout << "Ma valeur vaut : " << variable << std::endl;
-    
-    // Je donne une nouvelle valeur à ma variable 
-    variable = 2 + (3 * 9);
-    std::cout << "Ma valeur vaut maintenant : " << variable << std::endl;
-    
-    // J'utilise la valeur de ma variable pour un calcul et réaffecte le résultat à la même variable
-    variable = variable + 7;
-    std::cout << "Et maintenant " << variable << std::endl;
-    
-    // Je me sers de ma variable pour en créer une nouvelle
-    int other_value { variable * 3 };
+Les **opérateurs** sont des **symboles** qui permettent de manipuler des variables, c'est-à-dire effectuer des opérations, les évaluer, etc.
 
-    // Je peux utiliser d'autres variables également
-    variable = other_value - 1;
-    std::cout << "Ma valeur vaut enfin : " << variable << std::endl;
-    
-    return 0;
-}
-```
+Il y a principalement deux catégories d'**opérateurs**:
+- Les opérateurs **binaires** qui utilisent **deux valeurs** pour en produire une nouvelle (comme ```a + b``` par exemple)
+- Les opérateurs **unaires** qui s'appliquent sur **une valeur** pour en produire une nouvelle.
 
-Pour modifier une variable, on utilise l’**opérateur d’affectation <kbd>=</kbd>**, précédé du nom de la variable et suivi de la valeur à affecter : ```nom = valeur;```.
+Nous avons par exemple vu précédemment les **opérateurs arithmétiques** (<kbd>+</kbd>, <kbd>+</kbd>, <kbd>*</kbd>, <kbd>/</kbd> et <kbd>%</kbd>) sur les nombres. Ces opérateurs sont **binaires**.
+
+### Opérateurs d'affectation
+
+Pour attribuer une nouvelle valeur à une variable, on utilise l’**opérateur d’affectation <kbd>=</kbd>**, précédé du nom de la variable et suivi de la valeur à affecter : ```nom = valeur;```.
 
 C++ s'occupe en premier lieu de tout ce qui se trouve à droite du signe <kbd>=</kbd>. On peut donc utiliser la valeur d'une variable pour faire un calcul avant de l'assigner à cette même variable.
 
-### Quelques raccourcis
+---
 
-Dans le cas où l'on veut utiliser la variable et l'assigner à elle même il est possible d'avoir une écriture plus courte pour les opérateurs usuels:
+Dans le cas où l'on veut effectuer une opération sur une variable et assigner le résultat à cette **même** variable il existe des opérateurs binaires nommés **opérateurs d'assignation composés**.
+
+On retrouve principalement ces opérateurs composées avec les opérateurs **arithmétiques**:
+<kbd>+=</kbd>, <kbd>-=</kbd>, <kbd>*=</kbd>, <kbd>/=</kbd> et <kbd>%=</kbd>
 
 ```cpp
+int integer { 42 };
 
-#include <iostream>
+// équivalent à écrire "integer = integer + 3"
+integer += 3;
 
-int main() {
-    int integer { 42 };
-
-    // équivalent à écrire "integer = integer + 3"
-    integer += 3;
-
-    integer -= 1;
-    integer *= 4;
-    integer /= 2;
-    return 0;
-}
+integer -= 1;
+integer *= 4;
+integer /= 2;
+integer %= 2;
 ```
+
+Il existe d'autres **opérateurs d'affectation composés** mais nous les découvrirons le moment venu.
+
+### Opérateurs d'incrémentation
 
 Cela va même plus loin, il existe un raccourci supplémentaire lorsque l'on souhaite ajouter ou soustraire ```1``` à un nombre.
 On parle d'**incrémentation** et de **décrémentation**.
@@ -512,7 +531,64 @@ On parle d'**incrémentation** et de **décrémentation**.
 - **a++** ou **++a** pour incrémenter de ```1```  la valeur de la variable ```a```.
 - **a--** ou **--a** pour décrémenter de ```1```  la valeur de la variable ```a```.
 
-Les deux syntaxes sont quasiment équivalentes, il y a une petite différence dont je ne vais pas parler car elle ne nous intéresse pas à l’heure actuelle.
+:::info
+Les deux syntaxes sont quasiment équivalentes, il y a une petite différence lorsque l'on souhaite utiliser le résultat de l'incrémentation:
+
+- On parle de **Post-incrémentation** avec **a++**:
+Cette forme signifie que la variable **a** est d'abord utilisée, **puis** elle est incrémentée de 1. Cela signifie que l'effet de l'incrémentation ne sera visible qu'après l'évaluation de l'expression qui contient **a++**.
+
+```cpp
+int a { 5 };
+int result { a++ }; // result prend la valeur de a (5) puis a est incrémenté à 6.
+// Maintenant, a vaut 6 et result vaut 5.
+```
+
+- On parle de **Pré-incrémentation** avec **++a**:
+Cette forme signifie que la variable **a** est d'abord incrémentée, **puis** cette nouvelle valeur est utilisée. Cela signifie que l'effet de l'incrémentation sera visible immédiatement dans l'expression qui contient **++a**.
+
+```cpp
+int a { 5 };
+int result { ++a }; // a est incrémenté à 6, puis result prend la nouvelle valeur de a (6).
+// Maintenant, a et result valent tous les deux 6.
+```
+
+En résumé, la seule différence entre les deux formes réside dans le moment où l'incrémentation est réalisée (avant ou après l'utilisation de sa valeur actuelle). Dans la plupart des cas, vous pouvez utiliser l'une ou l'autre forme. Lorsque vous voulez récupérer le résultat de l'incrémentation, assurez-vous de choisir celle qui convient le mieux à votre situation pour obtenir le comportement souhaité dans votre programme.
+
+:::
+### Quelques exemples
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    int variable { 42 };
+    std::cout << variable << std::endl;
+    
+    // Je donne une nouvelle valeur à ma variable 
+    variable = 2 + (3 * 9);
+    std::cout << variable << std::endl;
+    
+    // J'utilise la valeur de ma variable pour un calcul et réaffecte le résultat à la même variable
+    variable = variable + 7;
+    std::cout << variable << std::endl;
+    
+    // Je me sers de ma variable pour en créer une nouvelle
+    int other_value { variable * 3 };
+    std::cout << other_value << std::endl;
+
+    // Je peux utiliser d'autres variables également
+    variable = other_value - 1;
+    std::cout << variable << std::endl;
+
+    // Je peux incrémenter ma variable de deux façons
+    variable += 1;
+    variable++;
+    std::cout << variable << std::endl;
+
+    return 0;
+}
+```
 
 ## Variables constantes
 
@@ -536,15 +612,16 @@ Je vais l'utiliser régulièrement dans des exemples et on découvrira ensemble 
 :::info
 Vous verrez souvent des codes qui inversent l’ordre de **const** et écrivent **const float variable {};**.
 C'est tout à fait possible car le **const** respecte la règle suivante : 
-Il s’applique à ce qui est à **sa gauche**, sauf s’il n’y a rien, auquel cas il s’applique à ce qu’il y a à droite.
-Je vais donc le placer à droite car c'est le fonctionnement voulu initialement du **const**.
+Il s’applique à ce qui est à **sa gauche**, **sauf** s’il n’y a rien, auquel cas il s’applique à ce qu’il y a à droite.
+Je vais le placer à droite dans la suite de ce cours car c'est le fonctionnement voulu initialement du **const**.
+C'est une question de préférence et de lisibilité, vous êtes libre de choisir ce que vous préférez.
 :::
 
 # Entrée / Sortie
 
-Jusque là, nous avons régulièrement rencontré **std::cout** qui nous permet d'afficher des caractères avec la notion de **sortie standard**.
+Jusque là, nous avons régulièrement rencontré **std::cout** qui nous permet d'afficher des caractères.
 
-Il est également possible de faire l'inverse en manipulant ce qu'on appelle **l’entrée standard**.
+Il est également possible de faire l'inverse en manipulant ce qu'on appelle une **entrée**.
 
 Grâce aux variables, il est possible de demander des informations à l’utilisateur et de stocker cette information afin d'en faire quelque chose.
 
@@ -594,5 +671,7 @@ Nous venons de découvrir les variables en **C++**. C'est la base de tout progra
 - Il est **important** de choisir un nom de variable qui a du sens et le plus simple possible.
 
 - Il est possible de spécifier qu'une variable est non modifiable avec le mot-clé ```const```.
+
+- On utilise des **opérateurs** pour manipuler nos variables.
 
 - Nous pouvons demander des informations à l’utilisateur grâce à **std::cin**.

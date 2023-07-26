@@ -17,7 +17,8 @@ Vous pouvez créer un fichier d'extension *cpp* avec le code suivant:
 ```cpp title="helloImac.cpp"
 #include <iostream>
 
-int main() {
+int main()
+{
     std::cout << "Hello and welcome to IMAC !" << std::endl;
     return 0;
 }
@@ -143,7 +144,8 @@ Retenez simplement que ```#include``` nous permet d’importer des fichiers pour
 ### La fonction main
 
 ```cpp
-int main() {
+int main()
+{
     // ...
     return 0;
 }
@@ -169,7 +171,7 @@ Premièrement "**std**" fait réféfence à la bibliothèque standard C++ dont j
 
 std**::** permet d'indiquer que l'on veut utiliser une fonctionnalité particulière de cette bibliothèque ici **cout**:
 
-Il s’agit de l'objet (on parle de stream dans le jargon C++) permettant d'écrire sur la sortie standard du programme, généralement le terminal. Le **'c'** fait référence à **caractère** et **‘out’** indique **‘sortie’**.
+Il s’agit de l'objet (on parle de *stream* dans le jargon C++) permettant de renvoyer des caractères, généralement pour les afficher dans le terminal. Le **'c'** fait référence à **caractère** et **‘out’** indique **‘sortie’**.
 
 Enfin, **std::endl** indique ici "end-line" soit la **'fin de ligne'**.
 
