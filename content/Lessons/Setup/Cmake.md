@@ -40,7 +40,7 @@ Par exemple avec le gestionnaire de paquets **APT** vous pouvez simplement taper
 sudo apt-get install cmake
 ```
 </TabItem>
-<TabItem value="IOS" label="IOS">
+<TabItem value="OSX" label="OSX">
 Vous devriez également pouvoir l'installer via le gestionnaire de paquets <a href="https://brew.sh/">Brew</a> avec la commande suivante : 
 
 ```bash

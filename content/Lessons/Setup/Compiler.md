@@ -44,14 +44,14 @@ De manière générale, toutes les distributions Linux sont livrées avec un com
 
 </TabItem>
 
-<TabItem value="iOS" label="iOS">
+<TabItem value="OSX" label="OSX">
 Vous avez seulement à exécuter cette commande :
 
 ```bash
 xcode-select --install
 ```
 
-Je pratique plus rarement ce genre d'installation sur **IOS**, n'hésitez pas à venir me voir ou m'envoyer un message ou même à en parler entre vous pour trouver une solution.
+Je pratique plus rarement ce genre d'installation sur **OSX**, n'hésitez pas à venir me voir ou m'envoyer un message ou même à en parler entre vous pour trouver une solution.
 </TabItem>
 </Tabs>
 
@@ -95,7 +95,7 @@ g++ --version
 
 </TabItem>
 
-<TabItem value="iOS" label="iOS">
+<TabItem value="OSX" label="OSX">
 
 ```bash
 g++ --version
@@ -117,7 +117,7 @@ Pour pouvoir avoir accès à la commande du compilateur depuis n'importe où dan
 
 <TabItem value="Windows" label="Windows">
 
-Vous pouvez y accéder en allant dans le **Panneau de configuration** et en cliquant sur le lien **Paramètres système avancés** puis sur **Variables d'environnement**. 
+Vous pouvez y accéder en allant dans le **Panneau de configuration** et en cliquant sur le lien **Paramètres système avancés** puis sur **Variables d'environnement**. Ou plus simplement en cherchant **"path"** ou **"variable"** dans le Menu démarrer.
 
 Dans la section Variables système recherchez la variable d'environnement **PATH** et sélectionnez-la. Cliquez sur Modifier. 
 
@@ -146,9 +146,9 @@ Comme le plus souvent c'est le shell **BASH** qui est utilisé, vous devez édit
 Des explications pour le faire sont disponible [ici](https://stackabuse.com/how-to-permanently-set-path-in-linux/#:~:text=in%20this%20guide.-,Using%20bashrc%20to%20Set%20your%20PATH,-Instead%20of%20setting)
 </TabItem>
 
-<TabItem value="iOS" label="iOS">
+<TabItem value="OSX" label="OSX">
 
-Je suis moins familier d'iOS mais c'est également possible de modifier la variable **PATH**.
+Je suis moins familier d'OSX mais c'est également possible de modifier la variable **PATH**.
 
 Vous trouverez des instructions pour le faire [ici](https://support.apple.com/fr-fr/guide/terminal/apd382cc5fa-4f58-4449-b20a-41c53c006f8f/mac) et [ici](https://apical.xyz/fiches/configurer_son_mac/ajuster_la_variable_d_environnement_path_sous_macos)
 

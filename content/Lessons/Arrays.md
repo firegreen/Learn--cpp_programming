@@ -94,33 +94,15 @@ Il ne **faut pas** utiliser d’indice **inférieur à 0** ou **supérieur ou é
 
 #### Taille du tableau
 
-Pour connaître la taille du tableau il existe deux façons de faire:
-
-- Utiliser la fonction **std::size(...)** qui renvoie le nombre d'éléments de n'importe quel conteneur:
+Pour connaître la taille du tableau on va utiliser la fonction propre (appelée **méthode**) ```size()```  qui renvoie le nombre d'éléments.
 
 :::note
-Une fonction est un regroupement d'instructions que permet de réutiliser du code à plusieurs endroits d'un programme. Nous en reparlerons plus en détail dans un prochain chapitre, mais nous pouvons dès maintenant en utiliser.
+Une **fonction** est un regroupement d'instructions que permet de réutiliser du code à plusieurs endroits d'un programme. Une **méthode** est une **fonction** propre à un objet(ici notre ```std::vector```) et qui peut le manipuler ou retourner des informations à son sujet.
+Nous en reparlerons plus en détail dans un prochain chapitre, mais nous pouvons dès maintenant en utiliser.
 :::
 
-Le type de retour de cette fonction est un type nouveau, que nous n’avons pas rencontré jusque-là et qui s’appelle **std::size_t**.
-C’est un type entier capable de stocker l'index d'un élément ou la taille de n’importe quel tableau, aussi grand soit-il. C'est, pour faire simple, un **très grand entier positif** équivalent à écrire ```unsigned long int```.
-
-```cpp
-#include <iostream>
-#include <vector>
-
-int main()
-{
-    std::vector<int> const array { 12, 18, 8, 4, 9 };
-
-    std::size_t const size { std::size(array) };
-    std::cout << "Mon tableau contient " << size << " éléments." << std::endl;
-
-    return 0;
-}
-```
-
-- Utiliser la fonction propre ```size()``` du ```std::vector``` qui renvoie le nombre d'éléments.
+Le type de retour de cette **méthode** est un type nouveau, que nous n’avons pas rencontré jusque-là et qui s’appelle **std::size_t**.
+C’est un type **entier** non signé capable de stocker l'index d'un élément ou la taille de n’importe quel tableau, aussi grand soit-il. C'est, pour faire simple, un **très grand entier positif** équivalent à écrire ```unsigned long int```.
 
 ```cpp
 #include <iostream>
@@ -137,11 +119,19 @@ int main()
 }
 ```
 
-Dans la pratique, j'utilise cette façon de faire, plus lisible selon moi mais c'est un avis personnel et vous êtes libres de choisir ce qu’il vous plaît. 
+:::note
+Il existe aussi une fonction **std::size(...)** qui prends en paramètre le tableau et retourne sa taille.
+
+```cpp
+std::size_t const size { std::size(array) };
+```
+
+Dans la pratique, j'utilise plutôt la **méthode**, plus lisible selon moi mais c'est un avis personnel et vous êtes libres de choisir ce qu’il vous plaît. 
+:::
 
 #### Premier et dernier élément
 
-On pourrait utiliser la taille pour accéder au dernier élément du tableau mais on peut aussi utiliser deux autres fonctions propres (**front()** et **back()**) pour accéder au premier et au dernier élément du tableau:
+On pourrait utiliser la taille pour accéder au dernier élément du tableau mais on peut aussi utiliser deux autres méthodes (**front()** et **back()**) pour accéder au premier et au dernier élément du tableau:
 
 ```cpp
 #include <iostream>
@@ -163,7 +153,7 @@ int main()
 
 #### Vérifier si un tableau est vide
 
-Pour savoir si le tableau est vide on peut utiliser une **condition** sur la taille du tableau. Il y a aussi la fonction **std::empty** qui fait ce test pour nous et permet d'écrire quelque chose de plus lisible:
+Pour savoir si le tableau est vide on peut utiliser une **condition** sur la taille du tableau. Il y a aussi la méthode **```empty()```** qui fait ce test pour nous et permet d'écrire quelque chose de plus lisible:
 
 ```cpp
 #include <iostream>
@@ -178,8 +168,8 @@ int main()
 
     std::cout << "array01 est vide : " << array01.size() == 0 << std::endl;
 
-    std::cout << "array01 est vide : " << std::empty(array01) << std::endl;
-    std::cout << "array02 est vide : " << std::empty(array02) << std::endl;
+    std::cout << "array01 est vide : " << array01.empty() << std::endl;
+    std::cout << "array02 est vide : " << array02.empty() << std::endl;
     return 0;
 }
 ```
@@ -205,7 +195,7 @@ int main()
 }
 ```
 
-Depuis le C++ moderne (après **C++11**) il existe une nouvelle façon de parcourir des **conteneurs** (qui se généralise sur d'autres structures de données):
+Depuis le C++ moderne (à partir de **C++11**) il existe une nouvelle façon de parcourir des **conteneurs** (qui se généralise sur d'autres structures de données):
 
 ```cpp
 for (/* type d'un élément du tableau */ nom : /* structure de données à parcourir */)
@@ -236,7 +226,7 @@ int main()
 #### Ajouter, supprimer et modifier des éléments
 
 Comme expliqué, le std::vector est dynamique dans le sens où il est possible d'ajouter ou de supprimer des éléments.
-C'est avec la fonction propre **push_back** que l'on ajoute un élément:
+C'est avec la méthode **push_back** que l'on ajoute un élément:
 
 ```cpp
 #include <iostream>
@@ -264,7 +254,7 @@ On ne pourra pas ajouter un élément de type différent dans notre tableau, un 
 
 ---
 
-Pour supprimer un élément on utilisera les fonctions propres ```pop_back``` ou ```clear```.
+Pour supprimer un élément on utilisera les méthodes ```pop_back``` ou ```clear```.
 
 ```Clear``` comme son nom l'indique permet de vider entièrement le tableau et ```pop_back``` permet de retirer **et** retourner le dernier élément.
 
@@ -391,7 +381,7 @@ int main()
 }
 ```
 
-Il existe la fonction propre **fill** spécifique au **std::array** qui permet de le remplir avec une valeur donnée:
+Il existe la méthode **```fill```** spécifique au ```std::array``` qui permet de le remplir avec une valeur donnée:
 
 ```cpp
 #include <array>
@@ -419,7 +409,7 @@ Le reste des fonctionnalités reste identique avec le ```std::vector``` (hors le
 
 ## Pour aller plus loin
 
-[std::vector](https://en.cppreference.com/w/cpp/container/vector) et [std::array](https://en.cppreference.com/w/cpp/container/array) sont des structures qui disposent d'une multitude de fonctions propres très utiles, je vous laisse chercher par vous même dans la documentation ou revenir vers moi si vous avez des questions à ce sujet.
+[std::vector](https://en.cppreference.com/w/cpp/container/vector) et [std::array](https://en.cppreference.com/w/cpp/container/array) sont des structures qui disposent d'une multitude de méthodes très utiles, je vous laisse chercher par vous même dans la documentation ou revenir vers moi si vous avez des questions à ce sujet.
 
 ## std::string: un tableau caché
 
@@ -468,7 +458,7 @@ int main()
 
 ```
 
-**std::string** dispose de nombreuses autres fonctions propres permettant de faire d'autres choses spécifiques à la gestion de texte. Nous aurons l’occasion de le revoir, retenez simplement ici que **std::string** peut être **manipulé comme un tableau**.
+**std::string** dispose de nombreuses autres méthodes permettant de faire d'autres choses spécifiques à la gestion de texte. Nous aurons l’occasion de le revoir, retenez simplement ici que **std::string** peut être **manipulé comme un tableau**.
 
 ## Résumé
 

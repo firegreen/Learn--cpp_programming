@@ -12,25 +12,25 @@ Le **C++** continue d’évoluer et au début des années 1990 il est décidé d
 
 Ces travaux de normalisation et d'améliorations sont poursuivis pour améliorer encore plus le **C++**, ce qui aboutit 8 ans plus tard, en 2011, à la sortie de **C++11**, jugée par beaucoup de développeurs comme étant le **nouveau standard** du **C++**.
 
-Ensuite, des corrections et ajustements ont été faits pour donner de nouvelles versions **C++14**, **C++17**, **C++20** et très récement **C++23** encore en train de voir le jour.
+Ensuite, des corrections et ajouts(parfois conséquents) ont été faits pour donner de nouvelles versions **C++14**, **C++17**, **C++20** et très récement **C++23** encore en train de voir le jour.
+
+Ce cours va se baser sur le **C++17** pour pouvoir faire du **C++** moderne et bénéficier de quelques nouveautés apparues avec le **C++17**.
 
 :::info
-
 On utilise généralement le terme de « **C++ moderne** » pour parler de **C++11** et au-delà.
-
 :::
 
 ## Pourquoi apprendre C++ ?
 
-- **Sa popularité** : le C++ est un langage qui est utilisé dans de nombreux projets importants de développement logiciel. Il est également beaucoup utilisé dans l'industrie du jeu vidéo. Il est enseigné dans de nombreuses formations en informatique. Il possède une communauté très importante, beaucoup de documentation et d’aide en ligne.
+- **Sa popularité** : le C++ est un langage qui est utilisé dans de nombreux projets importants de développement logiciel. Il est également beaucoup utilisé dans l'industrie du jeu vidéo. Il est enseigné dans de nombreuses formations en informatique. Il possède une communauté très importante, beaucoup de documentation et d’aide en ligne ainsi qu'une bibliothèques préexistantes très riche.
   
-- **Sa rapidité** : C’est cette caractéristique qui fait de lui un des langages de choix pour les programmes scientifiques et le domaine du jeu vidéo.
+- **Sa rapidité** : C’est cette caractéristique qui fait de lui un des langages de choix pour les gros logiciels, les calculs scientifiques et le domaine du jeu vidéo.
 
 - **Son ancienneté** : C++ est un langage ancien d’un point de vue informatique, il a fait l'objet de plusieurs mises à jour ce qui donne une certaine garantie de maturité, de stabilité et de pérennité (il ne disparaîtra pas dans quelques années).
 
-- **Sa facilité d’apprentissage** : depuis sa version de 2011, C++ est beaucoup plus facile à apprendre. La version **C++11** le rend plus facile à utiliser et plus puissant dans les fonctionnalités qu’il propose. Et ça tombe bien, c’est sur cette version et les suivantes que va se baser ce cours.
+- **Sa modernisation** : depuis sa version de 2011, C++ est beaucoup plus facile à apprendre. La version **C++11** le rend **plus facile** à utiliser et **plus puissant** dans les fonctionnalités qu’il propose.
 
-## Langage diffcile ?
+## Langage difficile ?
 
 Tout n’est tout de même pas parfait et le **C++** a aussi ses défauts.
 
@@ -46,7 +46,7 @@ En programmation, un bon réflexe à adopter est d'aller consulter la documentat
 
 Voici un lien vers [une excellente documentation C++](http://en.cppreference.com/w/cpp). Elle est en anglais, mais je suis également là pour vous aider. Je vous donnerai des liens, vous expliquerai comment comprendre et exploiter les informations fournies pour que, par la suite, vous puissiez le faire vous-même.
 
-Enfin, sachez qu’il existe une référence ultime appelée la norme, produit par un organisme de validation international, l'**ISO**, qui explique tous les détails et les règles du C++ mais qui est un document (trop) complexe, même pour des professionels, et est donc largement hors de portée nous concernant.
+Enfin, sachez qu’il existe une référence ultime appelée la **norme**, produit par un organisme de validation international, l'**ISO**, qui explique tous les détails et les règles du C++ mais qui est un document (trop) complexe, même pour des professionels, et est donc largement hors de portée nous concernant.
 Je le mentionne simplement pour que vous soyez au courant de son existence, sans être surpris si, lors de vos recherches sur Internet, des réponses mentionnent ou citent la norme.
 
 ## Compilé vs interprété

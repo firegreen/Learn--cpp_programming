@@ -33,14 +33,6 @@ Une fois le fichier créé, il suffit d'exécuter la commande suivante pour prod
 cl helloImac.cpp
 ```
 
-Cela va produire un exécutable du même nom que le fichier cpp.
-
-Une fois compilé il suffit de l'exécuter avec la commande suivante :
-
-```bash
-./helloImac.exe
-```
-
 </TabItem>
 
 <TabItem value="Linux&iOS" label="Linux et iOS">
@@ -49,11 +41,27 @@ Une fois compilé il suffit de l'exécuter avec la commande suivante :
 g++ helloImac.cpp -o helloImac
 ```
 
+</TabItem>
+</Tabs>
+
+Cela va produire un exécutable du même nom que le fichier cpp.
+
 Une fois compilé il suffit de l'exécuter avec la commande suivante :
+
+<Tabs groupId="operating-systems">
+<TabItem value="Windows" label="Windows">
+
+```bash
+./helloImac.exe
+```
+</TabItem>
+
+<TabItem value="Linux&iOS" label="Linux et iOS">
 
 ```bash
 ./helloImac
 ```
+
 </TabItem>
 </Tabs>
 
@@ -68,7 +76,7 @@ Voici le premier qu'on va utiliser (quelques explications en commentaire **"#"**
 # Nous voulons un cmake "récent" pour utiliser les dernières fonctionnalités
 cmake_minimum_required(VERSION 3.0)
 
-# La version du C++ que l'on souhaite utiliser (dans notre cas C++17 pour faire du C++ moderne)
+# La version du C++ que l'on souhaite utiliser (dans notre cas C++17)
 set(CMAKE_CXX_STANDARD 17)
 
 # Le nom du projet
@@ -111,14 +119,18 @@ Une fois tout initialisé, vous devriez voir des logs dans un terminal ressembla
 [cmake] -- Build files have been written to: /home/user/DATA/Cours IMAC1/helloImac/build
 ```
 
-Vous pouvez maintenant cliquer sur le bouton "play" dans la barre en bas pour lancer et exécuter le programme. :partying_face:
+Vous pouvez maintenant cliquer sur le bouton **"play"**  dans la barre en bas pour exécuter le programme. :partying_face:
+
+:::note
+En cliquant sur ce bouton, l'**IDE** compile automatiquement si nécessaire puis exécute l'exécutable.
+:::
 
 ![](IDE_imgs/VSCode_cmakePlay.png)
 
 :::note
 Cmake devrait normalement créer un dossier **build**, c'est normal.
 CMake est un outil de compilation mais ne compile pas directement, il permet de générer des fichiers permettant ensuite de compiler un projet.
-Vous n'avez pas besoin d'aller voir ce qui s'y trouve, CMake gère automatiquement ce dossier build pour vous.
+Vous n'avez pas besoin d'aller voir ce qui s'y trouve, **CMake** gère automatiquement ce dossier **build** pour vous.
 :::
 
 ## Quelques explications sur le programme
@@ -153,7 +165,7 @@ int main()
 
 Lorsqu’on lance le programme, celui-ci doit savoir par où commencer. On parle de point d’entrée. Ce point d'entrée **doit** être une **fonction** nommée **main** et renvoyer une valeur avec le mot clé **return**.
 
-Nous reviendrons sur les **fonctions** dans un autre chapitre mais retenez que c'est un ensemble nommé d'instructions délimité par des accolades <kbd>{</kbd> et <kbd>}</kbd>.
+Nous reviendrons sur les **fonctions** dans un autre chapitre mais retenez que c'est un ensemble d'instructions délimité par des accolades <kbd>{</kbd> et <kbd>}</kbd>, et auquel on donne un nom (```main``` dans ce cas)."
 
 :::note
 La valeur de retour (de type int) du **main** indique si le programme s’est terminé sans erreur. Si tout se passe bien, il faut retourner **0**. N’importe quelle autre valeur indique une erreur.
@@ -161,7 +173,7 @@ La valeur de retour (de type int) du **main** indique si le programme s’est te
 
 ### Hello and welcome to IMAC !
 
-L’instruction ci-dessous permet d’afficher la chaîne de caractères “Hello and welcome to IMAC !” sur la sortie standard du programme.
+L’instruction ci-dessous permet d’afficher le texte (qu'on appelle **"chaîne de caractères"**, ou **"string"**, en programmation) **"Hello and welcome to IMAC !"** sur la sortie standard du programme.
 
 ```cpp
 std::cout << "Hello and welcome to IMAC !" << std::endl;

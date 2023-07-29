@@ -51,7 +51,7 @@ int main()
 
     // On peut aussi stocker le résultat de la condition dans une variable booléenne
     float const price { 24.5f }
-    bool const condition { price >= 100.f };
+    bool const is_too_expensive { price >= 100.f };
 
     return 0;
 }
@@ -151,7 +151,7 @@ De même pour l'opérateur **OR** (```||```) différent de <kbd>|</kbd>.
 
 C'est bien beau toutes ces valeurs booléennes mais comment on peut s'en servir pour exécuter une partie d'un code ou un autre en fonction d'une condition ?
 
-### If
+### Si
 Notre première stucture de contrôle va s'utiliser avec le mot clé **if**.
 De l'anglais, ce mot clé signifiant **"si"**, exécute des instructions si et seulement si la condition donnée est vraie.
 
@@ -186,7 +186,7 @@ int main()
     if ( price >= 100.f )
     {
         // appliquer une réduction si l'on dépasse un certain prix
-        price *= 0.9;
+        price *= 0.9f;
     }
 
     std::cout << "Le prix final est de " << price << "€" << std::endl;
@@ -439,7 +439,7 @@ Cela permet parfois de simplifier le code ou alors d'exprimer la condition sous 
 
 Dans mon exemple précédent la condition ```(!isRaining || (isRaining && ownsAnUmbrella))``` est équivalente à écrire ```(!isRaining || ownsAnUmbrella)```.
 
-Il existe aussi le **théorème de Morgan** qui permet d'exprimer la négation d'un **ET** avec un **OU** et inversement.
+Il existe aussi le **théorème de De Morgan** qui permet d'exprimer la négation d'un **ET** avec un **OU** et inversement.
 
 Il est possible d'exprimer mon exemple précédent sous cette forme:
 

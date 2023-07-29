@@ -33,16 +33,15 @@ C --> B
 B -- Condition is false --> D
 ```
 
-```cpp title="un petit exemple"
+```cpp title="Un petit exemple"
 #include <iostream>
 int main()
 {
-    int count { 10 };
-
-    while (count > 0)
+    int count { 0 }; // initialisation (d'un compteur ou autre chose lié à la boucle)
+    while ( count < 10 /* condition */)
     {
-        std::cout << count << std::endl;
-        count--; // équivalent à "count -= 1;" ou encore "count = count - 1;"
+        std::cout << count << std::endl; // Instructions
+        count++; // Itération (mise à jour du compteur généralement)
     }
 
     return 0;
@@ -106,11 +105,11 @@ Un des cas les plus fréquents avec les boucles est d'avoir un compteur et un no
 On pourrait très bien le faire avec la boucle ```while```:
 
 ```cpp
-// initialisation (d'un compteur ou autre chose lié à la boucle)
-while (/* condition */)
+int count { 0 }; // initialisation (d'un compteur ou autre chose lié à la boucle)
+while ( count < 10 /* condition */)
 {
     // Instructions
-    // Itération (mise à jour du compteur généralement)
+    count++; // Itération (mise à jour du compteur généralement)
 }
 ```
 
@@ -119,7 +118,7 @@ Mais il existe une boucle dédiée à cela qui permet de séparer le reste de no
 C'est la boucle ```for``` ("**pour**" en anglais) et elle s'utilise selon le schéma suivant:
 
 ```cpp
-for (/*initialisation*/ ; /*condition*/ ; /*Itération*/)
+for (int count {0} /*initialisation*/ ; count < 10 /*condition*/ ; count++/*Itération*/)
 {
     // Instructions
 }
@@ -131,7 +130,7 @@ Voilà le même exemple qu'avec la boucle ```while``` mais ici avec la boucle ``
 #include <iostream>
 int main()
 {
-    for (int count { 10 }; count > 0 ; count--)
+    for (int count { 0 }; count < 10 ; count++)
     {
         std::cout << count << std::endl;
     }
@@ -255,7 +254,7 @@ Comme nous venons de le voir, dans le cas de boucles imbriquées cela arrête se
 
 L’autre mot-clé, ```continue```, permet de sauter l’itération courante.
 
-Toutes les instructions du bloc sont ignorées et la boucle continue au tour suivant.
+Toutes les instructions restantes du bloc sont ignorées et la boucle continue au tour suivant.
 
 ```cpp
 for (int i { 0 }; i < 5; ++i)
@@ -421,6 +420,8 @@ int main()
     return 0;
 }
 ```
+
+Certains warnings de compilateur permette d'indiquer ce genre de cas mais c'est mieux d'y faire attention.
 
 :::
 

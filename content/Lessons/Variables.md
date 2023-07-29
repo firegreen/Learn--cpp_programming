@@ -10,9 +10,10 @@ sidebar_position: 2
 
 Maintenant que l'on sait exécuter notre premier programme il est temps de découvrir ce que l'on va pouvoir manipuler en C++.
 
-# Les littéraux
 
-## Les caractères
+## Les littéraux
+
+### Les caractères
 En effet, la phrase **"Hello and welcome to IMAC !"** précédemment rencontrée représente simplement du texte.
 C'est ce qu'on appelle une **chaîne de caractères**.
 
@@ -56,7 +57,7 @@ int main()
 On différencie les caractères simples (utilisants des <kbd>'</kbd>) des chaines de caractères par les guillements <kbd>"</kbd>.
 :::
 
-###  Les caractères spéciaux
+####  Les caractères spéciaux
 
 Avez vous une idée de comment afficher des guillements ?
 
@@ -99,7 +100,7 @@ Voilà les plus utiles en pratique:
 - <kbd>\t</kbd> qui permet de faire une tabulation horizontale
 - <kbd>\\</kbd> qui permet d’afficher un antislash <kbd>\</kbd>
 
-## Les nombres 
+### Les nombres 
 
 On peut également manipuler des nombres.
 
@@ -200,7 +201,7 @@ Les littéraux c'est sympa mais comment faire si l'on veut se resservir d'un ré
 
 C’est un concept commun à beaucoup de langages de programmation qui permet de stocker une valeur et de lui associer un nom, afin de pouvoir l'identifier et la manipuler facilement.
 
-Nous ne rentrons pas dans le détail de comment sont stockées ces valeurs dans l'ordinateur car ce n'est pas le propos ici.
+Nous ne rentrons pas dans le détail de comment sont stockées ces valeurs dans la mémoire de l'ordinateur car ce n'est pas le propos ici.
 
 ## Créer une variable
 
@@ -208,7 +209,7 @@ Pour déclarer une variable en **C++**, il faut trois choses:
 
 - Préciser d'abord son **type**, qui indique ce que la variable va stocker (un **entier**, un **flottant**, une **chaîne de caractères**, **etc**)
 - Un **nom** qui permer d'identifier la variable
-- Enfin, la valeur à stocker dans notre variable. Ceci se fait en mettant le **littéral** entre accolades **{ }**
+- Enfin, la valeur à stocker dans notre variable. Ceci se fait en mettant la valeur entre accolades <kbd>{}</kbd>
 
 ```cpp
 #include <iostream>
@@ -218,8 +219,8 @@ int main()
 {
     int number { 42 };
     char letter { 'A' };
-    float pi { 3.141592f };
-    double price { 4.14 };
+    float pi { 3.1415927f };
+    double pi_double { 1415926535897931 };
     std::string text { "Hello IMAC!" };
 
     return 0;
@@ -298,14 +299,26 @@ int main()
 
 ## Des préfixes modificateurs
 
-Il est possible d'utiliser des mot-clés modificateurs dans le type de la variable pour altérer son fonctionnement (et implicitement la façon dont ils sont stockés en mémoire).
+Il est possible d'utiliser des mot-clés modificateurs sur les **entiers** (type **int**) devant le type de la variable pour altérer son fonctionnement (et implicitement la façon dont ils sont stockés en mémoire).
 
 - ```signed```: permet d'indiquer que le nombre est signé (<kbd>+</kbd> ou <kbd>-</kbd>)
 - ```unsigned```: permet d'indiquer que le nombre n'a pas de signe (une valeur absolue ou une taille)
 
-- ```short```: le nombre sera stocké sur 16 bits maximum (dans le cas des petits nombres)
-- ```long```: le nombre sera stocké sur 32 bits maximum (dans le cas de plus grands nombres)
-- ```long long```: le nombre sera stocké sur 64 bits maximum
+- ```short```: le nombre sera stocké sur **16** bits minimum (dans le cas des petits nombres)
+- ```long```: le nombre sera stocké sur **32** bits minimum (dans le cas de plus grands nombres)
+- ```long long```: le nombre sera stocké sur **64** bits minimum
+
+:::note
+Ces préfixes sont une indication pour le compilateur. Cela donne donc un **minimum** mais le compilateur est libre de choisir une représentation mémoire s'il estime que c'est mieux ou plus adapté à un ordinateur spécifique.
+
+---
+
+Pour garantir une taille très précise en mémoire il existe depuis le **C++11** des entiers de taille fixée (**Fixed width integer types** en anglais) disponible dans le fichier à inclure ```< cstdint >```.
+
+On retrouve donc par exemple **int16_t** pour un entier sur **16 bits** ou **uint32_t** pour représenter un entier non signé de **32 bits**. Une liste exhaustive est disponible [ici](https://en.cppreference.com/w/cpp/types/integer).
+
+C'est vraiment un usage très spécifique et nous allons pas du tout nous en servir.
+:::
 
 ## Comportement indéterminé
 
@@ -318,6 +331,10 @@ int my_varaible;
 C'est ce qu'on appelle un **comportement indéterminé**, en anglais **"undefined behaviour"**. La variable se voit attribuée une valeur indéterminée. Cela peut être ```0``` comme ```142857```, on ne peut pas le prévoir.
 
 C'est donc quelque chose qu'il faut absolument éviter !
+
+:::note
+Le compilateur l'autorise pour des questions d'optimisation et d'héritage avec le **C**. Certains warnings de compilation indique ces erreurs.
+:::
 
 **Il faut toujours initialiser ses variables.**
 
@@ -384,7 +401,7 @@ int main()
 }
 ```
 
-## Un joli petit nom
+### Un joli petit nom
 
 Au-delà des règles de nommage, **trouver un nom adapté** à une variable est un casse tête que même les programmeurs expérimentés rencontrent.
 
@@ -408,7 +425,7 @@ Avec l'expérience et le temps vous arriverez à trouver plus facilement des nom
 
 Je vous demande dès maintenant de faire quelques efforts pour réfléchir aux noms des variables. Cela peut vous sembler peu important, jusqu'au jour où vous perdrez une semaine de travail à comprendre ce que votre programme ou variable est supposée faire.
 
-## Un type supplémentaire
+## Enum: Un type supplémentaire
 
 Vous allez sûrement le découvrir en pratiquant mais parfois on souhaite stocker un nombre limité de possibilités.
 
@@ -448,6 +465,8 @@ Il est également possible de l'omettre mais cette syntaxe est un autre "type" d
 - Déclarer une variable ayant le même nom qu'une valeur d'un enum peut avoir des comportements imprévus.
 
 ```cpp
+#include <iostream>
+
 enum PrimaryColor {
     Red,
     Yellow,
@@ -494,11 +513,24 @@ Il y a principalement deux catégories d'**opérateurs**:
 - Les opérateurs **binaires** qui utilisent **deux valeurs** pour en produire une nouvelle (comme ```a + b``` par exemple)
 - Les opérateurs **unaires** qui s'appliquent sur **une valeur** pour en produire une nouvelle.
 
-Nous avons par exemple vu précédemment les **opérateurs arithmétiques** (<kbd>+</kbd>, <kbd>+</kbd>, <kbd>*</kbd>, <kbd>/</kbd> et <kbd>%</kbd>) sur les nombres. Ces opérateurs sont **binaires**.
+Nous avons par exemple vu précédemment les **opérateurs arithmétiques** (<kbd>+</kbd>, <kbd>-</kbd>, <kbd>*</kbd>, <kbd>/</kbd> et <kbd>%</kbd>) sur les nombres. Ces opérateurs sont **binaires**.
 
 ### Opérateurs d'affectation
 
 Pour attribuer une nouvelle valeur à une variable, on utilise l’**opérateur d’affectation <kbd>=</kbd>**, précédé du nom de la variable et suivi de la valeur à affecter : ```nom = valeur;```.
+
+```cpp
+#include <iostream>
+int main()
+{
+    int x{ 0 };
+    std::cout << x << std::endl;
+    x = 3;
+    std::cout << x << std::endl;
+
+    return 0;
+}
+```
 
 C++ s'occupe en premier lieu de tout ce qui se trouve à droite du signe <kbd>=</kbd>. On peut donc utiliser la valeur d'une variable pour faire un calcul avant de l'assigner à cette même variable.
 
@@ -552,7 +584,23 @@ int result { ++a }; // a est incrémenté à 6, puis result prend la nouvelle va
 // Maintenant, a et result valent tous les deux 6.
 ```
 
-En résumé, la seule différence entre les deux formes réside dans le moment où l'incrémentation est réalisée (avant ou après l'utilisation de sa valeur actuelle). Dans la plupart des cas, vous pouvez utiliser l'une ou l'autre forme. Lorsque vous voulez récupérer le résultat de l'incrémentation, assurez-vous de choisir celle qui convient le mieux à votre situation pour obtenir le comportement souhaité dans votre programme.
+En résumé, la seule différence entre les deux formes réside dans le moment où l'incrémentation est réalisée (avant ou après l'utilisation de sa valeur actuelle). Lorsque vous voulez récupérer le résultat de l'incrémentation, assurez-vous de choisir celle qui convient le mieux à votre situation pour obtenir le comportement souhaité dans votre programme.
+
+Dans la plupart des cas, je vous recommande tout simplement de ne **pas l'utiliser**! C'est beaucoup trop compliqué à comprendre et propice aux erreurs. Faites plutôt:
+
+```cpp
+int a { 5 };
+a++;
+int result { a };
+```
+
+ou 
+
+```cpp
+int a { 5 };
+int result { a };
+a++;
+```
 
 :::
 ### Quelques exemples
@@ -576,6 +624,7 @@ int main()
     // Je me sers de ma variable pour en créer une nouvelle
     int other_value { variable * 3 };
     std::cout << other_value << std::endl;
+    std::cout << variable << std::endl;
 
     // Je peux utiliser d'autres variables également
     variable = other_value - 1;
