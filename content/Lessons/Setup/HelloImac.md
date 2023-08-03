@@ -35,7 +35,7 @@ cl helloImac.cpp
 
 </TabItem>
 
-<TabItem value="Linux&iOS" label="Linux et iOS">
+<TabItem value="Linux&OSX" label="Linux et OSX">
 
 ```bash
 g++ helloImac.cpp -o helloImac
@@ -56,7 +56,7 @@ Une fois compilé il suffit de l'exécuter avec la commande suivante :
 ```
 </TabItem>
 
-<TabItem value="Linux&iOS" label="Linux et iOS">
+<TabItem value="Linux&OSX" label="Linux et OSX">
 
 ```bash
 ./helloImac
