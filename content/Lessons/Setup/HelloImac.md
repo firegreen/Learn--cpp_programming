@@ -88,7 +88,7 @@ add_executable(helloImac helloImac.cpp)
 
 Ce fichier **CMakeLists.txt** va être bien pratique car il est reconnu par divers **IDE** et en ce qui nous concerne on va l'utiliser avec **VSCode**.
 
-Il suffit d'avoir au préalable installer l'extension dont je vous ai parlé <VSCodeExtension id="twxs.cmake"/> et d'ouvrir le dossier contenant le fichier **CMakeLists.txt** dans VSCode (il est recommandé de créer un dossier dédié au "projet" contenant les fichiers sources et le fichier **CMakeLists.txt**).
+Il suffit d'avoir au préalable installé l'extension dont je vous ai parlé <VSCodeExtension id="twxs.cmake"/> et d'ouvrir le dossier contenant le fichier **CMakeLists.txt** dans VSCode (il est recommandé de créer un dossier dédié au "projet" contenant les fichiers sources et le fichier **CMakeLists.txt**).
 L'extension devrait normalement reconnaitre automatiquement qu'il y a un fichier cmake et vous proposer d'initialiser celui-ci automatiquement.
 
 ![](IDE_imgs/VSCode_projectConfiguration.png)
