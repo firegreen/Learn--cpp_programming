@@ -47,16 +47,16 @@ std::vector</* type des éléments du tableau */> nom {};
 int main()
 {
     // initialisation d'un tableau à remplir plus tard
-    std::vector<int> array01 {};
+    std::vector<int> vector01 {};
 
     // il est aussi possible de le préremplir à sa création
-    std::vector<int> array02 { 12, 18, 8, 4, 9 };
+    std::vector<int> vector02 { 12, 18, 8, 4, 9 };
 
     // on peut rendre constant afin d'éviter de future modifications si c'est ce que l'on souhaite
-    std::vector<float> const array03 { 3.1415f, 5.2365f };
+    std::vector<float> const vector03 { 3.1415f, 5.2365f };
 
     // il est aussi possible de l'initialiser en copiant les valeurs d'un autre tableau de cette manière
-    std::vector<float> array04 { array03 };
+    std::vector<float> vector04 { vector03 };
 
     return 0;
 }
@@ -74,8 +74,8 @@ Pour accéder aux éléments on utilise les crochets (<kbd>[</kbd> et <kbd>]</kb
 
 int main()
 {
-    std::vector<int> array { 12, 18, 8, 4, 9 };
-    std::cout << "the second élément is " << array[1] << std::endl;
+    std::vector<int> vector { 12, 18, 8, 4, 9 };
+    std::cout << "the second élément is " << vector[1] << std::endl;
     
     return 0;
 }
@@ -110,9 +110,9 @@ C’est un type **entier** non signé capable de stocker l'index d'un élément 
 
 int main()
 {
-    std::vector<int> const array { 12, 18, 8, 4, 9 };
+    std::vector<int> const vector { 12, 18, 8, 4, 9 };
 
-    std::size_t const size { array.size() };
+    std::size_t const size { vector.size() };
     std::cout << "Mon tableau contient " << size << " éléments." << std::endl;
 
     return 0;
@@ -123,7 +123,7 @@ int main()
 Il existe aussi une fonction **std::size(...)** qui prends en paramètre le tableau et retourne sa taille.
 
 ```cpp
-std::size_t const size { std::size(array) };
+std::size_t const size { std::size(vector) };
 ```
 
 Dans la pratique, j'utilise plutôt la **méthode**, plus lisible selon moi mais c'est un avis personnel et vous êtes libres de choisir ce qu’il vous plaît. 
@@ -139,13 +139,13 @@ On pourrait utiliser la taille pour accéder au dernier élément du tableau mai
 
 int main()
 {
-    std::vector<int> const array { 12, 18, 8, 4, 9 };
+    std::vector<int> const vector { 12, 18, 8, 4, 9 };
 
     // Façon de faire hérité du c en utilisant la taille du tableau (attention au -1 les index commencent à 0)
-    std::cout << "Le dernier élément est " << array[array.size() - 1] << "." << std::endl;
+    std::cout << "Le dernier élément est " << vector[vector.size() - 1] << "." << std::endl;
 
-    std::cout << "Le premier élément est " << array.front() << "." << std::endl;
-    std::cout << "Le dernier élément est " << array.back() << "." << std::endl;
+    std::cout << "Le premier élément est " << vector.front() << "." << std::endl;
+    std::cout << "Le dernier élément est " << vector.back() << "." << std::endl;
 
     return 0;
 }
@@ -161,15 +161,15 @@ Pour savoir si le tableau est vide on peut utiliser une **condition** sur la tai
 
 int main()
 {
-    std::vector<int> const array01 { };
-    std::vector<int> const array02 { 12, 18, 8, 4, 9 };
+    std::vector<int> const vector01 { };
+    std::vector<int> const vector02 { 12, 18, 8, 4, 9 };
 
     std::cout << std::boolalpha;
 
-    std::cout << "array01 est vide : " << array01.size() == 0 << std::endl;
+    std::cout << "vector01 est vide : " << vector01.size() == 0 << std::endl;
 
-    std::cout << "array01 est vide : " << array01.empty() << std::endl;
-    std::cout << "array02 est vide : " << array02.empty() << std::endl;
+    std::cout << "vector01 est vide : " << vector01.empty() << std::endl;
+    std::cout << "vector02 est vide : " << vector02.empty() << std::endl;
     return 0;
 }
 ```
@@ -184,11 +184,11 @@ Pour afficher les éléments du tableau on peut simplement utiliser sa taille et
 
 int main()
 {
-    std::vector<int> const array { 12, 18, 8, 4, 9 };
+    std::vector<int> const vector { 12, 18, 8, 4, 9 };
 
-    for (std::size_t i {0}; i < array.size(); i++)
+    for (std::size_t i {0}; i < vector.size(); i++)
     {
-        std::cout << array[i] << std::endl;
+        std::cout << vector[i] << std::endl;
     }
 
     return 0;
@@ -204,6 +204,10 @@ for (/* type d'un élément du tableau */ nom : /* structure de données à parc
 }
 ```
 
+:::note
+On appelle cela un **foreach** dans d'autres languages.
+:::
+
 Plus besoin de récupérer la taille et cela va rendre notre code plus lisible:
 
 ```cpp title="Petit exemple avec std::vector"
@@ -212,9 +216,9 @@ Plus besoin de récupérer la taille et cela va rendre notre code plus lisible:
 
 int main()
 {
-    std::vector<int> const array { 12, 18, 8, 4, 9 };
+    std::vector<int> const vector { 12, 18, 8, 4, 9 };
 
-    for (int const value : array)
+    for (int const value : vector)
     {
         std::cout << value << std::endl;
     }
@@ -234,12 +238,12 @@ C'est avec la méthode **push_back** que l'on ajoute un élément:
 
 int main()
 {
-    std::vector<int> array { 42 };
+    std::vector<int> vector { 42 };
     // On ajoute des éléments
-    array.push_back(23);
-    array.push_back(5);
+    vector.push_back(23);
+    vector.push_back(5);
 
-    for (int const value : array)
+    for (int const value : vector)
     {
         std::cout << value << std::endl;
     }
@@ -264,20 +268,20 @@ Pour supprimer un élément on utilisera les méthodes ```pop_back``` ou ```clea
 
 int main()
 {
-    std::vector<int> array { 42, 12 };
+    std::vector<int> vector { 42, 12 };
 
-    std::cout << "Taille avant clear : " << array.size() << std::endl;
+    std::cout << "Taille avant clear : " << vector.size() << std::endl;
 
-    array.clear();
+    vector.clear();
 
-    std::cout << "Taille après clear : " << array.size() << std::endl;
+    std::cout << "Taille après clear : " << vector.size() << std::endl;
 
-    array.push_back(23);
-    array.push_back(42);
-    array.push_back(25);
+    vector.push_back(23);
+    vector.push_back(42);
+    vector.push_back(25);
 
     std::cout << "Le tableau contient maintenant: ";
-    for (int const value : array)
+    for (int const value : vector)
     {
         std::cout << value << ", ";
     }
@@ -286,20 +290,20 @@ int main()
     tableau_de_int.pop_back();
 
     std::cout << "Le tableau contient maintenant: ";
-    for (int const value : array)
+    for (int const value : vector)
     {
         std::cout << value << ", ";
     }
     std::cout << std::endl;
 
-    if(!std::empty(array))
+    if(!std::empty(vector))
     {
         int last_value = tableau_de_int.pop_back();
 
         std::cout << "La dernière valeur du tableau était : " << last_value << std::endl;
 
         std::cout << "Le tableau contient maintenant: ";
-        for (int const value : array)
+        for (int const value : vector)
         {
             std::cout << value << ", ";
         }
@@ -324,10 +328,10 @@ Enfin, pour pouvoir modifier une valeur il suffit d'accéder à l'élément (à 
 
 int main()
 {
-    std::vector<int> array { 24, 12, 6 };
+    std::vector<int> vector { 24, 12, 6 };
 
     // On change la valeur du premier élément
-    array[0] = 15;
+    vector[0] = 15;
 
     return 0;
 }
@@ -356,6 +360,9 @@ Ainsi, si l'on ne précise donc rien ou pas la totalité des éléments à son i
 int main()
 {
     std::array<int, 5> array_of_integer { 24, 12, 6, 32, 8 };
+
+    // On change la valeur du deuxième élément
+    array_of_integer[1] = 42;
 
     std::cout << "Le tableau d'entier contient: ";
     for (int const integer : array_of_integer)
