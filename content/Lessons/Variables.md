@@ -73,7 +73,7 @@ int main()
 
 Si j'essaie d'utiliser des guillemets cela ne compile pas comme dans l'exemple ci-dessus.
 
-En effet, les guillements permettent déjà de signaler le début et la fin d'une chaîne de caractères.
+En effet, les guillemets permettent déjà de signaler le début et la fin d'une chaîne de caractères.
 
 C'est également le cas quand on essaye de représenter un chemin de dossier au format Windows, par exemple, avec le chemin de fichier "C:\Program Files" et on obtient une erreur du type ```warning: unknown escape sequence: '\P'```.
 
@@ -586,7 +586,7 @@ int result { ++a }; // a est incrémenté à 6, puis result prend la nouvelle va
 
 En résumé, la seule différence entre les deux formes réside dans le moment où l'incrémentation est réalisée (avant ou après l'utilisation de sa valeur actuelle). Lorsque vous voulez récupérer le résultat de l'incrémentation, assurez-vous de choisir celle qui convient le mieux à votre situation pour obtenir le comportement souhaité dans votre programme.
 
-Dans la plupart des cas, je vous recommande tout simplement de ne **pas l'utiliser**! C'est beaucoup trop compliqué à comprendre et propice aux erreurs. Faites plutôt:
+Dans la plupart des cas, je vous recommande tout simplement de ne **pas l'utiliser**! C'est une grosse source d’erreurs. Faites plutôt:
 
 ```cpp
 int a { 5 };
@@ -600,6 +600,13 @@ ou
 int a { 5 };
 int result { a };
 a++;
+```
+Aussi, je recommandes même d’utiliser ```a += 1``` à la place. Comme ça pas de surprise on est certain de ce qu’on fait.
+
+```cpp
+int a { 5 };
+a += 1;
+int result { a };
 ```
 
 :::
