@@ -497,6 +497,15 @@ C'est un **comportement indéterminé**. Il ne produira pas d'erreur de compilat
 Il ne faut **jamais** renvoyer une **référence** vers une **variable locale** à une fonction.
 :::
 
+## Références et types standard
+
+Utiliser des **références** pour **std::vector** ou **std::string** d’accord, mais qu’en est-il des types standard comme **int**, **char** et **double** ? Y a-t-il un intérêt à utiliser des références ? Doit-on bannir toutes les copies de notre code ?
+
+Les types standard sont petits (en mémoire) et le **coût** de la création d’une **référence** sur des types aussi simples est souvent plus élevé ou équivalent que celui d’une "bête" copie.
+En effet, le compilateur arrive très souvent à optimiser les copies et les rendre extrêmement rapides, bien plus qu’avec les références.
+
+Donc ne tombez pas dans le piège de l’**optimisation prématurée**. Pensez au **références** lorsqu'il s'agit d'objets "gros". Vouloir mettre des **références** partout n'est pas une erreur (et je ne vous en tiendrez pas compte au contraire cela veux dire que vous pensez aux références). Mais, garder à l'esprit que cela a aussi un **coût** de créer une référence et que laisser juste un ```int const parameter``` permet au **compilateur** de mieux optimiser le code.
+
 ## Signature et fonctions surchargées
 
 Ce qui différencie deux **fonctions**, ça n’est pas seulement leur **nom** mais également leurs **paramètres**. C’est ce qu’on appelle la **signature** d’une fonction.
