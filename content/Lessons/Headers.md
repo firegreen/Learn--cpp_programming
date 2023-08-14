@@ -3,7 +3,7 @@ title: "Compilation et Headers: Séparer en plusieurs fichiers"
 tags:
     - C++
 
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 import Tabs from '@theme/Tabs';
@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 Maintenant que l'on sait **découper** notre code en fonctions il va aussi être intéressant de le découper en **plusieurs fichiers**. Cela va permettre de **regrouper** des fonctionnalités et mieux **organiser** un projet.
 
-Prenons directement deux fichiers qui vons nous servir d'exemple tout le long de ce chapitre :
+Prenons directement deux fichiers qui vont nous servir d'exemple tout le long de ce chapitre :
 
 ```cpp title="maths.cpp"
 int sum (int const a, int const b)
@@ -47,22 +47,22 @@ Quand j'ai parlé de **compilation** j'ai fait un **abus de langage** et j'ai en
 
 ### Le préprocesseur
 
-La toute première étape est celle du **préprocesseur**. C'est le moment où toutes les **directives préprocesseur** sont traitées (toutes les lignes commancant par <kbd>#</kbd>).
+La toute première étape est celle du **préprocesseur**. C'est le moment où toutes les **directives préprocesseur** sont traitées (toutes les lignes commençant par <kbd>#</kbd>).
 
 Par exemple, nous avons déjà la **directive préprocesseur** ```#include``` qui permet d'inclure des fonctionnalités.
 
 Cette directive fait simplement un **copié-collé** du contenu du fichier à inclure dans le fichier ou la directive est utilisée.
 
-Je ne vais pas en parler ici mais sachez qu'il existe d'autres directives permettant de faire des conditions en fonction des platformes par exemple.
+Je ne vais pas en parler ici mais sachez qu'il existe d'autres directives permettant de faire des conditions en fonction des plateformes par exemple.
 
 ### La compilation
 
 Ensuite nous avons la **compilation** à proprement parler.
 
-Chaque fichier ```.cpp```, obtenu **après** les modifications du **préprocesseur**, appellé **unité de compilation**, va être traité individuellement. 
+Chaque fichier ```.cpp```, obtenu **après** les modifications du **préprocesseur**, appelé **unité de compilation**, va être traité individuellement. 
 Le but de cette étape est de **transformer** le code **C++** (sous format texte) en langage compréhensible pour l'ordinateur.
 
-C’est à cette étape que des **vérifications** du code ont lieu. Par exemple, dans le cas où le compilateur ne trouve pas la déclaration d’une fonction que vous appelez, comme dans notre exemple précédement dans le fichier ```main.cpp```, la compilation va s'arrêter avec un message d'erreur indiquant ce qui n’a pas fonctionné.
+C’est à cette étape que des **vérifications** du code ont lieu. Par exemple, dans le cas où le compilateur ne trouve pas la déclaration d’une fonction que vous appelez, comme dans notre exemple précédemment dans le fichier ```main.cpp```, la compilation va s'arrêter avec un message d'erreur indiquant ce qui n’a pas fonctionné.
 
 Cette étape va produire des **fichiers objets**.
 
@@ -216,6 +216,14 @@ le fichier ```maths.hpp``` dans notre exemple devient donc:
 int sum (int const a, int const b);
 ```
 
+#### Structures
+
+Bien que ce soit possible de mettre la déclaration d'une **structure** dans un fichier ```.cpp``` généralement on a besoin de s'en resservir dans plusieurs fichiers et la déclaration se trouve donc dans un **fichier d'en-tête** (```.hpp```).
+
+Cependant, comme pour les **enums**, une **structure** ne peut être déclarée qu'une fois et il ne faut donc surtout pas oublier la **directive préprocesseur** ```#pragma once``` pour éviter un **doublons** lors d'inclusions.
+
+On utilisera dans ce cas la déclaration de la structure avec les **prototypes** des fonctions qui lui sont associées dans notre fichier d'en-tête.
+
 ## Utiliser Cmake
 
 Pour résumer nous avons donc maintenant les fichiers suivant:
@@ -252,12 +260,12 @@ Dans ce dossier de projet nous allons créer notre fichier ```CMakeLists.txt``` 
 
 Nous allons reprendre et modifier notre premier fichier **Cmake**.
 
-Dans le fichier ```CMakeLists.txt``` il va faloir indiquer les répertoires où se trouvent les **fichiers d'en-tête** par ```include_directories()```.
+Dans le fichier ```CMakeLists.txt``` il va falloir indiquer les répertoires où se trouvent les **fichiers d'en-tête** par ```include_directories()```.
 
 Personnellement j'aime les placer à coté des fichiers ```.cpp``` du même nom et je vais donc indiquer le dossier ```/src``` également.
 Mais parfois vous trouverez une séparation des **fichiers d'en-tête** (dans un dossier **include** par exemple). C'est vraiment une question d'**organisation** et de **préférence**.
 
-On va également régler une variable **Cmake** ```CMAKE_RUNTIME_OUTPUT_DIRECTORY``` qui va premettre d'indiquer que l'on souhaite placer l'**exécutable** compilé dans un sous dossier ```bin```.
+On va également régler une variable **Cmake** ```CMAKE_RUNTIME_OUTPUT_DIRECTORY``` qui va permettre d'indiquer que l'on souhaite placer l'**exécutable** compilé dans un sous dossier ```bin```.
 
 ```cmake title="CMakeLists.txt"
 # la version de cmake à utiliser
@@ -301,7 +309,7 @@ Vous pouvez maintenant ouvrir le dossier de projet dans **VSCode** et compiler v
 ### Quelques améliorations
 
 Je vous ai parlé de "**warnings**" de compilation à plusieurs reprises.
-Il est possible d'ajouter des options pour activer des **warnings** et avoir des informations suplémentaires lors de la compilation.
+Il est possible d'ajouter des options pour activer des **warnings** et avoir des informations supplémentaires lors de la compilation.
 
 Je vous propose d'ajouter ces lignes dans votre fichiers ```CMakeLists.txt```:
 
@@ -366,7 +374,7 @@ add_executable(helloImac ${SRC_FILES})
 
 - Les **fichiers d'en-tête** ou **headers** (d'extension ```.hpp```) sont là pour lister les différentes déclarations des fonctions (et d'autres choses comme les **enums**) afin de pouvoir les utiliser dans **plusieurs fichiers**.
 
-- Les **fichiers objets** sont des fichiers générés pendant la compilation. Ils peuvent faire référence à des "**symboles**"(noms de fonctions ou de variables) qui ne sont pas encore entièrement définis mais seulement déclarés (et inclus à l'aide des **fichiers d'en-tête**). Ils permettent aussi d'**accélerer la compilation** pour réutiliser des parties de code inchangées.
+- Les **fichiers objets** sont des fichiers générés pendant la compilation. Ils peuvent faire référence à des "**symboles**"(noms de fonctions ou de variables) qui ne sont pas encore entièrement définis mais seulement déclarés (et inclus à l'aide des **fichiers d'en-tête**). Ils permettent aussi d'**accélérer la compilation** pour réutiliser des parties de code inchangées.
 
 - La **directive préprocesseur** ```#include``` fait simplement un **copier-coller** du fichier cible dans le fichier actuel.
 
@@ -374,7 +382,7 @@ add_executable(helloImac ${SRC_FILES})
 
 - il y a **3** étapes dans la compilation:
   - Le **préprocesseur** qui transforme les **directives préprocesseur** comme ```#include``` ou ```#pragma once```.
-   - **La compilation** qui génère des **fichiers objets** pour chaques unité de compilation (fichiers ```.cpp``` après traitement du préprocesseur).
+   - **La compilation** qui génère des **fichiers objets** pour chaque unité de compilation (fichiers ```.cpp``` après traitement du préprocesseur).
    - **Le linkage** qui permet de **lier** tous les **fichiers objets** ensemble pour obtenir un **exécutable**.
 
 - **Cmake** permet de gérer ces étapes de compilation simplement.

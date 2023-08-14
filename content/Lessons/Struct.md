@@ -3,7 +3,7 @@ title: "Structure: organiser nos données"
 tags:
     - C++
 
-sidebar_position: 8
+sidebar_position: 7
 ---
 
 # introduction
@@ -127,12 +127,6 @@ int main()
 }
 ```
 
-## Inclusion: importance du #pragma once
-
-Bien que ce soit possible de mettre la déclaration d'une **structure** dans un fichier ```.cpp``` généralement on a besoin de s'en resservir dans plusieurs fichiers et la déclaration se trouve donc dans un **fichier d'en-tête** (```.hpp```).
-
-Cependant, comme pour les **enums**, une structure ne peut être déclarée qu'une fois et il ne faut donc surtout pas oublier la **directive préprocesseur** ```#pragma once``` pour éviter un **doublons** lors d'inclusions.
-
 ## Changer les valeurs par défaut
 
 Lors de l'initialisation, les **accolades** doivent être **non vide**.
@@ -217,8 +211,6 @@ float Product::TotalPrice()
     return price * quantity;
 }
 ```
-
-C'est très utile pour déclarer notre structure et ses fonctions dans un **fichier d'en-tête**.
 
 ### Méthode constante
 
@@ -354,12 +346,34 @@ struct Product
     }
 };
 ```
-
-:::note
 Vous êtes libre de laisser ou non le ```this->``` pour indiquer plus explicitement l'utilisation du **membre** de la structure surtout si c'est **plus compréhensible** pour vous.
-:::
 
-Je ne rentre pas dans le détail du mécanisme du mot-clé ```this```, j'y reviendrai dans un autre chapitre. Retenez simplement ici que cela permet d'indiquer explicitement que l'on souhaite **manipuler la structure**.
+:::info
+Mais que se cache derrière ce ```this``` ?
+
+```this``` est en fait un **pointeur** vers la structure elle même !
+
+On pourrait donc faire un **déréférencement** et avoir accès à la structure pour la modifier.
+
+```cpp
+struct Product
+{
+    std::string name;
+    float price;
+    unsigned int quantity;
+
+    void ChangePrice(float const price)
+    {
+        (*this).price = price;
+        // this->price = price;
+    }
+};
+```
+
+La syntaxe ```->``` qui est en réalité un raccourci de syntaxe qui permet de faire un **déréférencement** puis d'accéder à un membre ou une méthode de la structure:
+
+Ces deux écritures sont donc équivalentes: ```this->member``` ```(*this).member```.
+:::
 
 ## Aller plus loin: Forward Declaration
 
