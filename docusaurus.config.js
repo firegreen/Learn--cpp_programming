@@ -77,6 +77,11 @@ module.exports = async function configCreatorAsync() {
             {to: '/Lessons', label: 'Cours', position: 'left'},
           ],
         },
+        docs: {
+          sidebar: {
+            hideable: true,
+          },
+        },
         footer: {
           style: 'dark',
           links: [
