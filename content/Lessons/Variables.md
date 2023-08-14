@@ -13,6 +13,8 @@ Maintenant que l'on sait exécuter notre premier programme il est temps de déco
 
 ## Les littéraux
 
+Un **littéral** est une valeur donnée explicitement dans le code. Il y a plusieurs types de littéraux en **C++**.
+
 ### Les caractères
 En effet, la phrase **"Hello and welcome to IMAC !"** précédemment rencontrée représente simplement du texte.
 C'est ce qu'on appelle une **chaîne de caractères**.
@@ -41,7 +43,9 @@ int main()
 }
 ```
 
-On pourrait simplement se contenter de caractères me direz vous mais c'est un peu fastidieux et les chaînes de caractères sont donc là pour nous simplifier la vie.
+### Les chaînes de caractères
+
+On pourrait simplement se contenter de **caractères** me direz vous mais c'est un peu fastidieux et les **chaînes de caractères** sont donc là pour nous simplifier la vie.
 
 ```cpp
 #include <iostream>
@@ -54,12 +58,12 @@ int main()
 ```
 
 :::note
-On différencie les caractères simples (utilisants des <kbd>'</kbd>) des chaines de caractères par les guillements <kbd>"</kbd>.
+On différencie les caractères simples (utilisant des <kbd>'</kbd>) des chaines de caractères par les guillemets <kbd>"</kbd>.
 :::
 
 ####  Les caractères spéciaux
 
-Avez vous une idée de comment afficher des guillements ?
+Avez vous une idée de comment afficher des guillemets ?
 
 ```cpp
 #include <iostream>
@@ -79,7 +83,7 @@ C'est également le cas quand on essaye de représenter un chemin de dossier au 
 
 Il existe en **C++** des **caractères** dits **spéciaux**, appelés séquences d’échappement. Le symbole <kbd>\</kbd> permet d'indiquer au compilateur d’afficher et non interpréter ces caractères.
 
-Il faut donc préfixer les guillements du caractère <kbd>\</kbd> pour pouvoir les afficher:
+Il faut donc préfixer les guillemets du caractère <kbd>\</kbd> pour pouvoir les afficher:
 ```cpp
 #include <iostream>
 
@@ -673,7 +677,7 @@ Je vais le placer à droite dans la suite de ce cours car c'est le fonctionnemen
 C'est une question de préférence et de lisibilité, vous êtes libre de choisir ce que vous préférez.
 :::
 
-# Entrée / Sortie
+## Entrée / Sortie
 
 Jusque là, nous avons régulièrement rencontré **std::cout** qui nous permet d'afficher des caractères.
 
@@ -709,6 +713,57 @@ Dans ce cas de figure **la variable (```age``` ici) n'est pas modifiée**. Mais 
 Nous verrons plus tard comment gérer ce cas de figure et détecter si une erreur survient.
 :::
 
+## cast
+
+Il est possible de convertir un **type** en un autre **type**. C'est ce qu'on appelle un **cast**.
+
+Il existe plusieurs types de **cast** dont le plus courant est le **cast** statique (**static_cast**).
+
+**static_cast** permet de **convertir** un type en un autre type. Par exemple, un ```int``` en ```float```. C'est un **cast** sûr car il fait des vérifications. Il est à utiliser par défaut pour les **conversions** de type.
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    int integer {42};
+    float floating {3.14f};
+
+    float floatingFromInteger {static_cast<float>(integer)};
+    int integerFromFloating {static_cast<int>(floating)};
+
+    std::cout << "integer: " << integer << std::endl;
+    std::cout << "floating: " << floating << std::endl;
+
+    // static_cast
+    std::cout << "static_cast<float>(integer): " << floatingFromInteger << std::endl;
+    std::cout << "static_cast<int>(floating): " << integerFromFloating << std::endl;
+
+    return 0;
+}
+```
+
+```bash
+integer: 42
+floating: 3.14
+static_cast<float>(integer): 42
+static_cast<int>(floating): 3
+```
+
+:::note
+Il existe également un cast hérité du **C** qui s'effectue avec des parenthèses (<kbd> ( ) </kbd>) autour du type vers lequel on veut caster devant la variable à caster.
+```cpp
+
+int integer {42};
+float floating {3.14f};
+
+float floatingFromInteger {(float)integer};
+int integerFromFloating {(int)floating};
+```
+
+Il est à éviter car il est dangereux et fonctionne de différentes manières en fonction des cas sans vérifications et peut donc provoquer des erreurs ou comportements inattendus.
+:::
+
 ## En résumé
 
 Nous venons de découvrir les variables en **C++**. C'est la base de tout programme informatique, ce qui permet d'échanger et de manipuler des informations.
@@ -729,5 +784,7 @@ Nous venons de découvrir les variables en **C++**. C'est la base de tout progra
 - Il est possible de spécifier qu'une variable est non modifiable avec le mot-clé ```const```.
 
 - On utilise des **opérateurs** pour manipuler nos variables.
+
+- Il est possible de convertir un type en un autre type. C'est ce qu'on appelle un **cast**. Le plus courant est le **cast** statique (**static_cast**). Il fait des vérifications et est donc plus sûr. Il est à utiliser par défaut pour les **conversions** de type.
 
 - Nous pouvons demander des informations à l’utilisateur grâce à **std::cin**.
