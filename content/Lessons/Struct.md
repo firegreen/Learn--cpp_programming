@@ -129,9 +129,9 @@ int main()
 
 ## Changer les valeurs par défaut
 
-Lors de l'initialisation, les **accolades** doivent être **non vide**.
+Lors de l'initialisation, si il n'y a pas de valeur fournie entre **accolades** (<kbd>{}</kbd>) pour les membres de la structure, ils seront initialisés avec une valeur par défaut. Pour les **types primitifs** (comme ```int```, ```float```, ```double```, ```char```, ```bool```, etc.) la valeur par défaut est **zéro**. Pour les **objets** (comme ```std::string```, ```std::vector```, etc.) la valeur par défaut est **l'objet vide**.
 
-Mais, il est possible d'utiliser une initialisation "vide" (<kbd>{}</kbd>) pour obtenir des valeurs par défaut. Si une **valeur** est fournie pour un membre donné, c'est cette valeur qui sera utilisée lors de l'initialisation par défaut de la structure.
+Si une **valeur** est fournie en même temps que la déclaration d'un membre, c'est cette valeur qui sera utilisée lors de l'initialisation par défaut de la structure.
 
 ```cpp title="un exemple"
 #include <iostream>
@@ -211,6 +211,10 @@ float Product::TotalPrice()
     return price * quantity;
 }
 ```
+
+:::note
+C'est une notion qui va être utile quand on verra la séparation du code en plusieurs fichiers.
+:::
 
 ### Méthode constante
 
@@ -348,32 +352,7 @@ struct Product
 ```
 Vous êtes libre de laisser ou non le ```this->``` pour indiquer plus explicitement l'utilisation du **membre** de la structure surtout si c'est **plus compréhensible** pour vous.
 
-:::info
-Mais que se cache derrière ce ```this``` ?
-
-```this``` est en fait un **pointeur** vers la structure elle même !
-
-On pourrait donc faire un **déréférencement** et avoir accès à la structure pour la modifier.
-
-```cpp
-struct Product
-{
-    std::string name;
-    float price;
-    unsigned int quantity;
-
-    void ChangePrice(float const price)
-    {
-        (*this).price = price;
-        // this->price = price;
-    }
-};
-```
-
-La syntaxe ```->``` qui est en réalité un raccourci de syntaxe qui permet de faire un **déréférencement** puis d'accéder à un membre ou une méthode de la structure:
-
-Ces deux écritures sont donc équivalentes: ```this->member``` ```(*this).member```.
-:::
+Je ne rentre pas dans le détail ici. Je reviendrai sur le fonctionnement du mot-clé```this``` dans un autre chapitre. Retenez simplement ici que cela permet d'indiquer explicitement que l'on souhaite **manipuler la structure**.
 
 ## Aller plus loin: Forward Declaration
 
@@ -480,7 +459,6 @@ int main()
 
 - Les **membres** de la structure sont les variables qui l'a compose. On y accèdes avec un point <kbd>.</kbd> après le nom de la variable.
 
-- Un **structure** ne peux être définie qu'**une fois**. Il faut utiliser la **directive préprocesseur** ```#pragma once``` pour éviter un doublons lors d'inclusions.
 - Une structure peux avoir des **méthodes** qui se déclarent comme pour les fonctions mais au sein même des accolades de la structure.
 
 - Le **corps** d'une **méthode** peut être **déclaré plus tard** (du moment que le **prototype** de la méthode est dans la structure). Il faut utiliser le **nom** de la structure suivi des **caractères <kbd>::</kbd>** pour indiquer l'**appartenant** de la méthode à la structure si elle est déclarée en **dehors** des **accolades** délimitant la structure.

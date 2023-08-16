@@ -216,6 +216,8 @@ le fichier ```maths.hpp``` dans notre exemple devient donc:
 int sum (int const a, int const b);
 ```
 
+Un fichier d'**en-tête** doit **toujours** contenir cette directive au début du fichier.
+
 #### Structures
 
 Bien que ce soit possible de mettre la déclaration d'une **structure** dans un fichier ```.cpp``` généralement on a besoin de s'en resservir dans plusieurs fichiers et la déclaration se trouve donc dans un **fichier d'en-tête** (```.hpp```).
@@ -260,7 +262,7 @@ Dans ce dossier de projet nous allons créer notre fichier ```CMakeLists.txt``` 
 
 Nous allons reprendre et modifier notre premier fichier **Cmake**.
 
-Dans le fichier ```CMakeLists.txt``` il va falloir indiquer les répertoires où se trouvent les **fichiers d'en-tête** par ```include_directories()```.
+Dans le fichier ```CMakeLists.txt``` il va falloir indiquer les répertoires où se trouvent les **fichiers d'en-tête** par ```target_include_directories()```.
 
 Personnellement j'aime les placer à coté des fichiers ```.cpp``` du même nom et je vais donc indiquer le dossier ```/src``` également.
 Mais parfois vous trouverez une séparation des **fichiers d'en-tête** (dans un dossier **include** par exemple). C'est vraiment une question d'**organisation** et de **préférence**.
@@ -280,11 +282,11 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 # Le nom du projet
 project(IMAC_project)
 
-# le dossier contenant les fichiers d'en-tête
-include_directories("src/")
-
 # On indique que l'on souhaite faire un exécutable avec nos deux fichiers .cpp
 add_executable(helloImac "src/main.cpp" "src/maths.cpp")
+
+# le dossier contenant les fichiers d'en-tête pour notre executable helloImac
+target_include_directories(helloImac "src/")
 ```
 
 ```CMAKE_SOURCE_DIR``` est une variable cmake qui indique le dossier dans lequel se trouve le fichier ```CMakeLists.txt``` (documentation [ici](https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html#variable:CMAKE_SOURCE_DIR)).
@@ -337,7 +339,7 @@ cmake_minimum_required(VERSION 3.0)
 # La version du C++ que l'on souhaite utiliser (dans notre cas C++17)
 set(CMAKE_CXX_STANDARD 17)
 
-# Reglage du compilateur pour les warnings
+# Réglage du compilateur pour les warnings
 // highlight-start
 if (MSVC)
     add_compile_options(/W3)
@@ -352,9 +354,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 # Le nom du projet
 project(IMAC_project)
 
-# le dossier contenant les fichier d'en-tête
-include_directories("src/")
-
 # Obtenir la liste des fichiers sources dans le dossier src
 // highlight-next-line
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS "src/*.cpp")
@@ -368,6 +367,9 @@ endforeach()
 # On indique que l'on souhaite faire un exécutable avec nos fichiers sources
 // highlight-next-line
 add_executable(helloImac ${SRC_FILES})
+
+# le dossier contenant les fichiers d'en-tête pour notre executable helloImac
+target_include_directories(helloImac "src/")
 ```
 
 ## Résumé
@@ -378,7 +380,7 @@ add_executable(helloImac ${SRC_FILES})
 
 - La **directive préprocesseur** ```#include``` fait simplement un **copier-coller** du fichier cible dans le fichier actuel.
 
-- La **directive préprocesseur** ```#pragma once``` permet d'éviter de copier deux fois des déclarations lors d'inclusions.
+- La **directive préprocesseur** ```#pragma once``` permet d'éviter de copier deux fois des déclarations lors d'inclusions. C'est très utile pour les **fichiers d'en-tête** contenant des **enums** ou des **structures**. Il faut **toujours** l'utiliser dans les **fichiers d'en-tête**.
 
 - il y a **3** étapes dans la compilation:
   - Le **préprocesseur** qui transforme les **directives préprocesseur** comme ```#include``` ou ```#pragma once```.

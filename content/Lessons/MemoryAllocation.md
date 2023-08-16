@@ -39,6 +39,14 @@ La **Stack** a une **taille fixée** (qui dépend des machines et systèmes d'ex
 Pour garder une trace de l’emplacement mémoire actuel, il existe un **pointeur** appelé **Stack Pointer**. Chaque fois que quelque chose doit être écrit ou retiré dans la **Stack**, on déplace simplement ce pointeur. Le pointeur ne peut pas aller au delà des limites de la Stack, cela risque de provoquer un crash du programme appelé **Stack overflow**. Cela peut se produire avec une fonction **récursive** avec de nombreux appels récursifs ou sans condition d'arrêt par exemple.
 :::
 
+La syntaxe pour allouer de la mémoire sur la **Stack** est la suivante:
+
+```cpp
+int x {};
+```
+
+Vous connaissez déjà cette syntaxe, c'est simplement la déclaration d'une variable locale.
+
 ### Allocation sur la **Heap**
 
 L’allocation sur la **Heap** se fait de manière **dynamique** pendant l’exécution d’un programme. L’espace nécessaire n’a pas besoin d'être défini en amont dans le code. Le programme effectue la **demande** d’allocation d’espace à l’OS au cours de son exécution.
@@ -51,6 +59,14 @@ L'allocation sur la Stack est également *dynamique* dans le sens où elle se pr
 La **Heap** permet donc le contrôle complètement **arbitraire** de l’allocation et de la libération. Lorsque le processus nécessite plus de mémoire, il en fait simplement la demande à l’OS (dans la limite où il est en mesure de fournir un tel emplacement mémoire). C'est donc aussi ce type d'allocation que l'on privilégie dans le cas de gros volumes de données.
 
 Cependant, cela demande de maintenir des **pointeurs** pour chacune des valeurs stockées, afin de savoir où se trouve la mémoire demandée pour pouvoir la manipuler mais aussi la **libérer**. Cette gestion de la mémoire étant plus "complexe", les performances n’en sont généralement pas aussi bonnes, mais parfois on n'a tout simplement pas le choix.
+
+La syntaxe pour allouer de la mémoire sur la **Heap** est la suivante:
+
+```cpp
+int* x { new int };
+```
+
+Je vous expliquerai plus en détail ce que cela signifie dans la suite de ce chapitre.
 
 ## Adresse et pointeurs
 
@@ -106,7 +122,7 @@ int main()
 
 ### Déréférencement
 
-Avec ce pointeur, il est possible de faire ce qu'on appelle un **déréférencement** et aller *voir* le contenu de l'emplacement situé à l'**adresse** stockée. En outre, la valeur de la variable pointée.
+Avec ce pointeur, il est possible de faire ce qu'on appelle un **déréférencement** et aller *voir* le contenu de l'emplacement situé à l'**adresse** stockée. C'est-à-dire, la valeur de la variable pointée.
 
 Pour faire un **déréférencement** on utilise également le symbole <kbd>*</kbd> devant le nom de notre pointeur comme cela:
 
@@ -120,12 +136,12 @@ int main()
     
     std::cout << integer << std::endl;
     std::cout << "address: " << integer_pointer << std::endl;
-    std::cout << "value of integer using pointer: " << *integer_pointer << std::endl;
+    std::cout << "value of integer: " << *integer_pointer << std::endl;
 
     // On peut même modifier la valeur de notre variable par ce biais
 
     *integer_pointer = 18;
-    std::cout << "value of integer using pointer: " << integer << std::endl;
+    std::cout << "value of integer: " << integer << std::endl;
 
     return 0;
 }
@@ -141,11 +157,23 @@ Le **déréférencement** d'un pointeur nul provoque une erreur:
 ```cpp
 #include <iostream>
 
+void displayPointer(int const* ptr)
+{
+    if (ptr != nullptr)
+    {
+        std::cout << *ptr << std::endl;
+    }
+    else
+    {
+        std::cout << "null" << std::endl;
+    }
+}
+
 int main()
 {
     float* float_pointer {nullptr};
     
-    std::cout << *float_pointer << std::endl;
+    displayPointer(float_pointer); // null
 
     return 0;
 }
@@ -304,7 +332,7 @@ struct IntegerVector
 
     void reserve(size_t const newCapacity)
     {
-        if (newCapacity < size)
+        if (newCapacity <= capacity)
         {
             return;
         }
@@ -335,12 +363,17 @@ struct IntegerVector
             reserve( 2 * capacity + 1 );
         }
         // J'ajoute la valeur à la fin du tableau
-        objects[size++] = value;
+        objects[size] = value;
+        size++;
+        // objects[size++] = value;
     }
 
     void pop_back()
     {
-        --size;
+        if (size > 0)
+        {
+            size--;
+        }
     }
 
     int & at(size_t const index)
@@ -362,9 +395,42 @@ struct IntegerVector
 
 </details>
 
+## Structure et This
+
+Vous vous souvenez de l'utilisation du mot-clé ```this``` dans les méthodes de nos **structures** ?
+
+```this``` est en fait un **pointeur** vers la structure elle même !
+
+On peut donc faire un **déréférencement** et avoir accès à la structure pour la modifier.
+
+```cpp
+struct Product
+{
+    std::string name;
+    float price;
+    unsigned int quantity;
+
+    void ChangePrice(float const price)
+    {
+        (*this).price = price;
+        // this->price = price;
+    }
+};
+```
+
+C'est ce qui permet ici de faire la différence entre ```price``` qui est un paramètre de la méthode et ```this->price``` qui est le membre de la structure.
+
+:::info
+La syntaxe ```->``` est en réalité un raccourci de syntaxe qui permet de faire un **déréférencement** puis d'accéder à un membre ou une méthode de la structure:
+
+Ces deux écritures sont donc équivalentes: ```this->member``` ```(*this).member```.
+:::
+
 ## Les références dans tout ça
 
-Vous voyez des ressemblances avec les **références** ? C'est normal c'est le même mécanisme sous-jacent.
+
+Vous avez remarqué des ressemblances entre les **pointeurs** et les **références** ?
+C'est normal c'est le même mécanisme sous-jacent.
 La référence utilise l'adresse mémoire de la variable ciblée.
 
 :::caution
@@ -397,7 +463,54 @@ void constDisplayUsingPtr(int const * a)
 }
 ```
 
-La référence a donc l'avantage d'être plus lisible et simple à utiliser. Utiliser les pointeurs directement est plutôt réservé à des cas spécifiques.
+La référence a donc l'avantage d'être plus lisible et simple à utiliser.
+
+:::note
+Utiliser les **pointeurs** directement est plutôt réservé à des cas spécifiques.
+Comme par exemple dans le cas où on souhaite une **"référence" optionnelle** (qui peut être nulle) ou alors **réassigner la référence** à une autre variable.
+
+```cpp
+#include <iostream>
+
+void displayPointer(int const* ptr)
+{
+    if (ptr != nullptr)
+    {
+        std::cout << *ptr << std::endl;
+    }
+    else
+    {
+        std::cout << "null" << std::endl;
+    }
+}
+
+int main()
+{
+    int a {42};
+    int b {24};
+
+    int& ref {a};
+    ref = b; // a = b
+
+    int* ptr {&a};
+
+    *ptr = 12; // a = 12
+
+    ptr = &b; // ptr pointe sur b
+
+    *ptr = 36; // b = 36
+
+    displayPointer(ptr); // 36
+
+    ptr = nullptr;
+
+    displayPointer(ptr); // null
+
+    return 0;
+}
+```
+
+:::
 
 ## Pointeurs intelligents
 
@@ -417,7 +530,7 @@ Un pointeur intelligent est en quelque sorte une structure enveloppant un pointe
 
 ### unique_ptr
 
-```std::unique_ptr``` est un pointeur intelligent qui gère une zone mémoire allouée dynamiquement et rend cette zone mémoire inaccessible par d'autres pointeurs.
+```std::unique_ptr``` est un pointeur intelligent qui gère une zone mémoire allouée dynamiquement. Il est, comme son l'indique, l'unique responsable de cette zone mémoire. Elle sera détruite dès que le pointeur est détruit.
 
 Il ne peut pas être copié, c'est à dire que l'on ne peut pas avoir deux ```std::unique_ptr``` pointant vers le même objet. Sinon, lors de la destruction des deux pointeurs, l'objet serait détruit deux fois.
 
@@ -437,7 +550,8 @@ int main()
 
 ### shared_ptr
 
-```std::shared_ptr``` est un pointeur intelligent qui gère une zone mémoire allouée dynamiquement et rend cette zone mémoire accessible par d'autres pointeurs. Il utilise un compteur interne pour savoir combien de ```std::shared_ptr``` pointent vers l'objet. Lorsque ce compteur tombe à zéro, la zone mémoire est libérée.
+```std::shared_ptr``` est un pointeur intelligent qui gère une zone mémoire allouée dynamiquement. La responsabilité de cette zone mémoire peut-être partagée entre plusieurs ```std::shared_ptr```, et elle ne sera détruite que quand tous les ```std::shared_ptr``` responsables auront été détruits.
+Il est possible de copier un ```std::shared_ptr``` pour partager la responsabilité de la zone mémoire. Il utilise un **compteur** interne pour savoir combien de ```std::shared_ptr``` pointent vers la zone mémoire. Lorsque ce compteur tombe à zéro, la zone mémoire est libérée.
 
 ```cpp
 #include <memory>
@@ -493,5 +607,7 @@ Il existe également un pointeur intelligent ```std::weak_ptr``` qui est un poin
 - Il est possible d'attribuer à un **pointeur** la valeur ```nullptr``` qui représente un pointeur nul. Cela permet d'indiquer qu'un **pointeur** ne pointe sur rien. On l'utilise pour vérifier qu'un **pointeur** est valide avant de l'utiliser.
 
 - ```std::vector``` est un **conteneur** qui permet de gérer les allocations dynamiques de tableaux à notre place.
+
+- le mot-clé ```this``` est un **pointeur** vers la **structure** elle même. Cela permet de faire la différence entre un paramètre de méthode et un membre de la structure.
 
 - Il existe des **pointeurs intelligents** (smart pointer) qui permettent de gérer la mémoire à notre place. Ils sont très pratiques car ils permettent d'éviter les fuites mémoires et les erreurs de désallocation de mémoire.

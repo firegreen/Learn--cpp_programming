@@ -158,7 +158,7 @@ std::vector<int> const array { 12, 18, 8, 4, 9 };
 std::size_t const size { array.size() };
 ```
 
-Nous y reviendrons plus tard, pour l'instant gardez simplement à l'esprit que c'est réservé à des variables "particulières" comme le ```std::vector``` ou ```std::string``` et que l'on appelle ça des **méthodes**.
+Nous y reviendrons plus tard, pour l'instant gardez simplement à l'esprit que c'est réservé à des type "particuliers" comme le ```std::vector``` ou ```std::string``` et que l'on appelle ça des **méthodes**.
 
 ## Une portée limitée
 
@@ -584,17 +584,21 @@ int sum (int const a, int const b)
 
 Je complète donc:
 
-Une fonction doit être **déclarée avant son utilisation**. Cela peut se faire avec le **prototype** de la fonction **ou** le **corps** lui même. Une fonction peut être utilisée même si le **corps** de la fonction est écrit **plus tard** du moment que son prototpye est écrit avant toute utilisation de la fonction.
+Une fonction doit être **déclarée avant son utilisation**. Cela peut se faire avec le **prototype** de la fonction **ou** le **corps** lui même. Une fonction peut être utilisée même si le **corps** de la fonction est écrit **plus tard** du moment que son prototype est écrit avant toute utilisation de la fonction.
 
 Le **prototype** est là pour déclarer/signaler au compilateur que le corps de la fonction qu'on appelle sera bien défini plus tard dans le programme.
 
 :::note
-Evidemment le programme ne va pas compiler si le corps de la fonction déclarée n'existe pas et va nous l'indiquer (**undefined reference**):
+Évidemment le programme ne va pas compiler si le corps de la fonction déclarée n'existe pas et va nous l'indiquer (**undefined reference**):
 
 ```bash
 in function `main':
 main.cpp: undefined reference to `sum(int, int)'
 ```
+:::
+
+:::note
+C'est une notion qui va être utile quand on verra la séparation du code en plusieurs fichiers.
 :::
 
 ### Prototype vs signature
