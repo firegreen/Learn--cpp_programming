@@ -6,7 +6,7 @@ tags:
 sidebar_position: 7
 ---
 
-# introduction
+# Introduction
 
 En **C++**, on a parlé de **structure de données** avec les **tableaux**. Il est également possible de créer notre propre structure de données en **regroupant** plusieurs variables en un seul **bloc** appelé "**structure**" (ou "**struct**").
 

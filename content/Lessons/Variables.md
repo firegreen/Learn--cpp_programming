@@ -212,7 +212,7 @@ Nous ne rentrons pas dans le détail de comment sont stockées ces valeurs dans 
 Pour déclarer une variable en **C++**, il faut trois choses:
 
 - Préciser d'abord son **type**, qui indique ce que la variable va stocker (un **entier**, un **flottant**, une **chaîne de caractères**, **etc**)
-- Un **nom** qui permer d'identifier la variable
+- Un **nom** qui permet d'identifier la variable
 - Enfin, la valeur à stocker dans notre variable. Ceci se fait en mettant la valeur entre accolades <kbd>{}</kbd>
 
 ```cpp
@@ -713,7 +713,7 @@ Dans ce cas de figure **la variable (```age``` ici) n'est pas modifiée**. Mais 
 Nous verrons plus tard comment gérer ce cas de figure et détecter si une erreur survient.
 :::
 
-## cast
+## Cast
 
 Il est possible de convertir un **type** en un autre **type**. C'est ce qu'on appelle un **cast**.
 

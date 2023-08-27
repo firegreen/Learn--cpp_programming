@@ -587,7 +587,7 @@ int main()
 
 C'est utile lorsque l'on souhaite partager un objet entre plusieurs parties du code.
 
-### weak_ptr
+### std::weak_ptr
 
 Il existe également un pointeur intelligent ```std::weak_ptr``` qui est un pointeur qui permet de pointer vers un objet gérer par un ```std::shared_ptr``` sans augmenter le compteur de références. C'est utile pour éviter des références circulaires et mieux gérer le cycle de vie des objets mais nous n'irons pas plus loin dans ce cours.
 

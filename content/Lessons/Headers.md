@@ -9,7 +9,7 @@ sidebar_position: 8
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# introduction
+# Introduction
 
 Maintenant que l'on sait **découper** notre code en fonctions il va aussi être intéressant de le découper en **plusieurs fichiers**. Cela va permettre de **regrouper** des fonctionnalités et mieux **organiser** un projet.
 

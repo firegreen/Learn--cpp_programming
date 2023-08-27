@@ -55,7 +55,7 @@ Une fonction peut ou non renvoyer une valeur de retour, comme nous l’avons vu 
 Pour renvoyer une valeur, on utilise le mot-clé ```return```, exactement comme dans la fonction ```main```.
 
 :::info
-Il peut y avoir plusieurs ```return``` dans une fonction, un si un **if** est **vrai**, l’autre s’il est **faux** par exemple.
+Il peut y avoir plusieurs ```return``` dans une fonction. Un si un **if** est **vrai**, l’autre s’il est **faux** par exemple.
 
 Mais dès que l'instruction ```return``` est exécutée, on **sort** de la fonction en cours et **tout le code restant n’est pas exécuté**.
 
@@ -171,14 +171,15 @@ Cela permet premièrement de limiter son utilisation à cette portée et éviter
 Enfin, lorsqu’on atteint la fin d'un bloc (accolade <kbd>}</kbd>), le programme libère dans la mémoire les emplacements qu’il avait réservés pour les variables du bloc en question.
 C'est donc plus propre et plus performant (niveau mémoire) de déclarer les variables à l’intérieur d'un bloc (fonction, condition, etc) si elles ne sont pas destinées à être utilisées ailleurs.
 
-## Un petit problème de copie
+## Paramètre par copie
 
 J’ai expliqué précédemment que les paramètres d’une fonction étaient dans une portée différente concernant le nommage.
-On peux donc nommer nos paramètres avec le même nom qu'une de nos variables.
 
-Mais que se passe t'il si j'écris ça ?
+La portée différente implique une **copie**. Pour chaque utilisation de la fonction, le compilateur va réserver un nouvel espace mémoire et **copier** l'**argument** (la variable) qu’on lui passe en paramètre. Une variable dans la fonction est donc **totalement différente**. C’est ce qu'on appelle un **passage par copie**.
 
-```cpp
+On peut donc nommer nos paramètres avec le même nom qu'une de nos variables.
+
+```cpp title="Un exemple"
 #include <iostream>
 void addOne(int a)
 {
@@ -198,8 +199,7 @@ int main()
 ```
 
 On pourrait penser que cela va afficher ```9``` mais en réalité ```a``` est toujours égal à ```8```.
-
-La portée différente implique ici une **copie**. Pour chaque utilisation de la fonction, le compilateur va réserver un nouvel espace mémoire et **copier** l'**argument** (la variable) qu’on lui passe en paramètre. La variable ```a``` dans la fonction est donc **totalement différente**. C’est ce qu'on appelle le **passage par copie**.
+la fonction ```addOne``` a reçu une **copie** de la variable ```a``` (nommée ```a``` elle aussi) mais elle ne peut pas modifier la variable ```a``` originale.
 
 Dans le cas d’un entier ou d’un caractère par exemple ce n'est pas très grave, **mais** dans le cas d’un tableau de plusieurs d’éléments, on perd du temps inutilement à copier toutes les valeurs du tableau (même si on ne veut en lire que quelques unes dans la fonction).
 
@@ -247,7 +247,7 @@ int main()
     
     std::cout << a << ';' << b << std::endl;
     
-    // ici refA reste une référence vers la variable et prend la valeur de b
+    // ici refA reste une référence vers la variable a qui prend la valeur de b
     // refA ne devient PAS une référence vers la variable b
     refA = b;
     
@@ -504,7 +504,7 @@ Utiliser des **références** pour **std::vector** ou **std::string** d’accord
 Les types standard sont petits (en mémoire) et le **coût** de la création d’une **référence** sur des types aussi simples est souvent plus élevé ou équivalent que celui d’une "bête" copie.
 En effet, le compilateur arrive très souvent à optimiser les copies et les rendre extrêmement rapides, bien plus qu’avec les références.
 
-Donc ne tombez pas dans le piège de l’**optimisation prématurée**. Pensez au **références** lorsqu'il s'agit d'objets "gros". Vouloir mettre des **références** partout n'est pas une erreur (et je ne vous en tiendrez pas compte au contraire cela veux dire que vous pensez aux références). Mais, garder à l'esprit que cela a aussi un **coût** de créer une référence et que laisser juste un ```int const parameter``` permet au **compilateur** de mieux optimiser le code.
+Donc ne tombez pas dans le piège de l’**optimisation prématurée**. Pensez au **références** lorsqu'il s'agit d'objets "gros". Vouloir mettre des **références** partout n'est pas une erreur (et je ne vous en tiendrai pas compte au contraire cela veux dire que vous pensez aux références). Mais, garder à l'esprit que cela a aussi un **coût** de créer une référence et que laisser juste un ```int const parameter``` permet au **compilateur** de mieux optimiser le code.
 
 ## Signature et fonctions surchargées
 
@@ -663,7 +663,7 @@ int fact(int n)
 }
 ```
 
-Il faut faire attention à ne **pas oublier** cette **condition d'arrêt** et bien s'assurer qu'il est possible de la vérifier pour s'arrêter sinon notre fonction ne va **jamais** se terminer et notre programme va sûrement planter, on parle de **boucle infinie**.
+Il faut faire attention à ne **pas oublier** cette **condition d'arrêt** et bien s'assurer qu'il est possible de la vérifier pour s'arrêter sinon notre fonction ne va **jamais** se terminer et notre programme va sûrement planter.
 
 ---
 
