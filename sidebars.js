@@ -5,7 +5,7 @@ module.exports = {
       label: 'TDs',
       link: {
         type: 'generated-index',
-        title: 'Tds',
+        title: 'TDs',
         slug: '/TDs',
       },
       items: [{

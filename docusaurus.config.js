@@ -75,7 +75,8 @@ module.exports = async function configCreatorAsync() {
           },
           items: [
             {to: '/Lessons', label: 'Cours', position: 'left'},
-            {to: '/TDs', label: 'Tds', position: 'left'},
+            {to: '/TDs', label: 'TDs', position: 'left'},
+            {to: '/Sources', label: 'Sources', position: 'right'},
           ],
         },
         docs: {
@@ -109,10 +110,9 @@ module.exports = async function configCreatorAsync() {
               `,
             },
           ],
-
           copyright:
-           `These lessons were written by <a href="https://github.com/dsmtE">DE SMET Enguerrand</a> with the help of <a href="https://julesfouchy.github.io/">Jules Fouchy</a><br/>` +
-            `Copyright © ${new Date().getFullYear()}. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`
+           `These lessons were written by <a href="https://github.com/dsmtE">DE SMET Enguerrand</a>.</br>` +
+           `Copyright © ${new Date().getFullYear()}. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`
         },
         prism: {
           theme: lightCodeTheme,
