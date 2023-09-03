@@ -32,9 +32,9 @@ int main()
 }
 ```
 
-J'aimerai ici séparer le corps de la fonction ```sum``` de son utilisation dans la fonction ```main```.
+J'aimerais ici séparer le corps de la fonction ```sum``` de son utilisation dans la fonction ```main```.
 
-Problème si j'essaye de compiler **indépendamment** ces deux fichiers je peux avoir des erreurs. Soit il manque une fonction d'entrée main pour le fichier ```maths.cpp``` soit la fonction ```sum``` n'est pas déclarée pour le fichier ```main.cpp```.
+Problème si j'essaye de compiler **indépendamment** ces deux fichiers je peux avoir des erreurs. Soit il manque une fonction d'entrée ```main``` pour le fichier ```maths.cpp``` soit la fonction ```sum``` n'est pas déclarée pour le fichier ```main.cpp```.
 
 ## Mécanisme de compilation (en simple)
 
@@ -51,7 +51,7 @@ La toute première étape est celle du **préprocesseur**. C'est le moment où t
 
 Par exemple, nous avons déjà la **directive préprocesseur** ```#include``` qui permet d'inclure des fonctionnalités.
 
-Cette directive fait simplement un **copié-collé** du contenu du fichier à inclure dans le fichier ou la directive est utilisée.
+Cette directive fait simplement un **copié-collé** du contenu du fichier à inclure dans le fichier où la directive est utilisée.
 
 Je ne vais pas en parler ici mais sachez qu'il existe d'autres directives permettant de faire des conditions en fonction des plateformes par exemple.
 
@@ -62,7 +62,7 @@ Ensuite nous avons la **compilation** à proprement parler.
 Chaque fichier ```.cpp```, obtenu **après** les modifications du **préprocesseur**, appelé **unité de compilation**, va être traité individuellement. 
 Le but de cette étape est de **transformer** le code **C++** (sous format texte) en langage compréhensible pour l'ordinateur.
 
-C’est à cette étape que des **vérifications** du code ont lieu. Par exemple, dans le cas où le compilateur ne trouve pas la déclaration d’une fonction que vous appelez, comme dans notre exemple précédemment dans le fichier ```main.cpp```, la compilation va s'arrêter avec un message d'erreur indiquant ce qui n’a pas fonctionné.
+C’est à cette étape que des **vérifications** du code ont lieu. Par exemple, dans le cas où le compilateur ne trouve pas la déclaration d’une fonction que vous appelez. Dans notre exemple précédent dans le fichier ```main.cpp```, la compilation va s'arrêter avec un message d'erreur indiquant ce qui n’a pas fonctionné.
 
 Cette étape va produire des **fichiers objets**.
 
@@ -129,7 +129,7 @@ Ce fichier ne permet toujours pas de créer un exécutable à lui seul (car il *
 
 ### Fichier d'en-tête
 
-Pour une seule fonction dans mon exemple c'est simple de **recopier** le **prototype** de la fonction. Imaginons que notre fichier ```maths.cpp``` est composé de dizaines de fonctions et que l'on souhaite les utiliser dans le fichier ```main.cpp``` mais aussi dans un autre fichier du même projet. Cela commence à être fastidieux de tout recopier.
+Pour une seule fonction dans mon exemple c'est simple de **recopier** le **prototype** de la fonction. Imaginons que notre fichier ```maths.cpp``` soit composé de dizaines de fonctions et que l'on souhaite les utiliser dans le fichier ```main.cpp``` mais aussi dans un autre fichier du même projet. Cela commence à être fastidieux de tout recopier.
 
 On va donc regrouper les **déclarations** des fonctions dans un autre fichier d'extension ```.hpp``` que l'on appelle **fichier d'en-tête** (**header** en anglais).
 
@@ -157,10 +157,10 @@ int main()
 ```
 
 :::info **guillemets** ou **chevrons**
-On peut noter une petit différence, j'utilise ici des **guillemets** <kbd>""</kbd> pour l'inclusion et pas des **chevrons** <kbd>< ></kbd>. On pourrait très bien utiliser des **guillemets** tout le temps et faire: ```#include "iostream"```. Cette différence est une question de **convention** et on reserve les **chevrons** <kbd>< ></kbd> pour les fichiers de qui viennent de **bibliothèques** comme la **bibliothèque standard** (```iostream```, ```string```, ```vector```, etc) et les **guillemets** <kbd>""</kbd> pour le reste.
+On peut noter une petite différence, j'utilise ici des **guillemets** <kbd>""</kbd> pour l'inclusion et pas des **chevrons** <kbd>< ></kbd>. On pourrait très bien utiliser des **guillemets** tout le temps et faire: ```#include "iostream"```. Cette différence est une question de **convention** et on réserve les **chevrons** <kbd>< ></kbd> pour les fichiers de qui viennent de **bibliothèques** comme la **bibliothèque standard** (```iostream```, ```string```, ```vector```, etc) et les **guillemets** <kbd>""</kbd> pour le reste.
 :::
 
-On va également inclure ce fichier d'**en-tête** dans notre fichier ```math.cpp``` pour s'assurer que l'on implemente les bonnes fonctions listées dans le fichier d'en-tête.
+On va également inclure ce fichier d'**en-tête** dans notre fichier ```maths.cpp``` pour s'assurer que l'on implémente les bonnes fonctions listées dans le fichier d'en-tête.
 
 ```cpp title="maths.cpp"
 // highlight-next-line
@@ -178,16 +178,16 @@ Les fichiers d’**en-tête** peuvent aussi utiliser l’extension **.h**. La di
 
 ### Pragma once: éviter les doublons
 
-Mais se pose alors la question des **doublons** si l'on inclus de nombreux fichiers, les uns dépendants des autres.
+Mais se pose alors la question des **doublons** si l'on inclut de nombreux fichiers, les uns dépendants des autres.
 
 Dans le cas des fonctions ce n'est pas bien grave car déclarer plusieurs fois une fonction (je parle du **prototype** pas du corps qui lui doit être unique) est autorisé bien que ce soit inutile.
 
 Par contre ce n'est pas toujours le cas. Par exemple avec les **Enums** il n'est pas possible de les déclarer deux fois et on obtient une erreur de compilation si on le fait.
 
 :::info Un exemple
-Admettons que l'on a un autre fichier ```utils.cpp``` qui inclut ```maths.cpp``` pour fonctionner et ```utils.hpp``` avec les déclaration des fonctions propre au fichier ```utils.cpp```. Et que le fichier ```maths.hpp``` définit un **enum**.
+Admettons que l'on a un autre fichier ```utils.cpp``` qui inclut ```maths.cpp``` pour fonctionner. ```utils.hpp``` contient les déclarations des fonctions propres au fichier ```utils.cpp```. Le fichier ```maths.hpp``` définit un **enum**.
 
-Si maintenant on souhaite utiliser des fonctions des deux fichiers dans notre fichier principale ```main.cpp```. On va donc se retrouver à inclure les deux:
+Si maintenant on souhaite utiliser des fonctions des deux fichiers dans notre fichier principal ```main.cpp```, on va se retrouver à inclure les deux:
 
 ```cpp title="main.cpp"
 #include "utils.hpp"
@@ -200,15 +200,14 @@ int main()
 }
 ```
 
-Ce qui va produire par inclusions successives un **doublon** de notre **enum**, une fois dans le fichier ```utils.hpp``` (qui inclut lui-même ```maths.hpp```) et une seconde fois en incluant directement le fichier ```maths.hpp```.
-Cela va produire une **erreur** lors de la compilation de ce fichier objet.
+Cela va provoquer une **erreur** lors de la compilation du fichier objet ```main``` car l'**enum** est déclaré deux fois. Une fois provenant de l'inclusion de ```utils.hpp``` (qui inclut lui-même ```maths.hpp```) et une seconde fois en incluant directement le fichier ```maths.hpp```.
 :::
 
 ```#pragma once``` est une **directive du préprocesseur** là pour répondre à notre besoin.
 
-Elle est utilisée pour empêcher que le contenu des fichiers d'**en-tête** soient inclus plusieurs fois. La directive ```#pragma once```, présente dans un fichier d'**en-tête**, garantit que le contenu du fichier sera inclus qu'**une seule fois** dans une compilation.
+Elle est utilisée pour empêcher que le contenu des fichiers d'**en-tête** soient inclus plusieurs fois. La directive ```#pragma once```, présente dans un fichier d'**en-tête**, garantit que le contenu du fichier sera inclus **une seule fois** dans une compilation.
 
-le fichier ```maths.hpp``` dans notre exemple devient donc:
+Le fichier ```maths.hpp``` dans notre exemple devient donc:
 
 ```cpp title="maths.hpp"
 // highlight-next-line
@@ -222,13 +221,13 @@ Un fichier d'**en-tête** doit **toujours** contenir cette directive au début d
 
 Bien que ce soit possible de mettre la déclaration d'une **structure** dans un fichier ```.cpp``` généralement on a besoin de s'en resservir dans plusieurs fichiers et la déclaration se trouve donc dans un **fichier d'en-tête** (```.hpp```).
 
-Cependant, comme pour les **enums**, une **structure** ne peut être déclarée qu'une fois et il ne faut donc surtout pas oublier la **directive préprocesseur** ```#pragma once``` pour éviter un **doublons** lors d'inclusions.
+Cependant, comme pour les **enums**, une **structure** ne peut être déclarée qu'une fois et il ne faut donc surtout pas oublier la **directive préprocesseur** ```#pragma once``` pour éviter un **doublon** lors d'inclusions.
 
 On utilisera dans ce cas la déclaration de la structure avec les **prototypes** des fonctions qui lui sont associées dans notre fichier d'en-tête.
 
 ## Utiliser Cmake
 
-Pour résumer nous avons donc maintenant les fichiers suivant:
+Pour résumer nous avons donc maintenant les fichiers suivants:
 
 ```cpp title="maths.hpp"
 #pragma once
@@ -257,15 +256,13 @@ int sum (int const a, int const b)
 ```
 
 Nous allons les placer dans un **dossier de projet** puis dans un **sous dossier** ```/src``` (pour sources).
+Pour certains projets on peut avoir plusieurs sous dossiers comme ```/src```, ```/include``` (pour séparer les fichiers d'en-tête). C'est une question d'**organisation** et de **préférence**.
 
 Dans ce dossier de projet nous allons créer notre fichier ```CMakeLists.txt``` pour nous aider à compiler le projet.
 
 Nous allons reprendre et modifier notre premier fichier **Cmake**.
 
 Dans le fichier ```CMakeLists.txt``` il va falloir indiquer les répertoires où se trouvent les **fichiers d'en-tête** par ```target_include_directories()```.
-
-Personnellement j'aime les placer à coté des fichiers ```.cpp``` du même nom et je vais donc indiquer le dossier ```/src``` également.
-Mais parfois vous trouverez une séparation des **fichiers d'en-tête** (dans un dossier **include** par exemple). C'est vraiment une question d'**organisation** et de **préférence**.
 
 On va également régler une variable **Cmake** ```CMAKE_RUNTIME_OUTPUT_DIRECTORY``` qui va permettre d'indiquer que l'on souhaite placer l'**exécutable** compilé dans un sous dossier ```bin```.
 
@@ -295,7 +292,6 @@ target_include_directories(helloImac "src/")
 Il faut s'assurer qu'il y a exactement une fonction d'entrée **main()** dans les fichiers sources listés pour un **exécutable**.
 :::
 
-
 Petit résumé de notre dossier:
 ```
 projet_folder/
@@ -306,14 +302,14 @@ projet_folder/
 └── CMakeLists.txt
 ```
 
-Vous pouvez maintenant ouvrir le dossier de projet dans **VSCode** et compiler vote projet.
+Vous pouvez maintenant ouvrir le dossier de projet dans **VSCode** et compiler votre projet.
 
 ### Quelques améliorations
 
 Je vous ai parlé de "**warnings**" de compilation à plusieurs reprises.
 Il est possible d'ajouter des options pour activer des **warnings** et avoir des informations supplémentaires lors de la compilation.
 
-Je vous propose d'ajouter ces lignes dans votre fichiers ```CMakeLists.txt```:
+Je vous propose d'ajouter ces lignes dans votre fichier ```CMakeLists.txt```:
 
 ```cmake
 if (MSVC)

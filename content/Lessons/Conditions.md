@@ -147,12 +147,12 @@ Je ne détaillerai pas dans ce chapitre son utilité mais il est important de le
 De même pour l'opérateur **OR** (```||```) différent de <kbd>|</kbd>.
 :::
 
-## Des stuctures de contrôle
+## Des structures de contrôle
 
 C'est bien beau toutes ces valeurs booléennes mais comment on peut s'en servir pour exécuter une partie d'un code ou un autre en fonction d'une condition ?
 
 ### Si
-Notre première stucture de contrôle va s'utiliser avec le mot clé **if**.
+Notre première structure de contrôle va s'utiliser avec le mot clé **if**.
 De l'anglais, ce mot clé signifiant **"si"**, exécute des instructions si et seulement si la condition donnée est vraie.
 
 Un petit schéma d'explications:

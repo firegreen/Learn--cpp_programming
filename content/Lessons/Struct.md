@@ -17,12 +17,12 @@ En **C++**, on a parlé de **structure de données** avec les **tableaux**. Il e
 ## Déclaration
 
 C'est en utilisant le mot-clé ```struct``` que l'on va créer une nouvelle **structure**.
-regroupant l’intégralité des informations dont on a besoin. La syntaxe de déclaration est la suivante:
+La syntaxe de déclaration est la suivante:
 
 ```cpp
 struct nom
 {
-    // list des membres
+    // liste des membres
     // type nom;
     // type nom;
 };
@@ -170,7 +170,7 @@ Quantity: 1
 ## Des méthodes
 
 Maintenant que nous avons nos propres **structures** cela va devenir intéressant d'utiliser des **méthodes**.
-En effet, dans mon exemple précédent j'ai créer des fonctions ```GetTotalPrice``` et ```Display```. Mais j'aurais bien aimé pouvoir faire : ```product.TotalPrice()```. Autrement dit, créer et utiliser une méthode ```TotalPrice()``` pour ma structure ```Product```. 
+En effet, dans mon exemple précédent j'ai créé des fonctions ```GetTotalPrice``` et ```Display```. Mais j'aurais bien aimé pouvoir faire : ```product.TotalPrice()```. Autrement dit, créer et utiliser une méthode ```TotalPrice()``` pour ma structure ```Product```. 
 
 Il suffit simplement de déclarer notre fonction au sein même des **accolades** de notre structure comme cela:
 
@@ -189,12 +189,12 @@ struct Product
 ```
 
 :::note
-Vous pouvez remarquez qu'ici je peux accéder aux membres de ma struct sans avoir à faire ```struct.membre```. En effet, la **méthode** à **connaissance** de la **structure** elle même et peut **manipuler** ses **membres** directement.
+Vous pouvez remarquer qu'ici je peux accéder aux membres de ma struct sans avoir à faire ```struct.membre```. En effet, la **méthode** a **connaissance** de la **structure** elle-même et peut **manipuler** ses **membres** directement.
 :::
 
 ### Prototype de méthodes
 
-Comme pour les fonctions, il est possible de déclarer seulement le **prototype** de la méthodes et d'implémenter le **corps** de la méthode plus tard. Il y a juste un petit détail en plus, il faut indiquer à l'aide du **nom** de la structure et des caractères <kbd>::</kbd> l'**appartenant** de la méthode à la structure (comme avec ```std::```).
+Comme pour les fonctions, il est possible de déclarer seulement le **prototype** de la méthode et d'implémenter le **corps** de la méthode plus tard. Il y a juste un petit détail en plus, il faut indiquer à l'aide du **nom** de la structure et des caractères <kbd>::</kbd> ,l'**appartenance** de la méthode à la structure (comme avec ```std::```).
 
 ```cpp
 struct Product
@@ -236,7 +236,7 @@ float Product::TotalPrice() const
 }
 ```
 
-C'est important car si on ne le fait pas on ne pourra pas appeler une **méthode non constante** d'une **variable constante** car celle-ci est susceptible de modifier la structure alors que c'est interdit pas la variable constante.
+C'est important car si on ne le fait pas on ne pourra pas appeler une **méthode non constante** d'une **variable constante** car celle-ci est susceptible de modifier la structure alors que c'est interdit par la variable constante.
 
 ```cpp
 #include <iostream>
@@ -260,7 +260,7 @@ int main()
 {
     Product const tomatos { "Tomatos", 0.32, 12 };
 
-    // erreur ici: la variable tomatos est constant mais la méthode 'TotalPrice' ne l'est pas
+    // erreur ici: la variable tomatos est constante mais la méthode 'TotalPrice' ne l'est pas
     // highlight-next-line
     float tomatosPrice { tomatos.TotalPrice() };
 
@@ -308,7 +308,7 @@ Sur certains compilateurs bien configurés on peut avoir des **warnings** :
 ```bash title="Warning généré par clang"
 Explicitly assigning value of variable of type 'float' to itself; did you mean to assign to member 'price'?
 ```
-Mais ce n'est pas toujours là. Avec un **paramètre constant** on aurait généré des erreurs de compilation et pas seulement un warning et c'est donc **préférable** pour mieux se rendre compte des erreurs.
+Mais ce n'est pas toujours le cas. Avec un **paramètre constant** on aurait généré des erreurs de compilation et pas seulement un warning et c'est donc **préférable** pour mieux se rendre compte des erreurs.
 
 ```bash
 - Cannot assign to variable 'price' with const-qualified type 'const float'
@@ -316,7 +316,7 @@ Mais ce n'est pas toujours là. Avec un **paramètre constant** on aurait géné
 ```
 :::
 
-Pour éviter la confusion il existe bien un moyen. Il faut utiliser le mot clé ```this``` suivi des caractères <kbd>-></kbd> devant le nom d'un membre de la structure comme cela:
+Pour éviter la confusion, il est préférable d'utiliser le mot clé ```this``` suivi des caractères <kbd>-></kbd> devant le nom d'un membre de la structure comme cela:
 
 ```cpp
 struct Product
@@ -352,13 +352,28 @@ struct Product
 ```
 Vous êtes libre de laisser ou non le ```this->``` pour indiquer plus explicitement l'utilisation du **membre** de la structure surtout si c'est **plus compréhensible** pour vous.
 
-Je ne rentre pas dans le détail ici. Je reviendrai sur le fonctionnement du mot-clé```this``` dans un autre chapitre. Retenez simplement ici que cela permet d'indiquer explicitement que l'on souhaite **manipuler la structure**.
+Je ne rentre pas dans le détail ici. Je reviendrai sur le fonctionnement du mot-clé ```this``` dans un autre chapitre. Retenez simplement ici que cela permet d'indiquer explicitement que l'on souhaite **manipuler la structure**.
 
 ## Aller plus loin: Forward Declaration
 
-Parfois deux structures on besoin l'une de l'autre, on veux utiliser une struct **A** dans une struct **B** et inversement.
+Parfois deux structures ont besoin l'une de l'autre, on veut utiliser une struct **A** dans une struct **B** et inversement.
 
-Problème, l'une est définie avant l'autre et donc dans la première structure il y a une erreur, **B** est encore inconnue.
+Problème, l'une est définie avant l'autre et donc dans la première structure **A** il y a une erreur, **B** est encore inconnue.
+
+```mermaid
+classDiagram
+    A <|-- B
+    B <|-- A
+
+    class A {
+        <<struct>>
+        B b // B n'est pas encore définie ici
+    }
+    class B {
+        <<struct>>
+        A a
+    }
+```
 
 Pour résoudre ce problème on va faire une **déclaration anticipée** (**Forward Declaration** en anglais).
 
@@ -371,7 +386,7 @@ struct Book;
 
 struct Author {
     std::string name;
-    // Je peux don l'utiliser ici
+    // Je peux donc l'utiliser ici
     // highlight-next-line
     std::vector<Book> books;
 
@@ -389,7 +404,7 @@ struct Book
 ```
 
 :::caution
-Cela ne permet pas de manipuler la structure vu qu l'on ne sais pas encore ce qu'elle contient. De ce fait, les **méthodes** de la structure ```Author``` qui utilise la structure ```Book``` doivent se trouver **après** la déclaration complète de la structure ```Book```.
+Cela ne permet pas de manipuler la structure vu que l'on ne sait pas encore ce qu'elle contient. De ce fait, les **méthodes** de la structure ```Author``` qui utilisent la structure ```Book``` doivent se trouver **après** la déclaration complète de la structure ```Book```.
 :::
 
 ```cpp title="Un exemple plus complet"
@@ -457,12 +472,12 @@ int main()
 
 - Une **structure** est un **agrégat de données**, on la déclare avec le mot-clé ```struct```.
 
-- Les **membres** de la structure sont les variables qui l'a compose. On y accèdes avec un point <kbd>.</kbd> après le nom de la variable.
+- Les **membres** de la structure sont les variables qui la composent. On y accède avec un point <kbd>.</kbd> après le nom de la variable.
 
-- Une structure peux avoir des **méthodes** qui se déclarent comme pour les fonctions mais au sein même des accolades de la structure.
+- Une structure peut avoir des **méthodes** qui se déclarent comme pour les fonctions mais au sein même des accolades de la structure.
 
-- Le **corps** d'une **méthode** peut être **déclaré plus tard** (du moment que le **prototype** de la méthode est dans la structure). Il faut utiliser le **nom** de la structure suivi des **caractères <kbd>::</kbd>** pour indiquer l'**appartenant** de la méthode à la structure si elle est déclarée en **dehors** des **accolades** délimitant la structure.
+- Le **corps** d'une **méthode** peut être **déclaré plus tard** (du moment que le **prototype** de la méthode est dans la structure). Il faut utiliser le **nom** de la structure suivi des **caractères <kbd>::</kbd>** pour indiquer l'**appartenance** de la méthode à la structure si elle est déclarée en **dehors** des **accolades** délimitant la structure.
 
 - Une **méthode** peut être **constante** pour indiquer qu'elle ne va pas modifier la structure. Il faut ajouter le mot-clé ```const``` **après les paramètres** de la fonction et avant le point virgule <kbd>;</kbd>.
 
-- On peut utiliser le mot-clé ````this``` pour **expliciter** que l'on souhaite manipuler la structure et **éviter des conflits** de nommages entre les **membres** et les **paramètres** d'une méthode.
+- On peut utiliser le mot-clé ```this``` pour **expliciter** que l'on souhaite manipuler la structure et **éviter des conflits** de nommages entre les **membres** et les **paramètres** d'une méthode.
