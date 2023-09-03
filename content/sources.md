@@ -28,6 +28,8 @@ Je remercie également les nombreuses personnes, amis, collègues et étudiants 
 - [Vincent Nozick](https://www.linkedin.com/in/vincent-nozick-8030132/)
 - [Steeve Vincent](https://www.linkedin.com/in/steeve-vincent-1a19b7118/) (IMAC 2018)
 - Mattéo Moulat (IMAC 2025)
+- [Antoine Libert](https://www.linkedin.com/in/antoine-libert/) (IMAC 2021)
+- [Alaric Rougnon Glasson](https://www.linkedin.com/in/alaric-rougnon-glasson/) (IMAC 2022)
 - ...
 
 Toute remarque ou suggestion pour contribuer à l'amélioration de ce cours est la bienvenue.
