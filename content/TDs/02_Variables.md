@@ -62,7 +62,7 @@ Entrez un nombre de jours : 4096
 4096 jours correspondent à : 0 siecle 11 annee 4 mois 2 semaine 2 jours
 ```
 
-## Exercice 5
+## Exercice 5 (ASCII)
 
 Demandez à l'utilisateur de saisir un nombre entier entre 1 et 26 et affichez la lettre correspondante dans l'alphabet.
 
@@ -117,4 +117,36 @@ détails:
 - 3 carottes : 1.125 €
 - 1 salade : 1.2 €
 ```
+:::
+
+
+## Exercice 7 (problème de compilation)
+
+```cpp
+#include <iotream>
+
+int main()
+{
+    const int a{5};    
+    int b{8};
+    float c{pi*3}; // je veux le résultat de pi (environ 3.141592) fois 3
+
+    b += "20";  // je veux ajouter 20 à la valeur de b
+
+    a = a * 15; // je veux le résultat de a fois 15
+    std::cout << "a: " << a << std::endl;
+
+    std::cout << "b: " << b << std::endl
+
+    std::cout << "c: " << c << std::endl;
+
+    return 0;
+}
+```
+
+- Vérifier que le code ne compile pas et essayez de corriger les erreurs.
+
+:::info
+Pour **pi** vous pouvez utiliser la constante `M_PI` définie dans la bibliothèque `cmath`.
+Il faut ajouter `#include <cmath>` en haut du fichier pour pouvoir l'utiliser.
 :::
