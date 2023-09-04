@@ -3,7 +3,7 @@ title: TD3 - Conditions
 sidebar_position: 3
 ---
 
-## Exercice 1 
+## Exercice 1 (Positif ou négatif)
 Écrivez un programme qui demande à l’utilisateur de saisir un entier et aﬀiche si cet entier est positif ou négatif.
 
 exemples d’exécutions
@@ -18,12 +18,12 @@ Saisir un entier : -5
 -5 est négatif
 ```
 
-## Exercice 2
+## Exercice 2 (Pair ou impair)
 
 Écrivez un programme qui demande à l’utilisateur de saisir un entier et aﬀiche si cet entier est **pair** ou **impair**.
 
 :::tip
-VOus pouvez utiliser l'opérateur modulo `%` qui donne le reste de la division entière.
+Vous pouvez utiliser l'opérateur modulo `%` qui donne le reste de la division entière.
 :::
 
 ## Exercice 3
@@ -102,3 +102,22 @@ Vous disposez des informations suivantes:
 - il faut **1 min** pour que l'eau gagne **10°C** de température.
 
 Gérer le cas où l'utilisateur saisit une altitude négative et afficher un message d'erreur.
+
+## Exercice 6
+
+Essayer de refaire les exercices **1** et **2** en utilisant des **ternaires**.
+
+:::note
+
+Un **ternaire** est une expression conditionnelle qui permet de faire un test comme un **if/else** et de retourner une valeur en fonction du résultat du test.
+
+```cpp
+int a {5};
+int b {10};
+// condition ? valeur si vrai : valeur si faux
+int c {(a > b) ? a : b }; // c = 10
+```
+
+C'est réservé aux cas simples qui peuvent s'écrire sur une seule ligne.
+Il ne faut pas abuser des ternaires car cela peut rendre le code illisible.
+:::
