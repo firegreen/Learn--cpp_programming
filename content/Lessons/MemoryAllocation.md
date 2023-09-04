@@ -49,7 +49,7 @@ Vous connaissez déjà cette syntaxe, c'est simplement la déclaration d'une var
 
 ### Allocation sur la **Heap**
 
-L’allocation sur la **Heap** se fait de manière **dynamique** pendant l’exécution d’un programme. L’espace nécessaire n’a pas besoin d'être défini en amont dans le code. Le programme effectue la **demande** d’allocation d’espace à l’OS au cours de son exécution.
+L’allocation sur la **Heap** se fait de manière **dynamique** pendant l’exécution d’un programme (on parle de runtime). L’espace nécessaire n’a pas besoin d'être défini en amont dans le code. Le programme effectue la **demande** d’allocation d’espace à l’OS au cours de son exécution.
 
 :::note
 Il y a généralement un abus de langage et ce que l'on qualifie d'allocation **dynamique** désigne ce type d'allocation sur la **Heap**.
@@ -365,7 +365,6 @@ struct IntegerVector
         // J'ajoute la valeur à la fin du tableau
         objects[size] = value;
         size++;
-        // objects[size++] = value;
     }
 
     void pop_back()
