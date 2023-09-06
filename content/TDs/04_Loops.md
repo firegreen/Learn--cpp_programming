@@ -5,13 +5,13 @@ sidebar_position: 4
 
 ## Exercice 1 (For)
 
-- faire une boucle **for** qui affiche les nombres pairs inférieurs ou égal à un nombre entré par l'utilisateur:
+- Faire une boucle **for** qui affiche les nombres pairs inférieurs ou égal à un nombre entré par l'utilisateur:
   - en utilisant le mot clé **continue**
   - en utilisant un condition et l'opérateur **modulo**
   - en utilisant une boucle bien choisie (un nombre pair est un nombre qui peut s'écrire comme le double d'un nombre entier)
 
 :::tip
-VOus pourrez utiliser **std::cin** pour demander le nombre maximum à l'utilisateur (aucune gestion d'une éventuelle erreur de saisi n'est demandé ici)
+Vous pourrez utiliser **std::cin** pour demander le nombre maximum à l'utilisateur (aucune gestion d'une éventuelle erreur de saisie n'est demandée ici).
 :::
 
 ## Exercice 2 (While)
@@ -27,11 +27,11 @@ sur une ligne de la forme: `5 fois 7 = 35`.
 
 - Afficher la **somme** des entiers positifs saisis par l’utilisateur.
 
-- permettre de calculer également la **moyenne** et l'afficher.
+- Permettre de calculer également la **moyenne** et l'afficher.
 
 :::info
 Pour calculer la moyenne, il faut compter le nombre d'entiers positifs saisis par l'utilisateur.
-Vous n'avez à stocker les entiers saisis par l'utilisateur (vous découvrirez comment faire cela dans le prochain chapitre).
+Vous n'avez pas à stocker les entiers saisis par l'utilisateur (vous découvrirez comment faire cela dans le prochain chapitre).
 :::
 
 ## Exercice 4 (rendu de monnaie)
@@ -50,7 +50,7 @@ Je vous invite à retourner voir l'[exercice 3](/TDs/Conditions#exercice-3) du *
 
 ## Exercice 6 (conjecture de Syracuse)
 
-Écrire un programme qui, à partir d’un entier positif saisi par l’utilisateur, affiche le nombre de termes de la suite de Syracuse nécessaires pour atteindre `1` (on inclut le terme de départ dans le décompte)
+Écrire un programme qui, à partir d’un **entier positif** saisi par l’utilisateur, affiche le nombre de termes de la suite de Syracuse nécessaires pour atteindre `1` (on inclut le terme de départ dans le décompte).
 
 La suite de **Syracuse** est une suite d'entiers dans laquelle chaque terme est obtenu en appliquant une fonction à son terme précédent. Cette fonction est définie comme suit:
 
@@ -101,7 +101,7 @@ Le programme s’arrête lorsque le joueur a trouvé le nombre mystère.
 :::info
 Pour générer un nombre aléatoire, vous pouvez utiliser la fonction **rand()** de la bibliothèque **cstdlib**.
 
-la fonction **rand()** retourne un nombre entier aléatoire entre **0** et **RAND_MAX** (une constante définie dans la bibliothèque **cstdlib**).
+La fonction **rand()** retourne un nombre entier aléatoire entre **0** et **RAND_MAX** (une constante définie dans la bibliothèque **cstdlib**).
 
 Pour obtenir un nombre aléatoire entre **1** et **100**, il faut utiliser l'opérateur modulo **%**:
 

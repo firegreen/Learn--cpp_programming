@@ -40,14 +40,14 @@ Vous devriez obtenir une valeur de `5` et non `5.5`. **Pourquoi** ?
 
 - Utiliser un cast pour convertir la variable en un type flottant.
  Afficher la valeur de la variable divisée par  `2.0f`
-- 
+
 :::tip
 `static_cast<type>(variable)` permet convertir une variable en un autre type.
 :::
 
 ## Exercice 4
 
-Écrivez un programme qui demande un nombre de jours à l'utilisateur et affiche le nombre d'années, de mois et de jours correspondant à ce nombre de jours.
+Écrire un programme qui demande un nombre de jours à l'utilisateur et affiche le nombre d'années, de mois et de jours correspondant à ce nombre de jours.
 
 L’aﬀichage se fera sous la forme :
 "J jours correspondent à: xx siecle xx annee xx mois xx semaine xx jours"
@@ -64,7 +64,7 @@ Entrez un nombre de jours : 4096
 
 ## Exercice 5 (ASCII)
 
-Demandez à l'utilisateur de saisir un nombre entier entre 1 et 26 et affichez la lettre correspondante dans l'alphabet.
+Demander à l'utilisateur de saisir un nombre entier entre **1** et **26** et afficher la lettre correspondante dans l'alphabet.
 
 ```bash title="exemple d'exécution"
 Entrez un nombre entre 1 et 26 : 5
@@ -83,7 +83,7 @@ Vous pouvez trouver la table de correspondance ASCII complète [ici](https://fr.
 
 ## Exercice 6
 
-Un agriculteur doit aller au marcher pour récupérer ses légumes. Il a besoin de sacs de **pommes de terre** de **carottes** et de **salades**.
+Un cuisinier doit aller au marché pour récupérer ses légumes. Il a besoin de sacs de **pommes de terre**, de **carottes** et de **salades**.
 
 Vous avez les informations suivantes :
 - Un sac de **pommes de terre** pèse **2kg**.
@@ -92,7 +92,7 @@ Vous avez les informations suivantes :
 - Le prix d'un **kg** de **carottes** est de **2.5€**.
 - Une salade coûte **1.2€**.
 
-Écrivez un programme qui demande à l'utilisateur de saisir le nombre de sacs de pommes de terre, de carottes et de salades qu'il souhaite acheter.
+Écrire un programme qui demande à l'utilisateur de saisir le nombre de sacs de pommes de terre, de carottes et de salades qu'il souhaite acheter.
 
 Le programme doit ensuite calculer le **prix total** de la commande et l'afficher.
 
@@ -106,7 +106,7 @@ Le prix total de la commande est de 8.325 €
 
 :::info Bonus
 
-En bonus, affichez le détail de la commande.
+En bonus, afficher le détail de la commande.
 
 ```bash
 ...

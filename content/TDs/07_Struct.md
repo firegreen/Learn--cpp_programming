@@ -57,3 +57,6 @@ std::vector<Move> moves = {
 };
 ```
 
+:::info
+Exercice inspiré de de l'édition **2021** de l'**advent of code**: https://adventofcode.com/2021/day/2
+:::

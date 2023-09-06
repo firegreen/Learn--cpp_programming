@@ -6,9 +6,9 @@ sidebar_position: 6
 ## Exercice 1
 
 - Écrire une fonction `int somme(int a, int b)` qui retourne la somme de deux entiers.
-- Utiliser des paramètre constant pour les arguments de la fonction.
+- Utiliser des paramètres constants pour les arguments de la fonction.
 - Utiliser des références pour les arguments de la fonction.
-- Vérifier que cela fonction aussi bien avec des variables que des littéraux dans le cas des références.
+- Vérifier que cela fonctionne aussi bien avec des variables que des littéraux dans le cas des références.
 
 ## Exercice 2 (Factorielle)
 
@@ -16,7 +16,7 @@ sidebar_position: 6
 - Écrire une fonction récursive qui retourne la factorielle de `n`.
 - Afficher le résultat.
 - Gérer les cas d'erreur (nombre négatif, nombre trop grand, etc.).
-- Utiliser un fonction itérative (non récursive).
+- Utiliser une fonction itérative (non récursive).
 
 :::info
 La factorielle d'un entier `n` est le produit des nombres entiers strictement positifs inférieurs ou égaux à `n`.
@@ -42,7 +42,7 @@ La suite de Fibonacci est une suite d'entiers dans laquelle chaque terme est la 
 
 ## Exercice 5
 
-Écrire sous forme récursives les fonctions $U_n$ et $V_n$ conformément à la description suivante:
+Écrire sous forme récursive les fonctions $U_n$ et $V_n$ conformément à la description suivante:
 
 - $U_0 = 1$ et $U_{n+1} = 3U_n + 2V_n$
 - $V_0 = 2$ et $V_{n+1} = 2V_n + U_n + 1$
@@ -74,7 +74,7 @@ Il faut faire attention à la casse (majuscules/minuscules).
 Un pangramme est une phrase contenant toutes les lettres de l'alphabet au moins une fois.
 :::
 
-# Exercice 6 (String)
+# Exercice 7 (String)
 
 - Écrire une fonction qui prend en paramètre une chaîne de caractères et qui modifie cette chaîne en remplaçant les lettres minuscules par des lettres majuscules et vice-versa.
 
