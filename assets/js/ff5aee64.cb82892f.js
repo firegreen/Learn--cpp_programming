@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkprogramming_support_courses=self.webpackChunkprogramming_support_courses||[]).push([[524],{1531:r=>{r.exports=JSON.parse('{"title":"TDs","slug":"/TDs","permalink":"/Learn--cpp_programming/TDs","navigation":{"next":{"title":"TD2 - Variables","permalink":"/Learn--cpp_programming/TDs/Variables"}}}')}}]);
