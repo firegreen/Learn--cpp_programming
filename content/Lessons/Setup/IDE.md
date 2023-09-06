@@ -8,7 +8,7 @@ sidebar_position: 1
 
 import { Chip } from "@mui/material";
 
-# Introduction
+# Visual Studio Code
 
 Un **IDE** (Integrated Development Environment) est comme un éditeur de texte, mais beaucoup plus puissant !
 Il possède de nombreuses fonctionnalités supplémentaires qui vous aideront à écrire, exécuter et déboguer votre code !
@@ -17,7 +17,7 @@ Ce cours va présenter principalement [Visual Studio Code](https://code.visualst
 
 Il existe évidemment de nombreuses alternatives et si vous savez déjà vous servir d'un **IDE** alors vous pouvez très bien l'utiliser si vous savez bien vous en servir, mais j'aurais peut-être plus de difficultés pour vous aider.
 
-# Installation
+## Installation
 
 Tout d'abord il s'agit d'installer l'IDE.
 

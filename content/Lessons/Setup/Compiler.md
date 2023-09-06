@@ -11,7 +11,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { Button, Chip } from "@mui/material";
 
-## Installation d'un compilateur
+# Installation d'un compilateur
 
 <Tabs groupId="operating-systems">
 <TabItem value="Windows" label="Windows">

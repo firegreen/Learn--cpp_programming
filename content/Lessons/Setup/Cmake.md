@@ -10,7 +10,7 @@ import { Chip } from "@mui/material";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Introduction
+# Cmake
 
 CMake est un outil **additionnel** permettant de gérer la compilation d'un **projet**.
 En effet, lorsqu'il s'agit de compiler un seul fichier il est possible de le faire manuellement avec les commandes du compilateur mais la tâche va vite se complexifier lorsqu'il va s'agir de compiler plusieurs fichiers et de gérer des dépendances.
@@ -22,7 +22,7 @@ Il en existe bien d'autres comme **makefile** que nous ne verrons pas car moins 
 
 :::
 
-# Installation
+## Installation
 
 Vous pouvez vous rendre <Chip label="ici" component="a" href="https://cmake.org/download/" size="small" variant="contained" color="primary" clickable/> et sélectionner l'installeur qui correspond à votre OS.
 
