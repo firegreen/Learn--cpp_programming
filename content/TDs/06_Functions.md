@@ -3,51 +3,55 @@ title: TD6 - Fonctions
 sidebar_position: 6
 ---
 
-## Exercice 1
+## Exercice 1 (Somme)
 
-- Écrire une fonction `int somme(int a, int b)` qui retourne la somme de deux entiers.
-- Utiliser des paramètres constants pour les arguments de la fonction.
-- Utiliser des références pour les arguments de la fonction.
-- Vérifier que cela fonctionne aussi bien avec des variables que des littéraux dans le cas des références.
+Écrire une fonction somme qui retourne la **somme** de deux entiers.
+
+1. Utiliser des **paramètres** par copie et le prototype suivant:
+    ```cpp
+    int somme(int a, int b);
+    ```
+
+2. Utiliser des **paramètres constants** pour les arguments de la fonction.
+3. Utiliser des **références** pour les arguments de la fonction.
+4. Vérifier que cela fonctionne aussi bien avec des variables que des littéraux dans le cas des références.
 
 ## Exercice 2 (Factorielle)
 
-- Écrire un programme qui demande à l’utilisateur de saisir un entier positif.
-- Écrire une fonction récursive qui retourne la factorielle de `n`.
-- Afficher le résultat.
-- Gérer les cas d'erreur (nombre négatif, nombre trop grand, etc.).
-- Utiliser une fonction itérative (non récursive).
-
-:::info
-La factorielle d'un entier `n` est le produit des nombres entiers strictement positifs inférieurs ou égaux à `n`.
-:::
+1. Écrire un programme qui demande à l’utilisateur de saisir un **entier positif**.
+2. Écrire une fonction **récursive** qui retourne la **factorielle** de `n`.
+    :::info
+    La **factorielle** d'un entier `n` est le **produit** des nombres entiers strictement positifs inférieurs ou égaux à `n`.
+    :::
+3. Afficher le résultat.
+4. Gérer les cas d'erreur (nombre négatif, nombre trop grand, etc.).
+5. Utiliser une fonction itérative (non récursive).
 
 ## Exercice 3 (Fibonacci)
 
-- Écrire un programme qui demande à l’utilisateur de saisir un entier positif.
-- Écrire une fonction récursive qui retourne sous la forme d'un tableau les `n` premiers termes de la suite de **Fibonacci**.
-- Afficher les `n` premiers termes de la suite de **Fibonacci** à l'aide de la fonction.
-- Pour aller plus loin: Essayer de trouver une solution itérative (non récursive).
+1. Écrire un programme qui demande à l’utilisateur de saisir un entier positif.
+2. Écrire une fonction **récursive** qui retourne sous la forme d'un tableau les `n` premiers termes de la suite de **Fibonacci**.
+    :::info
+    La suite de Fibonacci est une suite d'entiers dans laquelle chaque terme est la somme des deux termes qui le précèdent. Ses premiers termes sont `0` et `1`.
+    :::
+3. Afficher les `n` premiers termes de la suite de **Fibonacci** à l'aide de la fonction précédente.
+    Par exemple, si l’utilisateur saisit `7`, le programme affichera `0, 1, 1, 2, 3, 5, 8`.
+4. Pour aller plus loin: Essayer de trouver une solution **itérative** (non récursive).
 
-Par exemple, si l’utilisateur saisit `7`, le programme affichera `0, 1, 1, 2, 3, 5, 8`.
-
-:::info
-La suite de Fibonacci est une suite d'entiers dans laquelle chaque terme est la somme des deux termes qui le précèdent. Ses premiers termes sont `0` et `1`.
-:::
 
 ## Exercice 4 (Surcharges)
 
-- Écrire une fonction qui permet de calculer la moyenne d'un tableau d'entiers.
-- Écrire une fonction surchargée portant le même nom qui permet de calculer la moyenne d'un tableau de flottants.
+1. Écrire une fonction qui permet de calculer la moyenne d'un tableau d'**entiers**.
+2. Écrire une fonction surchargée portant le même nom qui permet de calculer la moyenne d'un tableau de **flottants**.
 
-## Exercice 5
+## Exercice 5 (Suite)
 
-Écrire sous forme récursive les fonctions $U_n$ et $V_n$ conformément à la description suivante:
+Écrire sous forme **récursive** les fonctions $U_n$ et $V_n$ conformément à la description suivante:
 
 - $U_0 = 1$ et $U_{n+1} = 3U_n + 2V_n$
 - $V_0 = 2$ et $V_{n+1} = 2V_n + U_n + 1$
 
-Afficher les dix premiers termes de chacune des suites.
+Afficher les **dix** premiers termes de chacune des suites.
 
 Vous devez obtenir les résultats suivants:
 
@@ -64,23 +68,26 @@ U8 = 145629 et V8 = 72824
 U9 = 582535 et V9 = 291278
 ```
 
+:::tip
+Il est possible d'exprimer $U_n$ et $V_n$ en fonction de $U_{n-1}$ et $V_{n-1}$.
+:::
+
 # Exercice 6 (Pangramme)
 
 Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne `true` si la chaîne est un **pangramme**, `false` sinon.
 
-Il faut faire attention à la casse (majuscules/minuscules).
-
+Il faut faire attention à la casse (majuscules/minuscules), un même lettre majuscule et minuscule compte pour la **même** lettre.
 :::info
-Un pangramme est une phrase contenant toutes les lettres de l'alphabet au moins une fois.
+Un **pangramme** est une phrase contenant toutes les lettres de l'alphabet au moins une fois.
 :::
 
 # Exercice 7 (String)
 
-- Écrire une fonction qui prend en paramètre une chaîne de caractères et qui modifie cette chaîne en remplaçant les lettres minuscules par des lettres majuscules et vice-versa.
+1. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui modifie cette chaîne en remplaçant les lettres minuscules par des lettres majuscules et vice-versa.
 
-- Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne le nombre de voyelles de cette chaîne.
+2. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne le nombre de voyelles de cette chaîne.
 
-- Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne le nombre de mots de cette chaîne. On considère que les mots sont séparés par un ou plusieurs espaces.
+3. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne le nombre de mots de cette chaîne. On considère que les mots sont séparés par un ou plusieurs espaces.
 
-- Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne la même chaîne écrite à l'envers.
+4. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne la même chaîne écrite à l'envers.
 

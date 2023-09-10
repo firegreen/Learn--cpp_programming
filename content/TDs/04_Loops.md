@@ -5,10 +5,10 @@ sidebar_position: 4
 
 ## Exercice 1 (For)
 
-- Faire une boucle **for** qui affiche les nombres pairs inférieurs ou égal à un nombre entré par l'utilisateur:
-  - en utilisant le mot clé **continue**
-  - en utilisant un condition et l'opérateur **modulo**
-  - en utilisant une boucle bien choisie (un nombre pair est un nombre qui peut s'écrire comme le double d'un nombre entier)
+Faire une boucle **for** qui affiche les nombres **pairs** inférieurs ou égal à un nombre entré par l'utilisateur de différentes façons:
+  1. en utilisant un condition et l'opérateur **modulo**
+  2. en utilisant le mot clé **continue**
+  3. en utilisant une boucle bien choisie (un nombre **pair** est un nombre qui peut s'écrire comme le double d'un nombre entier)
 
 :::tip
 Vous pourrez utiliser **std::cin** pour demander le nombre maximum à l'utilisateur (aucune gestion d'une éventuelle erreur de saisie n'est demandée ici).
@@ -16,18 +16,19 @@ Vous pourrez utiliser **std::cin** pour demander le nombre maximum à l'utilisat
 
 ## Exercice 2 (While)
 
-- Écrire une boucle **while** qui affichera les entiers entre 1 et 20.
-- Écrire une boucle **while** qui affichera les 50 premiers multiples de 7, chacun
+1. Écrire une boucle **while** qui affichera les entiers entre `1` et `20`.
+2. Écrire une boucle **while** qui affichera les `50` premiers multiples de `7`, chacun
 sur une ligne de la forme: `5 fois 7 = 35`.
-- Refaire les deux questions précédentes en utilisant une boucle **for**.
+3. Refaire les deux questions précédentes en utilisant une boucle **for**.
 
 ## Exercice 3 (Somme d'entiers positifs)
 
 Écrire un programme qui demande à l’utilisateur de saisir des entiers positifs (s’arrête dès que l’utilisateur saisit un entier négatif)
 
-- Afficher la **somme** des entiers positifs saisis par l’utilisateur.
 
-- Permettre de calculer également la **moyenne** et l'afficher.
+1. Gérer l'entrée utilisateur (et son arrêt) à l'aide d'une boucle **while** ou **do while**.
+2. Afficher la **somme** des entiers positifs saisis par l’utilisateur.
+3. Modifier le programme pour qu'il affiche également la **moyenne** des entiers positifs saisis par l’utilisateur.
 
 :::info
 Pour calculer la moyenne, il faut compter le nombre d'entiers positifs saisis par l'utilisateur.
@@ -36,9 +37,15 @@ Vous n'avez pas à stocker les entiers saisis par l'utilisateur (vous découvrir
 
 ## Exercice 4 (rendu de monnaie)
 
-Écrire un programme qui demande à l’utilisateur un montant en euros et affiche le nombre de billets et de pièces nécessaires pour rendre la monnaie avec le moins de billets et de pièces possible.
+Écrire un programme qui demande à l’utilisateur un montant en **euros** et affiche le nombre de billets et de pièces nécessaires pour rendre la monnaie avec le moins de billets et de pièces possible.
 
 On suppose que l’on dispose de pièces de `1`, `2`, `5`, `10`, `20` et `50` centimes, de `1` et `2` euros ainsi que de billets de `5`, `10`, `20`, `50`, `100`, `200` et `500` euros.
+
+:::tip
+Utilisez un tableau pour stocker le nombre de pièces et de billets à rendre.
+
+Utilisez un **algorithme glouton** qui consiste à regarder si on peut rendre la monnaie avec le plus gros billet ou pièce possible et à recommencer avec le billet ou la pièce suivante jusqu'à avoir rendu toute la monnaie.
+:::
 
 ## Exercice 5 (entrée utilisateur)
 
@@ -68,7 +75,7 @@ Il est conjecturé que cette suite atteint toujours la valeur `1` quelque soit l
 
 ## Exercice 7 (ASCII art)
 
-Écrire un programme qui demande à l’utilisateur de saisir un entier positif et affiche un triangle rectangle de hauteur `n` comme dans l’exemple ci-dessous.
+1. Écrire un programme qui demande à l’utilisateur de saisir un **entier positif** et affiche un triangle rectangle de hauteur `n` comme dans l’exemple ci-dessous.
 
 ```bash title="exemple d'exécution"
 Entrez un entier positif : 5
@@ -79,12 +86,23 @@ Entrez un entier positif : 5
 *****
 ```
 
-- Essayer d'afficher un sapin de noël, autrement dit un triangle rectangle isocèle de hauteur `n` et dont le sommet est composé d'une seule étoile.
+2. Essayer d'afficher un sapin de noël, autrement dit un triangle rectangle isocèle de hauteur `n` et dont le sommet est composé d'une seule étoile.
 
 ```bash title="exemple d'exécution"
 Entrez un entier positif : 3
   *
  ***
+*****
+```
+
+3. Essayer d'afficher les contours d'un carré de côté `n` comme dans l’exemple ci-dessous.
+
+```bash title="exemple d'exécution"
+Entrez un entier positif : 5
+*****
+*   *
+*   *
+*   *
 *****
 ```
 
@@ -107,29 +125,6 @@ Pour obtenir un nombre aléatoire entre **1** et **100**, il faut utiliser l'op�
 
 `std::rand() % 100 + 1`.
 
-<details>
-<summary>
-  Génération plus moderne de nombre aléatoire
-</summary>
-
-Avec **C++11**, plusieurs nouvelles fonctionnalités ont été ajoutées dans la bibliothèque **random** pour la génération de nombres aléatoires.
-
-Cela permet de mieux contrôler la génération pseudo-aléatoire de nombres et avoir accès à des distributions de probabilités déjà implémentées.
-
-```cpp
-#include <iostream>
-#include <random>
-
-int main()
-{
-    std::random_device rd;
-    std::mt19937 gen{rd()};
-    std::uniform_int_distribution<int> dist{1, 100};
-    
-    std::cout << dist(gen) << std::endl;
-
-    return 0;
-}
-```
-</details>
+:::info
+Il existe une façon plus moderne de générer des nombres aléatoires à partir de **C++11**, nous découvrirons cela au prochain semestre.
 :::

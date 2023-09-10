@@ -30,9 +30,9 @@ Vous pouvez utiliser l'opérateur modulo `%` qui donne le reste de la division e
 
 Écrire un programme qui demande à l’utilisateur de saisir son **âge** (un nombre entier) et aﬀiche s’il est **majeur** ou **mineur**.
 
-- Gérer le cas où l’utilisateur saisit un **âge négatif** et afficher un message d’erreur.
-
-- Gérer le cas où l’utilisateur saisit un **âge avec des lettres** et afficher et gérer l’erreur.
+1. Gérer la saisie d'un âge à stocker dans une variable.
+2. Gérer le cas où l’utilisateur saisit un **âge négatif** et afficher un message d’erreur dans ce cas.
+3. Gérer le cas où l’utilisateur saisit un **âge avec des lettres** et afficher et gérer l’erreur.
 
 :::info
 `std::cin >> x` renvoie **true** si tout est correct ou **false** si on a rencontré une erreur lors de la saisie.
@@ -47,7 +47,7 @@ std::cin.ignore(255, '\n'); // On vide les caractères mémorisés.
 ```
 :::
 
-- Si vous ne l'avez pas fait utilisez le type `unsigned int` pour stocker l'âge. 
+4. Si vous ne l'avez pas fait utilisez le type `unsigned int` pour stocker l'âge. 
 
 :::info
 Cela permet de gérer le cas où l'utilisateur saisit un âge négatif en profitant du fait que le type `unsigned int` ne peut pas être négatif sans avoir à faire de test supplémentaire.
@@ -60,7 +60,7 @@ Cela permet de gérer le cas où l'utilisateur saisit un âge négatif en profit
 C'est les soldes !
 
 Créer un programme qui demande à l'utilisateur:
-- le type de produit (une chaîne de caractères à stocker dans un **enum**)
+- le type de produit (à stocker dans un **enum**)
 - le prix du produit (un nombre flottant)
 - s'il a une carte de fidélité (boolean)
 - son age (un nombre entier)
@@ -76,24 +76,22 @@ Vous disposez des informations suivantes:
 | Chaussures | 12% | 18% |
 | Autre | 0% | 0% |
 
-S'il est étudiant, il a **10%** de réduction supplémentaire sur tous les articles après réduction.
+S'il à moins de **26** ans, il a **10%** de réduction supplémentaire sur tous les articles après réduction.
 
-:warning: Cela ne se cumule pas avec la carte de fidélité, dans ce cas de figure, c'est la réduction la plus avantageuse qui est appliquée.
+1. Définir un **enum** pour le type d'article.
 
-- Gérer le cas où l'utilisateur saisit un type d'article qui n'existe pas et afficher un message d'erreur.
+2. Demander à l'utilisateur de saisir le type d'article, le prix, s'il a une carte de fidélité et son âge.
 
-- L'enseigne offre également un bon d'achat de **10%** du montant total du ticket de caisse, à valoir sur un prochain achat. Le bon d'achat ne peut pas être supérieur à 30€.
+3. Gérer le cas où l'utilisateur saisit un type d'article qui n'existe pas et afficher un message d'erreur. (vous pouvez aussi gérer le cas où l'utilisateur saisit un prix ou un âge négatif si vous voulez)
+
+4. Calculer le prix final en fonction des informations saisies et afficher le résultat.
+
+5. L'enseigne offre également un bon d'achat de **10%** du montant total du ticket de caisse, à valoir sur un prochain achat. Le bon d'achat ne peut pas être supérieur à 30€.
 Calculer le montant du bon d'achat et l'afficher en fin de programme.
 
 ## Exercice 5
 
-Calcul du temps d'ébullition de l'eau en fonction de l'**altitude**, de la **température ambiante** et de l'ajout ou non de **sel**.
-
-- Demander à l'utilisateur de saisir l'altitude en mètres (un nombre entier)
-- Demander à l'utilisateur de saisir la température ambiante en degrés Celsius (un nombre flottant)
-- Demander à l'utilisateur s'il ajoute du sel dans l'eau (un booléen)
-
-En fonction des informations saisies, le programme affiche le temps d'ébullition de l'eau en minutes.
+Calcul du temps d'ébullition de l'eau en fonction de l'**altitude** en mètres (un nombre entier), de la **température ambiante** (un nombre flottant) et de l'ajout ou non de **sel** (boolean).
 
 Vous disposez des informations suivantes:
 
@@ -102,7 +100,10 @@ Vous disposez des informations suivantes:
 - L'action d'ajouter du **sel** dans l'eau fait augmenter son point d'ébullition de **1.5°C**.
 - il faut **1 min** pour que l'eau gagne **10°C** de température.
 
-Gérer le cas où l'utilisateur saisit une altitude négative et afficher un message d'erreur.
+
+1. Demander à l'utilisateur de saisir l'altitude, la température ambiante et s'il ajoute du sel.
+2. Gérer le cas où l'utilisateur saisit une altitude négative et afficher un message d'erreur.
+3. En fonction des informations saisies, afficher le temps d'ébullition de l'eau en minutes.
 
 ## Exercice 6
 

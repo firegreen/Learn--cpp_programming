@@ -14,21 +14,26 @@ Je vous donne le programme suivant qui génère la liste des calories transport�
 ```cpp
 #include <iostream>
 #include <vector>
-#include <random>
-#include <algorithm>
+#include <cstdlib>
 
 int main()
 {
-    std::vector<int> calories(20); // 20 nains
-    std::mt19937 gen{42}; // 42: graine du générateur aléatoire (pour avoir des résultats reproductibles)
-    std::uniform_int_distribution<int> dist{100, 24000}; // 100: minimum, 24000: maximum
-    // permet de remplir le tableau avec des valeurs aléatoires
-    std::generate(std::begin(calories), std::end(calories), [&dist, &gen]() { return dist(gen); });
+    size_t const dwarf_count = 20;
+
+    std::vector<int> calories;
+
+    // std::srand permet de fixer la "seed" du générateur aléatoire (pour avoir des résultats reproductibles)
+    std::srand(42);
+    
+    for (int i = 0; i < dwarf_count; ++i)
+    {
+      calories.push_back(rand() % 24000 + 100);
+    }
 
     // affichage optionnel des calories transportées par chaque nain
     for (int const c : calories)
     {
-        std::cout << c << ", ";
+      std::cout << c << ", ";
     }
     std::cout << std::endl;
 
@@ -38,10 +43,13 @@ int main()
 }
 ```
 
-- Trouver la quantité de provisions la plus petite transportée par un nain (arrivez vous à le faire sans utiliser de boucle supplémentaire ?).
-- Pour aller plus loin: 
-  - Trouver les trois nains transportant le plus de provisions et afficher la somme des provisions transportées par ces trois nains.
-  - Essayez de faire fonctionner le programme avec plus de nains, par exemple 200, 2000 ou même 20000 nains. (Attention, il ne faut pas afficher les calories transportées par chaque nain dans ce cas).
+1. Trouver la quantité de provisions la plus **grande** transportée par un nain.
+2. Trouver la quantité de provisions la plus **petite** transportée par un nain (arrivez vous à le faire sans utiliser de boucle supplémentaire ?).
+3. Essayez de faire fonctionner le programme avec plus de nains, par exemple `200`, `2000` ou même `20000` nains. (Attention, il ne faut pas afficher les calories transportées par chaque nain dans ce cas).
+4. Si vous avez eu besoin de changer autre chose que la variable `dwarf_count` pour répondre à la question précédente, essayez de trouver une solution qui fonctionne avec n'importe quel nombre de nains sans avoir à modifier le code.
+
+5. Pour aller plus loin: 
+  Trouver les **trois** nains transportant le plus de provisions et afficher la **somme** des provisions transportées par ces trois nains.
 
 :::info
 Exercice inspiré de de l'édition **2022** de l'**advent of code**: https://adventofcode.com/2022/day/1
@@ -147,18 +155,18 @@ Par exemple, `kayak` est un palindrome.
 
 Écrire un programme qui demande à l'utilisateur de saisir un mot et qui affiche si ce mot est un **palindrome** ou non.
 
-:::tip title="Indices"
+:::tip
 Une chaîne de caractères est un tableau de caractères.
 :::
 
 # Exercice 5 (Comptage)
 
-Écrire un programme qui demande un nombre entier positif (supérieur à **1 000 000**) à l'utilisateur et qui remplit un tableau avec les chiffres de ce nombre.
-Le programme doit ensuite compter le nombre d'occurrences de chiffre et afficher le chiffre qui apparaît le plus souvent.
+Écrire un programme qui demande un nombre **entier positif** (supérieur à **1 000 000**) à l'utilisateur et qui remplit un tableau avec les chiffres de ce nombre.
+Le programme doit ensuite compter le nombre d'occurrences de chiffre et afficher le **chiffre** qui apparaît le plus souvent.
 
 # Exercice 6 (Suppression et tassement)
 
-Écrire un programme qui demande à l'utilisateur de saisir **10** entiers compris entre **0** et **5** et qui les stocke dans un tableau.
+Écrire un programme qui demande à l'utilisateur de saisir **10** entiers compris entre **0** et **5** et qui les stocke dans un tableau. (vous pouvez aussi demander à l'utilisateur de saisir un nombre puis le décomposer en chiffres et stocker les chiffres dans un tableau).
 
 Vous devez ensuite supprimer toutes les valeurs valant **3** dans le tableau en décalant tous les éléments vers la gauche et en complétant le tableau avec des **0**.
 
