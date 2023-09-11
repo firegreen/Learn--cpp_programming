@@ -4,6 +4,8 @@ const axios = require("axios");
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const docusaurusLunrSearchPlugin = require("docusaurus-lunr-search");
+
 const remarkMath = require("remark-math");
 const rehypeKatex = require("rehype-katex");
 
@@ -35,6 +37,11 @@ module.exports = async function configCreatorAsync() {
       mermaid: true,
     },
     themes: ['@docusaurus/theme-mermaid'],
+
+    plugins: [[ docusaurusLunrSearchPlugin, {
+      languages: ['fr'],
+      includeRoutes: ['**/Lessons/**', '**/TDs/**']
+    }]],
 
     presets: [
       [
