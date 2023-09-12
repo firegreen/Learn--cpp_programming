@@ -9,9 +9,9 @@ Le but est d'**installer** les outils nécessaires pour pouvoir travailler sur v
 
 Je vous invite donc à retourner dans les sections suivantes pour avoir les instructions d'installation:
 
-- [Installer le compilateur](/Lessons/Setup/Compiler)
-- [Visual Studio Code](/Lessons/Setup/IDE)
-- [CMake](/Lessons/Setup/CMake)
+- [Installer le compilateur](/Lessons/S1/Setup/Compiler)
+- [Visual Studio Code](/Lessons/S1/Setup/IDE)
+- [CMake](/Lessons/S1/Setup/CMake)
 
 Si vous avez des difficultés à installer, n'hésitez pas à demander à votre chargé de TD ou à moi-même.
 
@@ -19,7 +19,7 @@ Si vous avez des difficultés à installer, n'hésitez pas à demander à votre 
 
 Une fois que vous avez installé les outils, vous pouvez créer votre premier programme.
 
-Je vous invite à regarder la page suivante pour avoir les instructions: [Premier programme](/Lessons/Setup/HelloImac)
+Je vous invite à regarder la page suivante pour avoir les instructions: [Premier programme](/Lessons/S1/Setup/HelloImac)
 
 ## Plusieurs exécutables
 
