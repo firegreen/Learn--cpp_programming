@@ -6,10 +6,7 @@ tags:
 sidebar_position: 2
 ---
 
-# Introduction
-
 Maintenant que l'on sait exécuter notre premier programme il est temps de découvrir ce que l'on va pouvoir manipuler en C++.
-
 
 ## Les littéraux
 

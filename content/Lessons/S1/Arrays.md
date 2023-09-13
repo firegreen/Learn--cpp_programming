@@ -6,8 +6,6 @@ tags:
 sidebar_position: 5
 ---
 
-# Introduction
-
 Nous avons vu les **variables** pour stocker des valeurs, les **boucles** pour simplifier le code et faire des itérations et il est maintenant légitime de se demmander comment manipuler un nombre plus important de variables.
 
 Par exemple si l'on veut calculer la moyenne d'une liste de nombres, comment faire ?

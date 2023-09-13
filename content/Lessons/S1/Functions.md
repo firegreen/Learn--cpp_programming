@@ -6,8 +6,6 @@ tags:
 sidebar_position: 6
 ---
 
-# Introduction
-
 J'ai évoqué rapidement le terme de **fonctions** et de **méthodes** lors du précédent chapitre sur les tableaux, parlons en plus en détails.
 
 Nos programmes deviennent plus complexes et il va devenir intéressant d'isoler certaines portions d'**instructions** afin de mieux les identifier, les séparer et les réutiliser au besoin. Cela va permettre d'éviter de copier des parties, factoriser le code similaire et identifier plus facilement de potentielles erreurs.

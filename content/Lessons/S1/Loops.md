@@ -6,8 +6,6 @@ tags:
 sidebar_position: 4
 ---
 
-# Introduction
-
 Nous avons maintenant la capacité d'exécuter des codes différents en fonction de **conditions**.
 Cependant, notre programme reste essentiellement linéaire, car nous exécutons les instructions de haut en bas, l'un à la suite des autres.
 

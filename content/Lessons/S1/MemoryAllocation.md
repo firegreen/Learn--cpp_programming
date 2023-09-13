@@ -6,8 +6,6 @@ tags:
 sidebar_position: 9
 ---
 
-# Introduction
-
 Jusque là nous avons manipulé des variables et tableaux sans nous soucier vraiment de ce qu'il se passe sous le capot. Il est grand temps de comprendre un peu plus dans le détail ce qu'il se passe et comment est allouée la **mémoire** en C++.
 
 ## Mode d'allocation

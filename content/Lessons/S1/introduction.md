@@ -4,7 +4,7 @@ slug: /Lessons
 sidebar_position: 0
 ---
 
-## Un peu d'histoire
+# Un peu d'histoire
 
 C'est dans les années 1970 que l'histoire commence. À cette époque, **Dennis Ritchie**, programmeur aux États-Unis, invente le langage **C**, conçu pour programmer le système d’exploitation **UNIX**. Ce langage devient très populaire et est encore beaucoup utilisé aujourd’hui, dans l’écriture de **Linux** par exemple. Puis un peu plus tard, au début des années 1980, **Bjarne Stroustrup**, lui aussi développeur aux États-Unis, décide de prendre le langage **C** comme base et de lui **ajouter des fonctionalités** et le nomme **C++**.
 

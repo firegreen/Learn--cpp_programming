@@ -6,8 +6,6 @@ tags:
 sidebar_position: 3
 ---
 
-# Introduction
-
 Le C++ va nous permettre d'exprimer des **conditions** sur les valeurs de nos variables afin d'exécuter des instructions différentes en fonction du résultat des conditions.
 
 ## Les valeurs booléennes
