@@ -170,7 +170,7 @@ C'est aussi vrai pour les règles de **distributivité**, **associativité**, **
 
 int main()
 {
-    td::cout << "Associativité :" << std::endl;
+    std::cout << "Associativité :" << std::endl;
     std::cout << "2 + (3 + 6) = " << 2 + (3 + 6) << std::endl;
     std::cout << "(2 + 3) + 6 = " << (2 + 3) + 6 << std::endl;
  
@@ -237,7 +237,7 @@ Il existe également une syntaxe alternative, de la forme ```type nom = valeur;`
 
 int main()
 {
-    int number = 42;
+    int number { 42 };
     std::cout << number << std::endl;
 
     return 0;
@@ -420,7 +420,7 @@ Une fois le code compilé, l'ordinateur ne fait aucune différence entre un nom 
 - **value**: Que stocke-t-elle ? Dans quel contexte ? Pourquoi existe-t-elle ?
 - **multiplication_of_two_by_sqrt_of_pi**: Clair mais un peu trop long.
 - **dIsTanCe**: Court et compréhensible mais les majuscules / minuscules peuvent rendre la lecture moins facile.
-- **qsqffqedfqzdjzqoid**: Surement un chat qui est passé sur mon clavier.
+- **qsqffqedfqzdjzqoid**: Sûrement un chat qui est passé sur mon clavier.
 
 Avec l'expérience et le temps vous arriverez à trouver plus facilement des noms clairs et simples.
 
@@ -461,7 +461,7 @@ On utilise ici aussi la syntaxe avec <kbd>::</kbd> pour signifier l'appartenance
 
 Mais pourquoi le mot clé **class** ici ?
 
-Il est également possible de l'omettre mais cette syntaxe est un autre "type" d'enum hérité du **C** qui a de nombreux incovénients:
+Il est également possible de l'omettre mais cette syntaxe est un autre "type" d'enum hérité du **C** qui a de nombreux inconvénients:
 - Il n'est pas possible de déclarer deux enums utilisant la même valeur (mais dans un contexte différent).
 - Déclarer une variable ayant le même nom qu'une valeur d'un enum peut avoir des comportements imprévus.
 
@@ -524,7 +524,7 @@ Pour attribuer une nouvelle valeur à une variable, on utilise l’**opérateur 
 #include <iostream>
 int main()
 {
-    int x{ 0 };
+    int x { 0 };
     std::cout << x << std::endl;
     x = 3;
     std::cout << x << std::endl;

@@ -89,16 +89,16 @@ add_executable(helloImac helloImac.cpp)
 Ce fichier **CMakeLists.txt** va être bien pratique car il est reconnu par divers **IDE** et en ce qui nous concerne on va l'utiliser avec **VSCode**.
 
 Il suffit d'avoir au préalable installé l'extension dont je vous ai parlé <VSCodeExtension id="twxs.cmake"/> et d'ouvrir le dossier contenant le fichier **CMakeLists.txt** dans VSCode (il est recommandé de créer un dossier dédié au "projet" contenant les fichiers sources et le fichier **CMakeLists.txt**).
-L'extension devrait normalement reconnaitre automatiquement qu'il y a un fichier cmake et vous proposer d'initialiser celui-ci automatiquement.
+L'extension devrait normalement reconnaître automatiquement qu'il y a un fichier cmake et vous proposer d'initialiser celui-ci automatiquement.
 
 ![](IDE_imgs/VSCode_projectConfiguration.png)
 
-Si c'est la première fois que vous l'ouvrez ce qui est sûrement le cas il devrait vous demander de choisir un **kit** de compilation et faudra donc selectionner **MSVC** ou **GCC** en fonction de votre platforme.
+Si c'est la première fois que vous l'ouvrez ce qui est sûrement le cas il devrait vous demander de choisir un **kit** de compilation et faudra donc sélectionner **MSVC** ou **GCC** en fonction de votre plateforme.
 
 ![](IDE_imgs/VSCode_selectKit.png)
 
 :::tip
-Si ce n'est pas le cas vous pouvez toujours utiliser le racourci <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> puis taper et selectionner "CMake: select a kit"
+Si ce n'est pas le cas vous pouvez toujours utiliser le raccourci <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> puis taper et sélectionner "CMake: select a kit"
 :::
 
 Une fois tout initialisé, vous devriez voir des logs dans un terminal ressemblant à cela (dans mon cas sous **Linux** avec le compilateur **GCC** ici):
@@ -179,7 +179,7 @@ L’instruction ci-dessous permet d’afficher le texte (qu'on appelle **"chaîn
 std::cout << "Hello and welcome to IMAC !" << std::endl;
 ```
 
-Premièrement "**std**" fait réféfence à la bibliothèque standard C++ dont je parlais précédemment.
+Premièrement "**std**" fait référence à la bibliothèque standard C++ dont je parlais précédemment.
 
 std**::** permet d'indiquer que l'on veut utiliser une fonctionnalité particulière de cette bibliothèque ici **cout**:
 
