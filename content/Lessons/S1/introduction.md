@@ -1,6 +1,5 @@
 ---
 title: Introduction
-slug: /Lessons
 sidebar_position: 0
 ---
 
