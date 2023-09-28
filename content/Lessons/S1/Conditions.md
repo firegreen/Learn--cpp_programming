@@ -390,6 +390,23 @@ int main()
 Enfin, il existe une dernière syntaxe (le ```switch``` pour les curieux) qui permet de faire quelque chose de similaire au ```else if``` mais il nous manque quelques notions et je vous le présenterai donc au chapitre suivant sur les boucles.
 :::
 
+## Faux-ami
+
+:::danger
+Attention le test d'égalité ```==``` est différent de l'opérateur d'affectation ```=```.
+:::
+
+```cpp
+int number { 20 };
+if ( number = 10 )
+{
+    // ...
+}
+```
+En **C++**, l'assignation retourne la valeur de la variable assignée. Ici, la condition sera vraie car ```number``` vaut 10 après l'assignation et 10 est considéré comme vrai.
+
+Les valeurs numériques non nulles sont considérées comme vraies et la valeur 0 est considérée comme fausse.
+
 ## Combinaison d'expressions
 
 Avec tous les opérateurs logiques vu précédemment il est même possible de tester plusieurs conditions dans un même ```if```.
