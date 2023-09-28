@@ -48,7 +48,7 @@ int main()
     std::cout << a << " <= " << b << " donne " << (a <= b) << std::endl;
 
     // On peut aussi stocker le résultat de la condition dans une variable booléenne
-    float const price { 24.5f }
+    float const price { 24.5f };
     bool const is_too_expensive { price >= 100.f };
 
     return 0;
