@@ -133,6 +133,12 @@ CMake est un outil de compilation mais ne compile pas directement, il permet de 
 Vous n'avez pas besoin d'aller voir ce qui s'y trouve, **CMake** gère automatiquement ce dossier **build** pour vous.
 :::
 
+:::caution
+Pour qu'un projet **CMake** soit fonctionnel, il faut que le **dossier** ouvert dans votre **IDE** contienne un fichier **CMakeLists.txt** à la racine du dossier.
+
+Sinon, l'extension **CMake** ne détectera pas le dossier ouvert comme un projet CMake et il ne va pas s'initialiser automatiquement. Les fonctionnalités de l'extension ne seront donc pas disponibles.
+:::
+
 ## Quelques explications sur le programme
 
 ### #include ?
