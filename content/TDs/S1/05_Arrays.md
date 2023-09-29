@@ -82,12 +82,12 @@ Si le résultat (la clé de contrôle) est un multiple de 10, alors le numéro e
 Un exemple
 </summary>
 
-Prenons le numéro de carte bancaire suivant: `1234 5678 9012 3456`.
+Prenons le numéro de carte bancaire suivant: `1234 5678 9022 3456`.
 
 On multiplie un chiffre sur deux par 2 (en commençant par le dernier chiffre):
 
 ```
-1  2  3  4  5  6  7  8  9  0  1  2  3  4  5  6
+1  2  3  4  5  6  7  8  9  0  2  2  3  4  5  6
    x2    x2    x2    x2    x2    x2    x2    x2
 1  4  3  8  5  12 7  16 9  0  2  4  3  8  5  12
 ```
