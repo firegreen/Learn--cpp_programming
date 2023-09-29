@@ -76,15 +76,106 @@ Vous disposez des informations suivantes:
 
 S'il à moins de **26** ans, il a **10%** de réduction supplémentaire sur tous les articles après réduction.
 
-1. Définir un **enum** pour le type d'article.
+Je vous fourni le code suivant pour l'énumération et la gestion de la saisie de l'utilisateur:
 
-2. Demander à l'utilisateur de saisir le type d'article, le prix, s'il a une carte de fidélité et son âge.
+```cpp
+enum class Article { Alimentation, Vetements, Chaussures, Autre };
 
-3. Gérer le cas où l'utilisateur saisit un type d'article qui n'existe pas et afficher un message d'erreur. (vous pouvez aussi gérer le cas où l'utilisateur saisit un prix ou un âge négatif si vous voulez)
+// C'est un mécanisme avancé, vous n'avez pas besoin de comprendre comment ça marche.
+// On en reparlera au second semestre.
+// retenez juste que ça permet de convertir une entrée de l'utilisateur en Article.
+std::istream& operator>>(std::istream& is, Article& article)
+{
+    std::string articleAsString;
+    is >> articleAsString;
 
-4. Calculer le prix final en fonction des informations saisies et afficher le résultat.
+    if (articleAsString == "Alimentation") {
+        article = Article::Alimentation;
+    } else if (articleAsString == "Vetements") {
+        article = Article::Vetements;
+    } else if (articleAsString == "Chaussures") {
+        article = Article::Chaussures;
+    } else if (articleAsString == "Autre") {
+        article = Article::Autre;
+    } else {
+        is.setstate(std::ios::failbit);
+    }
 
-5. L'enseigne offre également un bon d'achat de **10%** du montant total du ticket de caisse, à valoir sur un prochain achat. Le bon d'achat ne peut pas être supérieur à 30€.
+    return is;
+}
+```
+
+Cela nous permet d'utiliser l'opérateur `>>` pour lire un **enum** comme on pourrait le faire avec un **int** ou un **float**.
+Sans cela, on aurait du utiliser une variable intermédiaire de type **string** ou **int** pour stocker la saisie de l'utilisateur et faire la conversion nous même.
+
+<details>
+
+<summary>Exemple de saisie d'un enum</summary>
+
+```cpp
+#include <iostream>
+
+enum class Article { Alimentation, Vetements, Chaussures, Autre };
+
+std::istream& operator>>(std::istream& is, Article& article)
+{
+    std::string articleAsString;
+    is >> articleAsString;
+
+    if (articleAsString == "Alimentation") {
+        article = Article::Alimentation;
+    } else if (articleAsString == "Vetements") {
+        article = Article::Vetements;
+    } else if (articleAsString == "Chaussures") {
+        article = Article::Chaussures;
+    } else if (articleAsString == "Autre") {
+        article = Article::Autre;
+    } else {
+        is.setstate(std::ios::failbit);
+    }
+
+    return is;
+}
+
+int main()
+{
+    Article article;
+    std::cin >> article;
+
+    // On vérifie si la saisie a échoué.
+    if (std::cin.fail()) {
+        std::cout << "Erreur de saisie, il faut saisir un type d'article valide (\"Alimentation\", \"Vetements\", \"Chaussures\" ou \"Autre\")" << std::endl;
+
+        std::cin.clear(); // On remet std::cin dans un état fonctionnel.
+        std::cin.ignore(255, '\n'); // On vide les caractères mémorisés.
+
+        // le programme s'arrête si on a rencontré une erreur de saisie et renvoie 1 pour indiquer une erreur.
+        return 1;
+    }
+
+    if (article == Article::Alimentation) {
+        std::cout << "Vous avez saisi un article de type Alimentation" << std::endl;
+    } else if (article == Article::Vetements) {
+        std::cout << "Vous avez saisi un article de type Vetements" << std::endl;
+    } else if (article == Article::Chaussures) {
+        std::cout << "Vous avez saisi un article de type Chaussures" << std::endl;
+    } else if (article == Article::Autre) {
+        std::cout << "Vous avez saisi un article de type Autre" << std::endl;
+    }
+
+    return 0;
+}
+```
+</details>
+
+1. Demander à l'utilisateur de saisir le type d'article, le prix, s'il a une carte de fidélité et son âge.
+
+2. Gérer les cas où l'utilisateur saisit des informations incorrectes (enum incorrect, prix ou âge négatif, etc.) et afficher un message d'erreur dans ce cas.
+Vous pouvez reprendre mon exemple de saisie d'un enum.
+
+3. Calculer le prix final en fonction des informations saisies et afficher le résultat.
+
+4. L'enseigne offre également un bon d'achat de **10%** du montant total du ticket de caisse, à valoir sur un prochain achat. Le bon d'achat ne peut pas être supérieur à 30€.
 Calculer le montant du bon d'achat et l'afficher en fin de programme.
 
 ## Exercice 5
