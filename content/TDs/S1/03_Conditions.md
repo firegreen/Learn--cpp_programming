@@ -187,8 +187,8 @@ Vous disposez des informations suivantes:
 - A **0** mètre d'altitude, l'eau bout à **100°C**.
 - Tout les **300 mètres** d'altitude supplémentaires, l'eau atteint son point d'ébullition **1°C plus bas**.
 - L'action d'ajouter du **sel** dans l'eau fait augmenter son point d'ébullition de **1.5°C**.
-- il faut **1 min** pour que l'eau gagne **10°C** de température.
-
+- Il faut **1 min** pour que l'eau gagne **10°C** de température.
+- La température de l'eau initiale est la température ambiante.
 
 1. Demander à l'utilisateur de saisir l'altitude, la température ambiante et s'il ajoute du sel.
 2. Gérer le cas où l'utilisateur saisit une altitude négative et afficher un message d'erreur.
