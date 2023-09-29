@@ -38,6 +38,12 @@ Vous pouvez utiliser l'opérateur modulo `%` qui donne le reste de la division e
 `std::cin >> x` renvoie **true** si tout est correct ou **false** si on a rencontré une erreur lors de la saisie.
 Dans notre cas, si l'utilisateur saisit un âge avec des lettres, la saisie échoue et la variable âge n'est pas modifiée.
 
+Il est aussi possible de tester si la saisie précédente a échoué avec `std::cin.fail()` qui renvoie **true** si la saisie a échoué et **false** sinon.
+
+`std::cin.fail()` équivaut à `!(std::cin >> x)`.
+
+Dans le cas où la saisie a échoué, il faut réinitialiser la saisie de l'utilisateur pour pouvoir saisir à nouveau un âge.
+
 `std::cin.clear()` restaure std::cin à un état fonctionnel, sans erreur.
 `std::cin.ignore()` permet d’ignorer un nombre défini de caractères, soit jusqu’à un nombre maximum (exemple 500), soit jusqu’à un caractère précis (exemple '\n' ou 'a'). Dans notre cas, nous allons utiliser ceci pour réinitialiser la saisie de l'utilisateur si on a rencontré une erreur.
 
@@ -45,14 +51,6 @@ Dans notre cas, si l'utilisateur saisit un âge avec des lettres, la saisie éch
 std::cin.clear(); // On remet std::cin dans un état fonctionnel.
 std::cin.ignore(255, '\n'); // On vide les caractères mémorisés.
 ```
-:::
-
-4. Si vous ne l'avez pas fait utilisez le type `unsigned int` pour stocker l'âge. 
-
-:::info
-Cela permet de gérer le cas où l'utilisateur saisit un âge négatif en profitant du fait que le type `unsigned int` ne peut pas être négatif sans avoir à faire de test supplémentaire.
-
-`std::cin >> x` va renvoyer false dans le cas où l'utilisateur saisit un âge négatif (impossible à stocker dans un unsigned int) et la variable âge ne sera pas modifiée.
 :::
 
 ## Exercice 4 (Soldes)
