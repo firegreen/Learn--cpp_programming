@@ -72,7 +72,7 @@ U9 = 582535 et V9 = 291278
 Il est possible d'exprimer $U_n$ et $V_n$ en fonction de $U_{n-1}$ et $V_{n-1}$.
 :::
 
-# Exercice 6 (Pangramme)
+## Exercice 6 (Pangramme)
 
 Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne `true` si la chaîne est un **pangramme**, `false` sinon.
 
@@ -81,7 +81,7 @@ Il faut faire attention à la casse (majuscules/minuscules), un même lettre maj
 Un **pangramme** est une phrase contenant toutes les lettres de l'alphabet au moins une fois.
 :::
 
-# Exercice 7 (String)
+## Exercice 7 (String)
 
 1. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui modifie cette chaîne en remplaçant les lettres minuscules par des lettres majuscules et vice-versa.
 
@@ -94,7 +94,7 @@ Un **pangramme** est une phrase contenant toutes les lettres de l'alphabet au mo
 5. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne `true` si la chaîne est un nombre entier.
     :::tip
     L'idée est de parcourir la chaîne de caractères et de vérifier si chaque caractère est un chiffre ou non.
-    Pour tester si un caractère est un chiffre vous pouvez comparer la valeur **ASCII** du caractère avec les valeurs **ASCII** des chiffres (voir l'[Exercice 5](../Variables#exercice-5-ascii) du TD2).
+    Pour tester si un caractère est un chiffre vous pouvez comparer la valeur **ASCII** du caractère avec les valeurs **ASCII** des chiffres (voir l'[Exercice 5](./Variables#exercice-5-ascii) du TD2).
 
     Il existe aussi la fonction `std::isdigit` (voir la [documentation](https://en.cppreference.com/w/cpp/string/byte/isdigit)) qui permet de tester si un caractère est un chiffre ou non.
     :::
