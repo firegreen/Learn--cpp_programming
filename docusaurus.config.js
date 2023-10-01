@@ -7,12 +7,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const docusaurusLunrSearchPlugin = require("docusaurus-lunr-search");
 
 const remarkMath = require("remark-math");
-const rehypeKatex = require("rehype-katex");
 
 module.exports = async function configCreatorAsync() {
   const contact_info = await axios.get(
     "https://raw.githubusercontent.com/dsmtE/dsmtE/main/contact.json"
   ).then((res) => res.data).catch((err) => ({}));
+
+  const rehypeKatex = (await import('rehype-katex')).default;
 
   return {
     title: 'Cours de programmation C++',
@@ -64,9 +65,9 @@ module.exports = async function configCreatorAsync() {
 
     stylesheets: [
       {
-        href: "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css",
+        href: "https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css",
         integrity:
-          "sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc",
+          "sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ",
         crossorigin: "anonymous",
       },
     ],
