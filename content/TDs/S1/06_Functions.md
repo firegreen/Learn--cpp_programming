@@ -91,3 +91,10 @@ Un **pangramme** est une phrase contenant toutes les lettres de l'alphabet au mo
 
 4. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne la même chaîne écrite à l'envers.
 
+5. Écrire une fonction qui prend en paramètre une chaîne de caractères et qui retourne `true` si la chaîne est un nombre entier.
+    :::tip
+    L'idée est de parcourir la chaîne de caractères et de vérifier si chaque caractère est un chiffre ou non.
+    Pour tester si un caractère est un chiffre vous pouvez comparer la valeur **ASCII** du caractère avec les valeurs **ASCII** des chiffres (voir l'[Exercice 5](../Variables#exercice-5-ascii) du TD2).
+
+    Il existe aussi la fonction `std::isdigit` (voir la [documentation](https://en.cppreference.com/w/cpp/string/byte/isdigit)) qui permet de tester si un caractère est un chiffre ou non.
+    :::
