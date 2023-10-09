@@ -117,14 +117,35 @@ Le joueur doit deviner ce nombre en un minimum de tentatives.
 Le programme s’arrête lorsque le joueur a trouvé le nombre mystère.
 
 :::info
-Pour générer un nombre aléatoire, vous pouvez utiliser la fonction **rand()** de la bibliothèque **cstdlib**.
+Pour générer un nombre aléatoire, vous pouvez utiliser la fonction [**rand()**](https://en.cppreference.com/w/cpp/numeric/random/rand) de la bibliothèque **cstdlib**.
 
-La fonction **rand()** retourne un nombre entier aléatoire entre **0** et **RAND_MAX** (une constante définie dans la bibliothèque **cstdlib**).
+Elle retourne un nombre entier aléatoire entre **0** et **RAND_MAX** (une constante définie dans la bibliothèque **cstdlib**).
 
-Pour obtenir un nombre aléatoire entre **1** et **100**, il faut utiliser l'opérateur modulo **%**:
+Pour obtenir un nombre aléatoire entre **1** et **100**, on peut utiliser l'opérateur **modulo** `%`:
 
-`std::rand() % 100 + 1`.
+```cpp
+std::rand() % 100 + 1
+```
 
-:::info
+Pour que le générateur de nombres aléatoires ne génère pas toujours la même séquence de nombres, il faut l’initialiser avec une valeur différente à chaque exécution du programme.
+
+C'est avec la fonction [**srand()**](https://en.cppreference.com/w/cpp/numeric/random/srand).
+
+On peut utiliser la fonction [**time()**](https://en.cppreference.com/w/cpp/chrono/c/time) de la bibliothèque **ctime** pour obtenir l'heure actuelle en secondes et l'utiliser comme valeur d'initialisation du générateur de nombres aléatoires.
+
+```cpp
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+ 
+int main() 
+{
+  // Initialisation du générateur de nombres aléatoires avec la fonction time()
+  std::srand(std::time(nullptr));
+  int random_variable { std::rand()};
+  std::cout << "Random value between 0 and "<< RAND_MAX <<" : " << random_variable << std::endl;
+}
+```
+
 Il existe une façon plus moderne de générer des nombres aléatoires à partir de **C++11**, nous découvrirons cela au prochain semestre.
 :::
