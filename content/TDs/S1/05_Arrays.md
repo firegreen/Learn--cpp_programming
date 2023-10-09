@@ -159,12 +159,12 @@ Par exemple, `kayak` est un palindrome.
 Une chaîne de caractères est un tableau de caractères.
 :::
 
-# Exercice 5 (Comptage)
+## Exercice 5 (Comptage)
 
 Écrire un programme qui demande un nombre **entier positif** (supérieur à **1 000 000**) à l'utilisateur et qui remplit un tableau avec les chiffres de ce nombre.
 Le programme doit ensuite compter le nombre d'occurrences de chiffre et afficher le **chiffre** qui apparaît le plus souvent.
 
-# Exercice 6 (Suppression et tassement)
+## Exercice 6 (Suppression et tassement)
 
 Écrire un programme qui demande à l'utilisateur de saisir **10** entiers compris entre **0** et **5** et qui les stocke dans un tableau. (vous pouvez aussi demander à l'utilisateur de saisir un nombre puis le décomposer en chiffres et stocker les chiffres dans un tableau).
 
