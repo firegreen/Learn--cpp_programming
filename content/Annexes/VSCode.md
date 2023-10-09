@@ -10,14 +10,9 @@ import { Chip } from "@mui/material";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Introduction
-
-VSCode est un IDE
+VSCode est un **IDE** (Integrated Development Environment) développé par Microsoft. Il est gratuit et open-source. Il est très populaire et est utilisé par beaucoup de développeurs.
 
 Il est versatile, compatible avec n'importe quel système d'exploitation et s'adapte, grâce à une gestion d'extensions très ingénieuse, à une multitude de langages et de cas d'utilisation.
-
-COmme expliqué dans le cours 
-
 
 Voilà une liste non exhaustive d'autres extensions que je recommande et que j'utilise quotidiennement:
 - <VSCodeExtension id="ionutvmi.path-autocomplete"/> : Fournit la complétion des chemins dans l'IDE
