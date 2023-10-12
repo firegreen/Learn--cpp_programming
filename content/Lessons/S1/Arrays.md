@@ -6,7 +6,7 @@ tags:
 sidebar_position: 5
 ---
 
-Nous avons vu les **variables** pour stocker des valeurs, les **boucles** pour simplifier le code et faire des itérations et il est maintenant légitime de se demmander comment manipuler un nombre plus important de variables.
+Nous avons vu les **variables** pour stocker des valeurs, les **boucles** pour simplifier le code et faire des itérations et il est maintenant légitime de se demander comment manipuler un nombre plus important de variables.
 
 Par exemple si l'on veut calculer la moyenne d'une liste de nombres, comment faire ?
 On pourrait avoir plusieurs variables mais si on a besoin de manipuler plus de 10 nombres cela va se complexifier. Surtout dans le cas plus complexe où l'on a pas connaissance à l'avance du nombre d'éléments que l'on veut manipuler (entrée utilisateur par exemple), comment faire ?
@@ -27,7 +27,7 @@ A retenir que les tableaux permettent seulement de stocker **des variables de m�
 Il existe bien d'autres **structures de données** qui stockent de façon différente (avec des avantages et des inconvénients) mais nous n'allons pas rentrer dans ce détail pour l'instant. 
 :::
 
-### std::vector
+## std::vector
 
 Comme vous le remarquez, j'ai ajouté **std::** devant vector ce qui nous indique que c'est une fonctionnalité déjà codée pour nous dans la bibliothèque standard. Pour pouvoir s'en servir on va donc inclure le fichier contenant cette fonctionnalité en faisant **#include < vector >**
 
@@ -60,9 +60,9 @@ int main()
 }
 ```
 
-### Manipuler un std::vector
+## Manipuler notre tableau
 
-#### Accéder aux éléments
+### Accéder aux éléments
 
 Pour accéder aux éléments on utilise les crochets (<kbd>[</kbd> et <kbd>]</kbd>) après le nom de notre tableau, avec la position de l’élément à récupérer.
 
@@ -86,11 +86,11 @@ int main()
 :::danger
 Et si j’accède à l’élément d'index ```6``` (donc le 7ème élément) alors que mon tableau n'en contient que ```6```, que se passe-t-il ?
 
-C'est un **comportement indeterminé**. Le programme peut continuer sans rien dire, ou alors s'arrêter brusquement avec des erreurs nommées généralement **"out of range"** (dépassement de capacité) ou **"segmentation fault"** (erreur de segmentation).
+C'est un **comportement indéterminé**. Le programme peut continuer sans rien dire, ou alors s'arrêter brusquement avec des erreurs nommées généralement **"out of range"** (dépassement de capacité) ou **"segmentation fault"** (erreur de segmentation).
 Il ne **faut pas** utiliser d’indice **inférieur à 0** ou **supérieur ou égal** à la **taille** de notre tableau.
 :::
 
-#### Taille du tableau
+### Taille du tableau
 
 Pour connaître la taille du tableau on va utiliser la fonction propre (appelée **méthode**) ```size()```  qui renvoie le nombre d'éléments.
 
@@ -127,7 +127,7 @@ std::size_t const size { std::size(vector) };
 Dans la pratique, j'utilise plutôt la **méthode**, plus lisible selon moi mais c'est un avis personnel et vous êtes libres de choisir ce qu’il vous plaît. 
 :::
 
-#### Premier et dernier élément
+### Premier et dernier élément
 
 On pourrait utiliser la taille pour accéder au dernier élément du tableau mais on peut aussi utiliser deux autres méthodes (**front()** et **back()**) pour accéder au premier et au dernier élément du tableau:
 
@@ -149,7 +149,7 @@ int main()
 }
 ```
 
-#### Vérifier si un tableau est vide
+### Vérifier si un tableau est vide
 
 Pour savoir si le tableau est vide on peut utiliser une **condition** sur la taille du tableau. Il y a aussi la méthode **```empty()```** qui fait ce test pour nous et permet d'écrire quelque chose de plus lisible:
 
@@ -172,7 +172,7 @@ int main()
 }
 ```
 
-#### Afficher les éléments
+### Afficher les éléments
 
 Pour afficher les éléments du tableau on peut simplement utiliser sa taille et une boucle **for** pour itérer sur les différentes valeurs:
 
@@ -225,7 +225,7 @@ int main()
 }
 ```
 
-#### Ajouter, supprimer et modifier des éléments
+### Ajouter, supprimer et modifier des éléments
 
 Comme expliqué, le std::vector est dynamique dans le sens où il est possible d'ajouter ou de supprimer des éléments.
 C'est avec la méthode **push_back** que l'on ajoute un élément:
@@ -285,7 +285,7 @@ int main()
     }
     std::cout << std::endl;
 
-    tableau_de_int.pop_back();
+    vector.pop_back();
 
     std::cout << "Le tableau contient maintenant: ";
     for (int const value : vector)
@@ -296,9 +296,10 @@ int main()
 
     if(!std::empty(vector))
     {
-        int last_value = tableau_de_int.pop_back();
+        int last_value {vector.back()};
+        vector.pop_back();
 
-        std::cout << "La dernière valeur du tableau était : " << last_value << std::endl;
+        std::cout << "La derniere valeur du tableau etait : " << last_value << std::endl;
 
         std::cout << "Le tableau contient maintenant: ";
         for (int const value : vector)
