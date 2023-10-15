@@ -8,11 +8,15 @@ sidebar_position: 2
 
 Nous avons appris au semestre 1 à définir des **structures**. Cela permet de regrouper des données qui ont un lien entre elles. Par exemple, on peut créer une structure `Point` qui contient les coordonnées d'un point dans un plan.
 
-Nous avons aussi vu comment définir des **méthodes** pour l'utiliser la structure. Par exemple, on peut définir une méthode `add` qui permet d'ajouter deux points entre eux (en faisant la somme de leurs coordonnées respectives).
+Nous avons aussi vu comment définir des **méthodes** pour l'utiliser la structure. Par exemple, on peut définir une méthode `add` qui permet d'ajouter deux **points** entre eux (en faisant la somme de leurs coordonnées respectives).
 
-On s’aperçoit avec cet exemple de structure `point` que les structures permettent parfois de donner un sens à nos données. Ici cela fait sens de pouvoir ajouter deux points entre eux, mais cela n'aurait pas de sens d'ajouter deux `Personne` entre elles. 
+On s’aperçoit avec cet exemple de structure `point` que les structures permettent de créer de nouveaux *types fondamentaux*. On aimerai donc pouvoir manipuler ces structures comme si c'était des types de base. Par exemple, on aimerai pouvoir ajouter deux **points** entre eux avec l'opérateur `+` au lieu d'appeler la méthode `add`.
 
 Nous allons découvrir dans ce cours comment définir des **opérateurs** pour manipuler nos structures comme si elles étaient des types de base et ainsi leur donner du sens.
+
+:::caution
+Ce n'est pas toujours pertinent de le faire comme avec une structure `Personne` par exemple. On ne peut pas vraiment définir un opérateur `+` pour ajouter deux personnes entre elles. Qu'est-ce que cela voudrait dire ? Dans ce cas, il est préférable de définir des méthodes explicites.
+:::
 
 ## Opérateurs
 

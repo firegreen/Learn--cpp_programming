@@ -24,7 +24,7 @@ Vous pouvez également voir quelles fonctions ont été appelées jusqu'à ce po
 
 Enfin, vous serez en mesure d'avancer pas à pas dans l'exécution.
 
-Nous allons voir dans ce cours comment cela se passe dans **VSCode** en **C++**.
+Nous allons voir comment cela se passe dans **VSCode** en **C++**.
 
 ## Configurer le débogueur
 
@@ -45,7 +45,7 @@ Cela créera un fichier **launch.json** dans un dossier **/.vscode** à la racin
 
 Si vous voulez plus de détails sur la configuration manuelle, vous pouvez vous rendre [ici](https://code.visualstudio.com/docs/cpp/launch-json-reference).
 
-S'il y a une seule chose à vérifier, c'est que le champ "**program**" pointe bien vers le chemin de votre exécutable.
+S'il y a une seule chose à vérifier, c'est que le champ "**program**" pointe bien vers votre exécutable.
 En général, avec la configuration de **CMake**, il sera sous "${workspaceFolder}/build/bin/Debug/YOURPROGRAM.exe"
 </details>
 
@@ -81,7 +81,7 @@ Vous pouvez également laisser votre curseur sur une variable (hover) qui vous i
 
 C'est super utile et évite de devoir ajouter des `std::cout` (ou print/log en fonction des langages) pour afficher les valeurs actuelles de certaines variables.
 
-Il est également possible de regarder spécifiquement certaines variables via la section **Watch**. (Cela peut être utile dans des cas plus complexes avec beaucoup de variables locales qui gênent la visibilité de la section **Variables** par exemple)
+Il est également possible de regarder spécifiquement certaines variables via la section **Watch**. (Cela peut être utile dans des cas plus complexes avec beaucoup de variables locales qui gênent la visibilité de la section **Variables** par exemple).
 
 ![](./VSCode_imgs/VSCode_debugWatch.png)
 
@@ -120,7 +120,7 @@ Cela peut s'avérer utile quand vous avez l'impression que votre programme est b
 
 - La quatrième option est **Step Out**. Elle exécute toutes les commandes de la fonction en cours et s'interrompt lorsqu'elle revient à la fonction appelante.
 
-- Les deux dernières options sont **Restart** et **Stop**, qui se passent de commentaire.
+- Les deux dernières options sont **Restart** et **Stop**, qui permettent de continuer l'exécution du programme ou de l'arrêter.
 
 ### Raccourcis clavier
 
