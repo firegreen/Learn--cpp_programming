@@ -82,28 +82,28 @@ Si le résultat (la clé de contrôle) est un multiple de 10, alors le numéro e
 Un exemple
 </summary>
 
-Prenons le numéro de carte bancaire suivant: `1234 5678 9022 3456`.
+Prenons le numéro de carte bancaire suivant: `1234 5678 9002 3456`.
 
 On multiplie un chiffre sur deux par 2 (en commençant par le dernier chiffre):
 
 ```
-1  2  3  4  5  6  7  8  9  0  2  2  3  4  5  6
+1  2  3  4  5  6  7  8  9  0  0  2  3  4  5  6
    x2    x2    x2    x2    x2    x2    x2    x2
-1  4  3  8  5  12 7  16 9  0  2  4  3  8  5  12
+1  4  3  8  5  12 7  16 9  0  0  4  3  8  5  12
 ```
 
 On additionne les chiffres du résultat si le résultat est supérieur à 9:
 
 ```
-1  4  3  8  5  12 7  16 9  0  2  4  3  8  5  12
-1  4  3  8  5  3  7  7  9  0  2  4  3  8  5  3
+1  4  3  8  5  12 7  16 9  0  0  4  3  8  5  12
+1  4  3  8  5  3  7  7  9  0  0  4  3  8  5  3
 ```
 
 On additionne tous les chiffres:
 
 ```
-1  4  3  8  5  3  7  7  9  0  2  4  3  8  5  3
-1 + 4 + 3 + 8 + 5 + 3 + 7 + 7 + 9 + 0 + 2 + 4 + 3 + 8 + 5 + 3 = 70
+1  4  3  8  5  3  7  7  9  0  0  4  3  8  5  3
+1 + 4 + 3 + 8 + 5 + 3 + 7 + 7 + 9 + 0 + 0 + 4 + 3 + 8 + 5 + 3 = 70
 ```
 
 La clé de contrôle est `70`.
