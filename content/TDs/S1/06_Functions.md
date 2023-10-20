@@ -57,7 +57,7 @@ Vous devez obtenir les résultats suivants:
 
 ```
 U0 = 1 et V0 = 2
-U1 = 5 et V1 = 7
+U1 = 7 et V1 = 6
 U2 = 33 et V2 = 20
 U3 = 139 et V3 = 74
 U4 = 565 et V4 = 288

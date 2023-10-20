@@ -18,9 +18,9 @@ Je vous donne le programme suivant qui génère la liste des calories transport�
 
 int main()
 {
-    size_t const dwarf_count = 20;
+    size_t const dwarf_count { 20 };
 
-    std::vector<int> calories;
+    std::vector<int> calories {};
 
     // std::srand permet de fixer la "seed" du générateur aléatoire (pour avoir des résultats reproductibles)
     std::srand(42);
