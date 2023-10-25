@@ -8,11 +8,11 @@ sidebar_position: 2
 
 Nous avons appris au semestre 1 à définir des **structures**. Cela permet de regrouper des données qui ont un lien entre elles. Par exemple, on peut créer une structure `Point` qui contient les coordonnées d'un point dans un plan.
 
-Nous avons aussi vu comment définir des **méthodes** pour l'utiliser la structure. Par exemple, on peut définir une méthode `add` qui permet d'ajouter deux **points** entre eux (en faisant la somme de leurs coordonnées respectives).
+Nous avons aussi vu comment définir des **méthodes** pour utiliser la structure. Par exemple, on peut définir une méthode `add` qui permet d'ajouter deux **points** entre eux (en faisant la somme de leurs coordonnées respectives).
 
-On s’aperçoit avec cet exemple de structure `point` que les structures permettent de créer de nouveaux *types fondamentaux*. On aimerai donc pouvoir manipuler ces structures comme si c'était des types de base. Par exemple, on aimerai pouvoir ajouter deux **points** entre eux avec l'opérateur `+` au lieu d'appeler la méthode `add`.
+On s’aperçoit avec cet exemple de structure `point` que les structures permettent de créer de nouveaux *types fondamentaux*. On aimerait donc pouvoir manipuler ces structures comme si c'était des types de base. Par exemple, on aimerait pouvoir ajouter deux **points** entre eux avec l'opérateur `+` au lieu d'appeler la méthode `add`.
 
-Nous allons découvrir dans ce cours comment définir des **opérateurs** pour manipuler nos structures comme si elles étaient des types de base et ainsi leur donner du sens.
+Nous allons découvrir dans ce cours comment définir des **opérateurs** pour manipuler nos structures comme si elles étaient des types de base.
 
 :::caution
 Ce n'est pas toujours pertinent de le faire comme avec une structure `Personne` par exemple. On ne peut pas vraiment définir un opérateur `+` pour ajouter deux personnes entre elles. Qu'est-ce que cela voudrait dire ? Dans ce cas, il est préférable de définir des méthodes explicites.
@@ -96,7 +96,7 @@ struct Point {
 };
 ```
 
-Cela à donc une influence sur la façon dont on utilise l'opérateur.
+Cela a une influence sur la façon dont on utilise l'**opérateur**.
 
 Par exemple si l'on souhaite multiplier un point par un nombre, on peut définir l'opérateur comme une méthode membre.
 
@@ -136,7 +136,7 @@ int main() {
 }
 ```
 
-Les deux syntaxes sont donc valables, mais il faut garder en tête que la syntaxe avec une méthode membre est plus limitante.
+Les deux syntaxes sont donc valables, mais il faut garder en tête que la syntaxe avec une méthode membre implique que le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode.
 
 ## Réutilisation des opérateurs
 
@@ -203,7 +203,7 @@ Cela nous permet d’avoir le même comportement pour notre structure que s’il
 
 Pour chaque opérateur d'assignation composé, il existe un opérateur binaire (prenant deux paramètres) correspondant. Par exemple, l'opérateur `+=` a pour opérateur binaire correspondant `+`.
 
-Dans un soucis de réutilisation, on peut définir l'opérateur binaire en fonction de l'opérateur d'assignation composé.
+Dans un souci de réutilisation, on peut définir l'opérateur binaire en fonction de l'opérateur d'assignation composé.
 
 ```cpp
 struct Point {
@@ -218,13 +218,14 @@ struct Point {
 };
 
 Point operator+(Point a, Point const& b) {
-    return a += b;
+    a += b;
+    return a;
 }
 ```
 
-On ici le principe de copie de paramètre par valeur. Puisque le premier paramètre est copié, on peut le modifier avec l’opérateur `+=` sans risque modifier l'instance originale. On obtient donc l'opérateur binaire `+` en fonction de l'opérateur d'assignation composé `+=`.
+Ici le principe de passage par **copie** (ou par valeur) est important. Puisque le premier paramètre est **copié**, on peut le modifier avec l’opérateur `+=` sans risque modifier l'instance originale. On obtient donc l'opérateur binaire `+` en fonction de l'opérateur d'assignation composé `+=`.
 
-L'avantage est que si l'on doit modifier ou corriger le comportement le l'addition, on n'a pas besoin de modifier l'opérateur binaire `+` puisqu'il est défini en fonction de l'opérateur d'assignation composé `+=`.
+L'avantage est que si l'on doit modifier ou corriger le comportement de l'addition, on n'a pas besoin de modifier l'opérateur binaire `+` puisqu'il est défini en fonction de l'opérateur d'assignation composé `+=`.
 
 ## Opérateurs de flux
 
@@ -248,7 +249,7 @@ L'opérateur `<<` prend en premier paramètre un flux de sortie (`std::ostream&`
 
 Il existe aussi l'opérateur `>>` qui permet de lire depuis un flux pour construire une structure.
 
-Il se défini ainsi:
+Il se définit ainsi:
     
 ```cpp
 std::istream& operator>>(std::istream& is, Point& p) {
@@ -272,7 +273,7 @@ notez que dans ce cas il faut signaler si l’entrée est invalide en mettant le
 Ces opérateurs s’écrivent toujours sous la forme libre car leur premier argument est toujours un flux. 
 
 
-## Opérateurs d'affection par copie
+## Opérateurs d'affectation par copie
 
 Parfois, on a besoin de copier une structure. Pas seulement à l'initialisation (dans ce cas là on peut utiliser la syntaxe d'initialisation `{}`), mais on a besoin d'affecter une nouvelle valeur à une structure déjà existante.
 
@@ -284,7 +285,7 @@ Point copie { 1, 1 };
 copie = point;
 ```
 
-Pour faire cela il faut définir l'opérateur d'affection par copie `=`. Cet opérateur est appelé quand on affecte une valeur à une structure déjà existante.
+Pour faire cela il faut définir l'opérateur d'affectation par copie `=`. Cet opérateur est appelé quand on affecte une valeur à une structure déjà existante.
 
 ```cpp
 
@@ -304,7 +305,7 @@ struct Point {
 
 - Il est important de garder en tête que la surcharge d'opérateurs est une **facilité** et non une **nécessité**. Il faut donc l'utiliser avec parcimonie et quand cela fait sens pour notre structure.
 
-- IL est aussi important de respecter la **sémantique** des opérateurs. Par exemple, l'opérateur `+` doit faire une addition et non une soustraction. Si un opérateur a une sémantique déjà définie pour un **domaine**, tenez vous-y.
+- Il est aussi important de respecter la **sémantique** des opérateurs. Par exemple, l'opérateur `+` doit faire une addition et non une soustraction. Si un opérateur a une sémantique déjà définie pour un **domaine**, tenez vous-y.
 
 - Si la signification de l'opérateur n'est pas évidente et indiscutable, il faut éviter de le surcharger. Il est préférable de définir une méthode explicite dans les cas où la sémantique n'est pas évidente. Si pour une raison ou une autre, vous devez surcharger un opérateur qui n'a pas de sémantique évidente, il faut le commenter absolument.
 

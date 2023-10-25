@@ -64,7 +64,7 @@ int main() {
 
 ## std::pair — Un conteneur de paires d'éléments
 
-La classe [`std::pair`](https://en.cppreference.com/w/cpp/utility/pair) permet de représenter une paire d'éléments de types différents. Elle est définie dans la bibliothèque `<utility>`.
+La classe [`std::pair`](https://en.cppreference.com/w/cpp/utility/pair) (définie dans la bibliothèque `<utility>`) permet de représenter une paire d'éléments de types différents.
 
 On peut accéder aux éléments de la paire avec les attributs `first` et `second`.
 
@@ -95,9 +95,12 @@ La fonction `std::make_pair` permet d'expliciter le type de la paire. C'est util
 :::
 
 ### Comparaison de paires
-La paire intègre également un opérateur de comparaison qui compare les éléments de la paire dans l'ordre **lexicographique**.
+La **paire** intègre également un opérateur de comparaison qui compare les éléments de la paire dans l'ordre **lexicographique**.
 
-On compare d'abord le premier élément de la paire. Si les premiers éléments sont égaux, on compare les seconds éléments.
+:::info Ordre lexicographique
+L'ordre **lexicographique** est comparable à l'ordre alphabétique. Si l'on, se limite aux mots et lettres c'est l'ordre utilisé pour comparer les mots dans un dictionnaire. On compare les premières lettres des mots. Si les premières lettres sont égales, on compare les secondes lettres, etc.
+Cela peux être étendu à des éléments plus complexes comme des nombres. On compare les premiers éléments. Si les premiers éléments sont égaux, on compare les seconds éléments, etc.
+:::
 
 ```cpp
 #include <utility>
@@ -180,7 +183,7 @@ La classe `std::pair` est également utilisée par d'autres conteneurs de la bib
 
 ## std::tuple — Un conteneur de données hétérogènes
 
-La classe [`std::tuple`](https://en.cppreference.com/w/cpp/utility/tuple) permet de représenter un ensemble de données hétérogènes. Elle est définie dans la bibliothèque `<tuple>`.
+La classe [`std::tuple`](https://en.cppreference.com/w/cpp/utility/tuple) (définie dans la bibliothèque `<tuple>`) permet de représenter un ensemble de données hétérogènes
 
 C'est similaire à `std::pair` mais on peut stocker **plus de deux éléments**.
 
@@ -207,9 +210,7 @@ int main() {
 
 <summary>std::variant</summary>
 
-L'objet `std::variant` permet de stocker un élément parmi un ensemble d'éléments possibles. Similaires aux aux enums, mais avec des types différents.
-
-Elle est définie dans la bibliothèque `<variant>`.
+La classe `std::variant` (définie dans la bibliothèque `<variant>`) permet de stocker un élément parmi un ensemble d'éléments possibles. Similaires aux aux enums, mais avec des types différents.
 
 ```cpp
 #include <variant>
@@ -237,9 +238,7 @@ if (std::holds_alternative<int>(v)) {
 
 <summary>std::optional</summary>
 
-L'objet `std::optional` permet de stocker un élément optionnel. C'est-à-dire un élément qui peut être présent ou non.
-
-Elle est définie dans la bibliothèque `<optional>`.
+La classe `std::optional` (définie dans la bibliothèque `<optional>`) permet de stocker un élément optionnel. C'est-à-dire un élément qui peut être présent ou non.
 
 Pour représenter un élément optionnel qui ne contient rien, on peut utiliser la valeur `std::nullopt`.
 
@@ -300,4 +299,16 @@ Cela permet de ne pas avoir à utiliser des valeurs ***spéciales*** pour repré
 - La classe `std::pair` (`<utility>`) permet de représenter une paire d'éléments de types différents. C'est une classe qui est utilisée par d'autres **conteneurs** de la bibliothèque standard comme `std::map`.
 - La classe `std::tuple` (`<tuple>`) permet de représenter un ensemble de données hétérogènes.
 
-- La classe `std::optional` (`<optional>`) permet de stocker un élément optionnel. C'est utile pour éviter d'avoir recours à des valeurs *spéciales* pour représenter l'absence de valeur.
+-   <details>
+    <summary>std::optional</summary>
+
+    La classe `std::optional` (`<optional>`) permet de stocker un élément optionnel. C'est utile pour éviter d'avoir recours à des valeurs *spéciales* pour représenter l'absence de valeur.
+
+    </details>
+
+-   <details>
+    <summary>std::variant</summary>
+
+    La classe `std::variant` (`<variant>`) permet de stocker un élément parmi un ensemble d'éléments possibles. C'est comparable aux enums, mais permet de stocker des types différents.
+
+    </details>

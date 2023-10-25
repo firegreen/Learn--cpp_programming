@@ -14,7 +14,7 @@ VSCode est un **IDE** (Integrated Development Environment) développé par Micro
 
 Il est versatile, compatible avec n'importe quel système d'exploitation et s'adapte, grâce à une gestion d'extensions très ingénieuse, à une multitude de langages et de cas d'utilisation.
 
-Voilà une liste d'autres extensions que je recommande et que j'utilise quotidiennement:
+Voilà une liste d'extensions que je recommande et que j'utilise quotidiennement:
 - <VSCodeExtension id="ionutvmi.path-autocomplete"/> : Fournit la complétion des chemins dans l'IDE
 - <VSCodeExtension id="vscode-icons-team.vscode-icons"/> : Permet d'avoir des icônes plus jolis par type de fichier
 - <VSCodeExtension id="ms-vsliveshare.vsliveshare"/> : Cela permet de travailler à distance à plusieurs dans un seul et même éditeur. C'est génial pour travailler ensemble !

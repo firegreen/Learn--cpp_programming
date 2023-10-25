@@ -46,7 +46,7 @@ int main()
 }
 ```
 
-C'est d'ailleurs possible d'observer ce mécanisme avec les adresses sur des blocs contigus alloués dynamiquement.
+Il est d'ailleurs possible d'observer ce mécanisme avec les adresses sur des blocs contigus alloués dynamiquement.
 
 Comme expliqué précédemment un pointeur est une variable qui contient une adresse qui n'est rien d'autre qu'un nombre. Il est possible de manipuler notre **pointeur** avec les opérateurs d'**addition** et de **soustraction** pour se déplacer dans l'espace mémoire (en faisant attention à ne pas sortir de l'espace mémoire alloué).
 En fonction de son **type**, le pointeur va se déplacer de la taille du type (en octets).
@@ -122,5 +122,3 @@ static_cast<int>(floating): 3
 reinterpret_cast<float*>(integerPointer): 5.88545e-44
 reinterpret_cast<int*>(floatingPointer): 1078523331
 ```
-
-On s'aperçoit que le **cast** ```reinterpret_cast``` est très dangereux car il ne fait aucune vérification et peut donc provoquer des erreurs.

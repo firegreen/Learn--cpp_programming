@@ -1,5 +1,5 @@
 ---
-title: algorithmes de tri, complexité et recherche dichotomique
+title: Algorithmes de tri, complexité et recherche dichotomique
 tags:
     - C++
 
@@ -24,21 +24,25 @@ Les algorithmes de tri sont des algorithmes qui permettent de **trier des donné
 
 Comment trier un tableau de nombres ? C'est une question qui peut paraître simple, mais qui est en fait assez complexe. Il existe de nombreux algorithmes de tri, et chacun a ses avantages et ses inconvénients.
 
-Commençons par un exemple simple.
+## Tri par comparaison
 
-## Tri par sélection
+Les premiers algorithmes de tri que nous allons voir sont des algorithmes de tri par **comparaison** (Comparison based strategies).
+
+Ils consistent à **comparer** deux à deux les éléments du tableau puis de les **échanger** ou non en fonction du résultat de la comparaison.
+
+### Tri par sélection (selection sort)
 
 L'algorithme de tri par sélection est un algorithme de tri qui consiste à trouver le plus petit élément du tableau, et à le placer en première position (ou le plus grand élément en dernière position). On répète cette opération jusqu'à ce que le tableau soit trié.
 
-Un exemple, avec le même tableau `[6, 2, 8, 1, 5, 3, 9]`:
+Un exemple, avec le tableau suivant `[6, 2, 8, 1, 5, 3, 9]`:
 
-1. On, parcourt le tableau pour trouver le plus petit élément, qui est `1`.
+1. On, parcourt le tableau pour trouver le plus petit élément qui est `1`.
 
-    son indice est `3`, on l'échange avec l'élément à l'indice `0` (le premier élément du tableau).
+    Son indice est `3`, on l'échange avec l'élément à l'indice `0` (le premier élément du tableau).
 
-    <Array values={[2, 8, 1, 5, 3, 9, 6]}  boldIndices={[0, 3]} />
+    <Array values={[1, 2, 8, 6, 5, 3, 9]}  boldIndices={[0, 3]} />
 
-    le premier élément du tableau est désormais le plus petit élément du tableau. On recommence l'opération, mais en ignorant le premier élément du tableau, car il est déjà trié.
+    Le premier élément du tableau est désormais le plus petit élément du tableau. On recommence l'opération, mais en ignorant le premier élément du tableau, car il est déjà trié.
 
     :::info
     Toute l'astuce de cet algorithme est donc de trier un sous-tableau plus petit à chaque itération jusqu'à ce que le tableau soit trié.
@@ -46,22 +50,22 @@ Un exemple, avec le même tableau `[6, 2, 8, 1, 5, 3, 9]`:
 
 Voilà les itérations suivantes:
 
-1. <Array values={[1, 8, 2, 5, 3, 9, 6]}  boldIndices={[0, 2]} />
-2. <Array values={[1, 2, 8, 5, 3, 9, 6]}  boldIndices={[1, 2]} />
-3. <Array values={[1, 2, 3, 5, 8, 9, 6]}  boldIndices={[2, 4]} />
-4. A cette étape, l'élément à l'indice `4` est déjà le plus petit (des éléments non triés), donc on ne fait rien.
-5. <Array values={[1, 2, 3, 5, 6, 9, 8]}  boldIndices={[4, 6]} />
-6. <Array values={[1, 2, 3, 5, 6, 8, 9]}  boldIndices={[5, 6]} />
+1. Le deuxième plus petit élément est `2`, il est déjà à la bonne place, on ne fait rien.
+2. <Array values={[1, 2, 3, 6, 5, 8, 9]}  boldIndices={[2, 5]} />
+3. <Array values={[1, 2, 3, 5, 6, 8, 9]}  boldIndices={[3, 4]} />
+4. Il reste trois éléments à trier (`[6, 8, 9]`), il sont déjà triés, on ne fait rien.
 
 Voilà, le tableau est trié.
 
-## Tri à bulles (bubble sort)
+Je t'invite à regarder le fonctionnement de cet algorithme sur [cette animation](https://www.toptal.com/developers/sorting-algorithms/selection-sort) ou encore [ici](https://visualgo.net/en/sorting).
+
+### Tri à bulles (bubble sort)
 
 Le tri à bulles est un autre algorithme de tri très connu.
 Il consiste à **comparer** deux à deux les éléments du tableau, et à les échanger si ils ne sont pas dans le bon ordre. On répète cette opération jusqu'à ce que le tableau soit trié.
 
 :::note
-Cela va avoir pour effet de faire "**remonté**" les plus grands éléments du tableau vers la fin du tableau, comme des bulles d'air qui remontent à la surface.
+Cela va avoir pour effet de faire "**remonter**" les plus grands éléments du tableau vers la fin du tableau, comme des bulles d'air qui remontent à la surface.
 :::
 
 Un exemple, avec le même tableau `[6, 2, 8, 1, 5, 3, 9]`:
@@ -95,7 +99,7 @@ Il existe plusieurs types de complexité, la plus souvent utilisée est la **com
 
 Cela revient à se poser la question:
 
-**Si je donne à mon programme une entrée de taille `N`, quel est l'ordre de grandeur, en fonction de `N`, du nombre d'opérations qu'il va effectuer ?**
+**Si je donne à mon programme une entrée de taille `n`, quel est l'ordre de grandeur (en fonction de `n`) du nombre d'opérations qu'il va effectuer ?**
 
 :::note
 La complexité permet de **quantifier** la relation entre les conditions de départ et le temps effectué par l'algorithme.
@@ -103,7 +107,7 @@ La complexité permet de **quantifier** la relation entre les conditions de dép
 
 ### Opérations de base
 
-Pour "compter les opérations", il faut décider de ce qu'est une **opération**. Ce choix dépend du problème (et même de l'algorithme) considéré. Il faut en fait choisir soi-même quelques petites opérations que l'algorithme effectue souvent, et que l'on veut utiliser comme opérations de base pour mesurer la complexité. Les opérations qui caractérise le mieux l'algorithme et **représente le mieux le temps d'exécution** de celui-ci. Les opération de base sont souvent les opérations **arithmétiques**, les **comparaisons**, les **affectations**, etc. Par exemple, pour un algorithme de tri, on va compter le nombre de **comparaisons** et d'**échanges** d'éléments du tableau.
+Pour "compter les opérations", il faut décider de ce qu'est une **opération**. Ce choix dépend du problème (et même de l'algorithme) considéré. Il faut en fait choisir soi-même quelques petites opérations que l'algorithme effectue souvent, et que l'on veut utiliser comme opérations de base pour mesurer la complexité. Les opérations qui caractérise le mieux l'algorithme et **représentent le mieux le temps d'exécution** de celui-ci. Les opérations de base sont souvent les opérations **arithmétiques**, les **comparaisons**, les **affectations**, etc. Par exemple, pour un algorithme de tri, on va compter le nombre de **comparaisons** et d'**échanges** d'éléments du tableau.
 
 En fonction des algorithmes, certaines opérations peuvent être plus significatives que d'autres. Par exemple, la multiplication est plus coûteuse que l'addition, on peut donc ne considérer que les opérations de multiplication pour mesurer la complexité d'un algorithme.
 
@@ -117,12 +121,13 @@ Ces opérations sont considérées comme constantes et pas significatives pour l
 On exprime la complexité en fonction de la taille des données en entrée avec la notation **"grand O"**.
 La notation **"grand O"** est une notion mathématique qui permet d'exprimer un ordre de grandeur.
 
-Par exemple, des algorithmes effectuant environ $N$ opérations, $2N+20$ opérations ou $N/2$ opérations ont tous la même complexité : on la note $O(N)$ (lire "grand O de N"). De même, un algorithme en $3N2 + 4N + 2$ opérations aura une complexité de $O(N2)$ : on néglige les termes de plus faible degré (ici $4N$ et $2$) et les coefficients (ici $3$).
+Par exemple, des algorithmes effectuant environ $n$ opérations, $2n+20$ opérations ou $n/2$ opérations ont tous la même complexité : on la note $O(n)$ (lire "grand O de $n$"). De même, un algorithme en $3n^2 + 4n + 2$ opérations aura une complexité de $O(n^2)$ : on néglige les termes de plus faible degré (ici $4n$ et $2$) et les coefficients (ici $3$).
 On cherche seulement à savoir comment **évolue** le nombre d'opérations en fonction de la taille des données en entrée et on considère le terme de plus haut degré qui est celui qui va croître le plus vite en fonction de la taille des données en entrée.
 
-### Tri par sélection
 
-Prenons l'exemple du tri par sélection.
+### Exemple de calcul de complexité
+
+Prenons l'exemple du **tri par sélection**.
 
 Pour trier un tableau de taille $n$, premièrement on parcourt le tableau pour trouver le plus petit élément, on va donc effectuer $n$ comparaisons.
 
@@ -160,7 +165,7 @@ On va donc garder uniquement le terme de plus haut degré, ici $n^2$.
 **On dit que la complexité du tri par sélection est en $O(n^2)$.**
 
 :::info
-On peux aussi évaluer cette complexité sans calcul exact, mais plutôt en estimant le nombre d'opérations effectuées par l'algorithme.
+On peut aussi évaluer cette complexité sans calcul exact, mais plutôt en estimant le nombre d'opérations effectuées par l'algorithme.
 
 On peut voir que l'algorithme doit à chaque itération parcourir le tableau, c'est ce qui va prendre le plus de temps et dépendra de la taille du tableau.
 
@@ -182,13 +187,13 @@ Mais si le tableau est trié dans l'**ordre inverse**, on va effectuer $n$ compa
 On peut donc dire que la complexité du **tri à bulles** est en $O(n \times n) = O(n^2)$ dans le pire des cas.
 
 :::note
-C'est intéressant de s'intéresser à la complexité dans le pire des cas, car elle permet de savoir si l'algorithme est efficace pour toutes les données possibles. l’intérêt de considérer le pire des cas vient du fait que pour des données quelconques, on ne peut pas savoir si elles sont favorables ou non à l'algorithme et c'est en général assez proche du comportement dans le pire des cas.
+C'est intéressant de considérer la complexité dans le pire des cas, car elle permet de savoir si l'algorithme est efficace pour toutes les données possibles. En général pour des données quelconques, c'est en général assez proche du comportement dans le pire des cas.
 :::
 
 ### Complexité en moyenne
 On peut aussi s'intéresser à la complexité en **moyenne**, c'est-à-dire la complexité sur toutes les données possibles.
 
-Par exemple, pour le **tri à bulles**, on peut montrer que la complexité en moyenne est en $O(n^2)$.
+Par exemple, pour le **tri à bulles**, la complexité en moyenne est en $O(n^2)$.
 
 Il existe des algorithmes qui ont une complexité en **moyenne** bien **meilleure** que leur complexité dans le **pire des cas**. Cela dépend du problème considéré et demande une analyse plus fine de l'algorithme.
 
@@ -198,7 +203,7 @@ On peut aussi s'intéresser à la complexité en **mémoire** d'un algorithme. A
 
 C'est aussi une mesure de la complexité tout aussi pertinente que la complexité en temps.
 
-Si par exemple on a besoin de trier un tableau de 1000 éléments, on peut se dire que la complexité en temps n'est pas très importante, car l'algorithme va s'exécuter très rapidement. Mais si l'algorithme utilise **beaucoup de mémoire**, cela peut poser problème, car on peut ne **pas avoir assez de mémoire disponible** pour exécuter l'algorithme.
+Si par exemple on a besoin de trier un tableau de 1000 éléments, on peut se dire que la complexité en temps n'est pas très importante, car l'algorithme va s'exécuter très rapidement. Mais si l'algorithme utilise **beaucoup de mémoire**, cela peut poser problème, car il peut ne **pas avoir assez de mémoire disponible** pour exécuter l'algorithme.
 
 Dans la plupart des cas, la complexité en mémoire est beaucoup plus simple à calculer que la complexité en temps.
 
@@ -214,11 +219,11 @@ Cependant, il est important de garder à l'esprit que la complexité ne permet p
 
 Même si un algorithme à une complexité plus faible qu'un autre, il peut être plus (beaucoup plus) lent à s'exécuter qu'un autre algorithme pour des tailles de données en entrée faibles.
 
-:::caution
-La complexité permet de comparer des algorithmes entre eux, donner une tendance en fonction de l'augmentation la taille des données en entrée, mais ne permet pas de savoir si un algorithme est plus rapide qu'un autre pour des tailles de données en entrée faibles.
-:::
+## Tri diviser pour régner (Divide-and-Conquer paradigm)
 
-## Tri fusion (merge sort)
+Il existe d'autres algorithmes de tri plus efficaces que les algorithmes de tri par **comparaison**. Ils sont basés sur le principe de **diviser pour régner** (divide and conquer en anglais). L'idée est de **diviser** le problème en sous-problèmes plus petits, de résoudre les sous-problèmes, puis de **fusionner** les solutions des sous-problèmes pour résoudre le problème initial.
+
+### Tri fusion (merge sort)
 
 Le tri fusion est un algorithme de tri qui consiste à **diviser** le tableau en deux parties égales, **trier** les deux parties, puis **fusionner** les deux parties triées.
 
@@ -230,7 +235,7 @@ Il y a donc deux "phases" dans cet algorithme:
 - la phase de **division** du tableau en deux parties égales
 - la phase de **fusion** des deux parties triées
 
-### Phase de division
+#### Phase de division
 
 Il existe deux façons de procéder pour diviser le tableau en deux parties égales:
 - Créer des **tableaux intermédiaires** pour stocker les deux parties du tableau à trier, puis fusionner les deux tableaux triés.
@@ -242,17 +247,16 @@ On privilégie donc la deuxième méthode, et c'est celle que je vais détailler
 
 Pour trier un tableau, on va donc utiliser deux indices, un indice de **début** et un indice de **fin**, qui vont définir la **partie du tableau** à trier.
 
-Par exemple, pour le tableau `[6, 2, 8, 1, 5, 3, 9]`, on va utiliser les indices `0` et `6` pour trier le tableau complet.
-
+Par exemple, pour le tableau `[6, 2, 8, 1, 5, 3, 9]`, les indices `0` et `6` vont définir le tableau complet.
 On va calculer la taille de la partie du tableau à trier, ici `6` (indice de fin) - `0` (indice de début) + `1` (car on compte l'élément à l'indice de fin), soit `7`.
 
 On va ensuite diviser cette taille par deux, soit `3` (on peut arrondir à l'entier inférieur).
 
 On va donc utiliser par récursion les indices `0` et `3` pour trier la première partie du tableau, et les indices `4` et `6` pour trier la deuxième partie du tableau.
 
-Enfin on va fusionner les deux parties triées pour trier le tableau complet.
+Enfin la fusion des deux parties triées va permettre d'obtenir le tableau trié.
 
-### Phase de fusion
+#### Phase de fusion
 
 C'est la phase de **fusion** qui est la plus intéressante, car c'est elle qui va permettre de trier le tableau.
 
@@ -273,10 +277,10 @@ Si l'un des deux indices est égal à la taille du sous-tableau, cela veut dire 
 On obtient ainsi un tableau trié.
 
 :::info
-La **condition d'arrêt** de la récursion est quand la taille de la partie du tableau à trier est inférieure ou égale à `1`, car un tableau de taille `1` est déjà trié.
+La **condition d'arrêt** de la récursion est quand la taille de la partie du tableau à trier est inférieure ou égale à `1`, car un tableau de taille `1` est déjà trié (de même pour un tableau vide).
 :::
 
-## Tri rapide (quick sort)
+### Tri rapide (quick sort)
 
 Le tri rapide est un algorithme de tri qui consiste à choisir un élément du tableau, appelé **pivot**, et à placer tous les éléments plus petits que le pivot à gauche du pivot, et tous les éléments plus grands que le pivot à droite du pivot.
 
@@ -288,9 +292,9 @@ Il y a également deux phases dans cet algorithme:
 - la phase de **division** du tableau en deux parties en fonction du pivot
 - la phase de **tri** des deux parties
 
-### Phase de division
+#### Phase de division
 
-#### Choix du pivot
+##### Choix du pivot
 
 Le choix du pivot est très important, car il va déterminer la complexité de l'algorithme.
 
@@ -310,7 +314,7 @@ Nous allons préférer choisir un pivot aléatoire ou plus simplement l'élémen
 
 Une fois le pivot choisi, on va parcourir le tableau et placer tous les éléments plus petits que le pivot à gauche du pivot, et tous les éléments plus grands que le pivot à droite du pivot.
 
-Il y a plusieurs approche pour gérer le pivot, dans notre cas, on va choisir de premièrement placer le pivot à la fin du tableau.
+Il y a plusieurs approches pour gérer le pivot, dans notre cas, on va choisir de premièrement placer le pivot à la fin du tableau.
 
 Pour cela, on va utiliser **deux indices**, un indice pour parcourir le tableau de gauche à droite, et un indice pour parcourir le tableau de droite à gauche.
 
@@ -330,7 +334,9 @@ On va donc pouvoir appeler récursivement l'algorithme sur les deux sous-tableau
 
 ## Tri par dénombrement (counting sort)
 
-Un tri intéressant est le tri par dénombrement (ou **counting sort** en anglais). Il est très efficace, car il va permettre de trier un tableau en complexité **linéaire**, c'est-à-dire en $O(n)$. Il ne fonctionne cependant que pour des données **entières** car il ne se base pas sur des comparaisons mais va compter le nombre d'occurrences de chaque valeur (de plus pour simplifier, on va supposer que les valeurs sont positives).
+IL existe encore d'autres algorithmes de tri, mais ils sont plus spécifiques et ne fonctionnent que dans certains cas. Je vais en présenter un simple ici pour te donner une idée de ce qui existe.
+
+Le tri par **dénombrement** (ou **counting sort** en anglais) est très efficace, car il va permettre de trier un tableau en complexité **linéaire**, c'est-à-dire en $O(n)$. Il ne fonctionne cependant que pour des données **entières** car il ne se base pas sur des comparaisons mais va compter le nombre d'occurrences de chaque valeur (de plus pour simplifier, on va supposer que les valeurs sont positives).
 
 Le **prérequis** pour utiliser cet algorithme est donc de connaître la valeur **maximale** des données à trier. Soit on connaît cette valeur à l'avance, soit on peut la calculer en parcourant le tableau une première fois.
 
@@ -362,25 +368,25 @@ C'est à prendre en compte si on veut utiliser cet algorithme car il peut être 
 :::
 
 ## Pour aller plus loin:
-<details>
 
 ### Tri par dénombrement stable
+<details>
 
-On peux améliorer le tri par dénombrement en le rendant **stable**. Cela signifie que si deux éléments ont la même valeur, ils seront dans le même ordre dans le tableau trié que dans le tableau initial. Cela ne semble pas très important à première vue, mais cela permet de trier des données plus complexes et leur associant des valeurs entières sur lesquelles on va effectuer le tri.
+On peut améliorer le tri par dénombrement en le rendant **stable**. Cela signifie que si deux éléments ont la même valeur, ils seront dans le même ordre dans le tableau trié que dans le tableau initial. Cela ne semble pas très important à première vue, mais cela permet de trier des données plus complexes en leur associant des valeurs entières sur lesquelles on va effectuer le tri.
 
-POur faire cela il faut modifier légèrement l'algorithme de tri par dénombrement.
+Pour faire cela il faut modifier légèrement l'algorithme de tri par dénombrement.
 
 Une fois qu'on a compté le nombre d'occurrences de chaque valeur, on va calculer la somme partielle des occurrences de chaque valeur. Cela va nous permettre de connaître la position de chaque valeur dans le tableau trié.
 
-Par exemple, si on se fixe des valeurs entières entre 0 et 9 et le tableau suivant `[1, 4, 1, 2, 7, 5, 2]`:
-- On compte le nombre d'occurrences de chaque valeur et on obtient le tableau suivant: `[0, 2, 2, 0, 1, 1, 0, 1, 0, 0]`
-- On calcule la somme partielle des occurrences de chaque valeur et on obtient le tableau suivant: `[0, 2, 4, 4, 5, 6, 6, 7, 7, 7]`
+Par exemple, avec le tableau suivant `[1, 4, 1, 2, 7, 5, 2]` contenant des valeurs entières entre 0 et 9:
+- On compte le nombre d'occurrences de chaque valeur : `[0, 2, 2, 0, 1, 1, 0, 1, 0, 0]`
+- On calcule la **somme partielle** des occurrences de chaque valeur : `[0, 2, 4, 4, 5, 6, 6, 7, 7, 7]`
 
 :::note
 On peut se resservir du tableau des occurrences pour stocker la somme partielle des occurrences de chaque valeur, ce qui permet de ne pas utiliser de tableau intermédiaire supplémentaire.
 :::
 
-On va construire un nouveau tableau de même taille que le tableau initial, et on va parcourir le tableau initial pour ajouter les valeurs dans le nouveau tableau. On va ajouter la valeur à la position indiquée par la somme partielle des occurrences de la valeur, puis on va décrémenter la somme partielle des occurrences de la valeur.
+On va construire un nouveau tableau de même taille que le tableau initial, en parcourant le tableau initial pour ajouter les valeurs dans le nouveau tableau. On va ajouter la valeur à la position indiquée par la somme partielle des occurrences de la valeur, puis on va décrémenter la somme partielle des occurrences de la valeur.
 
 Par exemple, pour la valeur `1`, on va ajouter la valeur `1` à la position `2` du nouveau tableau, puis on va décrémenter la somme partielle des occurrences de la valeur `1` pour obtenir `1` (car il reste une occurrence de la valeur `1`).
 
@@ -388,7 +394,10 @@ On obtient ainsi le tableau trié `[1, 1, 2, 2, 4, 5, 7]`.
 
 L'inconvénient principal de cette méthode est qu'il faut un tableau intermédiaire pour stocker le tableau trié, ce qui augmente la complexité en mémoire de l'algorithme.
 
-### tri base (radix sort)
+</details>
+
+### Tri par base (radix sort)
+<details>
 
 Le tri par dénombrement permet de trier des données entières comprises entre 0 et $k-1$ en complexité linéaire.
 
@@ -436,7 +445,7 @@ Exemple simple avec le tableau suivant `[1, 2, 2, 4, 5, 8, 12]` (nombre d'élém
 
     On recommence l'opération avec la partie du tableau restante.
 
-2. Sous partie du tableau: `[4, 8, 12]` (nombre d'éléments: 3), indice du milieu: `5`.
+2. Sous partie du tableau: `[5, 8, 12]` (nombre d'éléments: 3), indice du milieu: `5`.
 
     On compare la valeur à l'indice `5` avec la valeur recherchée `8`, comme `8` est égal à `8`, on a trouvé la valeur recherchée.
 

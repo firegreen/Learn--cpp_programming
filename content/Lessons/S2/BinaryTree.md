@@ -1,5 +1,5 @@
 ---
-title: Arbre Binaires
+title: Arbres binaires
 tags:
     - C++
 
@@ -9,9 +9,9 @@ tags:
 Dans ce chapitre nous allons découvrir une nouvelle structure de données: les arbres binaires.
 
 La notion d'**arbre** est une notion très importante en informatique. 
-Un arbre est une **structure de données** qui permet de représenter des données **hiérarchiques** comme par exemple des des dossiers et des fichiers dans un système de fichiers.
+Un arbre est une **structure de données** qui permet de représenter des données **hiérarchiques** comme par exemple des dossiers et des fichiers dans un système de fichiers.
 
-Un arbre est composée de **noeuds**. Chaque noeud peut avoir un nombre quelconque de **fils**. Un noeud qui n'a pas de fils est appelé une **feuille**.
+Un arbre est composé de **noeuds**. Chaque noeud peut avoir un nombre quelconque de **fils**. Un noeud qui n'a pas de fils est appelé une **feuille**.
 
 Un arbre est composé d'un **noeud racine** qui est le noeud de départ de l'arbre. Il est possible d'accéder à tous les autres noeuds de l'arbre à partir du noeud racine.
 
@@ -42,7 +42,7 @@ La **hauteur** d'un arbre est la profondeur maximale de ses noeuds. C'est à dir
 
 ## Arbres binaires
 
-Il existe plusieurs types d'arbres qui ont des propriétés différentes. On peut par exemple se limiter à un nombre maximum de fils par noeud, impose un ordre sur les fils d'un noeud, ou encore imposer que chaque noeud ait un nombre fixe de fils.
+Il existe plusieurs types d'arbres qui ont des propriétés différentes. On peut par exemple se limiter à un nombre maximum de fils par noeud, imposer un ordre sur les fils d'un noeud, ou encore imposer que chaque noeud ait un nombre fixe de fils.
 
 C'est le cas des **arbres binaires**. Un **arbre binaire** est un arbre dont chaque noeud a au maximum deux fils. Un fils gauche et un fils droit.
 
@@ -97,7 +97,7 @@ delete root;
 ```
 
 :::caution
-:warning: Il faut faire attention à désallouer la mémoire dans le bon ordre ! Si on désalloue le noeud racine avant ses fils, on ne pourra plus accéder aux fils pour les désallouer. Cela provoque une **fuite mémoire**.
+:warning: Il faut faire attention à désallouer la mémoire dans le bon ordre ! Si on désalloue le noeud racine avant ses fils, on ne pourra plus accéder aux fils pour les désallouer. Cela provoque une **fuite de mémoire**.
 :::
 
 ---
@@ -140,7 +140,7 @@ root->left = std::make_unique<Node>(2, nullptr, nullptr);
 root->right = std::make_unique<Node>(3, nullptr, nullptr);
 ```
 
-Cela permet de ne pas avoir à gérer la désallocation de la mémoire. La structure est automatiquement désalloué lorsque le pointeur intelligent est détruit. Cela va se faire dans le bon ordre naturellement car pour détruire une structure, il faut d'abord détruire ses membres. Ses enfants seront donc détruits avant le noeud parent.
+Cela permet de ne pas avoir à gérer la désallocation de la mémoire. La structure est automatiquement désallouée lorsque le pointeur intelligent est détruit. Cela va se faire dans le bon ordre naturellement car pour détruire une structure, il faut d'abord détruire ses membres. Ses enfants seront donc détruits avant le noeud parent.
 
 </details>
 
@@ -198,7 +198,7 @@ On peut représenter cet arbre avec le tableau suivant:
 [A, B, C, _, _, D, E, _, _, _, _, H, _, F, _]
 ```
 
-Cette représentation est intéressante car elle permet de représenter un arbre binaire sans avoir à utiliser de pointeurs. Mais elle a aussi l'inconvénient de ne pas être très efficace quand l'arbre n'est très rempli. En effet, on peut avoir beaucoup de trous dans le tableau. Cela peut être problématique si l'arbre à une hauteur importante.
+Cette représentation est intéressante car elle permet de représenter un arbre binaire sans avoir à utiliser de pointeurs. Mais elle a aussi l'inconvénient de ne pas être très efficace quand l'arbre n'est complètement rempli. En effet, on peut avoir beaucoup de trous dans le tableau. Cela peut être problématique si l'arbre a une hauteur importante.
 
 De plus il faut un moyen de représenter les trous dans le tableau. On peut par exemple utiliser une valeur spéciale qui ne peut pas être une valeur valide pour un noeud. Par exemple, on peut utiliser la valeur `-1` pour représenter un trou dans le tableau. Ou alors on peut utiliser `std::optional` pour représenter un noeud qui n'existe pas.
 
@@ -227,7 +227,7 @@ Cela correspond à l'ordre dans lequel sont rangées les données lorsque l'on r
 
 ### Parcours en profondeur
 
-Le parcours en profondeur consiste à parcourir l'arbre de la racine vers les feuilles par récursion dans les **sous-arbre** gauche et droite. On peut parcourir l'arbre en profondeur de différentes façons:
+Le parcours en profondeur consiste à parcourir l'arbre de la racine vers les feuilles par récursion dans les **sous-arbres** gauche et droite. On peut parcourir l'arbre en profondeur de différentes façons:
 - Parcours en profondeur **préfixe** (ou **pré-ordre**): on parcourt d'abord le noeud racine, puis le sous-arbre gauche et enfin le sous-arbre droit.
 - Parcours en profondeur **infixe** (ou **symétrique**): on parcourt d'abord le sous-arbre gauche, puis le noeud racine et enfin le sous-arbre droit.
 - Parcours en profondeur **postfixe** (ou **post-ordre**): on parcourt d'abord le sous-arbre gauche, puis le sous-arbre droit et enfin le noeud racine.
@@ -275,7 +275,7 @@ La recherche dans un arbre binaire de recherche est similaire à la recherche di
 
 On répète cette opération jusqu'à trouver la valeur recherchée ou jusqu'à arriver à un noeud qui n'a pas de fils dans la direction où l'on souhaite continuer la recherche. Dans ce cas, on peut conclure que la valeur recherchée n'est pas dans l'arbre.
 
-## Suppression
+### Suppression
 
 La suppression dans un arbre binaire de recherche est plus complexe que l'insertion et la recherche. Il faut faire attention à ne pas casser la relation d'ordre entre les noeuds.
 
@@ -295,16 +295,16 @@ Il existe une multitude d'arbres binaires différents qui ont des propriétés d
 
 Par exemple, dans le cadre d'une recherche, on peut vouloir que l'arbre soit le plus équilibré possible (c'est à dire que la hauteur de l'arbre soit la plus petite possible). Cela permet de réduire le nombre de comparaisons nécessaires pour trouver un élément dans l'arbre. C'est le cas des arbres binaires de recherche **AVL**. Cela nous force à implémenter des algorithmes d'insertion et de suppression plus complexes pour maintenir l'équilibre de l'arbre.
 
-Dans d'autres cas, on peut vouloir privilégier la rapidité d'insertion et de suppression. C'est le cas des arbres binaires de recherche **Rouge-Noir**. C'est un autre type d'arbre binaire de recherche qui permet de maintenir un arbre équilibré mais qui ne garanti pas à tout moment que l'arbre soit le plus équilibré possible. Cela permet de simplifier les algorithmes d'insertion et de suppression tout en restant efficace la majorité du temps.
+Dans d'autres cas, on peut vouloir privilégier la rapidité d'insertion et de suppression. C'est le cas des arbres binaires de recherche **Rouge-Noir**. C'est un autre type d'arbre binaire de recherche qui permet de maintenir un arbre équilibré mais qui ne garantit pas à tout moment que l'arbre soit le plus équilibré possible. Cela permet de simplifier les algorithmes d'insertion et de suppression tout en restant efficace la majorité du temps.
 
 ## Résumé
 
-- Un arbre est une structure de données qui permet de représenter des données hiérarchiques.
-- Un arbre est composé de noeuds. Chaque noeud peut avoir un nombre quelconque de fils. Un noeud qui n'a pas de fils est appelé une feuille.
-- Un arbre est composé d'un noeud racine qui est le noeud de départ de l'arbre. Il est possible d'accéder à tous les autres noeuds de l'arbre à partir du noeud racine.
-- La profondeur d'un noeud est le nombre de noeuds qui le séparent du noeud racine.
-- La hauteur d'un arbre est la profondeur maximale de ses noeuds. C'est à dire la profondeur du noeud le plus profond.
-- Un arbre binaire est un arbre dont chaque noeud a au maximum deux fils. Un fils gauche et un fils droit.
-- Un arbre binaire peut être représenté par une structure récursive (C'est à dire une structure qui contient des éléments de son propre type) ou par un tableau.
-- Un arbre binaire de recherche est un arbre binaire qui à la particularité d'être ordonné. On va imposer un ordre sur les valeurs des noeuds de l'arbre. Cela va permettre de faire des recherches efficaces dans l'arbre.
+- Un **arbre** est une **structure de données** qui permet de représenter des données hiérarchiques.
+- Un arbre est composé de **noeuds**. Chaque noeud peut avoir un nombre quelconque de fils. Un noeud qui n'a pas de fils est appelé une feuille.
+- Un arbre est composé d'un **noeud racine** qui est le noeud de départ de l'arbre. Il est possible d'accéder à tous les autres noeuds de l'arbre à partir du noeud racine.
+- La **profondeur** d'un noeud est le nombre de noeuds qui le séparent du noeud racine.
+- La **hauteur** d'un arbre est la profondeur maximale de ses noeuds. C'est à dire la profondeur du noeud le plus profond.
+- Un **arbre binaire** est un arbre dont chaque noeud a au **maximum deux fils**. Un fils **gauche** et un fils **droit**.
+- Un **arbre binaire** peut être représenté par une **structure récursive** (C'est à dire une structure qui contient des éléments de son propre type) ou par un tableau.
+- Un **arbre binaire de recherche** est un arbre binaire qui a la particularité d'être **ordonné**. On va imposer un ordre sur les valeurs des noeuds de l'arbre. Cela va permettre de faire des recherches efficaces dans l'arbre.
 - Il existe une multitude d'arbres binaires différents qui ont des propriétés différentes. Cela permet de s'adapter à différents cas d'utilisation (pour optimiser la recherche, l'insertion, la suppression, etc...)
