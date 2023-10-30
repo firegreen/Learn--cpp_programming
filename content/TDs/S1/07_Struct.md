@@ -7,7 +7,7 @@ sidebar_position: 7
 
 Vous êtes le pilote d'un sous-marin, vous avez reçu des ordres de mouvements sous la forme d'une instruction et d'une distance à parcourir. Vous devez écrire un programme qui permet de calculer la position du sous-marin après avoir effectué les mouvements reçus.
 
-Votre position initiale est `(0, 0)` et vous pouvez vous déplacer dans les directions suivantes: `Haut`, `Bas`, `Avant`, `Arrière`.
+Votre position initiale est `(0, 0)` et vous pouvez vous déplacer dans les directions suivantes: `Up`, `Down`, `Forward`, `Backward`.
 
 1. Écrire une **structure** `Position` qui permet de stocker les coordonnées du sous-marin.
 
@@ -21,20 +21,20 @@ Votre position initiale est `(0, 0)` et vous pouvez vous déplacer dans les dire
 
 Le but est d'indiquer la position du sous-marin après avoir effectué les mouvements suivants:
 
-- `Avant 10`
-- `Bas 5`
-- `Arrière 3`
-- `Haut 2`
-- `Avant 5`
-- `Bas 1`
-- `Arrière 2`
-- `Avant 3`
-- `Bas 1`
-- `Haut 3`
-- `Avant 1`
-- `Bas 5`
-- `Arrière 2`
-- `Avant 6`
+- `Forward 10`
+- `Down 5`
+- `Backward 3`
+- `Up 2`
+- `Forward 5`
+- `Down 1`
+- `Backward 2`
+- `Forward 3`
+- `Down 1`
+- `Up 3`
+- `Forward 1`
+- `Down 5`
+- `Backward 2`
+- `Forward 6`
 
 Vous pouvez représenter les mouvements sous la forme d'un vecteur de `Move`:
 
