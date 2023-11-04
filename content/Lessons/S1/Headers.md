@@ -363,7 +363,7 @@ endforeach()
 add_executable(helloImac ${SRC_FILES})
 
 # le dossier contenant les fichiers d'en-tête pour notre executable helloImac
-target_include_directories(helloImac "src/")
+target_include_directories(helloImac PUBLIC "src/")
 ```
 
 ## Résumé
