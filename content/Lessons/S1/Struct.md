@@ -55,7 +55,8 @@ Lors de l'initialisation avec des valeurs, elles doivent être ordonnées dans l
 :::
 
 :::danger
-Ne pas initialiser une **structure** est un **comportement indéterminé**.
+
+Comme pour les variables, ne pas initialiser une **structure** est un **comportement indéterminé**.
 
 ```cpp
 // Initialisation indéterminée
@@ -63,6 +64,74 @@ People defaultPeople;
 ```
 
 Dans ce cas, il faut s'**assurer** de bien définir les membres de la structure ensuite !
+:::
+
+### Valeurs par défaut
+
+Lors de l'initialisation, si il n'y a pas de valeur fournie entre **accolades** (<kbd>{}</kbd>) pour les membres de la structure, ils seront initialisés avec une valeur par défaut. Pour les **types primitifs** (comme ```int```, ```float```, ```double```, ```char```, ```bool```, etc.) la valeur par défaut est **zéro**. Pour les **objets** (comme ```std::string```, ```std::vector```, etc.) la valeur par défaut est **l'objet vide**.
+
+Si une **valeur** est fournie en même temps que la déclaration d'un membre, c'est cette valeur qui sera utilisée lors de l'initialisation par défaut de la structure.
+
+```cpp title="un exemple"
+#include <iostream>
+#include <string>
+
+struct Product
+{
+    std::string name {"unknown"};
+    float price {0.f};
+    unsigned int quantity {1};
+};
+
+void Display(Product const& product)
+{
+    std::cout << "Name: " << product.name << std::endl;
+    std::cout << "Price: " << product.price << std::endl;
+    std::cout << "Quantity: " << product.quantity << std::endl;
+}
+
+int main()
+{
+    Product unknownProduct {};
+
+    Display(unknownProduct);
+
+    return 0;
+}
+```
+
+```bash
+Name: unknown
+Price: 0     
+Quantity: 1 
+```
+
+:::info Résumé de toutes les possibilités d'initialisation
+Si une structure est initialisée **avec accolades** (ce qu'il fait faire tout le temps comme pour les variables) :
+
+- S'il existe une valeur d'initialisation explicite dans les accolades, cette valeur explicite est utilisée.
+- Si une valeur est manquante dans les accolades et qu'il existe une valeur de variable membre par défaut, cette valeur est utilisée. (c'est l'exemple de la structure `Product` ci-dessus)
+- Si une valeur est manquante dans les accolades et qu'il n'y a pas valeur par défaut dans la structure, l'initialisation par défaut pour le type de la variable est utilisée.
+
+Si une structure est initialisée **sans accolades** (ce qui est à éviter) :
+
+- S'il existe une valeur d'initialisation explicite dans les accolades, cette valeur est utilisée.
+- Si une valeur est manquante dans les accolades, la variable membre reste non initialisée. (**comportement indéterminé**)
+:::
+
+:::tip Bonne pratique
+Une bonne pratique est de toujours initialiser les variables membres de la structure avec une valeur par défaut explicite ou à défaut d'utiliser des **accolades vide** pour éviter le risque de variables non initialisées et de **comportement indéterminé**.
+
+```cpp
+#include <string>
+
+struct Product
+{
+    std::string name {};
+    float price {};
+    unsigned int quantity {1};
+};
+```
 :::
 
 ## Utilisation
@@ -123,46 +192,6 @@ int main()
 
     return 0;
 }
-```
-
-## Changer les valeurs par défaut
-
-Lors de l'initialisation, si il n'y a pas de valeur fournie entre **accolades** (<kbd>{}</kbd>) pour les membres de la structure, ils seront initialisés avec une valeur par défaut. Pour les **types primitifs** (comme ```int```, ```float```, ```double```, ```char```, ```bool```, etc.) la valeur par défaut est **zéro**. Pour les **objets** (comme ```std::string```, ```std::vector```, etc.) la valeur par défaut est **l'objet vide**.
-
-Si une **valeur** est fournie en même temps que la déclaration d'un membre, c'est cette valeur qui sera utilisée lors de l'initialisation par défaut de la structure.
-
-```cpp title="un exemple"
-#include <iostream>
-#include <string>
-
-struct Product
-{
-    std::string name {"unknown"};
-    float price {0.f};
-    unsigned int quantity {1};
-};
-
-void Display(Product const& product)
-{
-    std::cout << "Name: " << product.name << std::endl;
-    std::cout << "Price: " << product.price << std::endl;
-    std::cout << "Quantity: " << product.quantity << std::endl;
-}
-
-int main()
-{
-    Product unknownProduct;
-
-    Display(unknownProduct);
-
-    return 0;
-}
-```
-
-```bash
-Name: unknown
-Price: 0     
-Quantity: 1 
 ```
 
 ## Des méthodes
