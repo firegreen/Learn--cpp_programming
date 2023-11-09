@@ -144,7 +144,7 @@ Une propriété intéressante des arbres binaires est que pour chaque feuille il
 Reprenons notre exemple précédent avec les lettres `a`, `b`, `c` et `d`. Admettons que les quatre lettres apparaissent avec la même fréquence. 
 
 ```mermaid
-TB
+flowchart TB
 T((1.0))-->|0|L((0.5))
 T-->|1|R((0.5))
 L-->|0|a((a))
@@ -191,7 +191,7 @@ En répétant cette opération, on va finir par n'avoir plus que deux symboles :
 Cela nous donne finalement l'arbre suivant:
 
 ```mermaid
-TB
+flowchart TB
 abcd((1.0))-->|0|a((0.5))
 abcd-->|1|bcd((0.5))
 bcd-->|0|b((0.25))
