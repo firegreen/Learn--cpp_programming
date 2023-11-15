@@ -102,6 +102,8 @@ L'ordre **lexicographique** est comparable à l'ordre alphabétique. Si l'on, se
 Cela peux être étendu à des éléments plus complexes comme des nombres. On compare les premiers éléments. Si les premiers éléments sont égaux, on compare les seconds éléments, etc.
 :::
 
+Dans le cas des paires, on compare les premiers éléments. Si les premiers éléments sont égaux, on compare les seconds éléments.
+
 ```cpp
 #include <utility>
 #include <iostream>

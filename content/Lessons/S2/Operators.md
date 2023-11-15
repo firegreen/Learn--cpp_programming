@@ -34,7 +34,7 @@ struct Point {
     int y;
 };
 
-Point operator+(Point a, Point b) {
+Point operator+(Point const a, Point const b) {
     return {a.x + b.x, a.y + b.y};
 }
 
@@ -50,7 +50,8 @@ int main() {
 Ce qui fait généralement sens pour une structure, c'est de pouvoir **comparer** deux instances de cette structure. Par exemple, on peut comparer deux points entre eux pour savoir s'ils sont **égaux** ou non.
 
 :::note
-Dès que cela vous semble pertinent, c'est un **indicateur** qui permet de savoir si ont doit se "limiter" à des méthodes ou si surcharger des opérateurs est pertinent.
+Dès que cela vous semble pertinent de définir l'égalité, c'est un **indicateur** qui permet d'identifier que la structure va être utilisée comme un type de base et que la surcharge d'opérateurs est pertinente.
+En opposition aux structures qui sont plutôt utilisées pour structurer le code, hiérarchiser les données (game manager, etc.) et qui ne nécessitent pas de surcharge d'opérateurs mais plutôt des méthodes explicites.
 :::
 
 Pour être en mesure de définir l’égalité, on doit respecter les conditions suivantes.
@@ -68,7 +69,7 @@ struct Point {
     int y;
 };
 
-bool operator==(Point a, Point b) {
+bool operator==(Point const a, Point const b) {
     return a.x == b.x && a.y == b.y;
 }
 
@@ -90,7 +91,7 @@ struct Point {
     int x;
     int y;
     
-    bool operator==(Point b) {
+    bool operator==(Point const b) {
         return x == b.x && y == b.y;
     }
 };
@@ -105,7 +106,7 @@ struct Point {
     int x;
     int y;
     
-    Point operator*(int a) {
+    Point operator*(int const a) {
         return {x * a, y * a};
     }
 };
@@ -126,7 +127,7 @@ struct Point {
     int y;
 };
 
-Point operator*(int a, Point b) {
+Point operator*(int const a, Point const b) {
     return {a * b.x, a * b.y};
 }
 
@@ -136,7 +137,28 @@ int main() {
 }
 ```
 
-Les deux syntaxes sont donc valables, mais il faut garder en tête que la syntaxe avec une méthode membre implique que le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode.
+Les deux syntaxes sont donc valables, mais il faut garder en tête que la syntaxe avec une méthode membre implique que le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode. Il y a plusieurs écoles, en général on préfère la syntaxe avec une **fonction libre** concernant les opérateurs binaires (qui prennent deux paramètres). Cela permet par exemple, dans le cas d'opérateurs binaires commutatifs (dans lequel l'ordre des paramètres n'a pas d'importance), de définir les deux opérateurs en fonction l'un de l'autre.
+
+```cpp
+struct Point {
+    int x;
+    int y;
+};
+
+Point operator*(int const a, Point const b) {
+    return {a * b.x, a * b.y};
+}
+
+Point operator*(Point const b, int const a) {
+    return a * b;
+}
+
+int main() {
+    Point a {1, 2};
+    Point b {2 * a}; // b = {2, 4}
+    Point c {a * 3}; // b = {3, 6}
+}
+```
 
 ## Réutilisation des opérateurs
 
@@ -168,6 +190,39 @@ bool operator>(Point a, Point b) {
     return b < a;
 }
 ```
+
+## default et C++ 20
+
+Il est parfois possible de définir automatiquement certains opérateurs. Dans le cas de structures simples, on peut définir automatiquement les opérateurs `==` et `!=` avec le mot clé `default`.
+
+```cpp
+struct Point {
+    int x;
+    int y;
+
+    bool operator==(Point const&) const = default;
+    bool operator!=(Point const&) const = default;
+};
+```
+
+Cela permet de définir automatiquement les opérateurs `==` et `!=` en fonction des opérateurs `==` et `!=` de chaque membre de la structure.
+
+Depuis **C++20**, il est même possible de définir automatiquement l'opérateur d'égalité et les opérateurs de comparaison (`<`, `<=`, `>`, `>=`) d'un coup avec l'opérateur `<=>` (appelé **three-way comparison operator**).
+```cpp
+struct Point {
+    int x;
+    int y;
+    
+    auto operator<=>(Point const&) const = default;
+};
+```
+
+l'opérateur `<=>` est un opérateur qui permet de donner un **ordre** à une structure. Avec le mot clé `default`, on délègue la définition de l'opérateur `<=>` à chaque membre de la structure.
+On défini donc automatiquement l'ordre de la structure en fonction de l'ordre de chaque membre (dans notre cas, on compare d'abord `x` puis `y`).
+
+C'est très pratique dans le cas où nos structures sont composées de types de base ou de structures qui ont déjà des opérateurs de comparaison définis.
+
+Dans le cadre de ce cours nous allons définir les opérateurs manuellement pour bien comprendre le principe. Mais dans la pratique, il est préférable d'utiliser `default` ou `default` avec `<=>` si possible.
 
 ## Opérateurs d'assignation composés
 
@@ -229,7 +284,7 @@ L'avantage est que si l'on doit modifier ou corriger le comportement de l'additi
 
 ## Opérateurs de flux
 
-Les opérateurs de flux permettent de définir comment afficher une structure ou la lire depuis un flux. Par exemple, on peut définir l'opérateur `<<` pour notre structure `Point` qui permet d'afficher un point dans un flux.
+Les opérateurs de flux permettent de définir comment afficher une structure ou la lire depuis un flux (comme `std::cout` ou `std::cin`). Par exemple, on peut définir l'opérateur `<<` pour notre structure `Point` qui permet d'afficher un point dans un flux.
 
 ```cpp
 struct Point {

@@ -34,22 +34,26 @@ Les **itérateurs** on des **opérateurs** et **méthodes** qui permettent de le
 
 ### Begin et end
 
-Il existe principalement deux **méthodes** sur les conteneurs qui permettent de récupérer un itérateur sur le **premier élément** du conteneur et un itérateur sur le **dernier élément** du conteneur.
+Il existe principalement deux **méthodes** sur les conteneurs qui permettent de récupérer un itérateur sur le **premier élément** du conteneur et un itérateur permettant d'indiquer la **fin** du conteneur.
 
 Voici un exemple avec un vecteur (`std::vector`) :
 
 ```cpp
-std::vector<int> v = {1, 2, 3, 4, 5};
+std::vector<int> v {1, 2, 3, 4, 5};
 
 // Déclaration d'un itérateur sur le vecteur v
 std::vector<int>::iterator begin_iterator { v.begin() };
 
-// Déclaration d'un itérateur sur le dernier élément du vecteur v
+// Déclaration d'un itérateur permettant d'indiquer la fin du vecteur v
 std::vector<int>::iterator end_iterator { v.end() };
 ```
 
 :::note
 Ici, nous utilisons l'**itérateur** `std::vector<int>::iterator` qui permet de parcourir un vecteur. Il existe aussi l'**itérateur** `std::vector<int>::const_iterator` qui permet de parcourir un vecteur en lecture seule (`const`) (on peut obtenir des itérateurs constants avec les méthode `cbegin` et `cend`).
+:::
+
+:::warning
+L'itérateur `end` ne pointe **pas** sur le **dernier élément** du conteneur mais vers un élément *invalide* qui **indique la fin** du conteneur (généralement un élément après le dernier élément du conteneur comme c'est le cas pour `std::vector` par exemple). Il ne faut donc pas déréférencer l'itérateur `end` car cela provoquerait une erreur. Il sert uniquement à **indiquer la fin du conteneur**.
 :::
 
 ### Utilisation des itérateurs
@@ -59,7 +63,7 @@ Pour illustrer le fonctionnement des itérateurs, reprenons l'exemple précéden
 ```cpp
 std::vector<int> v {1, 2, 3, 4, 5};
 
-// Déclaration d'un itérateur sur le dernier élément du vecteur v
+// Déclaration d'un itérateur permettant d'indiquer la fin du vecteur v
 std::vector<int>::iterator end_iterator { v.end() };
 
 // Parcours du vecteur avec l'itérateur
@@ -69,7 +73,7 @@ for (std::vector<int>::iterator it { v.begin() }; it != end_iterator; ++it) {
 ```
 
 Quelques explications sur ce code :
-Nous déclarons un itérateur sur le premier élément du vecteur `v` et un itérateur sur le dernier élément du vecteur `v`. Ensuite, nous parcourons le vecteur avec une boucle `for` en incrémentant l'**itérateur** (pour passer à l'élément suivant). Nous utilisons l'opérateur `!=` pour comparer l'itérateur avec l'itérateur sur le dernier élément du vecteur afin de savoir quand nous avons parcouru tout le vecteur. L'opérateur `*` permet de récupérer la valeur pointée par l'itérateur (à l'instar du déréférencement d'un pointeur).
+Nous déclarons un itérateur sur le premier élément du vecteur `v` et un itérateur sur le dernier élément du vecteur `v`. Ensuite, nous parcourons le vecteur avec une boucle `for` en incrémentant l'**itérateur** (pour passer à l'élément suivant). Nous utilisons l'opérateur `!=` pour comparer l'itérateur actuel avec l'itérateur qui indique la fin du du vecteur afin de savoir quand nous avons parcouru tout le vecteur. L'opérateur `*` permet de récupérer la valeur pointée par l'itérateur (à l'instar du déréférencement d'un pointeur).
 
 :::info for range based loop
 Il existe une syntaxe plus simple pour parcourir un conteneur avec un itérateur. Il s'agit de la boucle `for` avec la syntaxe `for (element : container)`. Nous avons déjà vu cette syntaxe avec les tableaux. Cette syntaxe est aussi valable pour les autres conteneurs de la **STL** et utilise en fait les itérateurs.
@@ -77,10 +81,10 @@ Il existe une syntaxe plus simple pour parcourir un conteneur avec un itérateur
 Voilà le même exemple que précédemment avec la boucle `for` et la syntaxe `for (element : container)` :
 
 ```cpp
-std::vector<int> v {1, 2, 3, 4, 5};
+std::vector<int> const v {1, 2, 3, 4, 5};
 
 // Parcours du vecteur avec l'itérateur
-for (int element : v) {
+for (int const element : v) {
     std::cout << element << std::endl;
 }
 ```
@@ -97,7 +101,7 @@ Il est donc impossible de déclarer un itérateur sans connaître le type du con
 Dans ce cas, nous pouvons utiliser la **déduction de type** pour déclarer notre itérateur. Cela se fait avec le mot clé `auto` à la place du type de la variable.
 
 ```cpp
-std::vector<int> v {1, 2, 3, 4, 5};
+std::vector<int> const v {1, 2, 3, 4, 5};
 
 // Déclaration d'un itérateur sur le vecteur v
 auto it { v.begin() };
@@ -127,7 +131,7 @@ Nous allons voir quelques exemples d'algorithmes les plus courants de la **STL**
 
 L'algorithme `std::find` permet de **rechercher** un élément dans un conteneur. Il prend en paramètre un itérateur sur le premier élément du conteneur, un itérateur sur le dernier élément du conteneur et la valeur à rechercher.
 
-L'algorithme `std::find` renvoie un itérateur sur l'élément trouvé ou un itérateur sur le dernier élément du conteneur si l'élément n'est pas trouvé.
+L'algorithme `std::find` renvoie un itérateur sur l'élément trouvé ou l'itérateur `end` si l'élément n'est pas trouvé.
 
 Voici un exemple avec un vecteur (`std::vector`) :
 
@@ -181,7 +185,7 @@ int main()
 
 ### Remove et Erase
 
-Pour le `std::vector`, il existe une méthode `std::erase` qui permet de supprimer un élément du vecteur. Cependant, cette méthode n'existe pas pour tous les conteneurs. 
+Pour le `std::vector`, il existe une méthode `std::erase` qui permet de supprimer des éléments du vecteur. Cependant, cette méthode n'existe pas pour tous les conteneurs. 
 
 ```cpp
 #include <iostream>
@@ -190,14 +194,31 @@ Pour le `std::vector`, il existe une méthode `std::erase` qui permet de supprim
 
 int main()
 {
-    std::vector<int> v {1, 2, 3, 4, 5};
+    std::vector<int> v {14, 25, 36, 42, 53};
 
-    // Suppression de l'élément 3 du vecteur v
-    std::erase(v, 3);
+    // Suppression de tous les éléments du vecteur v qui sont égaux à 36
+    std::erase(v, 36);
 }
 ```
 
-Cette fonction propre au `std::vector` ne permet pas de supprimer un élément d'un conteneur générique. Pour cela, il existe l'algorithme `std::remove` qui permet de supprimer un élément d'un conteneur. Il prend en paramètre un itérateur sur le premier élément du conteneur, un itérateur sur le dernier élément du conteneur et la valeur à supprimer. C'est ce qu'utilise la méthode `std::erase` pour supprimer un élément du `std::vector`.
+Cette fonction propre au `std::vector` ne permet pas de supprimer un élément d'un conteneur générique.
+
+Pour cela, il existe l'algorithme `std::remove` qui permet de supprimer un élément d'un conteneur. Il prend en paramètre un itérateur sur le premier élément du conteneur, un itérateur sur la fin du conteneur et la valeur à supprimer. C'est ce qu'utilise la méthode `std::erase` pour supprimer un élément du `std::vector`.
+
+:::warning
+`std::remove` ne supprime pas réellement les éléments du conteneur. Il déplace les éléments à supprimer à la fin du conteneur et renvoie un itérateur sur le premier élément à supprimer pour définir la nouvelle fin du conteneur. Il faut ensuite utiliser la méthode `erase` pour supprimer les éléments à supprimer du conteneur.
+
+```cpp
+v.erase(std::remove(v.begin(), v.end(), 5), v.end());
+```
+:::
+
+C'est ce qu'on appel l'**idiome** *remove-erase*.
+
+A partir du **C++20**, il existe de nouvelles fonctions qui permettent de supprimer des éléments d'un conteneur de manière générique: `std::erase_if` et `std::erase_if`. Ces fonctions prennent en paramètre  des itérateurs et fonctionne donc avec tous les conteneurs.
+
+Vous trouverez une explication [ici](https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom).
+:::
 
 ## Pour aller plus loin
 
@@ -230,7 +251,7 @@ L'algorithme `std::transform` permet d'appliquer une fonction à tous les élém
 
 int main()
 {
-    std::vector<int> v {1, 2, 3, 4, 5};
+    std::vector<int> const v {1, 2, 3, 4, 5};
     std::vector<int> v2 {0, 0, 0, 0, 0};
 
     // Application de la fonction lambda à tous les éléments du vecteur v
@@ -256,7 +277,7 @@ Avec des conteneurs pour lesquels on peut ajouter des éléments à la fin (comm
 
 int main()
 {
-    std::vector<int> v {1, 2, 3, 4, 5};
+    std::vector<int> const v {1, 2, 3, 4, 5};
     std::vector<int> v2 {};
 
     // Application de la fonction lambda à tous les éléments du vecteur v
@@ -278,16 +299,18 @@ int main()
 
 Lorsque l'on souhaite agréger les éléments d'un conteneur pour en extraire une valeur, il existe deux algorithmes qui permettent de faire cela : `std::accumulate` et `std::reduce`.
 
+Il sont inclus dans le fichier d'en-tête `numeric` de la **STL**. Vous pouvez retrouver la documentation de ce fichier d'en-tête sur le site [cppreference.com](https://en.cppreference.com/w/cpp/header/numeric).
+
 L'algorithme `std::accumulate` permet d’accumuler les éléments d'un conteneur selon une opération. Pour en faire la somme par exemple. Il prend en paramètre un itérateur sur le premier et le dernier élément du conteneur, la valeur initiale et l'opération à appliquer.
 
 ```cpp
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <numeric>
 
 int main()
 {
-    std::vector<int> v {1, 2, 3, 4, 5};
+    std::vector<int> const v {1, 2, 3, 4, 5};
 
     // Somme des éléments du vecteur v
     int sum { std::accumulate(v.begin(), v.end(), 0, [](int acc, int current_element) { return acc + current_element; }) };
@@ -303,11 +326,11 @@ L'algorithme `std::reduce` fonctionne de la même manière que `std::accumulate`
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <numeric>
 
 int main()
 {
-    std::vector<int> v {1, 2, 3, 4, 5};
+    std::vector<int> const v {1, 2, 3, 4, 5};
 
     // Somme des éléments du vecteur v
     int sum { std::reduce(v.begin(), v.end(), [](int a, int b) { return a + b; }) };

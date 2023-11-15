@@ -16,7 +16,7 @@ Un arbre est composé de **noeuds**. Chaque noeud peut avoir un nombre quelconqu
 Un arbre est composé d'un **noeud racine** qui est le noeud de départ de l'arbre. Il est possible d'accéder à tous les autres noeuds de l'arbre à partir du noeud racine.
 
 ```mermaid
-graph LR
+graph TB
     A[Noeud A] --> B[Noeud B]
     A --> C[Noeud C]
     A --> D[Noeud D]
@@ -157,7 +157,7 @@ On définit que le fils gauche d'un noeud d'indice `i` est le noeud d'indice `2*
 Un exemple avec l'arbre suivant:
 
 ```mermaid
-graph LR
+graph TB
     A --> B
     A --> C
     B --> D
@@ -178,12 +178,12 @@ En effet, le noeud `A` est à l'indice 0. Son fils gauche est le noeud `B` qui e
 On peut remarquer qu'il faut un tableau de taille `2^n - 1` pour représenter un arbre binaire complet de hauteur `n`. C'est à dire un arbre binaire dont tous les niveaux sont remplis sauf éventuellement le dernier niveau qui peut ne pas être rempli.
 :::
 
-Dans le cas où l'arbre n'est pas **complet** (c'est à dire que tous les noeuds n'ont pas forcément deux fils), on peut avoir des trous dans le tableau. C'est à dire des cases du tableau qui ne sont pas utilisées.
+Dans le cas où l'arbre n'est pas **complet** (c'est à dire que tous les feuilles ne sont pas sur le même niveau ou que des noeuds de l'arbre n'ont pas forcément deux fils), on peut avoir des trous dans le tableau. C'est à dire des cases du tableau qui ne sont pas utilisées.
 
 Par exemple, pour l'arbre suivant:
 
 ```mermaid
-graph LR
+graph TB
     A --> B
     A --> C
     C --> D
@@ -208,7 +208,7 @@ Il existe plusieurs façons de parcourir les différents noeuds d'un arbre binai
 
 Donnons nous l'arbre suivant:
 ```mermaid
-graph LR
+graph TB
     A --> B
     A --> C
     B --> D
@@ -235,7 +235,7 @@ Le parcours en profondeur consiste à parcourir l'arbre de la racine vers les fe
 Exemple de parcours Pour l'arbre suivant:
 
 ```mermaid
-graph LR
+graph TB
     A --> B
     A --> C
     B --> D
@@ -274,6 +274,8 @@ On répète cette opération jusqu'à trouver un noeud qui n'a pas de fils dans 
 La recherche dans un arbre binaire de recherche est similaire à la recherche dichotomique. Pour commencer, on compare la valeur recherchée avec la valeur du noeud racine. Si la valeur recherchée est inférieure à la valeur du noeud racine, on effectue la recherche dans le sous-arbre gauche. Sinon, on effectue la recherche dans le sous-arbre droit.
 
 On répète cette opération jusqu'à trouver la valeur recherchée ou jusqu'à arriver à un noeud qui n'a pas de fils dans la direction où l'on souhaite continuer la recherche. Dans ce cas, on peut conclure que la valeur recherchée n'est pas dans l'arbre.
+
+L'intérêt de la recherche dans un arbre binaire de recherche est que l'on peut exclure une partie de l'arbre à chaque étape de la recherche. Cela permet de réduire le nombre de comparaisons nécessaires pour trouver un élément dans l'arbre. C'est ce qui rend la recherche dans un arbre binaire de recherche efficace. C'est une complexité en $O(log(n))$.
 
 ### Suppression
 

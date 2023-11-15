@@ -55,7 +55,7 @@ Par exemple, si on se limite aux **26** lettres de l'alphabet, il faut $\lceil \
 
 De plus pour n'importe quel façon d'encoder les données, il faut respecter deux règles pour que l'encodage puisse être décodé :
   - Chaque donnée doit être associée à un code **unique**
-  - Il ne doit pas y avoir d'**ambiguïté** lors du décodage des données. Cela signifie qu'il ne faut pas associer à une donnée le code `01` et à une autre donnée le code `011` sinon impossible de savoir si l'on doit décoder les deux premiers bits `01` ou si cela faisait en fait partie du code `011`. Les codes qui ont cette propriété sont appelés **non préfixes**,  nous y reviendrons plus tard.
+  - Il ne doit pas y avoir d'**ambiguïté** lors du décodage des données. Cela signifie qu'il ne faut pas associer à une donnée le code `01` et à une autre donnée le code `011` sinon impossible de savoir si l'on doit décoder les deux premiers bits `01` ou si cela faisait en fait partie du code `011`. Un tel codage sans ambiguïté est appelé **préfixe**, nous y reviendrons plus tard.
 
 ## Codage par plages (Run-Length Encoding)
 
@@ -81,7 +81,7 @@ Par exemple on pourrait se donner les règles suivantes :
 - Lorsque trois éléments ou plus se répètent consécutivement alors la méthode de compression RLE est utilisée. On insère alors le nombre d'éléments répétés, suivi du caractère répété.
 - Sinon un caractère de contrôle (*) est inséré, suivi du nombre d'éléments de la chaîne non compressée puis de cette dernière.
 
-Ainsi la chaîne `aaaabccdeeeeefgh` serait compressée en `4a*bccd5e*fgh` et la chaîne `abcdefgh` serait compressée en `0abcdefgh`.
+Ainsi la chaîne `aaaabccdeeeeefgh` serait compressée en `4a*4bccd5e*3fgh` et la chaîne `abcdefgh` serait compressée en `*8abcdefgh`.
 
 On pourrait aussi plutôt se dire que l'on utilise le caractère de contrôle pour indiquer que la chaîne est compressée. Dans ce cas, la chaîne `aaaabccdeeeeefgh` serait compressée en `*4abccd*5efgh`.
 
@@ -91,7 +91,7 @@ Enfin on pourrait aussi se dire que l'on utilise le caractère lui même comme c
 
 Dans les images il est courant de trouver des zones de couleurs uniformes. Par exemple, une image de ciel bleu peut être représentée par une suite de pixels bleus. Dans ce cas, le codage par plages permet de réduire considérablement la taille de l'image.
 
-Il existe donc des variantes pour parcourir les pixels d'une image dans un certains sens pour maximiser les zones de couleurs uniformes (ou de valeurs identiques). Par exemple, on peut parcourir les pixels de gauche à droite, de haut en bas. On peut aussi parcourir les pixels de gauche à droite, de bas en haut ou même encore en zigzag.
+Il existe donc des variantes pour parcourir les pixels d'une image dans un certains sens pour maximiser les zones de couleurs uniformes (ou de valeurs identiques). Par exemple, on peut parcourir les pixels de gauche à droite, de haut en bas ou même encore en zigzag.
 
 ## Codage de Huffman
 
@@ -128,16 +128,23 @@ Admettons que l'on code les lettres de la manière suivante :
 - `c` est codé sur `110`
 - `d` est codé sur `111`
 
+:::note
+J'ai fait attention à ce que chaque code soit **préfixe**. Cela signifie qu'il n'y a pas de code qui est préfixe d'un autre code. Cela permet de décoder les données sans ambiguïté.
+:::
+
 Le texte `abbacada` peut donc être représenté par `01010011001110` (soit 14 bits). C'est mieux que l'encodage précédent, qui utilisait 16 bits.
 
 Mais comment faire pour trouver le meilleur encodage possible ?
 
-
 ### Arbre binaire
 
-Dans la suite de ce cours, nous allons utiliser un **arbre binaire** (complet) pour trouver l'encodage de Huffman (en fonction de la fréquence d'apparition des données). Mais j'aimerai d'abord vous expliquer pourquoi on utilise un arbre binaire.
+Dans la suite de ce cours, nous allons utiliser un **arbre binaire** (strict) pour trouver l'encodage de Huffman (en fonction de la fréquence d'apparition des données). Mais j'aimerai d'abord vous expliquer pourquoi on utilise un arbre binaire.
 
-Dans un arbre binaire complet, chaque **noeud** possède **deux fils**. Chaque feuille de l'arbre va permettre de représenter une donnée. Par exemple, on peut représenter les lettres `a`, `b`, `c` et `d` de la manière suivante :
+:::note
+Dans un arbre binaire strict (ou localement complet), chaque noeud a soit 0, soit 2 fils. C'est donc soit un noeud **interne** (qui a deux fils), soit une **feuille** (qui n'a pas de fils).
+:::
+
+Chaque feuille de l'arbre va permettre de représenter une donnée. Par exemple, on peut représenter les lettres `a`, `b`, `c` et `d` de la manière suivante :
 
 Une propriété intéressante des arbres binaires est que pour chaque feuille il existe un **chemin unique** de la racine à la feuille. Ce chemin va permettre d'associer un code à chaque donnée. En plus d'être unique, ce chemin est aussi **préfixe**. Cela signifie que l'on ne peut pas avoir un chemin qui est préfixe d'un autre chemin.
 
@@ -209,6 +216,11 @@ Ce qui peux se traduire par l'encodage suivant :
 On retrouve bien l'encodage que j'avais proposé précédemment.
 
 Mathématiquement, on peut démontrer que l'encodage de Huffman est optimal. Cela signifie que l'encodage de Huffman permet de compresser les données de manière optimale.
+
+:::note
+En pratique, pour pouvoir décoder les données, il faut stocker l'arbre binaire quelque part. Cela peut être fait de différentes manières. Par exemple, on peut stocker l'arbre binaire dans le fichier compressé. 
+Cela ajout un peu de poids au fichier compressé, mais cela permet de décoder les données ce qui est tout de même pratique :smiley:.
+:::
 
 ## Résumé
 

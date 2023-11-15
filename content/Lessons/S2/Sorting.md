@@ -201,7 +201,7 @@ Il existe des algorithmes qui ont une complexité en **moyenne** bien **meilleur
 
 On peut aussi s'intéresser à la complexité en **mémoire** d'un algorithme. Autrement dit, combien de mémoire va utiliser l'algorithme en fonction de la taille des données en entrée.
 
-C'est aussi une mesure de la complexité tout aussi pertinente que la complexité en temps.
+C'est aussi une mesure de la complexité pertinente.
 
 Si par exemple on a besoin de trier un tableau de 1000 éléments, on peut se dire que la complexité en temps n'est pas très importante, car l'algorithme va s'exécuter très rapidement. Mais si l'algorithme utilise **beaucoup de mémoire**, cela peut poser problème, car il peut ne **pas avoir assez de mémoire disponible** pour exécuter l'algorithme.
 
@@ -210,6 +210,10 @@ Dans la plupart des cas, la complexité en mémoire est beaucoup plus simple à 
 Mais dans des problèmes plus compliqués, la complexité en **mémoire** et la complexité en **temps** peuvent être **liées**.
 
 On peut par exemple choisir de sacrifier un peu de rapidité d'exécution pour utiliser moins de mémoire, ou au contraire d'augmenter la vitesse en augmentant la complexité en mémoire de notre algorithme, par exemple en stockant dans un tableau les résultats déjà calculés (c'est le principe de la mise en cache, appelée aussi *memoization*).
+
+:::note
+De nos jours, la complexité en mémoire est moins importante qu'avant, car les ordinateurs ont beaucoup de mémoire disponible. Dans la majorité des cas, on va donc plutôt s'intéresser à la complexité en temps. Mais la complexité en mémoire reste importante dans certains cas avancés ou avec des données très volumineuses.
+:::
 
 ### Limitation de la complexité
 
@@ -456,7 +460,7 @@ Exemple simple avec le tableau suivant `[1, 2, 2, 4, 5, 8, 12]` (nombre d'élém
 - Les **algorithmes de tri** sont très importants en informatique, car ils permettent de trier des données, ce qui est une opération très courante.
 - La complexité d'un algorithme est une **mesure** de la quantité de ressources (**temps**, **mémoire**, etc) que celui-ci va utiliser pour s'exécuter.
 - La **complexité en temps** permet de **quantifier** la relation entre les **conditions de départ** (**nombre d'éléments** du tableau, valeurs des éléments, etc) et le **temps** effectué par l'algorithme.
-- La **complexité** permet de **comparer** plusieurs algorithmes entre eux mais ne permet pas de savoir si un algorithme est **rapide** ou **lent**.
+- La **complexité** permet de savoir quel algorithme est le plus efficace quand on a un très grand nombre de données, mais ne permet pas de savoir si un algorithme est **rapide** ou **lent** pour un petit nombre de données (un algorithme avec une complexité en $O(n^2)$ peut être plus rapide qu'un algorithme avec une complexité en $O(n \times log(n))$ pour un petit nombre de données).
 - Nous avons vu les algorithmes de tri suivants:
     - **Tri par sélection** (selection sort): $O(n^2)$
         > C'est un algorithme qui fonctionne par **recherche successive** du plus petit élément du tableau.
