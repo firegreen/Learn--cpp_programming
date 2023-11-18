@@ -85,6 +85,7 @@ module.exports = async function configCreatorAsync() {
             {to: '/Lessons', label: 'Cours', position: 'left'},
             {to: '/TDs', label: 'TDs', position: 'left'},
             {to: '/Annexes', label: 'Annexes', position: 'left'},
+            {to: '/Workshop', label: 'Workshop', position: 'left'},
             {to: '/Sources', label: 'Sources', position: 'right'},
           ],
         },
