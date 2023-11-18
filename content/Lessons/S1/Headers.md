@@ -281,7 +281,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 add_executable(helloImac "src/main.cpp" "src/maths.cpp")
 
 # le dossier contenant les fichiers d'en-tête pour notre executable helloImac
-target_include_directories(helloImac "src/")
+target_include_directories(helloImac PUBLIC "src/")
 ```
 
 ```CMAKE_SOURCE_DIR``` est une variable cmake qui indique le dossier dans lequel se trouve le fichier ```CMakeLists.txt``` (documentation [ici](https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html#variable:CMAKE_SOURCE_DIR)).

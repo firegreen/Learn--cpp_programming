@@ -18,6 +18,10 @@ On va utiliser un fichier d'en-tête pour définir la structure et les fonctions
         - `div` : prend deux fractions en paramètre et retourne le **quotient** des deux fractions.
         - `display` : prend une fraction en paramètre et affiche la fraction sous la forme `numerator/denominator`.
 
+:::tip
+Petit rappel sur la définition des prototypes de méthodes pour les structures [ici](https://dsmte.github.io/Learn--cpp_programming/Lessons/S1/Struct#prototype-de-méthodes).
+:::
+
 3. Créer un fichier `fraction.cpp` qui contiendra les définitions des méthodes.
 
 4. Implémenter les fonctions dans le fichier `fraction.cpp`.
