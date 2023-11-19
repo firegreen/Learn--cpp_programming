@@ -1,4 +1,5 @@
 import YoutubeVideo from "@site/src/components/YoutubeVideo"
+import ExplanationsAboutRandom from './_random.md';
 
 ## ⭐ Ne garder que le vert
 
@@ -73,9 +74,7 @@ On cherche une formule qui, quand x vaut 0, le transforme en `image.width() - 1`
 
 ![](output/noisy_image.png)
 
-:::info
-Pour obtenir des nombres aléatoires, includez le fichier `"random.hpp"` et utilisez soit `random_int(min, max)` soit `random_float(min, max)`. Si vous voulez que votre programme utilise les mêmes nombres aléatoires à chaque fois que vous l'utilisez, vous pouvez définir une seed avec `set_random_seed(0)` au début de votre `main()` (vous pouvez passer n'importe quel nombre autre que 0, ça définira quels seront les nombres générés par les fonctions random).
-:::
+<ExplanationsAboutRandom/>
 
 <details><summary>Indice</summary>
 
@@ -175,9 +174,7 @@ Inversez une image sur deux :
 
 ![](output/glitch.png)
 
-:::info
-Pour obtenir des nombres aléatoires, includez le fichier `"random.hpp"` et utilisez soit `random_int(min, max)` soit `random_float(min, max)`. Si vous voulez que votre programme utilise les mêmes nombres aléatoires à chaque fois que vous l'utilisez, vous pouvez définir une seed avec `set_random_seed(0)` au début de votre `main()` (vous pouvez passer n'importe quel nombre autre que 0, ça définira quels seront les nombres générés par les fonctions random).
-:::
+<ExplanationsAboutRandom/>
 
 <details><summary>Indice</summary>
 
@@ -301,7 +298,7 @@ Utilisez `image.pixels()` pour récupérer le tableau contenant tous les pixels 
 Ensuite, au lieu de trier tous les pixels de l'image, triez par colonne (ou par ligne) pour un effet plus joli. (Il faudra trier des sous-parties du tableau `image.pixels()`.) Ou encore, triez des sous-parties prises aléatoirement dans l'image.
 
 :::info
-Pour trier un tableau, vous pouvez utiliser `std::sort`. La fonction s'utilise ainsi :
+Pour trier un tableau, vous pouvez utiliser `std::sort`. Vous verrez ça plus en détail au S2, mais voici une brève explication :
 ```cpp
 std::vector<int> v{8, 5, 3, 1};
 std::sort(v.begin(), v.end()); // Trie un tableau du début à la fin
@@ -335,9 +332,7 @@ std::sort(v.begin(), v.end(), [](glm::vec3 const& color1, glm::vec3 const& color
 On passe ce qu'on appelle une *lambda* en 3ème argument : c'est une fonction définie en plein milieu du code. Elle doit prendre en paramètre deux éléments du tableau (deux `vec3` en l'occurrence) et retourner un booléen indiquant qui est le plus petit des deux éléments.
 :::
 
-:::info
-Pour obtenir des nombres aléatoires, includez le fichier `"random.hpp"` et utilisez soit `random_int(min, max)` soit `random_float(min, max)`. Si vous voulez que votre programme utilise les mêmes nombres aléatoires à chaque fois que vous l'utilisez, vous pouvez définir une seed avec `set_random_seed(0)` au début de votre `main()` (vous pouvez passer n'importe quel nombre autre que 0, ça définira quels seront les nombres générés par les fonctions random).
-:::
+<ExplanationsAboutRandom/>
 
 ## ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 
@@ -365,9 +360,7 @@ Voici une bonne vidéo expliquant l'algorithme :
 Vous pouvez utiliser `glm::distance(color1, color2)` pour obtenir la distance entre deux couleurs.
 :::
 
-:::info
-Pour obtenir des nombres aléatoires, includez le fichier `"random.hpp"` et utilisez soit `random_int(min, max)` soit `random_float(min, max)`. Si vous voulez que votre programme utilise les mêmes nombres aléatoires à chaque fois que vous l'utilisez, vous pouvez définir une seed avec `set_random_seed(0)` au début de votre `main()` (vous pouvez passer n'importe quel nombre autre que 0, ça définira quels seront les nombres générés par les fonctions random).
-:::
+<ExplanationsAboutRandom/>
 
 ## ⭐⭐⭐⭐⭐⭐ Diamond Square
 
