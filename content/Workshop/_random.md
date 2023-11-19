@@ -1,0 +1,3 @@
+:::info
+Pour obtenir des nombres aléatoires, vous pouvez soit utiliser `srand` et `rand` comme vu en TP, soit utiliser les fonctions qu'on vous a fournies dans `#include "random.hpp"`. Elles ont une syntaxe plus simple à utiliser, et utilisent des générateurs aléatoires de meilleure qualité. Vous avez soit `random_int(min, max)`, soit `random_float(min, max)`. Si vous voulez obtenir la même suite de nombres aléatoires à chaque fois que vous relancez votre programme, vous pouvez définir une seed avec `set_random_seed(0)` au début de votre `main()` (vous pouvez passer n'importe quel nombre autre que 0, ça définira quels seront les nombres générés par les fonctions random).
+:::
