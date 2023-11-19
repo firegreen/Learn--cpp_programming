@@ -1,13 +1,5 @@
 import YoutubeVideo from "@site/src/components/YoutubeVideo"
 
-## How To
-
-- Voici le template à utiliser : https://github.com/Cours-Prog-Imac/S1-Prog-Workshop. Vous pouvez télécharger ça et coder dedans, tout est déjà setup (CMake, librairies, images de test, etc.)
-- Nous utiliserons la librairie *sil* pour lire, éditer et sauvegarder les images. Elle est très simple à utiliser et n'expose que le minimum nécessaire. Vous pouvez trouver sa documentation [sur GitHub](https://github.com/JulesFouchy/Simple-Image-Lib/tree/main#usage).
-- Utilisez des images relativement petites (500x500 max), pour que le rendu soit quasi-instantané. Au moins pendant que vous faites vos tests. Vous avez déjà `"images/logo.png"` et `"images/photo.jpg"` dispo dans le template de projet. Certains effets marchent mieux sur une photo, et d'autres mieux sur une image flat, donc choisissez en fonction de l'effet sur quelle image l'appliquer. Vous pouvez aussi mettre vos propres images si vous voulez.
-- Vous pouvez afficher l'image de sortie à côté dans VSCode pour facilement voir le résultat en même temps que vous codez :
-![Alt text](image.png)
-
 ## ⭐ Ne garder que le vert
 
 ![](output/keep_green_only.png)
@@ -65,7 +57,7 @@ La couleur de chaque pixel doit dépendre de son x uniquement.
 
 <details><summary>Indice 2</summary>
 
-Quelle formule permettrait d'avoir 0 (noir) quand x vaut 0 (gauche), et 1 (blanc) quand x vaut `image.width() - 1` (droite).
+Quelle formule permettrait d'avoir 0 (noir) quand x vaut 0 (gauche), et 1 (blanc) quand x vaut `image.width() - 1` (droite) ?
 </details>
 
 ## ⭐⭐ Miroir
@@ -74,22 +66,21 @@ Quelle formule permettrait d'avoir 0 (noir) quand x vaut 0 (gauche), et 1 (blanc
 
 <details><summary>Indice</summary>
 
-Il va falloir parcourir la moitié gauche de l'image, et l'échanger avec la partie droite de l'image.
+On cherche une formule qui, quand x vaut 0, le transforme en `image.width() - 1`, quand x vaut 1, le transforme en `image.width() - 2`, etc.
 </details>
 
 ## ⭐⭐ Image bruitée
 
 ![](output/noisy_image.png)
 
-<details><summary>Indice</summary>
-
-Remplacer quelques pixels au hasard par une couleur aléatoire.
-</details>
-
-
 :::info
 Pour obtenir des nombres aléatoires, includez le fichier `"random.hpp"` et utilisez soit `random_int(min, max)` soit `random_float(min, max)`. Si vous voulez que votre programme utilise les mêmes nombres aléatoires à chaque fois que vous l'utilisez, vous pouvez définir une seed avec `set_random_seed(0)` au début de votre `main()` (vous pouvez passer n'importe quel nombre autre que 0, ça définira quels seront les nombres générés par les fonctions random).
 :::
+
+<details><summary>Indice</summary>
+
+Remplacez quelques pixels au hasard par une couleur aléatoire.
+</details>
 
 ## ⭐⭐ Rotation de 90°
 
@@ -101,16 +92,16 @@ La formule générique pour un angle quelconque est un peu plus compliquée, mai
 
 ![](output/rgb_split.png)
 
-<details><summary>Indice</summary>
-
-Chaque pixel va prendre comme couleur le rouge d'un pixel un peu à sa droite, son propre vert, et le bleu d'un pixel un peu à sa gauche.
-</details>
-
-<details><summary>⚠️ Piège à ne pas tomber dedans</summary>
+<details><summary>⚠️ Piège à éviter</summary>
 
 Créez une nouvelle image et travaillez sur celle-ci. Il ne faut pas modifier l'image originale pendant que vous bouclez pour appliquer l'effet, sinon certains pixels n'utiliseront pas la bonne couleur de l'image originale, mais plutôt la couleur déjà modifiée par un pixel précédent, ce qui pourrait vous donner ce genre de rendu moins intéressant :
 
 ![](output/rgb_split_incorrect.png)
+</details>
+
+<details><summary>Indice</summary>
+
+Chaque pixel va prendre comme couleur le rouge d'un pixel un peu à sa droite, son propre vert, et le bleu d'un pixel un peu à sa gauche.
 </details>
 
 ## ⭐⭐ Luminosité
@@ -126,8 +117,8 @@ On voudrait des courbes comme celles-ci, qui diminuent tous les nombres entre 0 
 </details>
 <details><summary>Indice 2</summary>
 
-Les fonctions puissance font exactement ce qu'on veut!
-La preuve: https://www.desmos.com/calculator/c3ztk51mng
+Les fonctions puissance font exactement ce qu'on veut !<br/>
+La preuve : https://www.desmos.com/calculator/c3ztk51mng
 </details>
 
 ## ⭐⭐ Disque
@@ -158,7 +149,7 @@ En reprenant et modifiant légèrement votre code pour le disque, écrivez le co
 ![](output/rosace.png)
 
 Maintenant que vous savez dessiner un cercle, dessinez-en plusieurs sur la même image, à des positions bien choisies, de sorte à dessiner une rosace.
-(PS: il va sûrement falloir faire de la trigo!)
+(PS : il va sûrement falloir faire de la trigo!)
 
 <details><summary>Indice</summary>
 
@@ -184,25 +175,26 @@ Inversez une image sur deux :
 
 ![](output/glitch.png)
 
-<details><summary>Indice</summary>
-Prendre un rectangle de pixels et l'intervertir avec un autre rectangle de pixels, ailleurs dans l'image. Faire ça plusieurs fois.
-</details>
-
 :::info
 Pour obtenir des nombres aléatoires, includez le fichier `"random.hpp"` et utilisez soit `random_int(min, max)` soit `random_float(min, max)`. Si vous voulez que votre programme utilise les mêmes nombres aléatoires à chaque fois que vous l'utilisez, vous pouvez définir une seed avec `set_random_seed(0)` au début de votre `main()` (vous pouvez passer n'importe quel nombre autre que 0, ça définira quels seront les nombres générés par les fonctions random).
 :::
+
+<details><summary>Indice</summary>
+
+Prendre un rectangle de pixels et l'intervertir avec un autre rectangle de pixels, ailleurs dans l'image. Faire ça plusieurs fois.
+</details>
 
 ## ⭐⭐⭐ Fractale de Mandelbrot
 
 ![](output/mandelbrot.png)
 
-La fractale de Mandelbrot s'obtient ainsi: pour chaque nombre complexe `c`, on initialise un autre nombre complexe `z` à 0, puis on itère `z = z * z + c` un certain nombre de fois. Si le nombre `z` commence à devenir de plus en plus grand, alors `c` ne fait pas partie de la fractale et on colorie le pixel correspondant en noir. À l'inverse, si `z` reste de taille modérée peu importe le nombre d'itérations qu'on fait, alors le pixel fait partie de la fractale et on le colorie en blanc.
+La fractale de Mandelbrot s'obtient ainsi : pour chaque nombre complexe `c` (correspondant à la position d'un pixel), on initialise un autre nombre complexe `z` à 0, puis on itère `z = z * z + c` un certain nombre de fois. Si le nombre `z` commence à devenir de plus en plus grand, alors `c` ne fait pas partie de la fractale et on colorie le pixel correspondant en noir. À l'inverse, si `z` reste de taille modérée peu importe le nombre d'itérations qu'on fait, alors le pixel fait partie de la fractale et on le colorie en blanc.
 
 Plus précisément, on peut prouver que dès que `std::abs(z) > 2` alors le nombre `z` va forcément finir par grandir de plus en plus. On peut donc s'arrêter d'itérer dès que `std::abs(z) > 2`. Et pour obtenir une fractale plus jolie, plutôt que d'assigner du noir pur on peut assigner un gris plus ou moins sombre en fonction du nombre d'itérations qu'il a fallu faire avant que `std::abs(z) > 2`.
 
-Conseil: si vous mappez directement le pixel (x, y) au nombre complexe x + i * y, vous allez visualiser les nombres complexes entre 0 et 500, et votre fractale va être beaucoup trop petite. Les nombres intéressants sont plutôt entre -2 et 2. Il va donc falloir appliquer une petite transformation à votre x et y pour les faire rentrer dans cet intervalle.
+Conseil : si vous mappez directement le pixel (x, y) au nombre complexe x + i * y, vous allez visualiser les nombres complexes entre 0 et 500, et votre fractale va être beaucoup trop petite. Les nombres intéressants sont plutôt entre -2 et 2. Il va donc falloir appliquer une petite transformation à votre x et y pour les faire rentrer dans cet intervalle.
 
-Conseil: vous pouvez inclure le header `<complex>` pour utiliser des nombres complexes. Un nombre complexe se définit comme ça:
+Conseil : vous pouvez inclure le header `<complex>` pour utiliser des nombres complexes. Un nombre complexe se définit comme ça :
 ```cpp
 #include <complex>
 int main()
@@ -210,7 +202,7 @@ int main()
     std::complex<float> z{3.f, 2.f}; // Définis le nombre z = 3 + 2*i
 }
 ```
-et s'utilise comme un nombre normal: vous pouvez faire des additions, multiplications etc.
+et s'utilise comme un nombre normal : vous pouvez faire des additions, multiplications etc.
 
 :::info
 Vous pouvez créer une image noire avec
@@ -252,18 +244,19 @@ Sur l'image ci-dessus j'ai utilisé de l'*ordered dithering* avec une matrice de
 |---|----|
 | Avant | Après |
 
-L'algorithme consiste à trouver le pixel le moins lumineux et le pixel le plus lumineux de l'image, puis à appliquer une transformation à chaque pixel de sorte à ce que le pixel le plus sombre devienne un noir pur (0) et le plus lumineux devienne un blanc pur (1).
-(PS: testez avec l'image `"images/photo_faible_contraste.jpg"`, vous verrez bien l'intérêt de l'effet.)
+L'algorithme consiste à trouver le pixel le moins lumineux et le pixel le plus lumineux de l'image, puis à appliquer une transformation à chaque pixel de sorte à ce que le pixel le plus sombre devienne un noir pur (`0`) et le plus lumineux devienne un blanc pur (`1`).<br/>
+(PS : testez avec l'image `"images/photo_faible_contraste.jpg"`, vous verrez bien l'intérêt de l'effet.)
 
 ## ⭐⭐⭐⭐ Convolutions
 
 ![](output/box_blur.png)<br/>*Box blur*
 
-Les convolutions permettent d'implémenter plein d'effets (flou, détection de contour, augmentation de la netteté, etc.). L'effet va varier en fonction du *kernel* que vous utilisez lors de votre convolution. Tout est expliqué dans cette excellente vidéo, entre 1m10 et 4m18:
+Les convolutions permettent d'implémenter plein d'effets (flou, détection de contour, augmentation de la netteté, etc.). L'effet va varier en fonction du *kernel* que vous utilisez lors de votre convolution. Tout est expliqué dans cette excellente vidéo, entre 1m10 et 4m18 :
 
 <YoutubeVideo id="8rrHTtUzyZA"/>
+<br/>
 
-Conseil: une fois que vous savez que votre algo marche, si vous voulez tester avec des kernels plus gros, ça peut être lent, donc vous avez intérêt à build en release et lancer sans debugger attaché (demandez-moi si vous ne savez pas comment faire).
+Conseil : une fois que vous savez que votre algo marche, si vous voulez tester avec des kernels plus gros, ça peut être lent, donc vous avez intérêt à build en release (demandez-moi si vous ne savez pas comment faire).
 
 ### ⭐ Netteté, Contours, etc.
 
@@ -288,10 +281,10 @@ Quand vous voulez faire un gros flou il faut augmenter la taille du kernel, ce q
 
 ![](output/difference_of_gaussians.png)
 
-Voici une vidéo expliquant l'algorithme:
+Voici une vidéo expliquant l'algorithme :
 
-- **NB 1:** Il parle de flou gaussien, mais vous pouvez tout aussi bien réutiliser votre box blur, pas la peine d'implémenter un flou gaussien.
-- **NB 2:** Ne faire que l'algo de base, présenté jusqu'à 4m09. Après ça ça devient très compliqué (mais très stylé néanmoins).
+- **NB 1 :** Il parle de flou gaussien, mais vous pouvez tout aussi bien réutiliser votre box blur, pas la peine d'implémenter un flou gaussien.
+- **NB 2 :** Ne faire que l'algo de base, présenté jusqu'à 4m09. Après ça ça devient très compliqué (mais très stylé néanmoins).
 
 <YoutubeVideo id="5EuYKEvugLU"/>
 
@@ -308,7 +301,7 @@ Utilisez `image.pixels()` pour récupérer le tableau contenant tous les pixels 
 Ensuite, au lieu de trier tous les pixels de l'image, triez par colonne (ou par ligne) pour un effet plus joli. (Il faudra trier des sous-parties du tableau `image.pixels()`.) Ou encore, triez des sous-parties prises aléatoirement dans l'image.
 
 :::info
-Pour trier un tableau, vous pouvez utiliser `std::sort`. La fonction s'utilise ainsi:
+Pour trier un tableau, vous pouvez utiliser `std::sort`. La fonction s'utilise ainsi :
 ```cpp
 std::vector<int> v{8, 5, 3, 1};
 std::sort(v.begin(), v.end()); // Trie un tableau du début à la fin
@@ -324,7 +317,7 @@ std::vector<int> v{8, 5, 3, 1};
 std::sort(v.begin() + 1, v.begin() + 3); // Trie le sous-tableau {5, 3}
 // {8, 3, 5, 1}
 ```
-Et vous pouvez aussi choisir selon quel ordre les éléments seront triés :
+Et vous pouvez aussi choisir selon quel critère de comparaison les éléments seront triés :
 ```cpp
 std::vector<glm::vec3> v{/*...*/};
 std::sort(v.begin(), v.end(), [](glm::vec3 const& color1, glm::vec3 const& color2)
@@ -350,7 +343,8 @@ Pour obtenir des nombres aléatoires, includez le fichier `"random.hpp"` et util
 
 ![](output/kuwahara.jpg)
 
-Voici une vidéo expliquant l'algorithme (La version simple de l'algo, qui est expliquée entre 3:11 et 3:30, suffit largement. (Mais si vous voulez aller plus loin, vous êtes les bienvenu.es bien sûr 😉)) :
+Voici une vidéo expliquant l'algorithme :<br/>
+(La version simple de l'algo, qui est expliquée entre 3m11 et 3m30, suffit largement. (Mais si vous voulez aller plus loin, vous êtes les bienvenu.es bien sûr 😉))
 
 <YoutubeVideo id="LDhN-JK3U9g"/>
 
@@ -365,6 +359,7 @@ Trouvez les k couleurs les plus représentatives de l'image, puis assignez à ch
 Voici une bonne vidéo expliquant l'algorithme :
 
 <YoutubeVideo id="yR7k19YBqiw"/>
+<br/>
 
 :::info
 Vous pouvez utiliser `glm::distance(color1, color2)` pour obtenir la distance entre deux couleurs.
@@ -383,8 +378,9 @@ Algorithme de génération de height map, qui peut ensuite être utilisée pour 
 Voici une bonne vidéo expliquant l'algorithme :
 
 <YoutubeVideo id="4GuAV1PnurU"/>
+<br/>
 
-Conseil: commencez par travailler sur une image toute petite (e.g. 17x17), afin de bien voir les pixels et ce qu'il se passe.
+Conseil : commencez par travailler sur une image toute petite (e.g. 17x17), afin de bien voir les pixels et ce qu'il se passe.
 
 :::info
 Vous pouvez créer une image noire avec
@@ -398,7 +394,7 @@ puis itérer sur les pixels pour les colorer.
 
 ![](output/diamond_square_colored.png)
 
-Appliquez un dégradé en couleur en fonction du niveau de gris de la height map.
+Appliquez un dégradé de couleur en fonction du niveau de gris de la height map.
 
 :::info
 Avec `glm::mix(color1, color2, pourcentage);` vous pouvez faire un mélange entre deux couleurs données.
@@ -406,7 +402,7 @@ Avec `glm::mix(color1, color2, pourcentage);` vous pouvez faire un mélange entr
 
 <details><summary>Indice</summary>
 
-Essayez par exemple de faire un dégradé de bleu du sombre au clair quand le niveau de gris est entre 0 et 0.5, et un autre dégradé entre du vert et du marron quand le niveau de gris est entre 0.5 et 1.
+Essayez par exemple de faire un dégradé d'un bleu sombre à un bleu clair quand le niveau de gris est entre 0 et 0.5, et un autre dégradé entre du vert et du marron quand le niveau de gris est entre 0.5 et 1.
 </details>
 
-## Vous pouvez implémenter vos propres effets !
+## Vous pouvez aussi implémenter vos propres effets !
