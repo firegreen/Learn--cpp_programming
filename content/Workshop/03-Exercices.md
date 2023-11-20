@@ -85,7 +85,12 @@ Remplacez quelques pixels au hasard par une couleur aléatoire.
 
 ![](output/rotate_90_degrees.png)
 
-La formule générique pour un angle quelconque est un peu plus compliquée, mais pour 90° il y a une formule vraiment simple, essayez de la trouver !
+La formule générique pour un angle quelconque est un peu plus compliquée, mais pour 90° il y a une formule plus simple, essayez de la trouver !
+
+<details><summary>Indice</summary>
+
+Créez une nouvelle image avec `sil::Image new_image{new_width, new_height};` pour stocker le résultat de votre effet, car elle n'aura pas la même taille que l'image originale.
+</details>
 
 ## ⭐⭐ RGB split
 
@@ -216,9 +221,11 @@ puis itérer sur les pixels pour les colorer.
 :::info
 Pour appliquer une rotation à un `glm::vec2` vous pouvez utiliser
 ```cpp
+#include <glm/gtx/matrix_transform_2d.hpp>
+
 glm::vec2 rotated(glm::vec2 v, float angle)
 {
-    return glm::vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{v, 0.f}};
+    return glm::vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{v, 1.f}};
 } 
 ```
 :::

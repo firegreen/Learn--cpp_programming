@@ -17,6 +17,8 @@ Le rendu se fera par groupes de 2 (et 1 groupe de 3 si vous êtes un nombre impa
 
 ## Pour bien démarrer
 
+- Attention, il faut avoir [installé git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) pour que ça marche !
+<!-- - Le FetchContent en a besoin. -->
 - [Voici le template à utiliser](https://github.com/Cours-Prog-Imac/S1-Prog-Workshop). Vous pouvez télécharger ça et coder dedans, tout est déjà setup (CMake, librairies, images de test, etc.)
 - Nous utiliserons la librairie *sil* pour lire, éditer et sauvegarder les images. Elle est très simple à utiliser et n'expose que le minimum nécessaire. Vous pouvez trouver sa documentation [sur GitHub](https://github.com/JulesFouchy/Simple-Image-Lib/tree/main#usage).
 - Utilisez des images relativement petites (500x500 max), pour que le rendu soit quasi-instantané. Au moins pendant que vous faites vos tests. Vous avez déjà `"images/logo.png"` et `"images/photo.jpg"` dispos dans le template de projet. Certains effets marchent mieux sur une photo, et d'autres mieux sur une image flat, donc choisissez en fonction de l'effet sur quelle image l'appliquer. Vous pouvez aussi mettre vos propres images si vous voulez.
@@ -42,6 +44,39 @@ for (glm::vec3& color : image.pixels())
   - On peut accéder aux composantes rouge, verte et bleue avec `color.r`, `color.g` et `color.b`.
   - Les valeurs vont de 0 à 1. Par exemple un rouge pur sera `glm::vec3{1, 0, 0}`, du blanc sera `glm::vec3{1, 1, 1}` et du noir `glm::vec3{0, 0, 0}`.
   - Pour créer une couleur avec les trois composantes identiques (donc un niveau de gris), la syntaxe `glm::vec3{grey}` est équivalente à `glm::vec3{grey, grey, grey}`.
+- Pour faire les différents exos, je vous conseille de faire une fonction par exo, et de tout mettre dans le même fichier `main.cpp`. C'est le plus simple, et tant que le fichier ne devient pas trop gros et bordélique je pense que c'est une bonne solution. Par exemple :
+```cpp
+void keep_green_only(sil::Image& image) // Prend l'image par référence pour pouvoir la modifier
+{
+    // ...
+}
+
+void channels_swap(sil::Image& image) // Prend l'image par référence pour pouvoir la modifier
+{
+    // ...
+}
+
+int main()
+{
+    {
+        sil::Image image{"images/logo.png"}; // Lis l'image
+        keep_green_only(image); // Utilise la fonction pour modifier l'image
+        image.save("output/keep_green_only.png"); // Sauvegarde l'image
+    }
+    {
+        sil::Image image{"images/logo.png"}; // Lis l'image
+        channels_swap(image); // Utilise la fonction pour modifier l'image
+        image.save("output/channels_swap.png"); // Sauvegarde l'image
+    }
+}
+```
+
+## HELP mon effet ne fait rien !
+
+- Est-ce que vous n'avez pas oublié une référence quelque part ?
+- Est-ce que vous sauvegardez bien la bonne image ?
+- Est-ce qu'il n'y a pas un crash ? Lancez avec le debugger pour savoir !
+- Est-ce que vous ne faites pas une division entre entiers, du genre `1 / image.width()` qui retourne toujours 0 parce que le résultat serait entre 0 et 1 et se retrouve arrondi ?
 
 ## Rapport
 
