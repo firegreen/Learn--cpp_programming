@@ -17,10 +17,8 @@ Le rendu se fera par groupes de 2 (et 1 groupe de 3 si vous êtes un nombre impa
 
 ## Pour bien démarrer
 
-- Attention, il faut avoir [installé git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) pour que ça marche ! <!-- - Le FetchContent en a besoin. -->
-- La première fois le projet met du temps à se configurer, c'est normal (environ 1 ou 2 minutes).
-- Il peut arriver, surtout que vous changez des choses dans le setup / CMake, que vous ayez des erreurs bizarres : supprimez le dossier *build* et recommencez.
 - [Voici le template à utiliser](https://github.com/Cours-Prog-Imac/S1-Prog-Workshop). Vous pouvez télécharger ça et coder dedans, tout est déjà setup (CMake, librairies, images de test, etc.)
+- Il peut arriver, surtout que vous changez des choses dans le setup / CMake, que vous ayez des erreurs bizarres : supprimez le dossier *build* et recommencez.
 - Nous utiliserons la librairie *sil* pour lire, éditer et sauvegarder les images. Elle est très simple à utiliser et n'expose que le minimum nécessaire. Vous pouvez trouver sa documentation [sur GitHub](https://github.com/JulesFouchy/Simple-Image-Lib/tree/main#usage).
 - Utilisez des images relativement petites (500x500 max), pour que le rendu soit quasi-instantané. Au moins pendant que vous faites vos tests. Vous avez déjà `"images/logo.png"` et `"images/photo.jpg"` dispos dans le template de projet. Certains effets marchent mieux sur une photo, et d'autres mieux sur une image flat, donc choisissez en fonction de l'effet sur quelle image l'appliquer. Vous pouvez aussi mettre vos propres images si vous voulez.
 - Vous pouvez afficher l'image de sortie dans VSCode pour facilement voir le résultat en même temps que vous codez :
