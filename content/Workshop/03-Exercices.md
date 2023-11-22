@@ -219,7 +219,7 @@ puis itérer sur les pixels pour les colorer.
 ![](output/vortex.png)
 
 :::info
-Pour appliquer une rotation à un point `point`, autour d'un autre point `center_of_rotation`, vous pouvez utiliser
+Pour appliquer une rotation à un point `point`, autour d'un autre point `center_of_rotation`, d'un angle `angle` (exprimé en radians) vous pouvez utiliser
 ```cpp
 #include <glm/gtx/matrix_transform_2d.hpp>
 
@@ -228,6 +228,9 @@ glm::vec2 rotated(glm::vec2 point, glm::vec2 center_of_rotation, float angle)
     return glm::vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{point - center_of_rotation, 0.f}} + center_of_rotation;
 }
 ```
+:::
+:::info
+Pour obtenir la distance entre deux points, vous pouvez utiliser `glm::distance(p1, p2)`;
 :::
 
 <details><summary>Indice</summary>
