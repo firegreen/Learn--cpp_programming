@@ -219,14 +219,14 @@ puis itérer sur les pixels pour les colorer.
 ![](output/vortex.png)
 
 :::info
-Pour appliquer une rotation à un `glm::vec2` vous pouvez utiliser
+Pour appliquer une rotation à un point `point`, autour d'un autre point `center_of_rotation`, vous pouvez utiliser
 ```cpp
 #include <glm/gtx/matrix_transform_2d.hpp>
 
-glm::vec2 rotated(glm::vec2 v, float angle)
+glm::vec2 rotated(glm::vec2 point, glm::vec2 center_of_rotation, float angle)
 {
-    return glm::vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{v, 1.f}};
-} 
+    return glm::vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{point - center_of_rotation, 0.f}} + center_of_rotation;
+}
 ```
 :::
 
