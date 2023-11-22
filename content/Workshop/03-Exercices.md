@@ -214,7 +214,7 @@ sil::Image image{500/*width*/, 500/*height*/};
 puis itérer sur les pixels pour les colorer.
 :::
 
-## ⭐⭐⭐ Vortex
+## ⭐⭐⭐(⭐) Vortex
 
 ![](output/vortex.png)
 
