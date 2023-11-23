@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Markdown est un langage de *markup*, c'est-à-dire une syntaxe pour pimper votre texte : le mettre en gras, en italique, faire des titres, mettre des liens, etc. Par exemple, [cette page elle-même](https://github.com/dsmtE/Learn--cpp_programming/blob/main/content/Annexes/Markdown.md) est écrite en Markdown.
+Markdown est un langage de *markup*, c'est-à-dire une syntaxe pour pimper votre texte : le mettre en **gras**, en *italique*, faire des titres, mettre des [liens](https://pointerpointer.com/), etc. Par exemple, [voici la documentation de la librairie *sil*, qui est écrite en Markdown](https://github.com/JulesFouchy/Simple-Image-Lib/blob/main/README.md?plain=1).
 
 ## Extensions
 
