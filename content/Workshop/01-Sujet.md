@@ -17,10 +17,8 @@ Le rendu se fera par groupes de 2 (et 1 groupe de 3 si vous êtes un nombre impa
 
 ## Pour bien démarrer
 
-- Attention, il faut avoir [installé git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) pour que ça marche ! <!-- - Le FetchContent en a besoin. -->
-- La première fois le projet met du temps à se configurer, c'est normal (environ 1 ou 2 minutes).
-- Il peut arriver, surtout que vous changez des choses dans le setup / CMake, que vous ayez des erreurs bizarres : supprimez le dossier *build* et recommencez.
 - [Voici le template à utiliser](https://github.com/Cours-Prog-Imac/S1-Prog-Workshop). Vous pouvez télécharger ça et coder dedans, tout est déjà setup (CMake, librairies, images de test, etc.)
+- Il peut arriver, surtout que vous changez des choses dans le setup / CMake, que vous ayez des erreurs bizarres : supprimez le dossier *build* et recommencez.
 - Nous utiliserons la librairie *sil* pour lire, éditer et sauvegarder les images. Elle est très simple à utiliser et n'expose que le minimum nécessaire. Vous pouvez trouver sa documentation [sur GitHub](https://github.com/JulesFouchy/Simple-Image-Lib/tree/main#usage).
 - Utilisez des images relativement petites (500x500 max), pour que le rendu soit quasi-instantané. Au moins pendant que vous faites vos tests. Vous avez déjà `"images/logo.png"` et `"images/photo.jpg"` dispos dans le template de projet. Certains effets marchent mieux sur une photo, et d'autres mieux sur une image flat, donc choisissez en fonction de l'effet sur quelle image l'appliquer. Vous pouvez aussi mettre vos propres images si vous voulez.
 - Vous pouvez afficher l'image de sortie dans VSCode pour facilement voir le résultat en même temps que vous codez :
@@ -45,6 +43,18 @@ for (glm::vec3& color : image.pixels())
   - On peut accéder aux composantes rouge, verte et bleue avec `color.r`, `color.g` et `color.b`.
   - Les valeurs vont de 0 à 1. Par exemple un rouge pur sera `glm::vec3{1, 0, 0}`, du blanc sera `glm::vec3{1, 1, 1}` et du noir `glm::vec3{0, 0, 0}`.
   - Pour créer une couleur avec les trois composantes identiques (donc un niveau de gris), la syntaxe `glm::vec3{grey}` est équivalente à `glm::vec3{grey, grey, grey}`.
+  - Vous pouvez généralement faire vos opérations directement sur les couleurs, pas besoin de les faire 3 fois sur chacun des canaux :
+```cpp
+glm::vec3 color1{};
+glm::vec3 color2{};
+glm::vec3 final_color{};
+
+final_color = color1 + color2;
+// équivalent à :
+// final_color.r = color1.r + color2.r;
+// final_color.g = color1.g + color2.g;
+// final_color.b = color1.b + color2.b;
+```
 - Pour faire les différents exos, je vous conseille de faire une fonction par exo, et de tout mettre dans le même fichier `main.cpp`. C'est le plus simple, et tant que le fichier ne devient pas trop gros et bordélique je pense que c'est une bonne solution. Par exemple :
 ```cpp
 void keep_green_only(sil::Image& image) // Prend l'image par référence pour pouvoir la modifier
