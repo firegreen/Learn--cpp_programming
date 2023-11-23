@@ -49,6 +49,11 @@ std::cout << "x vaut " << x << '\n';
 
 Bout de code \`int x{0};\` au milieu d'une phrase.
 
+Équations de math avec LaTeX :
+\$\$
+\int_{-\inf{}}^{+\inf{}} x^2 dx
+\$\$
+
 Notes de bas de page \[^1]
 
 \[^1]: Je suis une note de bas de page !
@@ -92,6 +97,11 @@ std::cout << "x vaut " << x << '\n';
 ```
 
 Bout de code `int x{0};` au milieu d'une phrase.
+
+Équations de math avec LaTeX :
+$$
+\int_{-\inf{}}^{+\inf{}} x^2 dx
+$$
 
 Notes de bas de page [^1]
 
