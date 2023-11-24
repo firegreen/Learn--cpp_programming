@@ -352,6 +352,11 @@ Voici une vidéo expliquant l'algorithme :<br/>
 (La version simple de l'algo, qui est expliquée entre 3m11 et 3m30, suffit largement. (Mais si vous voulez aller plus loin, vous êtes les bienvenu.es bien sûr 😉))
 
 <YoutubeVideo id="LDhN-JK3U9g"/>
+<br/>
+
+:::info
+Vous pouvez utiliser `glm::distance(color1, color2)` pour obtenir la distance entre deux couleurs.
+:::
 
 ## ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 
