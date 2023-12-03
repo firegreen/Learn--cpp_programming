@@ -3,6 +3,7 @@ title: Utiliser des bibliothèques
 tags:
     - C++
 
+sidebar_position: 3
 ---
 
 Une des grandes forces de C++ est la possibilité d'utiliser des **bibliothèques**. Une bibliothèque est un ensemble de fonctions et de classes qui permettent de réaliser des tâches spécifiques. Il existe des bibliothèques pour à peu près tout : afficher des images, jouer des sons, faire des calculs mathématiques, etc.
@@ -202,7 +203,6 @@ find_package(glm REQUIRED)
 # On lie la bibliothèque glm à notre exécutable (target) test
 target_link_libraries(test PUBLIC glm::glm)
 ```
-
 
 :::info
 Enfin, avec de nouvelle version de Cmake il est même possible de configurer le fonctionnement de `FetchContent_MakeAvailable` pour qu'il utilise **Find Package** pour inclure la bibliothèque si c'est possible et qu'il utilise **FetchContent** sinon.

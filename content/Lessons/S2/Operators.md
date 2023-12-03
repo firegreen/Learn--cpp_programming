@@ -3,7 +3,7 @@ title: Sémantique et opérateurs
 tags:
     - C++
 
-sidebar_position: 2
+sidebar_position: 0
 ---
 
 Nous avons appris au semestre 1 à définir des **structures**. Cela permet de regrouper des données qui ont un lien entre elles. Par exemple, on peut créer une structure `Point` qui contient les coordonnées d'un point dans un plan.

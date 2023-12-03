@@ -3,7 +3,7 @@ title: Algorithmes de tri, complexité et recherche dichotomique
 tags:
     - C++
 
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 export const Array = ({values, boldIndices}) => (

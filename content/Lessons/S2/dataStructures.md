@@ -3,7 +3,7 @@ title: Structures de données
 tags:
     - C++
 
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 ## Piles et files (LIFO, FIFO)
