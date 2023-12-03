@@ -25,7 +25,7 @@ sidebar_position: 9
 3. Utiliser les fonctions précédentes pour afficher le plus grand élément du tableau et la somme des éléments du tableau.
     :::tip
     On peut récupérer un pointeur sur le premier élément d'un `std::vector` avec la méthode `data()`.
-    Sinon il est aussi d'utiliser l'opérateur `&` sur le premier élément du `std::vector`.
+    Sinon il est aussi possible d'utiliser l'opérateur `&` sur le premier élément du `std::vector`.
     :::
 
 4. Completer la fonction `sum` suivante pour qu'elle retourne un pointeur sur la somme des éléments du tableau passé en paramètre.
