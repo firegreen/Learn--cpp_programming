@@ -3,7 +3,7 @@ title: Arbres binaires
 tags:
     - C++
 
-sidebar_position: 7
+sidebar_position: 6
 ---
 
 Dans ce chapitre nous allons découvrir une nouvelle structure de données: les arbres binaires.
