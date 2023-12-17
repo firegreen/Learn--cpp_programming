@@ -14,6 +14,7 @@ Dans ce chapitre, nous allons voir comment utiliser des bibliothèques externes,
 
 :::note
 Les termes **bibliothèque** et **librairie** sont synonymes. Dans ce cours, nous utiliserons le terme **bibliothèque**. Mais il est possible que vous rencontriez le terme **librairie** dans d'autres ressources.
+:::
 
 ## Fonctionnement d'une bibliothèque
 
