@@ -77,7 +77,7 @@ Maintenant que nous avons vu comment représenter un graphe en mémoire, nous al
 Donnons-nous le graphe suivant :
 
 ```mermaid
-graph LR
+graph TB
     A --> B
     A --> C
     B --> D
@@ -94,14 +94,14 @@ Pour parcourir un graphe en largeur, on utilise une **file**. On commence par aj
 
 Voici le déroulement du parcours en largeur au départ du noeud A pour le graphe précédent :
 
-- On commence par ajouter le sommet A dans la file.
-- Comme la file n'est pas vide, on retire le premier élément (A) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc B et C dans la file.
-- On retire le premier élément (B) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc D et E dans la file. La file contient maintenant C, D et E.
-- On retire le premier élément (C) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc F et G dans la file. La file contient maintenant D, E, F et G.
-- On retire le premier élément (D) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc rien dans la file. La file contient maintenant E, F et G.
-- On fait de même pour E, F et G. La file est maintenant vide. On a donc parcouru tous les sommets du graphe.
+- On commence par ajouter le sommet **A** dans la file.
+- Comme la file n'est pas vide, on retire le premier élément (**A**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **B** et **C** dans la file.
+- On retire le premier élément (**B**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **D** et **E** dans la file. La file contient maintenant **C**, **D** et **E**.
+- On retire le premier élément (**C**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **F** et **G** dans la file. La file contient maintenant **D**, **E**, **F** et **G**.
+- On retire le premier élément (**D**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc rien dans la file. La file contient maintenant **E**, **F** et **G**.
+- On fait de même pour **E**, **F** et **G**. La file est maintenant vide. On a donc parcouru tous les sommets du graphe.
 
-Cela nous donne donc le parcours suivant : A, B, C, D, E, F, G.
+Cela nous donne donc le parcours suivant : **A**, **B**, **C**, **D**, **E**, **F**, **G**.
 
 ### Parcours en profondeur
 
@@ -109,17 +109,17 @@ Le parcours en profondeur consiste à parcourir le graphe en partant d'un sommet
 
 Pour parcourir un graphe en profondeur, on utilise une **pile**. On commence par ajouter le sommet de départ dans la pile. Tant que la pile n'est pas vide, on retire le premier élément de la pile et on l'ajoute à la liste des sommets visités. Ensuite, on ajoute tous les sommets adjacents de ce sommet dans la pile. On recommence jusqu'à ce que la pile soit vide.
 
-Voici le déroulement du parcours en profondeur au départ du noeud A pour le graphe précédent :
+Voici le déroulement du parcours en profondeur au départ du noeud **A** pour le graphe précédent :
 
-- On commence par ajouter le sommet A dans la pile.
-- Comme la pile n'est pas vide, on retire le premier élément (A) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc B et C dans la pile.
-- On retire le premier élément (C) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc F et G dans la pile. La pile contient maintenant B, F et G.
-- On retire le premier élément (G) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant B et F.
-- On retire le premier élément (F) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant B.
-- On retire le premier élément (B) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc D et E dans la pile. La pile contient maintenant D et E.
-- On fait de même pour D et E. La pile est maintenant vide. On a donc parcouru tous les sommets du graphe.
+- On commence par ajouter le sommet **A** dans la pile.
+- Comme la pile n'est pas vide, on retire le premier élément (**A**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **B** et **C** dans la pile.
+- On retire le premier élément (**C**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **F** et **G** dans la pile. La pile contient maintenant **B**, **F** et **G**.
+- On retire le premier élément (**G**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant **B** et **F**.
+- On retire le premier élément (**F**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant **B**.
+- On retire le premier élément (**B**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **D** et **E** dans la pile. La pile contient maintenant **D** et **E**.
+- On fait de même pour **D** et **E**. La pile est maintenant vide. On a donc parcouru tous les sommets du graphe.
 
-Ce qui nous donne le parcours suivant : A, C, G, F, B, D, E.
+Ce qui nous donne le parcours suivant : **A**, **C**, **G**, **F**, **B**, **D**, **E**.
 
 ## En pratique
 
@@ -152,12 +152,12 @@ Pour illustrer l'algorithme de Dijkstra, donnons-nous le graphe suivant :
 
 ```mermaid
 graph LR
-    A --> B(1)
-    A --> C(3)
-    B --> C(1)
-    B --> D(2)
-    C --> E(1)
-    D --> E(1)
+    A --1--> B
+    A --3--> C
+    B --1--> C
+    B --2--> D
+    C --1--> E
+    D --1--> E
 ```
 
 on considère que le sommet de départ est **A** .
@@ -168,32 +168,33 @@ on considère que le sommet de départ est **A** .
 
 On commence par ajouter le sommet de départ **A** dans la file de priorité des sommets à visiter. On initialise également la distance du sommet de départ à 0 et les autres distances à l'infini.
 
-B et C sont les sommets adjacents de A. On ajoute donc B et C dans la file de priorité des sommets à visiter. On met également à jour les distances de B et C. La distance de B est la distance de A plus le poids de l'arête entre A et B. La distance de C est la distance de A plus le poids de l'arête entre A et C.
+**B** et **C** sont les sommets adjacents de **A**. On ajoute donc **B** et **C** dans la file de priorité des sommets à visiter. On met également à jour les distances de **B** et **C**. La distance de **B** est la distance de **A** plus le poids de l'arête entre **A** et **B**. La distance de **C** est la distance de **A** plus le poids de l'arête entre **A** et **C**.
 
 | A | B    | C    | D        | E        | Sommets à visiter | Sommets visités |
 |---|------|------|----------|----------|-------------------|-----------------|
 | 0 | 1(A) | 3(A) | $\infty$ | $\infty$ | [B, C]            | [A]             |
 
-On continue en retirant le sommet B. Il a comme sommets adjacents C et D. C à déjà une distance de 3(venant de A) mais la distance depuis B est plus petite (1 venant de A plus 1 venant de B). On met donc à jour la distance de C. La distance de D est la distance de B plus le poids de l'arête entre B et D. On ajoute ensuite D dans la file de priorité des sommets à visiter (C est déjà dans la file).
+On continue en retirant le sommet **B**. Il a comme sommets adjacents **C** et **D**. **C** à déjà une distance de 3(venant de **A**) mais la distance depuis **B** est plus petite (1 venant de **A** plus 1 venant de **B**). On met donc à jour la distance de **C**. La distance de **D** est la distance de **B** plus le poids de l'arête entre **B** et **D**. On ajoute ensuite **D** dans la file de priorité des sommets à visiter (**C** est déjà dans la file).
 
 | A | B    | C    | D    | E        | Sommets à visiter | Sommets visités |
 |---|------|------|------|----------|-------------------|-----------------|
 | 0 | 1(A) | 2(B) | 3(B) | $\infty$ | [C, D]            | [A, B]          |
 
-Voilà l'étape suivant en considérant C. C a comme sommets adjacents E. La distance de E est la distance de C plus le poids de l'arête entre C et E. On ajoute ensuite E dans la file de priorité des sommets à visiter.
+Voilà l'étape suivant en considérant **C**. **C** a comme sommets adjacents **E**. La distance de **E** est la distance de **C** plus le poids de l'arête entre **C** et **E**. On ajoute ensuite **E** dans la file de priorité des sommets à visiter.
+
 | A | B    | C    | D    | E    | Sommets à visiter | Sommets visités |
 |---|------|------|------|------|-------------------|-----------------|
 | 0 | 1(A) | 2(B) | 3(B) | 3(C) | [D, E]            | [A, B, C]       |
 
-On continue en retirant le sommet D. Il a comme sommets adjacents E. La distance de E est la distance de D plus le poids de l'arête entre D et E. Or la distance actuelle de E (venant de C) est plus petite. On ne met donc pas à jour la distance de E. E est déjà dans la file de priorité des sommets à visiter. On ne fait donc rien.
+On continue en retirant le sommet **D**. Il a comme sommets adjacents **E**. La distance de **E** est la distance de **D** plus le poids de l'arête entre **D** et **E**. Or la distance actuelle de **E** (venant de **C**) est plus petite. On ne met donc pas à jour la distance de **E**. **E** est déjà dans la file de priorité des sommets à visiter. On ne fait donc rien.
 
 | A | B    | C    | D    | E    | Sommets à visiter | Sommets visités |
 |---|------|------|------|------|-------------------|-----------------|
 | 0 | 1(A) | 2(B) | 3(B) | 3(C) | [E]               | [A, B, C, D]    |
 
-Enfin on retire le sommet E. Il n'a pas de sommets adjacents. On ne fait donc rien.
+Enfin on retire le sommet **E**. Il n'a pas de sommets adjacents. On ne fait donc rien.
 
-On a fini de parcourir le graphe. On a donc trouvé les distances de tous les sommets depuis le sommet de départ A. Si l'on souhaite trouver le plus court chemin entre **A** et **E**, il suffit de remonter le chemin en partant de E et en remontant les sommets précédents jusqu'à A. E > C > B > A. Le plus court chemin entre A et E est donc A > B > C > E.
+On a fini de parcourir le graphe. On a donc trouvé les distances de tous les sommets depuis le sommet de départ **A**. Si l'on souhaite trouver le plus court chemin entre **A** et **E**, il suffit de remonter le chemin en partant de E et en remontant les sommets précédents jusqu'à **A**. Le plus court chemin entre **A** et **E** est donc **A** $\rightarrow$ **B** $\rightarrow$ **C** $\rightarrow$ **E**.
 
 :::tip
 En pratique pour pouvoir remonter le chemin, il faut stocker donc stocker pour chaque sommet la distance la plus courte depuis le sommet de départ mais aussi le sommet précédent d'où l'on vient pour obtenir cette distance. On peut stocker cela dans une liste de paires (distance, sommet précédent).
