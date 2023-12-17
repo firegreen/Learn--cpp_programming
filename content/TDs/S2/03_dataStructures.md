@@ -1,5 +1,5 @@
 ---
-title: S2-TD3 - Structures de données
+title: TD3 - Structures de données
 ---
 
 ## Evaluation NPI

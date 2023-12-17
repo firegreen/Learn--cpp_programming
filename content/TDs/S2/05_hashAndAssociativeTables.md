@@ -1,5 +1,5 @@
 ---
-title:  Hachage et tableaux associatifs
+title: TD5 - Hachage et tableaux associatifs
 ---
 
 Dans ce TD nous allons mettre en pratique les notions vues en cours sur les tables de hachage et les tables associatives.

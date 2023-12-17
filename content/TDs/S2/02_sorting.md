@@ -1,3 +1,7 @@
+---
+title: TD2 - Algorithmes de tri
+---
+
 L'idée de ce TD est de mettre en pratique les notions vues en cours sur les algorithmes de tri et de recherche.
 
 ## Exercice 1

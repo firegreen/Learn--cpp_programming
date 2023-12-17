@@ -1,5 +1,8 @@
-L'idée de ce TD est de reprendre le **TD08** du premier semestre est d'améliorer notre structure `Fraction` en utilisant la **surcharge d'opérateurs**.
+---
+title: TD1 - Opérateurs
+---
 
+L'idée de ce TD est de reprendre le **TD08** du premier semestre est d'améliorer notre structure `Fraction` en utilisant la **surcharge d'opérateurs**.
 
 Reprendre les fichiers `fraction.hpp`, `fraction.cpp`, `utils.hpp` et `utils.cpp` du TD08 du premier semestre.
 

@@ -1,5 +1,5 @@
 ---
-title:  Arbres binaires
+title: TD6 - Arbres binaires
 ---
 
 # Arbres binaires de recherche
