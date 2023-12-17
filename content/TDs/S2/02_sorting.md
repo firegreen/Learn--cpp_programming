@@ -2,6 +2,8 @@
 title: TD2 - Algorithmes de tri
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 L'idée de ce TD est de mettre en pratique les notions vues en cours sur les algorithmes de tri et de recherche.
 
 ## Exercice 1
@@ -42,7 +44,7 @@ std::vector<int> generateRandomArray(size_t size, int max) {
 }
 ```
 
-Je vous fournis également une structure chronomètre, il suffit de copier le fichier `ScopedTimer.hpp` dans le dossier de votre projet et de l'inclure dans votre fichier source:
+Je vous fournis également une structure chronomètre, il suffit de  télécharger le fichier <a target="_blank" href={ useBaseUrl("/code/S2/ScopedTimer.hpp") } download={"ScopedTimer.hpp"}>ScopedTimer.hpp</a> et le copier dans le dossier de votre projet et de l'inclure dans votre fichier source:
 ```cpp
 #include "ScopedTimer.hpp"
 ```
