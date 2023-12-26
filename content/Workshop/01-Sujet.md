@@ -11,6 +11,8 @@ Durant ce workshop vous aller apprendre à coder des effets sur des images. (Com
 
 Nous allons vous proposer [une liste d'exercices](./Exercices), plus ou moins difficiles (la difficulté est indiquée par le nombre d'étoiles ⭐). Nous ne nous attendons pas à ce que vous fassiez tous les exercices, mais faites en un maximum ! **Et il faudra au minimum faire un exercice de niveau 3 ou plus (⭐⭐⭐).** Vous êtes aussi les bienvenu.es pour inventer vos propres effets ou en faire que vous avez vu quelque part, même si ils ne sont pas dans la liste !
 
+Vous êtes évalué.es non seulement sur la qualité du travail rendu, mais aussi – de manière tout aussi importante – sur votre sérieux et votre implication tout au long de la semaine de workshop.
+
 À la fin de la semaine il y aura [une mini-soutenance](#soutenance) (optionnelle, et qui est plus un exercice de vulgarisation qu'autre chose), et il faudra rendre [un mini-rapport](#rapport).
 
 Le rendu se fera par groupes de 2 (et 1 groupe de 3 si vous êtes un nombre impair). Cependant, je m'attend à ce que vous fassiez un maximum de choses individuellement, surtout les exercices les plus faciles (niveau 1 et 2). Essayez de ne vous mettre à deux sur le même algo que quand ça commence à devenir compliqué et que réfléchir à deux dessus devient bénéfique.
@@ -84,7 +86,7 @@ int main()
 
 ## HELP mon effet ne fait rien !
 
-- Est-ce que vous n'avez pas oublié une référence quelque part ?
+- Est-ce que vous n'avez pas oublié une référence (`&`) quelque part ?
 - Est-ce que vous sauvegardez bien la bonne image ?
 - Est-ce qu'il n'y a pas un crash ? Lancez avec le debugger pour savoir !
 - Est-ce que vous ne faites pas une division entre entiers, du genre `1 / image.width()` qui retourne toujours 0 parce que le résultat serait entre 0 et 1 et se retrouve arrondi ?
