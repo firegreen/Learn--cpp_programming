@@ -93,8 +93,8 @@ int main()
 
 ## Rapport
 
-*À rendre avant lundi 27 à 9h*.<br/>
-*Pour le rendu, il suffit de mettre votre lien git [ici](https://docs.google.com/spreadsheets/d/1x2uqvKdhndstidmW4xoWkNTlbwHFDWGlpohdb6TRORY/edit?usp=sharing)*.
+*À rendre avant dimanche à 9h*.<br/>
+*Pour le rendu, il suffit de mettre votre lien git [ici](https://docs.google.com/spreadsheets/d/1x2uqvKdhndstidmW4xoWkNTlbwHFDWGlpohdb6TRORY/edit?usp=sharing)*. Attention, vérifiez bien que votre repo est en public, ou si il est en privé, pensez à m'inviter dessus (*julesfouchy*).
 
 Faites une section par exercice que vous avez fait. Montrez une image avant et après application de l'effet (comme c'est fait dans l'énoncé des exercices). Si vous jugez cela utile, vous pouvez mettre un petit texte expliquant des spécificités de l'algo que vous avez implémenté, et les pièges potentiels dans lesquels il ne faut pas tomber.
 
