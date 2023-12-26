@@ -51,7 +51,7 @@ Bout de code \`int x{0};\` au milieu d'une phrase.
 
 Équations de math avec LaTeX :
 \$\$
-\int_{-\inf{}}^{+\inf{}} x^2 dx
+\int_{-\infty{}}^{+\infty{}} x^2 dx
 \$\$
 
 Notes de bas de page \[^1]
@@ -100,7 +100,7 @@ Bout de code `int x{0};` au milieu d'une phrase.
 
 Équations de math avec LaTeX :
 $$
-\int_{-\inf{}}^{+\inf{}} x^2 dx
+\int_{-\infty{}}^{+\infty{}} x^2 dx
 $$
 
 Notes de bas de page [^1]

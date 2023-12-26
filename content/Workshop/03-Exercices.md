@@ -125,7 +125,7 @@ Les fonctions puissance font exactement ce qu'on veut !<br/>
 La preuve : https://www.desmos.com/calculator/c3ztk51mng
 </details>
 
-## ⭐⭐ Disque
+## ⭐⭐(⭐) Disque
 
 ![](output/disk.png)
 
@@ -169,7 +169,7 @@ Comment passer de coordonnées polaires (angle et rayon) à des coordonnées car
 Une manière concise de faire ça est d'utiliser un modulo (`%`) quelque part.
 </details>
 
-### ⭐⭐⭐ Mosaïque miroir
+### ⭐⭐⭐⭐ Mosaïque miroir
 
 Inversez une image sur deux :
 
@@ -186,116 +186,7 @@ Inversez une image sur deux :
 Prendre un rectangle de pixels et l'intervertir avec un autre rectangle de pixels, ailleurs dans l'image. Faire ça plusieurs fois.
 </details>
 
-## ⭐⭐⭐ Fractale de Mandelbrot
-
-![](output/mandelbrot.png)
-
-La fractale de Mandelbrot s'obtient ainsi : pour chaque nombre complexe `c` (correspondant à la position d'un pixel), on initialise un autre nombre complexe `z` à 0, puis on itère `z = z * z + c` un certain nombre de fois. Si le nombre `z` commence à devenir de plus en plus grand, alors `c` ne fait pas partie de la fractale et on colorie le pixel correspondant en noir. À l'inverse, si `z` reste de taille modérée peu importe le nombre d'itérations qu'on fait, alors le pixel fait partie de la fractale et on le colorie en blanc.
-
-Plus précisément, on peut prouver que dès que `std::abs(z) > 2` alors le nombre `z` va forcément finir par grandir de plus en plus. On peut donc s'arrêter d'itérer dès que `std::abs(z) > 2`. Et pour obtenir une fractale plus jolie, plutôt que d'assigner du noir pur on peut assigner un gris plus ou moins sombre en fonction du nombre d'itérations qu'il a fallu faire avant que `std::abs(z) > 2`.
-
-Conseil : si vous mappez directement le pixel (x, y) au nombre complexe x + i * y, vous allez visualiser les nombres complexes entre 0 et 500, et votre fractale va être beaucoup trop petite. Les nombres intéressants sont plutôt entre -2 et 2. Il va donc falloir appliquer une petite transformation à votre x et y pour les faire rentrer dans cet intervalle.
-
-Conseil : vous pouvez inclure le header `<complex>` pour utiliser des nombres complexes. Un nombre complexe se définit comme ça :
-```cpp
-#include <complex>
-int main()
-{
-    std::complex<float> z{3.f, 2.f}; // Définis le nombre z = 3 + 2*i
-}
-```
-et s'utilise comme un nombre normal : vous pouvez faire des additions, multiplications etc.
-
-:::info
-Vous pouvez créer une image noire avec
-```cpp
-sil::Image image{500/*width*/, 500/*height*/};
-```
-puis itérer sur les pixels pour les colorer.
-:::
-
-## ⭐⭐⭐(⭐) Vortex
-
-![](output/vortex.png)
-
-:::info
-Pour appliquer une rotation à un point `point`, autour d'un autre point `center_of_rotation`, d'un angle `angle` (exprimé en radians) vous pouvez utiliser
-```cpp
-#include <glm/gtx/matrix_transform_2d.hpp>
-
-glm::vec2 rotated(glm::vec2 point, glm::vec2 center_of_rotation, float angle)
-{
-    return glm::vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{point - center_of_rotation, 0.f}} + center_of_rotation;
-}
-```
-:::
-:::info
-Pour obtenir la distance entre deux points, vous pouvez utiliser `glm::distance(p1, p2)`;
-:::
-
-<details><summary>Indice</summary>
-Chaque pixel subit une rotation, de plus en plus importante au fur et à mesure qu'on s'éloigne du centre.
-</details>
-
-## ⭐⭐⭐(⭐) Tramage
-
-![](output/ordered_dithering.png)
-
-Vous pouvez lire [ce super article](https://surma.dev/things/ditherpunk/) sur le tramage (a.k.a. *dithering* en anglais).
-
-Sur l'image ci-dessus j'ai utilisé de l'*ordered dithering* avec une matrice de Bayer 4x4 (a.k.a. de niveau 1). Tout est expliqué dans l'article ci-dessus ! (Plus précisément, j'ai repris la matrice et le code depuis [cet autre article](https://medium.com/the-bkpt/dithered-shading-tutorial-29f57d06ac39).)
-
-## ⭐⭐⭐(⭐) Normalisation de l'histogramme
-
-| ![](images/photo_faible_contraste.jpg)  | ![](output/normalize_histogram.jpg)  |
-|---|----|
-| Avant | Après |
-
-L'algorithme consiste à trouver le pixel le moins lumineux et le pixel le plus lumineux de l'image, puis à appliquer une transformation à chaque pixel de sorte à ce que le pixel le plus sombre devienne un noir pur (`0`) et le plus lumineux devienne un blanc pur (`1`).<br/>
-(PS : testez avec l'image `"images/photo_faible_contraste.jpg"`, vous verrez bien l'intérêt de l'effet.)
-
-## ⭐⭐⭐⭐ Convolutions
-
-![](output/box_blur.png)<br/>*Box blur*
-
-Les convolutions permettent d'implémenter plein d'effets (flou, détection de contour, augmentation de la netteté, etc.). L'effet va varier en fonction du *kernel* que vous utilisez lors de votre convolution. Tout est expliqué dans cette excellente vidéo, entre 1m10 et 4m18 :
-
-<YoutubeVideo id="8rrHTtUzyZA"/>
-<br/>
-
-Conseil : une fois que vous savez que votre algo marche, si vous voulez tester avec des kernels plus gros, ça peut être lent, donc vous avez intérêt à build en release (demandez-moi si vous ne savez pas comment faire).
-
-### ⭐ Netteté, Contours, etc.
-
-| ![](output/emboss.png)  | ![](output/outline.png)  |![](output/sharpen.png)  |
-|---|----|----|
-| Emboss | Outline | Sharpen |
-
-Une fois que vous avez implémenté l'algo générique de convolution qui prend n'importe quel kernel, vous pourrez trouver sur [ce site](https://setosa.io/ev/image-kernels/) une liste de kernels pour faire différents effets.
-
-### ⭐⭐ Filtres séparables
-
-| Box blur naïf, 100x100  | Box blur séparé, 100x100 |
-|---|----|
-| ![](output/big_box_blur.png) | ![](output/big_box_blur_separable_filter.png) |
-| 7.44 secondes | 0.18 secondes |
-
-Quand vous voulez faire un gros flou il faut augmenter la taille du kernel, ce qui peut considérablement ralentir l'algorithme. Heureusement, certains kernels ont une propriété qui nous permet de calculer leur convolution **BEAUCOUP** plus rapidement. Le *box blur* et le *gaussian blur* sont de tels kernels. Voici une vidéo expliquant tout ça :
-
-<YoutubeVideo id="SiJpkucGa1o"/>
-
-### ⭐⭐ Différence de gaussiennes
-
-![](output/difference_of_gaussians.png)
-
-Voici une vidéo expliquant l'algorithme :
-
-- **NB 1 :** Il parle de flou gaussien, mais vous pouvez tout aussi bien réutiliser votre box blur, pas la peine d'implémenter un flou gaussien.
-- **NB 2 :** Ne faire que l'algo de base, présenté jusqu'à 4m09. Après ça ça devient très compliqué (mais très stylé néanmoins).
-
-<YoutubeVideo id="5EuYKEvugLU"/>
-
-## ⭐⭐⭐⭐ Tri de pixels
+## ⭐⭐⭐ Tri de pixels
 
 ![](output/pixel_sorting.png)
 
@@ -344,14 +235,114 @@ On passe ce qu'on appelle une *lambda* en 3ème argument : c'est une fonction d�
 
 <ExplanationsAboutRandom/>
 
-## ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
+## ⭐⭐⭐(⭐) Fractale de Mandelbrot
 
-![](output/kuwahara.jpg)
+![](output/mandelbrot.png)
 
-Voici une vidéo expliquant l'algorithme :<br/>
-(La version simple de l'algo, qui est expliquée entre 3m11 et 3m30, suffit largement. (Mais si vous voulez aller plus loin, vous êtes les bienvenu.es bien sûr 😉))
+La fractale de Mandelbrot s'obtient ainsi : pour chaque nombre complexe `c` (correspondant à la position d'un pixel), on initialise un autre nombre complexe `z` à 0, puis on itère `z = z * z + c` un certain nombre de fois. Si le nombre `z` commence à devenir de plus en plus grand, alors `c` ne fait pas partie de la fractale et on colorie le pixel correspondant en noir. À l'inverse, si `z` reste de taille modérée peu importe le nombre d'itérations qu'on fait, alors le pixel fait partie de la fractale et on le colorie en blanc.
 
-<YoutubeVideo id="LDhN-JK3U9g"/>
+Plus précisément, on peut prouver que dès que `std::abs(z) > 2` alors le nombre `z` va forcément finir par grandir de plus en plus. On peut donc s'arrêter d'itérer dès que `std::abs(z) > 2`. Et pour obtenir une fractale plus jolie, plutôt que d'assigner du noir pur on peut assigner un gris plus ou moins sombre en fonction du nombre d'itérations qu'il a fallu faire avant que `std::abs(z) > 2`.
+
+Conseil : si vous mappez directement le pixel (x, y) au nombre complexe x + i * y, vous allez visualiser les nombres complexes entre 0 et 500, et votre fractale va être beaucoup trop petite. Les nombres intéressants sont plutôt entre -2 et 2. Il va donc falloir appliquer une petite transformation à votre x et y pour les faire rentrer dans cet intervalle.
+
+Conseil : vous pouvez inclure le header `<complex>` pour utiliser des nombres complexes. Un nombre complexe se définit comme ça :
+```cpp
+#include <complex>
+int main()
+{
+    std::complex<float> z{3.f, 2.f}; // Définis le nombre z = 3 + 2*i
+}
+```
+et s'utilise comme un nombre normal : vous pouvez faire des additions, multiplications etc.
+
+:::info
+Vous pouvez créer une image noire avec
+```cpp
+sil::Image image{500/*width*/, 500/*height*/};
+```
+puis itérer sur les pixels pour les colorer.
+:::
+
+## ⭐⭐⭐(⭐) Tramage
+
+![](output/ordered_dithering.png)
+
+Vous pouvez lire [ce super article](https://surma.dev/things/ditherpunk/) sur le tramage (a.k.a. *dithering* en anglais).
+
+Sur l'image ci-dessus j'ai utilisé de l'*ordered dithering* avec une matrice de Bayer 4x4 (a.k.a. de niveau 1). Tout est expliqué dans l'article ci-dessus ! (Plus précisément, j'ai repris la matrice et le code depuis [cet autre article](https://medium.com/the-bkpt/dithered-shading-tutorial-29f57d06ac39).)
+
+## ⭐⭐⭐(⭐) Normalisation de l'histogramme
+
+| ![](images/photo_faible_contraste.jpg)  | ![](output/normalize_histogram.jpg)  |
+|---|----|
+| Avant | Après |
+
+L'algorithme consiste à trouver le pixel le moins lumineux et le pixel le plus lumineux de l'image, puis à appliquer une transformation à chaque pixel de sorte à ce que le pixel le plus sombre devienne un noir pur (`0`) et le plus lumineux devienne un blanc pur (`1`).<br/>
+(PS : testez avec l'image `"images/photo_faible_contraste.jpg"`, vous verrez bien l'intérêt de l'effet.)
+
+## ⭐⭐⭐⭐ Vortex
+
+![](output/vortex.png)
+
+:::info
+Pour appliquer une rotation à un point `point`, autour d'un autre point `center_of_rotation`, d'un angle `angle` (exprimé en radians) vous pouvez utiliser
+```cpp
+#include <glm/gtx/matrix_transform_2d.hpp>
+
+glm::vec2 rotated(glm::vec2 point, glm::vec2 center_of_rotation, float angle)
+{
+    return glm::vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{point - center_of_rotation, 0.f}} + center_of_rotation;
+}
+```
+:::
+:::info
+Pour obtenir la distance entre deux points, vous pouvez utiliser `glm::distance(p1, p2)`;
+:::
+
+<details><summary>Indice</summary>
+Chaque pixel subit une rotation, de plus en plus importante au fur et à mesure qu'on s'éloigne du centre.
+</details>
+
+## ⭐⭐⭐⭐ Convolutions
+
+![](output/box_blur.png)<br/>*Box blur*
+
+Les convolutions permettent d'implémenter plein d'effets (flou, détection de contour, augmentation de la netteté, etc.). L'effet va varier en fonction du *kernel* que vous utilisez lors de votre convolution. Tout est expliqué dans cette excellente vidéo, entre 1m10 et 4m18 :
+
+<YoutubeVideo id="8rrHTtUzyZA"/>
+<br/>
+
+Conseil : une fois que vous savez que votre algo marche, si vous voulez tester avec des kernels plus gros, ça peut être lent, donc vous avez intérêt à build en release (demandez-moi si vous ne savez pas comment faire).
+
+### ⭐ Netteté, Contours, etc.
+
+| ![](output/emboss.png)  | ![](output/outline.png)  |![](output/sharpen.png)  |
+|---|----|----|
+| Emboss | Outline | Sharpen |
+
+Une fois que vous avez implémenté l'algo générique de convolution qui prend n'importe quel kernel, vous pourrez trouver sur [ce site](https://setosa.io/ev/image-kernels/) une liste de kernels pour faire différents effets.
+
+### ⭐⭐ Filtres séparables
+
+| Box blur naïf, 100x100  | Box blur séparé, 100x100 |
+|---|----|
+| ![](output/big_box_blur.png) | ![](output/big_box_blur_separable_filter.png) |
+| 7.44 secondes | 0.18 secondes |
+
+Quand vous voulez faire un gros flou il faut augmenter la taille du kernel, ce qui peut considérablement ralentir l'algorithme. Heureusement, certains kernels ont une propriété qui nous permet de calculer leur convolution **BEAUCOUP** plus rapidement. Le *box blur* et le *gaussian blur* sont de tels kernels. Voici une vidéo expliquant tout ça :
+
+<YoutubeVideo id="SiJpkucGa1o"/>
+
+### ⭐⭐ Différence de gaussiennes
+
+![](output/difference_of_gaussians.png)
+
+Voici une vidéo expliquant l'algorithme :
+
+- **NB 1 :** Il parle de flou gaussien, mais vous pouvez tout aussi bien réutiliser votre box blur, pas la peine d'implémenter un flou gaussien.
+- **NB 2 :** Ne faire que l'algo de base, présenté jusqu'à 4m09. Après ça ça devient très compliqué (mais très stylé néanmoins).
+
+<YoutubeVideo id="5EuYKEvugLU"/>
 
 ## ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 
@@ -371,6 +362,20 @@ Vous pouvez utiliser `glm::distance(color1, color2)` pour obtenir la distance en
 :::
 
 <ExplanationsAboutRandom/>
+
+## ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
+
+![](output/kuwahara.jpg)
+
+Voici une vidéo expliquant l'algorithme :<br/>
+(La version simple de l'algo, qui est expliquée entre 3m11 et 3m30, suffit largement. (Mais si vous voulez aller plus loin, vous êtes les bienvenu.es bien sûr 😉))
+
+<YoutubeVideo id="LDhN-JK3U9g"/>
+<br/>
+
+:::info
+Vous pouvez utiliser `glm::distance(color1, color2)` pour obtenir la distance entre deux couleurs.
+:::
 
 ## ⭐⭐⭐⭐⭐⭐ Diamond Square
 
