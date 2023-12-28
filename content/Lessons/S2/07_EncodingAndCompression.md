@@ -2,8 +2,6 @@
 title: Compression et encodage de données
 tags:
     - C++
-
-sidebar_position: 7
 ---
 
 La compression de données est un domaine très vaste et très important en informatique. Il existe de nombreuses techniques de compression, qui sont utilisées dans de nombreux domaines : compression d'**images**, compression de **vidéos**, compression de **fichiers**, etc.

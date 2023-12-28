@@ -2,8 +2,6 @@
 title: Graphes
 tags:
     - C++
-
-sidebar_position: 8
 ---
 
 En informatique, il existe une grande famille de structures de données appelées **graphes**. C'est un outil très puissant qui permet de modéliser des problèmes très variés. Dans cette leçon, nous allons voir comment représenter un graphe en mémoire et comment parcourir un graphe.

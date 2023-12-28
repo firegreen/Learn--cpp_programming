@@ -3,8 +3,6 @@ title: Déduction de type et bibliothèque standard
 tags:
     - C++
     - STL
-
-sidebar_position: 4
 ---
 
 La **STL** (Standard Template Library) est une bibliothèque standard de la norme **C++** qui fournit de nombreuses fonctionnalités déjà implémentées pour faciliter le développement. Vous pouvez retrouver la documentation de la **STL** sur le site [cppreference.com](https://en.cppreference.com/w/cpp/header).

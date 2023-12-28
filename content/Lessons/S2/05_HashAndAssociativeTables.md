@@ -2,8 +2,6 @@
 title: Hash et tableaux associatifs
 tags:
     - C++
-
-sidebar_position: 5
 ---
 
 Admettons que l'on veuille trouver le nom du jour de la semaine correspondant à un numéro de jour donné. On peut utiliser un tableau pour stocker les noms des jours de la semaine et accéder au nom du jour de la semaine correspondant à un numéro de jour donné en utilisant ce numéro comme indice du tableau.
