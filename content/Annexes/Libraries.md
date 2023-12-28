@@ -1,19 +1,19 @@
 ---
-title: Utiliser des bibliothèques
+title: Utiliser des bibliothèques en C++
 tags:
     - C++
-
-sidebar_position: 3
+    - CMake
+    - Libraries
 ---
 
 Une des grandes forces de C++ est la possibilité d'utiliser des **bibliothèques**. Une bibliothèque est un ensemble de fonctions et de classes qui permettent de réaliser des tâches spécifiques. Il existe des bibliothèques pour à peu près tout : afficher des images, jouer des sons, faire des calculs mathématiques, etc.
 
-Nous avons déjà utilisé une bibliothèque : la bibliothèque standard. C'est une bibliothèque qui est incluse par défaut dans tous les compilateurs C++. Elle contient des fonctions et des classes pour réaliser des tâches de base, comme afficher du texte à l'écran, lire des données au clavier, etc.
+Nous avons déjà utilisé une bibliothèque : **la bibliothèque standard**. C'est une bibliothèque qui est incluse par défaut dans tous les compilateurs C++. Elle contient des fonctions et des classes pour réaliser des tâches de base, comme afficher du texte à l'écran, lire des données au clavier, etc.
 
-Dans ce chapitre, nous allons voir comment utiliser des bibliothèques externes, c'est-à-dire des bibliothèques qui ne sont pas incluses par défaut dans le compilateur. Nous allons voir comment les inclure dans notre programme, et comment utiliser les fonctions et les classes qu'elles contiennent.
+Nous allons voir comment utiliser des bibliothèques externes, c'est-à-dire des bibliothèques qui ne sont pas incluses par défaut dans le compilateur. Nous allons voir comment les inclure dans notre programme, et comment utiliser les fonctions et les classes qu'elles contiennent.
 
 :::note
-Les termes **bibliothèque** et **librairie** sont synonymes. Dans ce cours, nous utiliserons le terme **bibliothèque**. Mais il est possible que vous rencontriez le terme **librairie** dans d'autres ressources.
+Les termes **bibliothèque** et **librairie** sont synonymes. Nous utiliserons le terme **bibliothèque**. Mais il est possible que vous rencontriez le terme **librairie** dans d'autres ressources.
 :::
 
 ## Fonctionnement d'une bibliothèque
@@ -39,7 +39,7 @@ Une bibliothèque peut être compilée en mode **debug** ou en mode **release**.
 
 ## Inclusion d'une bibliothèque
 
-Il existe plusieurs façons d'inclure une bibliothèque dans un programme et nous allons découvrir les différentes méthodes et les mettre en pratique avec Cmake.
+Il existe plusieurs façons d'inclure une bibliothèque dans un programme et nous allons découvrir les différentes méthodes et les mettre en pratique avec **Cmake**.
 
 ### CMake FetchContent
 
@@ -143,7 +143,7 @@ FetchContent_MakeAvailable(glm)
 target_link_libraries(test PUBLIC glm)
 ```
 
-### Magic enum
+## Magic enum
 
 Pour illustrer l'ajout manuel d'une bibliothèque, nous allons utiliser la bibliothèque **magic enum**. Par la même occasion on découvre une bibliothèque très utile pour manipuler des énumérations qui comble une lacune du langage C++ et simplifie grandement l'utilisation des énumérations.
 
@@ -234,6 +234,3 @@ Je ne vais pas rentrer dans les détails dans ce cours mais voilà un exemple de
     - Gestionnaire de dépendances
 - En pratique, il est préférable d'utiliser **CMake FetchContent** pour inclure une bibliothèque (compatible avec tous les systèmes d'exploitation).
 - Il est également possible d'utiliser **Find Package** pour inclure une bibliothèque (mais cela dépend du système d'exploitation).
-
-
-
