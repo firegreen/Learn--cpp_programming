@@ -6,7 +6,7 @@ tags:
 sidebar_position: 6
 ---
 
-Dans ce chapitre nous allons découvrir une nouvelle structure de données: les arbres binaires.
+Dans ce chapitre nous allons découvrir une nouvelle structure de données: les arbres. Et plus particulièrement les arbres binaires.
 
 La notion d'**arbre** est une notion très importante en informatique. 
 Un arbre est une **structure de données** qui permet de représenter des données **hiérarchiques** comme par exemple des dossiers et des fichiers dans un système de fichiers.
@@ -100,21 +100,19 @@ delete root;
 :warning: Il faut faire attention à désallouer la mémoire dans le bon ordre ! Si on désalloue le noeud racine avant ses fils, on ne pourra plus accéder aux fils pour les désallouer. Cela provoque une **fuite de mémoire**.
 :::
 
----
-
+:::info
 On pourrait se limiter seulement à cette structure de **noeud** pour représenter un **arbre binaire**. Mais cela peut être pratique d'avoir une structure dédiée à l'arbre binaire qui contient un pointeur vers le noeud racine.
 
-Cela permet de ne pas avoir à passer le noeud racine en paramètre à chaque fois que l'on veut utiliser l'arbre. Cela permet aussi de mieux séparer les responsabilités. La structure de l'arbre s'occupe de gérer ses noeuds (dont le noeud racine), et la structure du noeud n'est qu'une structure pour aider à représenter l'arbre.
+Cela permet de gérer le cas où l'arbre est **vide** (qui n'a pas encore de noeud racine). Cela permet aussi de cacher la structure interne de l'arbre. On peut par exemple changer la structure interne `Node` (la structure de **noeud**) sans avoir à modifier le code qui l'utilise (la structure de l'arbre). L'utilisateur de l'arbre n'a pas besoin de savoir comment est représenté l'arbre en interne, il n'est pas censé manipuler directement les noeuds.
 
-Par exemple on pourrait vouloir ajouter une méthode `insert` à la structure d'arbre qui permet d'ajouter une **valeur**. Cette méthode va s'occuper de trouver le bon endroit pour insérer le noeud dans l'arbre à partir du noeud racine. Cela permet aussi de gérer le cas où l'on souhaite représenter un arbre vide (qui n'a pas encore de noeud racine).
-
-Cela permet aussi de cacher la structure interne de l'arbre. On peut par exemple changer la structure interne `Node` (la structure de **noeud**) sans avoir à modifier le code qui l'utilise (la méthode `insert` par exemple). L'utilisateur de l'arbre n'a pas besoin de savoir comment est représenté l'arbre en interne, il n'est pas censé manipuler directement les noeuds.
+Cette notion de cacher la structure interne d'un objet est appelée **encapsulation**. C'est une notion importante en **programmation orientée objet**. Vous découvrirez cela plus en détail l'année prochaine et cela sera encore plus pertinent avec la notions de **visibilité**.
 
 ```cpp
 struct BinaryTree {
     Node* root;
 };
 ```
+:::
 
 <details>
 
@@ -141,7 +139,6 @@ root->right = std::make_unique<Node>(3, nullptr, nullptr);
 ```
 
 Cela permet de ne pas avoir à gérer la désallocation de la mémoire. La structure est automatiquement désallouée lorsque le pointeur intelligent est détruit. Cela va se faire dans le bon ordre naturellement car pour détruire une structure, il faut d'abord détruire ses membres. Ses enfants seront donc détruits avant le noeud parent.
-
 </details>
 
 ### Structure par tableau
