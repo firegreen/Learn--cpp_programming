@@ -24,7 +24,7 @@ Transformer la fonction `display` en surcharge de l'opérateur `<<` pour pouvoir
 :::tip
 Attention, cela ne fonctionnera pas si on compare deux fractions non simplifiées. (ex: `1/2 == 2/4`) Une autre solution serait de simplifier les fractions dans l'opérateur avant de les comparer.
 
-Il existe une autre façon de faire en comparant les produits en croix des fractions. (ex: `a/b == d/c` <=> `a * c == b * d`)
+Il existe une autre façon de faire en comparant les produits en croix des fractions. (ex: `a/b == d/c` \<=> `a * c == b * d`)
 :::
 
 ## Exercice 4 (comparaison)

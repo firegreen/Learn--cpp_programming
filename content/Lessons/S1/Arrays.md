@@ -33,7 +33,7 @@ Comme vous le remarquez, j'ai ajouté **std::** devant vector ce qui nous indiqu
 
 **std::vector** est un **tableau dynamique** qui s'**agrandit** et se **rétrécit** en fonction du nombre d'éléments que l'on souhaite stocker à l'intérieur.
 
-On l'initialise entre accolades en précisant entre chevrons (<kbd><</kbd> et <kbd>></kbd>) le type de variable que l'on souhaite stocker:
+On l'initialise entre accolades en précisant entre chevrons (<kbd>\<</kbd> et <kbd>\></kbd>) le type de variable que l'on souhaite stocker:
 
 ```cpp
 std::vector</* type des éléments du tableau */> nom {};

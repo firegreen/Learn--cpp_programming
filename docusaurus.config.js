@@ -1,12 +1,11 @@
 // @ts-check
 const axios = require("axios");
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+import { themes } from 'prism-react-renderer';
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 const docusaurusLunrSearchPlugin = require("docusaurus-lunr-search");
-
-const remarkMath = require("remark-math");
 
 module.exports = async function configCreatorAsync() {
   const contact_info = await axios.get(
@@ -14,6 +13,8 @@ module.exports = async function configCreatorAsync() {
   ).then((res) => res.data).catch((err) => ({}));
 
   const rehypeKatex = (await import('rehype-katex')).default;
+
+  const remarkMath = (await import('remark-math')).default;
 
   return {
     title: 'Cours de programmation C++',
@@ -121,8 +122,8 @@ module.exports = async function configCreatorAsync() {
             },
           ],
           copyright:
-           `These lessons were written by <a href="https://github.com/dsmtE">DE SMET Enguerrand</a>.</br>` +
-           `Copyright © ${new Date().getFullYear()}. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`
+            `These lessons were written by <a href="https://github.com/dsmtE">DE SMET Enguerrand</a>.</br>` +
+            `Copyright © ${new Date().getFullYear()}. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`
         },
         prism: {
           theme: lightCodeTheme,

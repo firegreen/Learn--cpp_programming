@@ -12,7 +12,7 @@ Nos programmes deviennent plus complexes et il va devenir intéressant d'isoler 
 
 ## Structure d'une fonction
 
-Une **fonction** est un ensemble d'instructions délimité par des accolades <kbd>{</kbd> et <kbd>}</kbd> ce qui défini sa **portée** (scope).
+Une **fonction** est un ensemble d'instructions délimité par des accolades <kbd>\{</kbd> et <kbd>\}</kbd> ce qui défini sa **portée** (scope).
 
 Elle a un **nom** et peut **ou non** prendre des informations en entrée et peut **ou non** fournir **une** information en sortie.
 

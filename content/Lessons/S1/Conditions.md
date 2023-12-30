@@ -28,8 +28,8 @@ Cela va devenir intéressant grâce à ce que l'on appelle les **opérateurs de 
 |-|-|
 | == |	**Égalité**, compare si deux variables sont **égales** |
 | != |	**Inégalité**, compare si deux variables sont **différentes** |
-| <  |	**Strictement inférieur**, compare si la variable de gauche est **strictement inférieure** à celle de droite |
-| <= |	**Inférieur ou égal**, compare si la variable de gauche est **inférieure ou égale** à celle de droite |
+| \<  |	**Strictement inférieur**, compare si la variable de gauche est **strictement inférieure** à celle de droite |
+| \<= |	**Inférieur ou égal**, compare si la variable de gauche est **inférieure ou égale** à celle de droite |
 | >  |	**Strictement supérieur**, compare si la variable de gauche est **strictement supérieure** à celle de droite |
 | >= |	**Supérieur ou égal**, compare si la variable de gauche est **supérieure ou égale** à celle de droite |
 
@@ -471,7 +471,7 @@ Vous trouverez des exemples de propriétés et simplifications possibles sur la 
 ## En résumé
 
 - Une valeur booléenne est du type **bool** et peut prendre comme valeur ```true``` ou ```false```.
-- On obtient une valeur booléenne avec une condition sur nos variables (avec les opérateurs de comparaison <kbd>==</kbd>, <kbd>!=</kbd>, <kbd>></kbd>, <kbd><=</kbd>, <kbd>></kbd> ou <kbd>>=</kbd>)
+- On obtient une valeur booléenne avec une condition sur nos variables (avec les opérateurs de comparaison <kbd>==</kbd>, <kbd>!=</kbd>, <kbd>\<</kbd>, <kbd>\<=</kbd>, <kbd>></kbd> ou <kbd>>=</kbd>)
 
 - Les opérateurs <kbd>&&</kbd>, <kbd>||</kbd> et <kbd>!</kbd> permettent de modifier et combiner les valeurs booléennes.
 - On utilise les structures de contrôle ```if```, ```else```, ```else if``` pour exécuter des instructions différentes en fonction des conditions.

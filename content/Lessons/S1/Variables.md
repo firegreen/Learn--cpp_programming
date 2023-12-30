@@ -78,9 +78,9 @@ En effet, les guillemets permettent déjà de signaler le début et la fin d'une
 
 C'est également le cas quand on essaye de représenter un chemin de dossier au format Windows, par exemple, avec le chemin de fichier "C:\Program Files" et on obtient une erreur du type ```warning: unknown escape sequence: '\P'```.
 
-Il existe en **C++** des **caractères** dits **spéciaux**, appelés séquences d’échappement. Le symbole <kbd>\</kbd> permet d'indiquer au compilateur d’afficher et non interpréter ces caractères.
+Il existe en **C++** des **caractères** dits **spéciaux**, appelés séquences d’échappement. Le symbole <kbd>\\</kbd> permet d'indiquer au compilateur d’afficher et non interpréter ces caractères.
 
-Il faut donc préfixer les guillemets du caractère <kbd>\</kbd> pour pouvoir les afficher:
+Il faut donc préfixer les guillemets du caractère <kbd>\\</kbd> pour pouvoir les afficher:
 ```cpp
 #include <iostream>
 
@@ -99,7 +99,7 @@ Voilà les plus utiles en pratique:
 - <kbd>\"</kbd> qui permet d’afficher un guillemet double <kbd>"</kbd>
 - <kbd>\n</kbd> qui permet d’aller à la ligne, comme std::endl
 - <kbd>\t</kbd> qui permet de faire une tabulation horizontale
-- <kbd>\\</kbd> qui permet d’afficher un antislash <kbd>\</kbd>
+- <kbd>\\\\</kbd> qui permet d’afficher un antislash <kbd>\\</kbd>
 
 ### Les nombres 
 
