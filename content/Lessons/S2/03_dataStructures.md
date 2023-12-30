@@ -96,8 +96,8 @@ La fonction `std::make_pair` permet d'expliciter le type de la paire. C'est util
 La **paire** intègre également un opérateur de comparaison qui compare les éléments de la paire dans l'ordre **lexicographique**.
 
 :::info Ordre lexicographique
-L'ordre **lexicographique** est comparable à l'ordre alphabétique. Si l'on, se limite aux mots et lettres c'est l'ordre utilisé pour comparer les mots dans un dictionnaire. On compare les premières lettres des mots. Si les premières lettres sont égales, on compare les secondes lettres, etc.
-Cela peux être étendu à des éléments plus complexes comme des nombres. On compare les premiers éléments. Si les premiers éléments sont égaux, on compare les seconds éléments, etc.
+L'ordre **lexicographique** est comparable à l'ordre alphabétique. Si l'on se limite aux mots et lettres c'est l'ordre utilisé pour comparer les mots dans un dictionnaire. On compare les premières lettres des mots. Si les premières lettres sont égales, on compare les secondes lettres, etc.
+Cela peut être étendu à des éléments plus complexes comme des nombres. On compare les premiers éléments. Si les premiers éléments sont égaux, on compare les seconds éléments, etc.
 :::
 
 Dans le cas des paires, on compare les premiers éléments. Si les premiers éléments sont égaux, on compare les seconds éléments.
@@ -210,7 +210,7 @@ int main() {
 
 <summary>std::variant</summary>
 
-La classe `std::variant` (définie dans la bibliothèque `<variant>`) permet de stocker un élément parmi un ensemble d'éléments possibles. Similaires aux aux enums, mais avec des types différents.
+La classe `std::variant` (définie dans la bibliothèque `<variant>`) permet de stocker un élément parmi un ensemble d'éléments possibles. Similaires aux aux enums, mais avec la possibilité de stocker des types différents.
 
 ```cpp
 #include <variant>
@@ -258,7 +258,7 @@ if (o.has_value()) {
 }
 ```
 
-C'est un objet qui peut être utile pour représenter des valeurs optionnelles, comme par exemple le résultat d'une recherche dans un tableau ou une paramètre optionnel d'une fonction.
+C'est un objet qui peut être utile pour représenter des valeurs optionnelles, comme par exemple le résultat d'une recherche dans un tableau ou un paramètre optionnel d'une fonction.
 
 ```cpp
 #include <optional>

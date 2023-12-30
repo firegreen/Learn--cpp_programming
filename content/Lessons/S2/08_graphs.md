@@ -10,13 +10,52 @@ En informatique, il existe une grande famille de structures de données appelée
 
 Un **graphe** est un ensemble de **sommets** reliés par des **arêtes**. On peut représenter un graphe par un ensemble de points reliés par des traits. Les points sont les sommets et les traits sont les arêtes.
 
+```mermaid
+graph LR
+    A -.- B
+    A -.- C
+    B -.- C
+    B -.- D
+```
+
 Un graphe est dit **orienté** si les arêtes ont un sens. Dans ce cas, on parle d'**arc**. Un graphe est dit **non orienté** si les arêtes n'ont pas de sens.
+
+```mermaid
+graph LR
+    A --> B
+    A --> C
+    B --> C
+    B --> D
+```
 
 Un graphe est dit **pondéré** si les arêtes ont un poids. Dans ce cas, on parle de **poids** d'une arête. Un graphe est dit **non pondéré** si les arêtes n'ont pas de poids.
 
+```mermaid
+graph LR
+    A --1--> B
+    A --3--> C
+    B --1--> C
+    B --2--> D
+```
+
 Un graphe est dit **connexe** si tous les sommets sont reliés entre eux par une arête ou une suite d'arêtes.
 
+```mermaid
+graph LR
+    A --> B
+    A --> C
+    B --> C
+    D
+```
+
 Un graphe est dit **cyclique** si il contient au moins un cycle. Un cycle est une suite d'arêtes qui permet de revenir au point de départ.
+
+```mermaid
+graph LR
+    A --> B
+    B --> C
+    C --> A
+```
 
 ### Les arbres
 
@@ -40,6 +79,18 @@ Voici un exemple de matrice d'adjacence pour un graphe non orienté et non pond�
 | D | 0 | 1 | 0 | 0 | 1 |
 | E | 0 | 0 | 1 | 1 | 0 |
 
+Et le graphe correspondant :
+
+```mermaid
+graph LR
+    A --- B
+    A --- C
+    B --- C
+    B --- D
+    C --- E
+    D --- E
+```
+
 Dans le cas d'un graphe orienté, la matrice n'est plus symétrique. Voici un exemple de matrice d'adjacence pour un graphe orienté et non pondéré :
 
 |   | A | B | C | D | E |
@@ -49,6 +100,18 @@ Dans le cas d'un graphe orienté, la matrice n'est plus symétrique. Voici un ex
 | C | 0 | 0 | 0 | 0 | 1 |
 | D | 0 | 0 | 0 | 0 | 1 |
 | E | 0 | 0 | 0 | 0 | 0 |
+
+Et le graphe correspondant :
+
+```mermaid
+graph LR
+    A --> B
+    A --> C
+    B --> C
+    B --> D
+    C --> E
+    D --> E
+```
 
 ### Liste d'adjacence
 
@@ -210,7 +273,7 @@ L'algorithme A* est une amélioration de l'algorithme de **Dijkstra**. Il utilis
 
 La représentation en liste d'adjacence est très pratique pour représenter un graphe arbitraire. Cependant, dans certains cas, on peut utiliser une représentation plus simple. C'est le cas par exemple quand on cherche le plus court chemin entre deux points dans une **grille**. Dans ce cas les sommets sont les centres des cases de la grille et les arêtes sont les côtés des cases de la grille. Il n'est alors pas nécessaire de stocker la représentation complète du graphe car celle-ci est connue à l'avance. On peut donc utiliser une représentation plus simple.
 
-Dans le cas où le coup de déplacement d'une case à une autre est le même pour toutes les cases, appliquer **Dijkstra** sur une grille devient alors très simple. Il suffit de **parcourir** la grille **en largeur** en partant du point de départ et en s'arrêtant quand on a trouvé le point d'arrivée. On peut alors remonter le chemin en partant du point d'arrivée et en remontant les points précédents jusqu'au point de départ (ça s'appel la "**Breadth First Search**" ou **BFS**).
+Dans le cas où le coup de déplacement d'une case à une autre est le même pour toutes les cases, appliquer **Dijkstra** sur une grille devient alors très simple. Il suffit de **parcourir** la grille **en largeur** en partant du point de départ et en s'arrêtant quand on a trouvé le point d'arrivée. On peut alors remonter le chemin en partant du point d'arrivée et en remontant les points précédents jusqu'au point de départ (parfois aussi nommé **Breadth First Search** ou **BFS**).
 
 ## Résumé
 

@@ -6,13 +6,38 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 L'idée de ce TD est de mettre en pratique les notions vues en cours sur les algorithmes de tri et de recherche.
 
-## Exercice 1
+Tout d'abord, je vous donne une fonction qui va permettre de vérifier si un tableau est trié par ordre croissant.
+```cpp
+#include <vector>
+#include <algorithm>
+bool isSorted(std::vector<int> const & vec) {
+    return std::is_sorted(vec.begin(), vec.end());
+}
+```
+
+Vous pouvez l'utiliser de la manière suivante:
+```cpp
+std::vector<int> array {1, 2, 3, 4, 5, 6, 7, 8, 9};
+if (isSorted(array)) {
+    std::cout << "Le tableau est trié" << std::endl;
+} else {
+    std::cout << "Le tableau n'est pas trié" << std::endl;
+}
+```
+
+## Exercice 1 (tri itératif)
 
 Dans cet exercice, vous devez écrire une fonction qui prend en paramètre un tableau d'entiers (`std::vector`) et le trie par ordre croissant.
 
 Vous avez le choix entre deux algorithmes de tri:
 - **tri à bulle**
 - **tri par sélection**
+
+Voilà les prototypes des fonctions:
+```cpp
+void bubbleSort(std::vector<int> & vec);
+void selectionSort(std::vector<int> & vec);
+```
 
 ## Exercice 2 (tri récursif)
 
@@ -24,6 +49,35 @@ Vous avez le choix entre deux algorithmes de tri:
 - **tri fusion**
 - **tri rapide**
 
+Voilà les prototypes des fonctions à utiliser et implémenter:
+```cpp
+size_t quickSortPartition(std::vector<float> & vec, size_t left, size_t right, size_t const pivot);
+void quickSort(std::vector<float> & vec, size_t const left, size_t const right);
+void quickSort(std::vector<float> & vec) {
+    quickSort(vec, 0, vec.size() - 1);
+}
+
+void mergeSortMerge(std::vector<float> & vec, size_t const left, size_t const middle, size_t const right);
+void mergeSort(std::vector<float> & vec, size_t const left, size_t const right);
+void mergeSort(std::vector<float> & vec) {
+    mergeSort(vec, 0, vec.size() - 1);
+}
+```
+
+Dans ces deux algorithmes, on va trier des **plages** du tableau par **récursivité**. C'est pour cela que les fonctions prennent en paramètre les indices de début et de fin de la plage à trier (`left` et `right`).
+De plus, dans les deux algorithmes, on va utiliser une **fonction auxiliaire** pour séparer le tableau en deux parties (`quickSortPartition`) ou pour fusionner deux tableaux triés (`mergeSortMerge`).
+
+## Pour aller plus loin: Counting sort
+
+Le **counting sort** est un algorithme de tri qui permet de trier un tableau d'entiers en temps linéaire (c'est à dire en $O(n)$).
+Il est cependant limité par le fait qu'il ne peut trier que des **entiers** ("positifs" pour le cas le plus simple) et que la valeur **maximale** des entiers du tableau doit être connu (à calculer avant le tri ou connue en fonction du contexte).
+
+Essaye d'implémenter cet algorithme de tri.
+Voilà le prototype de la fonction:
+```cpp
+void countingSort(std::vector<int> & vec, int const max);
+```
+
 ## Comparaison des algorithmes de tri
 
 Une fois nos algorithmes de tri implémentés, nous allons les comparer en terme de complexité temporelle.
@@ -33,7 +87,7 @@ Je vous fournis une fonction qui permet de générer un tableau d'entiers aléat
 #include <vector>
 #include <cstdlib>
 
-std::vector<int> generateRandomArray(size_t size, int max) {
+std::vector<int> generateRandomArray(size_t size, int const max) {
     std::vector<int> array;
     
     for (size_t i {0}; i < size; i++) {

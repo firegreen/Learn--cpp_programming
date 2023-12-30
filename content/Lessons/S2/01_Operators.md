@@ -47,11 +47,6 @@ int main() {
 
 Ce qui fait généralement sens pour une structure, c'est de pouvoir **comparer** deux instances de cette structure. Par exemple, on peut comparer deux points entre eux pour savoir s'ils sont **égaux** ou non.
 
-:::note
-Dès que cela vous semble pertinent de définir l'égalité, c'est un **indicateur** qui permet d'identifier que la structure va être utilisée comme un type de base et que la surcharge d'opérateurs est pertinente.
-En opposition aux structures qui sont plutôt utilisées pour structurer le code, hiérarchiser les données (game manager, etc.) et qui ne nécessitent pas de surcharge d'opérateurs mais plutôt des méthodes explicites.
-:::
-
 Pour être en mesure de définir l’égalité, on doit respecter les conditions suivantes.
 
 - Pour n'importe quel `a`, `a == a` doit être vrai, c'est ce qu'on appelle la **réflexivité**.
@@ -78,7 +73,7 @@ int main() {
 }
 ```
 
-### Definition libre ou membre
+### Définition libre ou membre
 
 On peut définir l'opérateur d'égalité comme une **fonction libre** (en dehors de la définition de la structure) ou comme une **méthode** membre.
 
@@ -215,7 +210,7 @@ struct Point {
 };
 ```
 
-l'opérateur `<=>` est un opérateur qui permet de donner un **ordre** à une structure. Avec le mot clé `default`, on délègue la définition de l'opérateur `<=>` à chaque membre de la structure.
+L'opérateur `<=>` est un opérateur qui permet de donner un **ordre** à une structure. Avec le mot clé `default`, on délègue la définition de l'opérateur `<=>` à chaque membre de la structure.
 On défini donc automatiquement l'ordre de la structure en fonction de l'ordre de chaque membre (dans notre cas, on compare d'abord `x` puis `y`).
 
 C'est très pratique dans le cas où nos structures sont composées de types de base ou de structures qui ont déjà des opérateurs de comparaison définis.
@@ -297,8 +292,8 @@ std::ostream& operator<<(std::ostream& os, Point const& p) {
 
 L'opérateur `<<` prend en premier paramètre un flux de sortie (`std::ostream&`) et en deuxième paramètre un point (`Point const&`). Il retourne le flux de sortie pour pouvoir faire des opérations en chaîne.
 
-<detail>
-<summary>opérateur `>>`</summary>
+<details>
+<summary> Opérateur <kbd> >> </kbd> </summary>
 
 Il existe aussi l'opérateur `>>` qui permet de lire depuis un flux pour construire une structure.
 
@@ -319,12 +314,10 @@ std::istream& operator>>(std::istream& is, Point& p) {
 }
 ```
 
-notez que dans ce cas il faut signaler si l’entrée est invalide en mettant le flux dans un état invalide avec `std::ios::failbit`, ce qui permet à l’utilisateur de faire `if (std::cin.fail())`.
-
-</detail>
+Notez que dans ce cas il faut signaler si l’entrée est invalide en mettant le flux dans un état invalide avec `std::ios::failbit`, ce qui permet à l’utilisateur de faire `if (std::cin.fail())`.
+</details>
 
 Ces opérateurs s’écrivent toujours sous la forme libre car leur premier argument est toujours un flux. 
-
 
 ## Opérateurs d'affectation par copie
 

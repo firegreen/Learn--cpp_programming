@@ -55,7 +55,7 @@ Voilà les itérations suivantes:
 
 Voilà, le tableau est trié.
 
-Je t'invite à regarder le fonctionnement de cet algorithme sur [cette animation](https://www.toptal.com/developers/sorting-algorithms/selection-sort) ou encore [ici](https://visualgo.net/en/sorting).
+Je t'invite à regarder le fonctionnement de cet algorithme sur [cette animation](https://www.toptal.com/developers/sorting-algorithms/selection-sort) ou encore [ici](https://visualgo.net/en/sorting) (clique sur "SEL" ou "Selection Sort" dans la barre de navigation).
 
 ### Tri à bulles (bubble sort)
 
@@ -105,7 +105,7 @@ La complexité permet de **quantifier** la relation entre les conditions de dép
 
 ### Opérations de base
 
-Pour "compter les opérations", il faut décider de ce qu'est une **opération**. Ce choix dépend du problème (et même de l'algorithme) considéré. Il faut en fait choisir soi-même quelques petites opérations que l'algorithme effectue souvent, et que l'on veut utiliser comme opérations de base pour mesurer la complexité. Les opérations qui caractérise le mieux l'algorithme et **représentent le mieux le temps d'exécution** de celui-ci. Les opérations de base sont souvent les opérations **arithmétiques**, les **comparaisons**, les **affectations**, etc. Par exemple, pour un algorithme de tri, on va compter le nombre de **comparaisons** et d'**échanges** d'éléments du tableau.
+Pour "compter les opérations", il faut décider de ce qu'est une **opération**. Ce choix dépend du problème (et même de l'algorithme) considéré. Il faut en fait choisir soi-même quelques petites opérations que l'algorithme effectue souvent, et que l'on veut utiliser comme opérations de base pour mesurer la complexité. Les opérations qui caractérisent le mieux l'algorithme et **représentent le mieux le temps d'exécution** de celui-ci. Les opérations de base sont souvent les opérations **arithmétiques**, les **comparaisons**, les **affectations**, etc. Par exemple, pour un algorithme de tri, on va compter le nombre de **comparaisons** et d'**échanges** d'éléments du tableau.
 
 En fonction des algorithmes, certaines opérations peuvent être plus significatives que d'autres. Par exemple, la multiplication est plus coûteuse que l'addition, on peut donc ne considérer que les opérations de multiplication pour mesurer la complexité d'un algorithme.
 
@@ -336,7 +336,7 @@ On va donc pouvoir appeler récursivement l'algorithme sur les deux sous-tableau
 
 ## Tri par dénombrement (counting sort)
 
-IL existe encore d'autres algorithmes de tri, mais ils sont plus spécifiques et ne fonctionnent que dans certains cas. Je vais en présenter un simple ici pour te donner une idée de ce qui existe.
+IL existe encore d'autres algorithmes de tri, mais ils sont plus spécifiques et ne fonctionnent que dans certains cas. Je vais en présenter un simple ici pour vous donner une idée de ce qui existe.
 
 Le tri par **dénombrement** (ou **counting sort** en anglais) est très efficace, car il va permettre de trier un tableau en complexité **linéaire**, c'est-à-dire en $O(n)$. Il ne fonctionne cependant que pour des données **entières** car il ne se base pas sur des comparaisons mais va compter le nombre d'occurrences de chaque valeur (de plus pour simplifier, on va supposer que les valeurs sont positives).
 
@@ -413,7 +413,7 @@ Par exemple, le nombre `123` peut être représenté en base `10` par la suite d
 
 On va donc pouvoir trier des nombres entiers en triant les chiffres de leur représentation en base `10`.
 
-Par exemple, pour trier les nombres `[123, 456, 789, 321, 654, 987]`, on va trier les chiffres des nombres, en commençant par les centaines, puis les dizaines et enfin les unités.
+Par exemple, pour trier les nombres `[123, 456, 324, 682, 789, 118, 321, 654, 987]`, on va trier les chiffres des nombres, en commençant par les unités, puis les dizaines, puis les centaines.
 
 Cela permet de trier les nombres en complexité linéaire grâce au tri par dénombrement.
 
@@ -423,9 +423,9 @@ Dans notre exemple, le nombre le plus grand est `987`, il a donc `3` chiffres, o
 Cette information peut être connue à l'avance, mais on peut aussi la calculer en parcourant le tableau une première fois.
 :::
 
-1. On trie les centaines ce qui donne `[123, 321, 456, 654, 789, 987]`
-2. On trie les dizaines ce qui donne `[123, 321, 456, 654, 789, 987]`
-3. enfin, on trie les unités ce qui donne `[123, 321, 456, 654, 789, 987]`
+1. On trie les **unités** ce qui donne `[321, 682, 123, 324, 654, 456, 987, 118, 789]`
+2. On trie les **dizaines** ce qui donne `[118, 321, 123, 324, 456, 654, 682, 987, 789]`
+3. enfin, on trie les **centaines** ce qui donne `[118, 123, 321, 324, 456, 654, 682, 789, 987]`
 
 </details>
 
@@ -433,7 +433,7 @@ Cette information peut être connue à l'avance, mais on peut aussi la calculer 
 
 Avoir un tableau trié est très utile pour effectuer des recherches dans un tableau.
 
-Par exemple, si on veut savoir si une valeur est présente dans un tableau, on peut parcourir le tableau et comparer chaque élément avec la valeur recherchée.
+Par exemple, si on veut savoir si une valeur est présente dans un tableau, on peut le parcourir le tableau et comparer chaque élément avec la valeur recherchée.
 
 Mais si le tableau est trié, on peut utiliser une méthode plus efficace: la **recherche dichotomique**.
 

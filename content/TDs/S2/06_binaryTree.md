@@ -49,7 +49,7 @@ void Node::insert(int value);
 On utilisera la fonction `createNode` pour créer le nouveau noeud.
 :::
 
-1. Écrire une **méthode** `infixe` qui retourne un vecteur contenant les pointeurs vers les noeuds de l'arbre binaire parcourus en **infixe**.
+4. Écrire une **méthode** `infixe` qui retourne un vecteur contenant les pointeurs vers les noeuds de l'arbre binaire parcourus en **infixe**.
 ```cpp
 std::vector<Node const*> Node::infixe() const;
 ```
@@ -60,6 +60,7 @@ Pour le faire par **récursivité** on pourra utiliser la méthode `insert` du `
 auto left_nodes {left->infixe()};
 nodes.insert(nodes.end(), left_nodes.begin(), left_nodes.end());
 ```
+:::
 
 5. De même, écrire deux autres méthodes `prefixe` et `postfixe` qui retournent les noeuds parcourus dans l'ordre **préfixe** et **postfixe** respectivement.
 
@@ -78,12 +79,12 @@ nodes.insert(nodes.end(), left_nodes.begin(), left_nodes.end());
 Node* Node::find(int value);
 ```
 
-7. (**BONUS**) Écrire la même **méthode** `find` mais qui retourne un pointeur constant vers le noeud. On ne pourra donc pas modifier la valeur du noeud retourné. L'avanatage de cette méthode est qu'on pourra l'utiliser sur un `Node` constant.
+8. (**BONUS**) Écrire la même **méthode** `find` mais qui retourne un pointeur constant vers le noeud. On ne pourra donc pas modifier la valeur du noeud retourné. L'avanatage de cette méthode est qu'on pourra l'utiliser sur un `Node` constant.
 ```cpp
 Node const* Node::find(int value) const;
 ```
 
-8. Écrire une **fonction** `removeNode` qui permet de supprimer une valeur de l'arbre binaire dont le noeud passé en paramètre est la racine. La fonction retourne un pointeur vers le nouveau noeud racine de l'arbre binaire.
+9. Écrire une **fonction** `removeNode` qui permet de supprimer une valeur de l'arbre binaire dont le noeud passé en paramètre est la racine. La fonction retourne un pointeur vers le nouveau noeud racine de l'arbre binaire.
 ```cpp
 Node* removeNode(Node* node, int value);
 ```
@@ -120,7 +121,7 @@ Il existe trois cas de figure lorsqu'on supprime un noeud d'un arbre binaire:
 Il faut faire attention à bien libérer la mémoire des noeuds supprimés.
 :::
 
-9. Écrire une fonction `deleteChilds` sur la structure `Node` qui permet de supprimer les fils d'un noeud (et de libérer la mémoire).
+10. Écrire une fonction `deleteChilds` sur la structure `Node` qui permet de supprimer les fils d'un noeud (et de libérer la mémoire).
 ```cpp
 void Node::deleteChilds();
 ```
@@ -129,7 +130,7 @@ void Node::deleteChilds();
 On peut utiliser de la récursivité pour supprimer les noeuds de l'arbre.
 :::
 
-10. Écrire une méthode `height` qui retourne la hauteur de l'arbre binaire (c'est à dire la longueur du plus long chemin entre la racine et une feuille).
+11. Écrire une méthode `height` qui retourne la hauteur de l'arbre binaire (c'est à dire la longueur du plus long chemin entre la racine et une feuille).
 ```cpp
 int Node::height() const;
 ```
@@ -138,40 +139,40 @@ int Node::height() const;
 On peut utiliser de la récursivité pour calculer la hauteur de l'arbre.
 :::
 
-11. Écrire une **fonction** `deleteTree` qui permet de supprimer un arbre binaire (et de libérer la mémoire).
+12. Écrire une **fonction** `deleteTree` qui permet de supprimer un arbre binaire (et de libérer la mémoire).
 ```cpp
 void deleteTree(Node* node);
 ```
 
-12. (**BONUS**) Écrire des méthodes `min` et `max` qui retournent respectivement les valeurs minimales et maximales de l'arbre binaire.
+13. (**BONUS**) Écrire des méthodes `min` et `max` qui retournent respectivement les valeurs minimales et maximales de l'arbre binaire.
 
 ## Pointeurs intelligents
 
 Nous allons maintenant améliorer et simplifier notre code en utilisant des pointeurs intelligents. En effet la partie la plus compliquée de notre code est la gestion de la mémoire et des pointeurs. Les pointeurs intelligents vont nous permettre de nous débarrasser de cette gestion et de nous passer de la fonction `deleteTree` par exemple.
 
-1. Copier coller votre fichier pour garder une version de votre code précédent et créer un nouveau fichier `smartNode.hpp` dans lequel vous allez réécrire votre code en utilisant des **pointeurs intelligents**.
+14. Copier coller votre fichier pour garder une version de votre code précédent et créer un nouveau fichier `smartNode.hpp` dans lequel vous allez réécrire votre code en utilisant des **pointeurs intelligents**.
 Renommer la structure `Node` en `SmartNode` pour pouvoir faire la différence entre les deux versions.
 
-2. Remplacer les pointeurs "bruts" par des pointeurs intelligents `std::unique_ptr` dans la structure `SmartNode`.
+15. Remplacer les pointeurs "bruts" par des pointeurs intelligents `std::unique_ptr` dans la structure `SmartNode`.
 
-3. Modifier la fonction `isLeaf` pour utiliser le fait qu'un pointeur intelligent peut être converti implicitement en [booléen](https://en.cppreference.com/w/cpp/memory/unique_ptr/operator_bool) (il vaut `false` si le pointeur est nul et `true` sinon). 
+16. Modifier la fonction `isLeaf` pour utiliser le fait qu'un pointeur intelligent peut être converti implicitement en [booléen](https://en.cppreference.com/w/cpp/memory/unique_ptr/operator_bool) (il vaut `false` si le pointeur est nul et `true` sinon). 
 
-4. Renommer et modifier la fonction `createNode` (en `createSmartNode`) pour qu'elle retourne un pointeur intelligent `std::unique_ptr` au lieu d'un pointeur brut (on utilisera la fonction `std::make_unique` pour créer le pointeur).
+17. Renommer et modifier la fonction `createNode` (en `createSmartNode`) pour qu'elle retourne un pointeur intelligent `std::unique_ptr` au lieu d'un pointeur brut (on utilisera la fonction `std::make_unique` pour créer le pointeur).
 
-5. Modifier la méthode `mostLeft` pour qu'elle retourne une référence vers la structure `SmartNode` au lieu d'un pointeur brut (une référence car cet élément est toujours présent dans l'arbre).
+18. Modifier la méthode `mostLeft` pour qu'elle retourne une référence vers la structure `SmartNode` au lieu d'un pointeur brut (une référence car cet élément est toujours présent dans l'arbre).
 
-6. Modifier les méthodes `insert`, `find` pour qu'elles fonctionnent avec des pointeurs intelligents.
+19. Modifier les méthodes `insert`, `find` pour qu'elles fonctionnent avec des pointeurs intelligents.
 
-7. (**BONUS**) Renommer et modifier la méthode `removeNode` (en `removeSmartNode`) également.
+20. (**BONUS**) Renommer et modifier la méthode `removeNode` (en `removeSmartNode`) également.
 ## Utilisation
 
 Testons maintenant notre implémentation en créant un programme qui permet de créer un arbre binaire et d'effectuer différentes opérations dessus.
 
-1. Créer un arbre binaire et insérer les valeurs suivantes: 5, 3, 7, 2, 4, 6, 8, 1, 9, 0.
+21. Créer un arbre binaire et insérer les valeurs suivantes: 5, 3, 7, 2, 4, 6, 8, 1, 9, 0.
 
-2. Afficher les valeurs des noeuds de l'arbre binaire dans l'ordre **infixe**, **préfixe** et **postfixe**.
+22. Afficher les valeurs des noeuds de l'arbre binaire dans l'ordre **infixe**, **préfixe** et **postfixe**.
 
-3. Afficher la hauteur de l'arbre binaire.
+23. Afficher la hauteur de l'arbre binaire.
 
 ## Aller plus loin: Encapsulation
 

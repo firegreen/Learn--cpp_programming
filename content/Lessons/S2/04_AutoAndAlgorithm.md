@@ -27,10 +27,10 @@ Les **itérateurs** sont des objets qui se comportent un peu comme des pointeurs
 Pour un **tableau** (comme `std::array` ou `std::vector`) le passage d'un élément à l'autre se fait généralement en incrémentant un compteur mais pour d'autres conteneurs, le passage d'un élément à l'autre est plus complexe. Grâce aux **itérateurs**, nous n'avons pas à nous soucier de la manière dont le conteneur est implémenté.
 
 :::info
-Il existe plusieurs types d'itérateurs qui permettent de parcourir les conteneurs de différentes manières (parcours en lecture seule, parcours en lecture et écriture, parcours seulement dans un sens, ...). Nous allons pas rentrer dans les détails des différents types d'itérateurs mais sachez qu'il existe plusieurs types d'itérateurs qui permettent de parcourir les conteneurs de différentes manières.
+Il existe plusieurs types d'itérateurs qui permettent de parcourir les conteneurs de différentes manières (parcours en lecture seule, parcours en lecture et écriture, parcours seulement dans un sens, ...). Nous n'allons pas rentrer dans les détails des différents types d'itérateurs mais sachez qu'il existe plusieurs types d'itérateurs qui permettent de parcourir les conteneurs de différentes manières.
 :::
 
-Les **itérateurs** on des **opérateurs** et **méthodes** qui permettent de les manipuler comme avec l'opérateur `*` pour déréférencer et accéder à la valeur pointée par l'itérateur et l'opérateur `++` pour passer à l'élément suivant.
+Les **itérateurs** ont des **opérateurs** et **méthodes** qui permettent de les manipuler comme avec l'opérateur `*` pour déréférencer et accéder à la valeur pointée par l'itérateur et l'opérateur `++` pour passer à l'élément suivant.
 
 ### Begin et end
 
@@ -49,7 +49,7 @@ std::vector<int>::iterator end_iterator { v.end() };
 ```
 
 :::note
-Ici, nous utilisons l'**itérateur** `std::vector<int>::iterator` qui permet de parcourir un vecteur. Il existe aussi l'**itérateur** `std::vector<int>::const_iterator` qui permet de parcourir un vecteur en lecture seule (`const`) (on peut obtenir des itérateurs constants avec les méthode `cbegin` et `cend`).
+Ici, nous utilisons l'**itérateur** `std::vector<int>::iterator` qui permet de parcourir un vecteur. Il existe aussi l'**itérateur** `std::vector<int>::const_iterator` qui permet de parcourir un vecteur en lecture seule (`const`) (on peut obtenir des itérateurs **constants** avec les méthodes `cbegin` et `cend`).
 :::
 
 :::warning
@@ -73,7 +73,7 @@ for (std::vector<int>::iterator it { v.begin() }; it != end_iterator; ++it) {
 ```
 
 Quelques explications sur ce code :
-Nous déclarons un itérateur sur le premier élément du vecteur `v` et un itérateur sur le dernier élément du vecteur `v`. Ensuite, nous parcourons le vecteur avec une boucle `for` en incrémentant l'**itérateur** (pour passer à l'élément suivant). Nous utilisons l'opérateur `!=` pour comparer l'itérateur actuel avec l'itérateur qui indique la fin du du vecteur afin de savoir quand nous avons parcouru tout le vecteur. L'opérateur `*` permet de récupérer la valeur pointée par l'itérateur (à l'instar du déréférencement d'un pointeur).
+Nous déclarons un itérateur sur le premier élément du vecteur `v` et un itérateur sur le dernier élément du vecteur `v`. Ensuite, nous parcourons le vecteur avec une boucle `for` en incrémentant l'**itérateur** (pour passer à l'élément suivant). Nous utilisons l'opérateur `!=` pour comparer l'itérateur actuel avec l'itérateur qui indique la fin du vecteur afin de savoir quand nous avons parcouru tout le vecteur. L'opérateur `*` permet de récupérer la valeur pointée par l'itérateur (à l'instar du déréférencement d'un pointeur).
 
 :::info for range based loop
 Il existe une syntaxe plus simple pour parcourir un conteneur avec un itérateur. Il s'agit de la boucle `for` avec la syntaxe `for (element : container)`. Nous avons déjà vu cette syntaxe avec les tableaux. Cette syntaxe est aussi valable pour les autres conteneurs de la **STL** et utilise en fait les itérateurs.
@@ -107,7 +107,7 @@ std::vector<int> const v {1, 2, 3, 4, 5};
 auto it { v.begin() };
 ```
 
-Pourquoi ne pas utiliser la déduction de type pour toutes les variables ? C'est une question de lisibilité du code. Il est plus facile de comprendre le code si les types sont précisés. De plus, la déduction de type ne fonctionne que si la variable est initialisé et que le type peut être déduit. Cela peut être problématique dans certains cas où le type ne peut pas être déduit ou conduit à des erreurs (par exemple avec `{1, 2, 3, 4, 5}` qui peut être un `std::vector` ou un `std::array`).
+Pourquoi ne pas utiliser la déduction de type pour toutes les variables ? C'est une question de lisibilité du code. Il est plus facile de comprendre le code si les types sont précisés. De plus, la déduction de type ne fonctionne que si la variable est initialisée et que le type peut être déduit. Cela peut être problématique dans certains cas où le type ne peut pas être déduit ou conduit à des erreurs (par exemple avec `{1, 2, 3, 4, 5}` qui peut être un `std::vector` ou un `std::array`).
 
 Finalement, la déduction de type est une fonctionnalité très utile mais qui doit être utilisée avec parcimonie quand cela est pertinent. Il est préférable de préciser le type des variables pour rendre le code plus lisible quand cela est possible.
 
@@ -213,12 +213,11 @@ v.erase(std::remove(v.begin(), v.end(), 5), v.end());
 ```
 :::
 
-C'est ce qu'on appel l'**idiome** *remove-erase*.
+C'est ce qu'on appelle l'**idiome** *remove-erase*.
 
-A partir du **C++20**, il existe de nouvelles fonctions qui permettent de supprimer des éléments d'un conteneur de manière générique: `std::erase_if` et `std::erase_if`. Ces fonctions prennent en paramètre  des itérateurs et fonctionne donc avec tous les conteneurs.
+A partir du **C++20**, il existe de nouvelles fonctions qui permettent de supprimer des éléments d'un conteneur de manière générique: `std::erase_if` et `std::erase_if`. Ces fonctions prennent en paramètre des itérateurs et fonctionnent donc avec tous les conteneurs.
 
 Vous trouverez une explication [ici](https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom).
-:::
 
 ## Pour aller plus loin
 
@@ -320,7 +319,7 @@ int main()
 
 A chaque itération, l'opération est appliquée entre la valeur accumulée et l'élément courant du conteneur. La valeur accumulée est initialisée avec la valeur initiale. Les valeurs sont parcourues **dans l'ordre** du conteneur.
 
-L'algorithme `std::reduce` fonctionne de la même manière que `std::accumulate` mais il n'y a pas de valeur initiale. Les valeurs sont parcourues **dans n'importe quel ordre**. C''est utile quand l'opération est **commutative** (l'ordre des opérandes n'a pas d'importance).
+L'algorithme `std::reduce` fonctionne de la même manière que `std::accumulate` mais il n'y a pas de valeur initiale. Les valeurs sont parcourues **dans n'importe quel ordre**. C'est utile quand l'opération est **commutative** (l'ordre des opérandes n'a pas d'importance).
 
 ```cpp title="Somme"
 
