@@ -1,10 +1,10 @@
 module.exports = {
   Lessons: [{
     type: 'category',
-    label: 'Lessons',
+    label: 'Cours',
     link: {
       type: 'generated-index',
-      title: 'Lessons',
+      title: 'Cours',
       slug: '/Lessons',
     },
     items: [{
