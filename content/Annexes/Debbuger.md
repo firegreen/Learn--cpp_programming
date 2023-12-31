@@ -46,7 +46,7 @@ Cela créera un fichier **launch.json** dans un dossier **/.vscode** à la racin
 Si vous voulez plus de détails sur la configuration manuelle, vous pouvez vous rendre [ici](https://code.visualstudio.com/docs/cpp/launch-json-reference).
 
 S'il y a une seule chose à vérifier, c'est que le champ "**program**" pointe bien vers votre exécutable.
-En général, avec la configuration de **CMake**, il sera sous "${workspaceFolder}/build/bin/Debug/YOURPROGRAM.exe"
+En général, avec la configuration de **CMake**, il sera sous "$\{workspaceFolder\}/build/bin/Debug/YOURPROGRAM.exe"
 </details>
 
 ## Utiliser le débogueur
