@@ -4,7 +4,7 @@ tags:
     - C++
 ---
 
-En informatique, il existe une grande famille de structures de données appelées **graphes**. C'est un outil très puissant qui permet de modéliser des problèmes très variés. Dans cette leçon, nous allons voir comment représenter un graphe en mémoire et comment parcourir un graphe.
+En informatique, il existe une grande famille de structures de données appelée **graphes**. C'est un outil très puissant qui permet de modéliser des problèmes très variés. Dans cette leçon, nous allons voir comment représenter un graphe en mémoire et comment parcourir un graphe.
 
 ## Quelques définitions
 
@@ -59,7 +59,7 @@ graph LR
 
 ### Les arbres
 
-On à précédemment vu les **arbres binaires**. Un arbre n'est rien d'autre qu'un graphe particulier. Un arbre est un graphe **non orienté**, **non pondéré**, **connexe** et **acyclique**.
+On a précédemment vu les **arbres binaires**. Un arbre n'est rien d'autre qu'un graphe particulier. Un arbre est un graphe **non orienté**, **non pondéré**, **connexe** et **acyclique**.
 
 ## Représentation d'un graphe
 
@@ -127,9 +127,9 @@ Voici un exemple de liste d'adjacence pour un graphe non orienté et non pondér
 | D      | B, E      |
 | E      | C, D      |
 
-En pratique, on utilise plutôt la **liste d'adjacence** pour représenter un graphe car la **matrice d'adjacence** peut être très coûteuse en mémoire. En effet, une matrice d'adjacence est une matrice carrée. Donc, si on a $n$ sommets, on a $n^2$ cases. Même si le graphe possède peu d'arêtes, la matrice d'adjacence est quand même de taille $n^2$. Cela peut être légèrement optimisé dans le cas des graphe non orientés car la matrice est symétrique. On peut donc ne stocker que la moitié de la matrice. Mais cela reste quand même très coûteux en mémoire.
+En pratique, on utilise plutôt la **liste d'adjacence** pour représenter un graphe car la **matrice d'adjacence** peut être très coûteuse en mémoire. En effet, une matrice d'adjacence est une matrice carrée. Donc, si on a $n$ sommets, on a $n^2$ cases. Même si le graphe possède peu d'arêtes, la matrice d'adjacence est quand même de taille $n^2$. Cela peut être légèrement optimisé dans le cas des graphes non orientés car la matrice est symétrique. On peut donc ne stocker que la moitié de la matrice. Mais cela reste quand même très coûteux en mémoire.
 
-l’utilité de la **matrice d'adjacence** est qu'elle permet de savoir si deux sommets sont reliés en **temps constant**. Dans les cas où c'est acceptable de stocker une matrice d'adjacence, on peut donc utiliser cette propriété pour gagner du temps. Cela à aussi des applications en théorie des graphes pour analyser des graphes.
+L'utilité de la **matrice d'adjacence** est qu'elle permet de savoir si deux sommets sont reliés en **temps constant**. Dans les cas où c'est acceptable de stocker une matrice d'adjacence, on peut donc utiliser cette propriété pour gagner du temps. Cela a aussi des applications en théorie des graphes pour analyser des graphes.
 
 ## Parcours d'un graphe
 
@@ -153,7 +153,7 @@ Le parcours en largeur consiste à parcourir le graphe en partant d'un sommet et
 
 Pour parcourir un graphe en largeur, on utilise une **file**. On commence par ajouter le sommet de départ dans la file. Tant que la file n'est pas vide, on retire le premier élément de la file et on l'ajoute à la liste des sommets visités. Ensuite, on ajoute tous les sommets adjacents de ce sommet dans la file. On recommence jusqu'à ce que la file soit vide.
 
-Voici le déroulement du parcours en largeur au départ du noeud A pour le graphe précédent :
+Voici le déroulement du parcours en largeur au départ du nœud A pour le graphe précédent :
 
 - On commence par ajouter le sommet **A** dans la file.
 - Comme la file n'est pas vide, on retire le premier élément (**A**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **B** et **C** dans la file.
@@ -162,7 +162,7 @@ Voici le déroulement du parcours en largeur au départ du noeud A pour le graph
 - On retire le premier élément (**D**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc rien dans la file. La file contient maintenant **E**, **F** et **G**.
 - On fait de même pour **E**, **F** et **G**. La file est maintenant vide. On a donc parcouru tous les sommets du graphe.
 
-Cela nous donne donc le parcours suivant : **A**, **B**, **C**, **D**, **E**, **F**, **G**.
+Cela nous donne donc le parcours suivant : **A, B, C, D, E, F, G**.
 
 ### Parcours en profondeur
 
@@ -170,7 +170,7 @@ Le parcours en profondeur consiste à parcourir le graphe en partant d'un sommet
 
 Pour parcourir un graphe en profondeur, on utilise une **pile**. On commence par ajouter le sommet de départ dans la pile. Tant que la pile n'est pas vide, on retire le premier élément de la pile et on l'ajoute à la liste des sommets visités. Ensuite, on ajoute tous les sommets adjacents de ce sommet dans la pile. On recommence jusqu'à ce que la pile soit vide.
 
-Voici le déroulement du parcours en profondeur au départ du noeud **A** pour le graphe précédent :
+Voici le déroulement du parcours en profondeur au départ du nœud **A** pour le graphe précédent :
 
 - On commence par ajouter le sommet **A** dans la pile.
 - Comme la pile n'est pas vide, on retire le premier élément (**A**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **B** et **C** dans la pile.
@@ -178,9 +178,9 @@ Voici le déroulement du parcours en profondeur au départ du noeud **A** pour l
 - On retire le premier élément (**G**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant **B** et **F**.
 - On retire le premier élément (**F**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant **B**.
 - On retire le premier élément (**B**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **D** et **E** dans la pile. La pile contient maintenant **D** et **E**.
-- On fait de même pour **D** et **E**. La pile est maintenant vide. On a donc parcouru tous les sommets du graphe.
+- On fait de même pour **E** et **D**. La pile est maintenant vide. On a donc parcouru tous les sommets du graphe.
 
-Ce qui nous donne le parcours suivant : **A**, **C**, **G**, **F**, **B**, **D**, **E**.
+Ce qui nous donne le parcours suivant : **A, C, G, F, B, E, D**.
 
 ## En pratique
 
@@ -190,7 +190,7 @@ Maintenant que nous avons vu ce qu'est un graphe il est légitime de se demander
 - Les jeux vidéos : les graphes sont utilisés pour modéliser les niveaux, les cartes ou encore pour de la recherche de chemin (intelligence artificielle des ennemis par exemple).
 - Les bases de données : les graphes sont utilisés pour modéliser les relations entre les données.
 - Les problèmes de transport : les graphes sont utilisés pour modéliser les réseaux de transport (routes, métro, etc.) et permettent de résoudre des problèmes d'optimisation (par exemple, trouver le plus court chemin entre deux villes).
-- Des algorithmes de programmation dynamique : les graphes sont beaucoup utilisés dans les algorithmes dit de programmation dynamique où le problème est si complexe qu'il est nécessaire de le décomposer en sous-problèmes, de faire des estimations et d'explorer les solutions possibles à travers un graphe de solutions.
+- Des algorithmes de programmation dynamique : les graphes sont beaucoup utilisés dans les algorithmes dis de programmation **dynamique** où le problème est si complexe qu'il est nécessaire de le décomposer en sous-problèmes, de faire des estimations et d'explorer les solutions possibles à travers un graphe de solutions.
 
 ### Dijkstra
 
@@ -198,7 +198,7 @@ Je vous propose de voir un exemple d'algorithme de graphe : l'algorithme de **Di
 
 L'algorithme de Dijkstra est simplement une application du parcours en largeur. On part d'un sommet de départ et on visite tous les sommets adjacents. On ajoute ensuite les sommets adjacents de ces sommets adjacents dans la file. On recommence jusqu'à ce qu'on ait trouvé le sommet d'arrivée. On peut alors remonter le chemin en partant du sommet d'arrivée et en remontant les sommets précédents jusqu'au sommet de départ.
 
-il faut une liste du même taille que le nombre de sommets du graphe pour stocker les distances. On initialise toutes les distances à l'infini sauf la distance du sommet de départ qui est à 0. On utilise également une file pour stocker les sommets à visiter et une liste pour stocker les sommets déjà visités. On commence par ajouter le sommet de départ dans la file des sommets à visiter. Tant que la file n'est pas vide, on retire le premier élément de la file et on l'ajoute à la liste des sommets visités. Ensuite, on ajoute tous les sommets adjacents de ce sommet dans la file s'il nos pas déjà été visités. Pour chaque sommet adjacent, on met à jour sa distance si la distance actuelle est plus grande que la distance du sommet actuel plus le poids de l'arête entre le sommet actuel et le sommet adjacent. On recommence jusqu'à ce que la file soit vide.
+Il faut une liste de même taille que le nombre de sommets du graphe pour stocker les distances. On initialise toutes les distances à l'infini sauf la distance du sommet de départ qui est à 0. On utilise également une file pour stocker les sommets à visiter et une liste pour stocker les sommets déjà visités. On commence par ajouter le sommet de départ dans la file des sommets à visiter. Tant que la file n'est pas vide, on retire le premier élément de la file et on l'ajoute à la liste des sommets visités. Ensuite, on ajoute tous les sommets adjacents de ce sommet dans la file s'ils n'ont pas déjà été visités. Pour chaque sommet adjacent, on met à jour sa distance si la distance actuelle est plus grande que la distance du sommet actuel plus le poids de l'arête entre le sommet actuel et le sommet adjacent. On recommence jusqu'à ce que la file soit vide.
 
 :::tip
 Dans la pratique, on utilise une file de priorité pour stocker les sommets à visiter. Cela permet de toujours retirer le sommet avec la plus petite distance en premier. Cela permet d'optimiser l'algorithme.
@@ -235,13 +235,13 @@ On commence par ajouter le sommet de départ **A** dans la file de priorité des
 |---|------|------|----------|----------|-------------------|-----------------|
 | 0 | 1(A) | 3(A) | $\infty$ | $\infty$ | [B, C]            | [A]             |
 
-On continue en retirant le sommet **B**. Il a comme sommets adjacents **C** et **D**. **C** à déjà une distance de 3(venant de **A**) mais la distance depuis **B** est plus petite (1 venant de **A** plus 1 venant de **B**). On met donc à jour la distance de **C**. La distance de **D** est la distance de **B** plus le poids de l'arête entre **B** et **D**. On ajoute ensuite **D** dans la file de priorité des sommets à visiter (**C** est déjà dans la file).
+On continue en retirant le sommet **B**. Il a comme sommets adjacents **C** et **D**. **C** a déjà une distance de 3(venant de **A**) mais la distance depuis **B** est plus petite (1 venant de **A** plus 1 venant de **B**). On met donc à jour la distance de **C**. La distance de **D** est la distance de **B** plus le poids de l'arête entre **B** et **D**. On ajoute ensuite **D** dans la file de priorité des sommets à visiter (**C** est déjà dans la file).
 
 | A | B    | C    | D    | E        | Sommets à visiter | Sommets visités |
 |---|------|------|------|----------|-------------------|-----------------|
 | 0 | 1(A) | 2(B) | 3(B) | $\infty$ | [C, D]            | [A, B]          |
 
-Voilà l'étape suivant en considérant **C**. **C** a comme sommets adjacents **E**. La distance de **E** est la distance de **C** plus le poids de l'arête entre **C** et **E**. On ajoute ensuite **E** dans la file de priorité des sommets à visiter.
+Voilà l'étape suivante en considérant **C**. **C** a comme sommets adjacents **E**. La distance de **E** est la distance de **C** plus le poids de l'arête entre **C** et **E**. On ajoute ensuite **E** dans la file de priorité des sommets à visiter.
 
 | A | B    | C    | D    | E    | Sommets à visiter | Sommets visités |
 |---|------|------|------|------|-------------------|-----------------|
@@ -258,7 +258,7 @@ Enfin on retire le sommet **E**. Il n'a pas de sommets adjacents. On ne fait don
 On a fini de parcourir le graphe. On a donc trouvé les distances de tous les sommets depuis le sommet de départ **A**. Si l'on souhaite trouver le plus court chemin entre **A** et **E**, il suffit de remonter le chemin en partant de E et en remontant les sommets précédents jusqu'à **A**. Le plus court chemin entre **A** et **E** est donc **A** $\rightarrow$ **B** $\rightarrow$ **C** $\rightarrow$ **E**.
 
 :::tip
-En pratique pour pouvoir remonter le chemin, il faut stocker donc stocker pour chaque sommet la distance la plus courte depuis le sommet de départ mais aussi le sommet précédent d'où l'on vient pour obtenir cette distance. On peut stocker cela dans une liste de paires (distance, sommet précédent).
+En pratique pour pouvoir remonter le chemin, il faut stocker pour chaque sommet la distance la plus courte depuis le sommet de départ mais aussi le sommet précédent (d'où l'on vient pour obtenir cette distance). On peut stocker cela dans une liste de paires (distance, sommet précédent).
 
 On peut aussi stocker si un sommet a déjà été visité ou non dans une liste de booléens de la taille du nombre de sommets plutôt que dans une liste de sommets visités.
 :::
@@ -267,7 +267,9 @@ On peut aussi stocker si un sommet a déjà été visité ou non dans une liste 
 
 L'algorithme de Dijkstra peut être amélioré. En effet, il explore tous les sommets adjacents d'un sommet avant de passer au sommet suivant. Cela peut être très coûteux en temps si le graphe est très grand et ou si le sommet de départ et le sommet d'arrivée sont très éloignés. L'algorithme de **Dijkstra** explore alors beaucoup de sommets inutilement.
 
-L'algorithme A* est une amélioration de l'algorithme de **Dijkstra**. Il utilise une **heuristique** pour guider la recherche. L'heuristique est une fonction qui permet d'estimer la distance entre un sommet et le sommet d'arrivée. L'algorithme **A*** explore alors en priorité les sommets qui sont les plus proches du sommet d'arrivée. Cela permet de réduire le nombre de sommets explorés et donc de gagner du temps.
+L'algorithme A* est une amélioration de l'algorithme de **Dijkstra**. Il utilise une **heuristique** pour guider la recherche. L'**heuristique** est une fonction qui permet d'**estimer** la distance entre un sommet et le sommet d'arrivée. L'algorithme **A*** explore alors en priorité les sommets qui sont les plus proches(selon cette estimation) du sommet d'arrivée. Cela permet de réduire le nombre de sommets explorés et donc de gagner du temps.
+
+Pour donner un exemple concret, on peut utiliser la **distance euclidienne** comme **heuristique**. La **distance euclidienne** est la distance à vol d'oiseau entre deux points. On peut l'utiliser pour guider la recherche dans un labyrinthe par exemple. On peut alors utiliser la **distance euclidienne** entre le sommet actuel et le sommet d'arrivée comme heuristique. Cela permet d'explorer en priorité les sommets qui sont les plus proches (à vol d'oiseau) du sommet d'arrivée.
 
 ## Simplification 2D
 

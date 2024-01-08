@@ -8,7 +8,7 @@ Dans ce TD, nous allons voir comment implémenter un arbre binaire de recherche.
 
 ## Implémentation
 
-Donnons nous pour commencer la structure suivante pour représenter un noeud d'un arbre binaire.
+Donnons nous pour commencer la structure suivante pour représenter un nœud d'un arbre binaire.
 
 ```cpp
 struct Node {
@@ -31,25 +31,25 @@ CmakeLists.txt
 ```
 :::
 
-1. Écrire une **fonction** `createNode` qui prend en paramètre une valeur et permet de créer (sur la heap avec **new**) un noeud contenant cette valeur et dont les fils sont pointeur nuls.
+1. Écrire une **fonction** `createNode` qui prend en paramètre une valeur et permet de créer (sur la heap avec **new**) un nœud contenant cette valeur et dont les fils sont pointeur nuls.
 ```cpp
 Node* createNode(int value);
 ```
 
-2. Écrire une **méthode** `isLeaf` sur la structure `Node` qui retourne vrai si le noeud est une feuille (c'est à dire si ses deux fils sont nuls).
+2. Écrire une **méthode** `isLeaf` sur la structure `Node` qui retourne vrai si le nœud est une feuille (c'est à dire si ses deux fils sont nuls).
 ```cpp
 bool isLeaf() const;
 ```
 
-3. Écrire une **méthode** `insert` à la structure `BinaryTree` qui prend en paramètre une valeur et qui insère un nouveau noeud contenant cette valeur dans l'arbre binaire. On insérera le noeud à gauche si la valeur est inférieure à la valeur du noeud courant et à droite sinon.
+3. Écrire une **méthode** `insert` à la structure `BinaryTree` qui prend en paramètre une valeur et qui insère un nouveau nœud contenant cette valeur dans l'arbre binaire. On insérera le nœud à gauche si la valeur est inférieure à la valeur du nœud courant et à droite sinon.
 ```cpp
 void Node::insert(int value);
 ```
 :::tip
-On utilisera la fonction `createNode` pour créer le nouveau noeud.
+On utilisera la fonction `createNode` pour créer le nouveau nœud.
 :::
 
-4. Écrire une **méthode** `infixe` qui retourne un vecteur contenant les pointeurs vers les noeuds de l'arbre binaire parcourus en **infixe**.
+4. Écrire une **méthode** `infixe` qui retourne un vecteur contenant les pointeurs vers les nœuds de l'arbre binaire parcourus en **infixe**.
 ```cpp
 std::vector<Node const*> Node::infixe() const;
 ```
@@ -62,45 +62,45 @@ nodes.insert(nodes.end(), left_nodes.begin(), left_nodes.end());
 ```
 :::
 
-5. De même, écrire deux autres méthodes `prefixe` et `postfixe` qui retournent les noeuds parcourus dans l'ordre **préfixe** et **postfixe** respectivement.
+5. De même, écrire deux autres méthodes `prefixe` et `postfixe` qui retournent les nœuds parcourus dans l'ordre **préfixe** et **postfixe** respectivement.
 
-<!-- 6. Écrire une **fonction** `displayNodeValues` qui prends en paramètre un vecteur de pointeurs vers des noeuds et qui affiche les valeurs de ces noeuds, séparées par un séparateur passé en paramètre.
+<!-- 6. Écrire une **fonction** `displayNodeValues` qui prends en paramètre un vecteur de pointeurs vers des nœuds et qui affiche les valeurs de ces nœuds, séparées par un séparateur passé en paramètre.
     ```cpp
     void displayNodeValues(std::vector<Node const*> const& nodes, std::string separator = ", ");
     ``` -->
 
-6. Écrire une **méthode** `mostLeft` qui retourne un pointeur vers le noeud le plus à gauche de l'arbre binaire dont ce noeud est la racine.
+6. Écrire une **méthode** `mostLeft` qui retourne un pointeur vers le nœud le plus à gauche de l'arbre binaire dont ce nœud est la racine.
 ```cpp
     Node* Node::mostLeft();
 ```
 
-7. Écrire une **méthode** `find` qui prend en paramètre une valeur et qui retourne un pointeur vers le noeud contenant cette valeur dans l'arbre binaire. Si la valeur n'est pas présente dans l'arbre, on retourne un pointeur nul.
+7. Écrire une **méthode** `find` qui prend en paramètre une valeur et qui retourne un pointeur vers le nœud contenant cette valeur dans l'arbre binaire. Si la valeur n'est pas présente dans l'arbre, on retourne un pointeur nul.
 ```cpp
 Node* Node::find(int value);
 ```
 
-8. (**BONUS**) Écrire la même **méthode** `find` mais qui retourne un pointeur constant vers le noeud. On ne pourra donc pas modifier la valeur du noeud retourné. L'avanatage de cette méthode est qu'on pourra l'utiliser sur un `Node` constant.
+8. (**BONUS**) Écrire la même **méthode** `find` mais qui retourne un pointeur constant vers le nœud. On ne pourra donc pas modifier la valeur du nœud retourné. L'avanatage de cette méthode est qu'on pourra l'utiliser sur un `Node` constant.
 ```cpp
 Node const* Node::find(int value) const;
 ```
 
-9. Écrire une **fonction** `removeNode` qui permet de supprimer une valeur de l'arbre binaire dont le noeud passé en paramètre est la racine. La fonction retourne un pointeur vers le nouveau noeud racine de l'arbre binaire.
+9. Écrire une **fonction** `removeNode` qui permet de supprimer une valeur de l'arbre binaire dont le nœud passé en paramètre est la racine. La fonction retourne un pointeur vers le nouveau nœud racine de l'arbre binaire.
 ```cpp
 Node* removeNode(Node* node, int value);
 ```
 
-Retourner un pointeur vers le nouveau noeud racine permet de réassigner le pointeur du node parent si le noeud est supprimé. C'est important dans le cas par exemple où l'on supprime une feuille de l'arbre il faut pouvoir réassigner le pointeur du noeud parent vers un pointeur nul pour éviter d'avoir un pointeur qui pointe vers un noeud supprimé.
+Retourner un pointeur vers le nouveau nœud racine permet de réassigner le pointeur du node parent si le nœud est supprimé. C'est important dans le cas par exemple où l'on supprime une feuille de l'arbre il faut pouvoir réassigner le pointeur du nœud parent vers un pointeur nul pour éviter d'avoir un pointeur qui pointe vers un nœud supprimé.
 
 ```cpp
 if (value == node->value && node->isLeaf()) {
-        // On supprime le noeud courant
+        // On supprime le nœud courant
         delete node;
-        // on retourne nullptr pour mettre à jour le pointeur du parent vers le noeud courant
+        // on retourne nullptr pour mettre à jour le pointeur du parent vers le nœud courant
         return nullptr;
     }
 ```
 
-le parent doit alors appeler par récursivité la fonction `removeNode` pour mettre à jour son pointeur vers le noeud fils correspondant.
+le parent doit alors appeler par récursivité la fonction `removeNode` pour mettre à jour son pointeur vers le nœud fils correspondant.
 
 ```cpp
 if (value < node->value) {
@@ -109,25 +109,25 @@ if (value < node->value) {
 ```
 
 :::tip
-Il existe trois cas de figure lorsqu'on supprime un noeud d'un arbre binaire:
-- Le noeud n'a pas de fils: on peut le supprimer directement.
-- Le noeud a un seul fils: on peut le supprimer et le remplacer par son fils.
-- Le noeud a deux fils: 
-    Il faut remplacer la valeur du noeud à supprimer par une valeur préserver l'ordre de l'arbre. Pour cela, on utilisera la fonction `mostLeft` qui permettent de trouver le noeud le plus à gauche d'un arbre binaire (autrement dit, le noeud de valeur minimale).
-    Il faut ensuite remplacer la valeur du noeud à supprimer par la valeur du noeud trouvé précédemment et supprimer ce dit noeud pour ne pas avoir de doublon. (cela revient à intervertir les deux noeuds sans avoir à modifier les pointeurs puis à supprimer le noeud dont la valeur a été copiée).
+Il existe trois cas de figure lorsqu'on supprime un nœud d'un arbre binaire:
+- Le nœud n'a pas de fils: on peut le supprimer directement.
+- Le nœud a un seul fils: on peut le supprimer et le remplacer par son fils.
+- Le nœud a deux fils: 
+    Il faut remplacer la valeur du nœud à supprimer par une valeur préserver l'ordre de l'arbre. Pour cela, on utilisera la fonction `mostLeft` qui permettent de trouver le nœud le plus à gauche d'un arbre binaire (autrement dit, le nœud de valeur minimale).
+    Il faut ensuite remplacer la valeur du nœud à supprimer par la valeur du nœud trouvé précédemment et supprimer ce dit nœud pour ne pas avoir de doublon. (cela revient à intervertir les deux nœuds sans avoir à modifier les pointeurs puis à supprimer le nœud dont la valeur a été copiée).
 :::
 
 :::warning
-Il faut faire attention à bien libérer la mémoire des noeuds supprimés.
+Il faut faire attention à bien libérer la mémoire des nœuds supprimés.
 :::
 
-10. Écrire une fonction `deleteChilds` sur la structure `Node` qui permet de supprimer les fils d'un noeud (et de libérer la mémoire).
+10. Écrire une fonction `deleteChilds` sur la structure `Node` qui permet de supprimer les fils d'un nœud (et de libérer la mémoire).
 ```cpp
 void Node::deleteChilds();
 ```
 
 :::tip
-On peut utiliser de la récursivité pour supprimer les noeuds de l'arbre.
+On peut utiliser de la récursivité pour supprimer les nœuds de l'arbre.
 :::
 
 11. Écrire une méthode `height` qui retourne la hauteur de l'arbre binaire (c'est à dire la longueur du plus long chemin entre la racine et une feuille).
@@ -170,7 +170,7 @@ Testons maintenant notre implémentation en créant un programme qui permet de c
 
 21. Créer un arbre binaire et insérer les valeurs suivantes: 5, 3, 7, 2, 4, 6, 8, 1, 9, 0.
 
-22. Afficher les valeurs des noeuds de l'arbre binaire dans l'ordre **infixe**, **préfixe** et **postfixe**.
+22. Afficher les valeurs des nœuds de l'arbre binaire dans l'ordre **infixe**, **préfixe** et **postfixe**.
 
 23. Afficher la hauteur de l'arbre binaire.
 

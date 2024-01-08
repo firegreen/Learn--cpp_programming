@@ -6,7 +6,7 @@ tags:
 
 La compression de données est un domaine très vaste et très important en informatique. Il existe de nombreuses techniques de compression, qui sont utilisées dans de nombreux domaines : compression d'**images**, compression de **vidéos**, compression de **fichiers**, etc.
 
-Dans ce cours nous allons voir découvrir des techniques de compression très répandue : 
+Dans ce cours nous allons découvrir des techniques de compression très répandue : 
 - Le codage par plages (ou **run-length encoding**)
 - le **codage de Huffman**
 
@@ -18,7 +18,11 @@ La compression de données est une technique qui permet de réduire la taille de
 
 C'est un domaine crucial en informatique moderne. Sans la compression de données, il serait impossible de stocker des milliers de photos sur un téléphone portable, ou de regarder des vidéos en streaming sur Internet.
 
-Il existe deux types de compression de données : la compression **avec perte** et la compression **sans perte**. La compression avec perte permet de réduire la taille des données, mais on ne garanti pas que les données décompressées seront identiques aux données d'origine. C'est le cas par exemple de la compression d'images au format **JPEG** où la perte de qualité est relativement maîtriser pour cela soit le moins perceptible par l'oeil humain. La compression sans perte permet de retrouver les données d'origine après les avoir décompressées. C'est le cas par exemple de la compression d'images au format **PNG**.
+Il existe deux types de compression de données : la compression **avec perte** et la compression **sans perte**. La compression avec perte permet de réduire la taille des données, mais on ne garantit pas que les données décompressées seront identiques aux données d'origine. C'est le cas par exemple de la compression d'images au format **JPEG** où la perte de qualité est relativement maîtrisée pour cela soit le moins perceptible par l'œil humain. La compression sans perte permet de retrouver les données d'origine après les avoir décompressées. C'est le cas par exemple de la compression d'images au format **PNG**.
+
+:::info note concernant le format JPEG
+Le format **JPEG** est un format de compression avec perte.Le processus de compression JPEG est assez complexe et est **composé de plusieurs étapes**. Certaines de ces étapes sont des étapes de compression **avec perte**, et d'autres sont des étapes de compression **sans perte** (dont l'encodage **RLE** et l'encodage **de Huffman** que nous allons voir dans ce cours). C'est pour cela que l'on dit que le format **JPEG** est un format de compression **avec perte**.
+:::
 
 ## Prérequis
 
@@ -40,9 +44,9 @@ Dans la suite de ce cours nous allons nous intéresser à l'encodage binaire. C'
 
 ---
 
-Dans un fichier texte, chaque lettre est représentée par un **caractère**. Ce caractère est généralement encodé sur un **octet**. Cela signifie que l'on peut représenter 256 caractères différents. Cela inclut les lettres de l'alphabet, les chiffres, les caractères spéciaux, etc.
+Dans un fichier texte, chaque lettre est représentée par un **caractère**. Ce caractère est généralement encodé sur un **octet**. Cela signifie que l'on peut représenter au maximum 256 caractères différents. Cela inclut les lettres de l'alphabet, les chiffres, les caractères spéciaux, etc.
 
-Mais cela dépend des données du problèmes. Cet encodage sur un octet est simplement une convention. Qui permet d'associer à chaque caractère un code unique et d'uniformiser la manière dont les caractères sont représentées (chaque caractère est représenté par un octet). C'est bien pratique et flexible pour communiquer des fichiers texte entre ordinateurs.
+Mais cela dépend des données du problème. Cet encodage sur un **octet** est simplement une convention qui permet d'associer à chaque caractère un **code unique** et d'uniformiser la manière dont les caractères sont représentés (chaque caractère est représenté par un octet). C'est bien pratique et flexible pour communiquer des fichiers texte entre ordinateurs.
 
 ### Compression
 
@@ -53,7 +57,7 @@ Plus généralement, si on se limite à `n` possibilités de données et que l'o
 Par exemple, si on se limite aux **26** lettres de l'alphabet, il faut $\lceil \log_2(26) \rceil = \lceil 4.7 \rceil = 5$ bits pour représenter chaque lettre.
 :::
 
-De plus pour n'importe quel façon d'encoder les données, il faut respecter deux règles pour que l'encodage puisse être décodé :
+De plus pour n'importe quelle façon d'encoder les données, il faut respecter deux règles pour que l'encodage puisse être décodé :
   - Chaque donnée doit être associée à un code **unique**
   - Il ne doit pas y avoir d'**ambiguïté** lors du décodage des données. Cela signifie qu'il ne faut pas associer à une donnée le code `01` et à une autre donnée le code `011` sinon impossible de savoir si l'on doit décoder les deux premiers bits `01` ou si cela faisait en fait partie du code `011`. Un tel codage sans ambiguïté est appelé **préfixe**, nous y reviendrons plus tard.
 
@@ -70,8 +74,8 @@ On peut donc stocker ce texte sur un support de stockage en utilisant seulement 
 
 C'est le principe du codage par plages : on remplace une suite de caractères identiques par le nombre de fois que le caractère est répété, suivi du caractère. Par exemple, le texte suivant `aaaabbbcddddd` peut être représenté par `4a3b1c5d`. Pour un gain de 13-8=5 octets, soit 38% de gain.
 
-:warning: Quand il y a peu de répétitions cependant le codage par plages peut augmenter la taille des données. Par exemple, Si on applique le codage par plage sur le texte suivant `abcdefgh` on obtient `1a1b1c1d1e1f1g1h`. Cela prend plus de place que la chaîne d'origine !
-Dans ce cas de figure, pour minimiser cet effet, on choisi plutôt d'ajouter un **caractère de contrôle** et un nombre `n` pour indiquer que les `n` prochains caractères ne sont pas compressés. Par exemple, on pourrait utiliser le caractère `*` comme caractère de contrôle et la chaîne `abcdefgh` serait compressée en `*8abcdefgh`.
+:warning: Quand il y a peu de répétitions cependant le codage par plages peut augmenter la taille des données. Par exemple, si on applique le codage par plage sur le texte suivant `abcdefgh` on obtient `1a1b1c1d1e1f1g1h`. Cela prend plus de place que la chaîne d'origine !
+Dans ce cas de figure, pour minimiser cet effet, on choisit plutôt d'ajouter un **caractère de contrôle** et un nombre `n` pour indiquer que les `n` prochains caractères ne sont pas compressés. Par exemple, on pourrait utiliser le caractère `*` comme caractère de contrôle et la chaîne `abcdefgh` serait compressée en `*8abcdefgh`.
 
 ### En pratique
 
@@ -91,7 +95,7 @@ Enfin on pourrait aussi se dire que l'on utilise le caractère lui même comme c
 
 Dans les images il est courant de trouver des zones de couleurs uniformes. Par exemple, une image de ciel bleu peut être représentée par une suite de pixels bleus. Dans ce cas, le codage par plages permet de réduire considérablement la taille de l'image.
 
-Il existe donc des variantes pour parcourir les pixels d'une image dans un certains sens pour maximiser les zones de couleurs uniformes (ou de valeurs identiques). Par exemple, on peut parcourir les pixels de gauche à droite, de haut en bas ou même encore en zigzag.
+Il existe donc des variantes pour parcourir les pixels d'une image dans un certain sens pour maximiser les zones de couleurs uniformes (ou de valeurs identiques). Par exemple, on peut parcourir les pixels de gauche à droite, de haut en bas ou même encore en zigzag.
 
 ## Codage de Huffman
 
@@ -119,7 +123,7 @@ Pour un texte composé de 100 caractères (toujours avec notre alphabet de 4 let
 
 Dans le cas de notre exemple précédent `abbacada`, on peut remarquer que la lettre `a` apparaît **4** fois, la lettre `b` apparaît **2** fois et les lettres `c` et `d` apparaissent **1** fois. On peut donc se demander si l'on ne pourrait pas utiliser un encodage différent pour chaque lettre, en tenant compte de la fréquence d'apparition de chaque lettre. Cela permettrait de réduire la taille du texte.
 
-on pourrait donc utiliser moins d'un octet pour coder les lettres les plus utilisées, et plus d'un octet pour coder les lettres les moins utilisées. Cela permettrait de réduire la taille du texte.
+On pourrait donc utiliser moins d'un octet pour coder les lettres les plus utilisées, et plus d'un octet pour coder les lettres les moins utilisées. Cela permettrait de réduire la taille du texte.
 
 Admettons que l'on code les lettres de la manière suivante :
 
@@ -138,17 +142,15 @@ Mais comment faire pour trouver le meilleur encodage possible ?
 
 ### Arbre binaire
 
-Dans la suite de ce cours, nous allons utiliser un **arbre binaire** (strict) pour trouver l'encodage de Huffman (en fonction de la fréquence d'apparition des données). Mais j'aimerai d'abord vous expliquer pourquoi on utilise un arbre binaire.
+Dans la suite de ce cours, nous allons utiliser un **arbre binaire** (strict) pour trouver l'encodage de Huffman (en fonction de la fréquence d'apparition des données). Mais j'aimerais d'abord vous expliquer pourquoi on utilise un arbre binaire.
 
 :::note
-Dans un arbre binaire strict (ou localement complet), chaque noeud a soit 0, soit 2 fils. C'est donc soit un noeud **interne** (qui a deux fils), soit une **feuille** (qui n'a pas de fils).
+Dans un arbre binaire **strict** (ou **localement complet**), chaque nœud a soit 0, soit 2 fils. C'est donc soit un nœud **interne** (qui a deux fils), soit une **feuille** (qui n'a pas de fils).
 :::
-
-Chaque feuille de l'arbre va permettre de représenter une donnée. Par exemple, on peut représenter les lettres `a`, `b`, `c` et `d` de la manière suivante :
 
 Une propriété intéressante des arbres binaires est que pour chaque feuille il existe un **chemin unique** de la racine à la feuille. Ce chemin va permettre d'associer un code à chaque donnée. En plus d'être unique, ce chemin est aussi **préfixe**. Cela signifie que l'on ne peut pas avoir un chemin qui est préfixe d'un autre chemin.
 
-Reprenons notre exemple précédent avec les lettres `a`, `b`, `c` et `d`. Admettons que les quatre lettres apparaissent avec la même fréquence. 
+Reprenons notre exemple précédent avec les lettres `a`, `b`, `c` et `d`. Admettons que les quatre lettres apparaissent avec la même fréquence.
 
 ```mermaid
 flowchart TB
@@ -159,6 +161,8 @@ L-->|1|b((b))
 R-->|0|c((c))
 R-->|1|d((d))
 ```
+
+Chaque feuille de l'arbre va permettre de représenter une donnée, ici une lettre.
 
 Dans cet arbre, si l'on parcourt le chemin `0-0` (successivement le fils gauche puis le fils gauche), on arrive à la lettre `a`. De même pour les autres feuillets. On peut donc associer à chaque lettre un code unique :
 - `a` est codé sur `00`
@@ -179,19 +183,19 @@ Revenons maintenant à notre cas avec des données non équiprobables. Admettons
 | c      | $1/8 = 0.125$|
 | d      | $1/8 = 0.125$|
 
-On peut remarquer qu'ne utilisant une représentation en arbre binaire complet, les lettres les **moins fréquentes** seront codées sur des codes plus gros (chemins les plus longs dans l'arbre) et donc sur les feuilles les plus basses de l'arbre. Les lettres les **plus fréquentes** seront codées sur des codes plus petits (chemins les plus courts dans l'arbre) et donc sur les feuilles les plus hautes de l'arbre.
+On peut remarquer qu'en utilisant une représentation en arbre binaire complet, les lettres les **moins fréquentes** seront codées sur des codes plus gros (chemins les plus longs dans l'arbre) et donc sur les feuilles les plus basses de l'arbre. Les lettres les **plus fréquentes** seront codées sur des codes plus petits (chemins les plus courts dans l'arbre) et donc sur les feuilles les plus hautes de l'arbre.
 
 ---
 
 C'est donc en suivant cette logique que l'on va construire l'arbre binaire. On va commencer par construire un arbre binaire avec les lettres les moins fréquentes.
 
-On va donc commencer par construire un arbre binaire avec les lettres `c` et `d`. On va donc créer un noeud `cd` qui va avoir deux fils `c` et `d`. On va associer à chaque noeud la somme des fréquences de ses fils. On va donc associer à `cd` la fréquence `0.125 + 0.125 = 0.25`.
+On va donc commencer par construire un arbre binaire avec les lettres `c` et `d`. On va donc créer un nœud `cd` qui va avoir deux fils `c` et `d`. On va associer à chaque nœud la somme des fréquences de ses fils. On va donc associer à `cd` la fréquence `0.125 + 0.125 = 0.25`.
 
 On va considérer maintenant que `cd` est un substitut aux lettres `c` et `d` et représente donc une seule donnée avec un fréquence de `0.25`.
 
-Je vais appelé ce regroupement de données un **symbole**. Un symbole est donc une donnée qui peut être composée de plusieurs données. Par exemple, le symbole `cd` est composé des données `c` et `d`.
+Je vais appeler ce regroupement de données un **symbole**. Un symbole est donc une donnée qui peut être composée de plusieurs données. Par exemple, le symbole `cd` est composé des données `c` et `d`.
 
-On va donc construire un arbre binaire avec les lettres `b` et `cd` (qui sont les deux symboles les moins fréquents parmi `a`, `b` et `cd`). On va donc créer un noeud `bcd` qui va avoir deux fils `b` et `cd`.
+On va donc construire un arbre binaire avec les lettres `b` et `cd` (qui sont les deux symboles les moins fréquents parmi `a`, `b` et `cd`). On va donc créer un nœud `bcd` qui va avoir deux fils `b` et `cd`.
 
 En répétant cette opération, on va finir par n'avoir plus que deux symboles : `a` et `bcd`. Cela va conduire à créer l'arbre final qui contient tous les lettres initiales.
 
@@ -207,7 +211,7 @@ cd-->|0|c((0.125))
 cd-->|1|d((0.125))
 ```
 
-Ce qui peux se traduire par l'encodage suivant :
+Ce qui peut se traduire par l'encodage suivant :
 - `a`: `0`
 - `b`: `10`
 - `c`: `110`
@@ -219,7 +223,7 @@ Mathématiquement, on peut démontrer que l'encodage de Huffman est optimal. Cel
 
 :::note
 En pratique, pour pouvoir décoder les données, il faut stocker l'arbre binaire quelque part. Cela peut être fait de différentes manières. Par exemple, on peut stocker l'arbre binaire dans le fichier compressé. 
-Cela ajout un peu de poids au fichier compressé, mais cela permet de décoder les données ce qui est tout de même pratique :smiley:.
+Cela ajoute un peu de poids au fichier compressé, mais cela permet de décoder les données ce qui est tout de même pratique :smiley:.
 :::
 
 ## Résumé

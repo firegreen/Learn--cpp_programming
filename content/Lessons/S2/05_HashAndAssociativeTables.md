@@ -31,7 +31,7 @@ On pourrait utiliser le code **ASCII** du premier caractère du nom du jour de l
 
 Cela permettrait de trouver le numéro de jour de la semaine correspondant à un nom de jour donné en temps constant.
 
-On peux remarquer que cela ne fonctionne pas bien pour les jours de la semaine qui commencent par la même lettre, comme par exemple **mardi** et **mercredi**.
+On peut remarquer que cela ne fonctionne pas bien pour les jours de la semaine qui commencent par la même lettre, comme par exemple **mardi** et **mercredi**.
 
 Il est possible de trouver un meilleur indice pour notre exemple en utilisant la somme des deux premiers caractères du nom du jour de la semaine. Cela résout le problème dans notre exemple.
 
@@ -41,7 +41,7 @@ Dans ce cas, on peut imaginer que l'on aura des collisions, c'est-à-dire que de
 
 Il est toujours possible une autre stratégie pour éviter les collisions comme par exemple utiliser la somme des trois premiers caractères, ou la somme du dernier caractère et des deux premiers caractères, etc.
 
-Ce que l'on vient de faire est un exemple de **fonction de hachage**. On a associé à chaque une valeur (nom du jour de la semaine) à un indice, une valeur numérique, qui permet de l'identifier (dans l'idéal de manière unique).
+Ce que l'on vient de faire est un exemple de **fonction de hachage**. On a associé à chaque valeur (nom du jour de la semaine) à un indice, une valeur numérique, qui permet de l'identifier (dans l'idéal de manière unique).
 
 ## Hachage
 
@@ -59,7 +59,7 @@ En pratique, il est compliqué de trouver une fonction de hachage qui vérifie t
 
 Cela dépend aussi de l'application. Par exemple, pour une application qui stocke des mots de passe, il est important que la fonction de hachage soit résistante aux collisions et aux attaques par force brute. Cela permet d'éviter que deux mots de passe différents aient le même hash, ce qui permettrait à un attaquant de trouver un mot de passe valide sans avoir à le deviner par exemple.
 
-Il existe de nombreux algorithmes et fonctions de hachage complexe pour des applications réelles. Vous trouverez par exemple l'algorithme [MD5](https://fr.wikipedia.org/wiki/MD5) (considéré comme obsolète) ou la famille de fonctions [SHA-2](https://fr.wikipedia.org/wiki/SHA-2) et notamment **SHA-256** qui est réputée pour être résistante aux collisions et aux attaques par force brute et beaucoup utilisée aujourd’hui.
+Il existe de nombreux algorithmes et fonctions de hachage complexes pour des applications réelles. Vous trouverez par exemple l'algorithme [MD5](https://fr.wikipedia.org/wiki/MD5) (considéré comme obsolète) ou la famille de fonctions [SHA-2](https://fr.wikipedia.org/wiki/SHA-2) et notamment **SHA-256** qui est réputée pour être résistante aux collisions et aux attaques par force brute et beaucoup utilisée aujourd’hui.
 
 ## Table de hachage
 
@@ -167,7 +167,7 @@ int main() {
 
 :::info
 La classe `std::map` utilise un **arbre binaire de recherche** pour stocker les associations clé-valeur sous la forme de paires (`std::pair`).
-On peux donc aussi utiliser la classe `std::pair` pour ajouter des éléments à une `std::map`.
+On peut donc aussi utiliser la classe `std::pair` pour ajouter des éléments à une `std::map`.
 
 ```cpp
 #include <map>
@@ -203,7 +203,7 @@ Elle s'utilise de la même façon que `std::map`.
 
 ## Résumé
 
-- Une **fonction de hachage** est une fonction qui prend en entrée une donnée et qui retourne le **hash** de cette donnée (un nombre entier).
+- Une **fonction de hachage** est une fonction qui prend en entrée une donnée et qui retourne le **hash** de cette donnée (un nombre entier)
 - Une **table de hachage** est une **structure de données** qui permet d'associer à une **donnée** que l'on appelle **clé** une **valeur**. On peut ensuite retrouver la valeur associée à une clé en utilisant un **hash** de la clé comme indice dans un tableau.
 - Une table de hachage 
 - Un **tableau associatif** est une structure de données qui permet d'associer à une **donnée** que l'on appelle **clé** une **valeur**. On peut ensuite retrouver la valeur associée à une clé en utilisant la clé.
@@ -211,4 +211,3 @@ Elle s'utilise de la même façon que `std::map`.
     - `std::unordered_map` qui utilise une **table de hachage**
     - `std::map` qui utilise un arbre **binaire de recherche**
 - La bibliothèque standard de C++ fournit aussi une implémentation d'ensemble d'éléments uniques: `std::set`.
-
