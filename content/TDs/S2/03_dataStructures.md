@@ -115,14 +115,16 @@ Voici un exemple d'application de l'algorithme  avec l'expression `3 + 4 ^ 2 / (
 | ^ | 3 4 | + ^ | on ajoute ^ à la pile des opérateurs |
 | 2 | 3 4 2 | + ^ | on ajoute 2 à la sortie |
 | / | 3 4 2 ^ | + | on dépile ^ et on l'ajoute à la sortie car / a une priorité inférieure à ^ |
-| ( | 3 4 2 ^ | + ( | on ajoute ( à la pile des opérateurs |
-| 1 | 3 4 2 ^ 1 | + ( | on ajoute 1 à la sortie |
-| - | 3 4 2 ^ 1 | + ( - | on ajoute - à la pile des opérateurs |
-| 5 | 3 4 2 ^ 1 5 | + ( - | on ajoute 5 à la sortie |
-| ) | 3 4 2 ^ 1 5 - | + | on dépile les opérateurs jusqu'à ( et on les ajoute à la sortie |
-| ^ | 3 4 2 ^ 1 5 - | + ^ | on ajoute ^ à la pile des opérateurs |
-| 6 | 3 4 2 ^ 1 5 - 6 | + ^ | on ajoute 6 à la sortie |
-|   | 3 4 2 ^ 1 5 - 6 ^ | + | on dépile le reste des opérateurs et on les ajoute à la sortie |
+| ( | 3 4 2 ^ | + / ( | on ajoute ( à la pile des opérateurs | <!---STEEVE: il manque un / ici non ?-->
+| 1 | 3 4 2 ^ 1 | + / ( | on ajoute 1 à la sortie |
+| - | 3 4 2 ^ 1 | + / ( - | on ajoute - à la pile des opérateurs |
+| 5 | 3 4 2 ^ 1 5 | + / ( - | on ajoute 5 à la sortie |
+| ) | 3 4 2 ^ 1 5 - | + / | on dépile les opérateurs jusqu'à ( et on les ajoute à la sortie |
+| ^ | 3 4 2 ^ 1 5 - | + / ^ | on ajoute ^ à la pile des opérateurs |
+| 6 | 3 4 2 ^ 1 5 - 6 | + / ^ | on ajoute 6 à la sortie |
+|   | 3 4 2 ^ 1 5 - 6 ^ | + / | on dépile le reste des opérateurs et on les ajoute à la sortie |
+
+**Résultat final** : `3 4 2 ^ 1 5 - 6 ^ / +` 
 
 Écrire une fonction qui prend en paramètre une chaîne de caractères représentant une expression en **notation infixe**, qui retourne un tableau de `Token` représentant l'expression en NPI.
 
