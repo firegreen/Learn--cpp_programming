@@ -6,19 +6,22 @@ title: TD4 - Déduction de type et bibliothèque standard
 
 1. Remplir un `std::vector` avec des nombres entiers aléatoires compris entre **0** et **100**.
 2. Utiliser les **itérateurs** et les méthodes `begin` et `end` pour afficher les valeurs du vecteur à l'aide d'une boucle `for`.
-3. Demander à l'utilisateur de saisir un nombre entier `n` compris entre **0** et **100**.
-4. Chercher si `n` est présent dans le vecteur à l'aide de la fonction `std::find`.
-5. Afficher le résultat de la recherche à l'aide d'un message adapté.
-6. Utiliser la fonction `std::count` pour compter le nombre d'occurrences d'un autre nombre entier le vecteur.
+3. Chercher si un nombre saisi par l'utilisateur est présent dans le vecteur à l'aide de la fonction `std::find` et afficher un message
+   adapté.
+4. Utiliser la fonction `std::count` pour compter le nombre d'occurrences d'un autre nombre entier le vecteur.
 Vous pouvez trouver la documentation de la fonction `std::count` [ici](https://en.cppreference.com/w/cpp/algorithm/count).
-7. Utiliser la fonction `std::sort` pour trier le vecteur.
-8. Utiliser la fonction `std::accumulate` pour calculer la **somme** des éléments du vecteur (par défaut, la fonction `std::accumulate` utilise l'opérateur `+` entre les éléments).
+5. Utiliser la fonction `std::sort` pour trier le vecteur.
+6. Utiliser la fonction `std::accumulate` pour calculer la **somme** des éléments du vecteur (par défaut, la fonction `std::accumulate` utilise l'opérateur `+` entre les éléments).
 
 ## Exercice 2 (String)
 
 Étant donnée une phrase composée de mots séparés par des espaces.
 
-1. Écrire une fonction ( à l'aide des fonctions `std::find` et `std::count` ) qui prendre en paramètre une référence constante sur une `std::string` et qui retourne le nombre de lettres du premier mot de la phrase.
+:::info
+Vous allez avoir besoin de la fonction `std::distance`, qui retourne la distance entre deux itérateurs, sous forme d’un nombre entier.
+:::
+
+1. Écrire une fonction (à l'aide des fonctions `std::find` et `std::distance`) qui prendre en paramètre une référence constante sur une `std::string` et qui retourne le nombre de lettres du premier mot de la phrase.
 
 2. Écrire une fonction qui permet de découper la phrase en mots et de les stocker dans un `std::vector` de `std::string`.
 Voilà le prototype de la fonction :
@@ -27,13 +30,9 @@ Voilà le prototype de la fonction :
 std::vector<std::string> split(std::string const& str, std::string const& delimiter = " ");
 ```
 
-:::info
-Vous allez avoir besoin de la fonction `std::distance`, qui retourne la distance entre deux itérateurs, sous forme d’un nombre entier.
-:::
-
 ## Exercice 3 (Palindrome)
 
-Écrire une fonction qui prend en paramètre une référence constante sur une `std::string` et qui retourne `true` si la chaîne de caractères est un palindrome, `false` sinon.
+Écrire une fonction qui prend en paramètre une référence constante sur une `std::string` et qui retourne `true` si la chaîne de caractères est un palindrome (qui peut se lire dans les deux sens), `false` sinon.
 
 Utiliser la fonctions `std::equal` pour comparer les valeurs de deux itérateurs.
 Utiliser les fonctions `std::begin`, `std::end`  et `std::rbegin`, `std::rend` pour obtenir les itérateurs de début et de fin d'une chaîne de caractères et de sa version inversée.

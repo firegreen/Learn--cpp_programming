@@ -63,7 +63,7 @@ Grâce à cet opérateur, on pourra convertir une fraction en `float` de la mani
 
 ```cpp
 Fraction f1 {1, 2};
-double d1 {static_cast<double>(f1)}; // conversion explicite avec static_cast
+float d1 {static_cast<float>(f1)}; // conversion explicite avec static_cast
 ```
 
 ## Aller plus loin

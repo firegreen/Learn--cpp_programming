@@ -8,7 +8,7 @@ Nous avons appris au semestre 1 à définir des **structures**. Cela permet de r
 
 Nous avons aussi vu comment définir des **méthodes** pour utiliser la structure. Par exemple, on peut définir une méthode `add` qui permet d'ajouter deux **points** entre eux (en faisant la somme de leurs coordonnées respectives).
 
-On s’aperçoit avec cet exemple de structure `point` que les structures permettent de créer de nouveaux *types fondamentaux*. On aimerait donc pouvoir manipuler ces structures comme si c'était des types de base. Par exemple, on aimerait pouvoir ajouter deux **points** entre eux avec l'opérateur `+` au lieu d'appeler la méthode `add`.
+Les structures permettent donc de créer de nouveaux *types*. On aimerait pouvoir manipuler ces structures comme si c'était des types de base (comme `int`, `float`, `bool`, ...). Par exemple, on aimerait pouvoir ajouter deux **points** entre eux avec l'opérateur `+` au lieu d'appeler la méthode `add`.
 
 Nous allons découvrir dans ce cours comment définir des **opérateurs** pour manipuler nos structures comme si elles étaient des types de base.
 
@@ -69,7 +69,14 @@ bool operator==(Point const a, Point const b) {
 int main() {
     Point a {1, 2};
     Point b {1, 2};
-    bool c { a == b}; // c = true
+    if (a==b)
+    {
+        std::cout << "Les points a et b ont les mêmes coordonnées" << std::endl;
+    }
+    else
+    {
+        std::cout << "Les points a et b ont des coordonnées différentes" << std::endl;
+    }
 }
 ```
 
