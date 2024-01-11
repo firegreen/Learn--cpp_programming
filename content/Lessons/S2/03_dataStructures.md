@@ -204,6 +204,11 @@ int main() {
 }
 ```
 
+:::warning
+On privilégie l'utilisation de **structures** de données avec des membres **explicites** plutôt que des **tuples** ou des **pairs** quand c'est pertinent. Nommés les membres d'une structure permet de rendre le code plus lisible et plus facile à maintenir.
+Les **tuples** et **pair** sont utiles dans certains cas, mais il faut faire attention à ne pas en abuser.
+:::
+
 ## Pour aller plus loin
 
 <details>

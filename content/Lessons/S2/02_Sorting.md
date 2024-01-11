@@ -122,6 +122,9 @@ La notation **"grand O"** est une notion mathématique qui permet d'exprimer un 
 Par exemple, des algorithmes effectuant environ $n$ opérations, $2n+20$ opérations ou $n/2$ opérations ont tous la même complexité : on la note $O(n)$ (lire "grand O de $n$"). De même, un algorithme en $3n^2 + 4n + 2$ opérations aura une complexité de $O(n^2)$ : on néglige les termes de plus faible degré (ici $4n$ et $2$) et les coefficients (ici $3$).
 On cherche seulement à savoir comment **évolue** le nombre d'opérations en fonction de la taille des données en entrée et on considère le terme de plus haut degré qui est celui qui va croître le plus vite en fonction de la taille des données en entrée.
 
+VOilà un graphique récapitulatif des différentes notations "grand O" communes:
+
+![Complexity](./imgs/S2_complexity.png)
 
 ### Exemple de calcul de complexité
 
@@ -452,6 +455,24 @@ Exemple simple avec le tableau suivant `[1, 2, 2, 4, 5, 8, 12]` (nombre d'élém
     On compare la valeur à l'indice `5` avec la valeur recherchée `8`, comme `8` est égal à `8`, on a trouvé la valeur recherchée.
 
     On peut donc s'arrêter et renvoyer l'indice `5`.
+
+
+### Complexité
+
+La complexité de la **recherche dichotomique** est en $O(log(n))$.
+
+(où $log$ est le logarithme en base 2 et pas $ln$ qui est le logarithme népérien)
+
+En effet, à chaque itération, on divise le tableau en deux parties égales, ce qui permet de réduire la taille du tableau à chaque itération.
+
+On peut donc calculer le nombre d'itérations nécessaires pour trouver la valeur recherchée en fonction de la taille du tableau.
+
+Par exemple, pour un tableau de taille `8`, on va effectuer au maximum `3` itérations pour trouver la valeur recherchée.
+- On divise le tableau en deux parties égales, on ne garde que la partie qui contient la valeur recherchée, soit `4` éléments.
+- On divise le tableau en deux parties égales, on ne garde que la partie qui contient la valeur recherchée, soit `2` éléments.
+- In reste `2` elements (dernière itération). On garde la valeur recherchée.
+
+Ce qui fait un total de $log_2(8) = 3$ itérations.
 
 ## Résumé
 

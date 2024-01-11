@@ -32,14 +32,14 @@ struct Point {
     int y;
 };
 
-Point operator+(Point const a, Point const b) {
+Point operator+(Point const& a, Point const& b) {
     return {a.x + b.x, a.y + b.y};
 }
 
 int main() {
     Point a {1, 2};
     Point b {3, 4};
-    Point c { a + b}; // c = {4, 6}
+    Point c {a + b}; // c = {4, 6}
 }
 ```
 
@@ -62,7 +62,7 @@ struct Point {
     int y;
 };
 
-bool operator==(Point const a, Point const b) {
+bool operator==(Point const& a, Point const& b) {
     return a.x == b.x && a.y == b.y;
 }
 
@@ -91,7 +91,7 @@ struct Point {
     int x;
     int y;
     
-    bool operator==(Point const b) {
+    bool operator==(Point const& b) const {
         return x == b.x && y == b.y;
     }
 };
@@ -99,21 +99,25 @@ struct Point {
 
 Cela a une influence sur la façon dont on utilise l'**opérateur**.
 
-Par exemple si l'on souhaite multiplier un point par un nombre, on peut définir l'opérateur comme une méthode membre.
+:::note
+Ici la méthode est définie comme `const` car elle ne modifie pas l'instance sur laquelle on l'appelle. Cela permet d'appeler la méthode sur une instance constante.
+:::
+
+Par exemple si l'on souhaite multiplier un point par un nombre, on peut définir l'opérateur comme une **méthode membre**.
 
 ```cpp
 struct Point {
     int x;
     int y;
     
-    Point operator*(int const a) {
+    Point operator*(int const a) const {
         return {x * a, y * a};
     }
 };
 
 int main() {
     Point a {1, 2};
-    Point b { a * 2}; // b = {2, 4}
+    Point b {a * 2}; // b = {2, 4}
 }
 ```
 
@@ -127,13 +131,13 @@ struct Point {
     int y;
 };
 
-Point operator*(int const a, Point const b) {
+Point operator*(int const a, Point const& b) {
     return {a * b.x, a * b.y};
 }
 
 int main() {
     Point a {1, 2};
-    Point b { 2 * a}; // b = {2, 4}
+    Point b {2 * a}; // b = {2, 4}
 }
 ```
 
@@ -145,11 +149,11 @@ struct Point {
     int y;
 };
 
-Point operator*(int const a, Point const b) {
+Point operator*(int const a, Point const& b) {
     return {a * b.x, a * b.y};
 }
 
-Point operator*(Point const b, int const a) {
+Point operator*(Point const& b, int const a) {
     return a * b;
 }
 
@@ -174,19 +178,19 @@ struct Point {
     int y;
 };
 
-bool operator==(Point a, Point b) {
+bool operator==(Point const& a, Point const& b) {
     return a.x == b.x && a.y == b.y;
 }
 
-bool operator!=(Point a, Point b) {
+bool operator!=(Point const& a, Point const& b) {
     return !(a == b);
 }
 
-bool operator<(Point a, Point b) {
+bool operator<(Point const& a, Point const& b) {
     return a.x < b.x || (a.x == b.x && a.y < b.y);
 }
 
-bool operator>(Point a, Point b) {
+bool operator>(Point const& a, Point const& b) {
     return b < a;
 }
 ```
@@ -200,8 +204,8 @@ struct Point {
     int x;
     int y;
 
-    bool operator==(Point const&) const = default;
-    bool operator!=(Point const&) const = default;
+    bool operator==(Point const& p) const = default;
+    bool operator!=(Point const& p) const = default;
 };
 ```
 
@@ -213,7 +217,7 @@ struct Point {
     int x;
     int y;
     
-    auto operator<=>(Point const&) const = default;
+    auto operator<=>(Point const& p) const = default;
 };
 ```
 
@@ -236,7 +240,7 @@ struct Point {
     int x;
     int y;
 
-    Point& operator+=(Point p) {
+    Point& operator+=(Point const& p) {
         x += p.x;
         y += p.y;
         return *this;
@@ -265,7 +269,7 @@ struct Point {
     int x;
     int y;
 
-    Point& operator+=(Point b) {
+    Point& operator+=(Point const& b) {
         x += b.x;
         y += b.y;
         return *this;
@@ -278,7 +282,7 @@ Point operator+(Point a, Point const& b) {
 }
 ```
 
-Ici le principe de passage par **copie** (ou par valeur) est important. Puisque le premier paramètre est **copié**, on peut le modifier avec l’opérateur `+=` sans risque modifier l'instance originale. On obtient donc l'opérateur binaire `+` en fonction de l'opérateur d'assignation composé `+=`.
+Ici le principe de passage par **copie** (ou par valeur) du paramètre `a` est important. Puisque qu'il est **copié**, on peut le modifier avec l’opérateur `+=` sans risque modifier l'instance originale. On obtient donc l'opérateur binaire `+` en fonction de l'opérateur d'assignation composé `+=`.
 
 L'avantage est que si l'on doit modifier ou corriger le comportement de l'addition, on n'a pas besoin de modifier l'opérateur binaire `+` puisqu'il est défini en fonction de l'opérateur d'assignation composé `+=`.
 
@@ -331,8 +335,8 @@ Ces opérateurs s’écrivent toujours sous la forme libre car leur premier argu
 Parfois, on a besoin de copier une structure. Pas seulement à l'initialisation (dans ce cas là on peut utiliser la syntaxe d'initialisation `{}`), mais on a besoin d'affecter une nouvelle valeur à une structure déjà existante.
 
 ```cpp
-Point const point { 3, 4 };
-Point copie { 1, 1 };
+Point const point {3, 4};
+Point copie {1, 1};
 
 // ...
 copie = point;
