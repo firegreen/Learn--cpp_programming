@@ -193,6 +193,8 @@ int main()
 }
 ```
 
+
+#### Range-based for loop
 Depuis le C++ moderne (à partir de **C++11**) il existe une nouvelle façon de parcourir des **conteneurs** (qui se généralise sur d'autres structures de données):
 
 ```cpp
