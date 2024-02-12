@@ -10,15 +10,13 @@ Tout d'abord, je vous donne une fonction qui va permettre de vérifier si un tab
 ```cpp
 #include <vector>
 #include <algorithm>
-bool isSorted(std::vector<int> const & vec) {
-    return std::is_sorted(vec.begin(), vec.end());
-}
+bool is_sorted(std::vector<int> const& vec) { return std::is_sorted(vec.begin(), vec.end()); }
 ```
 
 Vous pouvez l'utiliser de la manière suivante:
 ```cpp
 std::vector<int> array {1, 2, 3, 4, 5, 6, 7, 8, 9};
-if (isSorted(array)) {
+if (is_sorted(array)) {
     std::cout << "Le tableau est trié" << std::endl;
 } else {
     std::cout << "Le tableau n'est pas trié" << std::endl;
@@ -35,8 +33,8 @@ Vous avez le choix entre deux algorithmes de tri:
 
 Voilà les prototypes des fonctions:
 ```cpp
-void bubbleSort(std::vector<int> & vec);
-void selectionSort(std::vector<int> & vec);
+void bubble_sort(std::vector<int> & vec);
+void selection_sort(std::vector<int> & vec);
 ```
 
 ## Exercice 2 (tri récursif)
@@ -51,21 +49,21 @@ Vous avez le choix entre deux algorithmes de tri:
 
 Voilà les prototypes des fonctions à utiliser et implémenter:
 ```cpp
-size_t quickSortPartition(std::vector<float> & vec, size_t left, size_t right, size_t const pivot);
-void quickSort(std::vector<float> & vec, size_t const left, size_t const right);
-void quickSort(std::vector<float> & vec) {
-    quickSort(vec, 0, vec.size() - 1);
+size_t quick_sort_partition(std::vector<float> & vec, size_t left, size_t right, size_t const pivot);
+void quick_sort(std::vector<float> & vec, size_t const left, size_t const right);
+void quick_sort(std::vector<float> & vec) {
+    quick_sort(vec, 0, vec.size() - 1);
 }
 
-void mergeSortMerge(std::vector<float> & vec, size_t const left, size_t const middle, size_t const right);
-void mergeSort(std::vector<float> & vec, size_t const left, size_t const right);
-void mergeSort(std::vector<float> & vec) {
-    mergeSort(vec, 0, vec.size() - 1);
+void merge_sort_merge(std::vector<float> & vec, size_t const left, size_t const middle, size_t const right);
+void merge_sort(std::vector<float> & vec, size_t const left, size_t const right);
+void merge_sort(std::vector<float> & vec) {
+    merge_sort(vec, 0, vec.size() - 1);
 }
 ```
 
 Dans ces deux algorithmes, on va trier des **plages** du tableau par **récursivité**. C'est pour cela que les fonctions prennent en paramètre les indices de début et de fin de la plage à trier (`left` et `right`).
-De plus, dans les deux algorithmes, on va utiliser une **fonction auxiliaire** pour séparer le tableau en deux parties (`quickSortPartition`) ou pour fusionner deux tableaux triés (`mergeSortMerge`).
+De plus, dans les deux algorithmes, on va utiliser une **fonction auxiliaire** pour séparer le tableau en deux parties (`quick_sort_partition`) ou pour fusionner deux tableaux triés (`merge_sort_merge`).
 
 ## Pour aller plus loin: Counting sort
 
@@ -75,7 +73,7 @@ Il est cependant limité par le fait qu'il ne peut trier que des **entiers** ("p
 Essaye d'implémenter cet algorithme de tri.
 Voilà le prototype de la fonction:
 ```cpp
-void countingSort(std::vector<int> & vec, int const max);
+void counting_sort(std::vector<int> & vec, int const max);
 ```
 
 ## Comparaison des algorithmes de tri
@@ -86,15 +84,12 @@ Je vous fournis une fonction qui permet de générer un tableau d'entiers aléat
 ```cpp
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 
-std::vector<int> generateRandomArray(size_t size, int const max) {
-    std::vector<int> array;
-    
-    for (size_t i {0}; i < size; i++) {
-        array.push_back(std::rand() % max);
-    }
-
-    return array;
+std::vector<int> generate_random_vector(size_t const size, int const max = 100) {
+    std::vector<int> vec(size);
+    std::generate(vec.begin(), vec.end(), [&max]() { return std::rand() % max;} );
+    return vec;
 }
 ```
 
@@ -110,7 +105,7 @@ Elle fonctionne de la manière suivante:
 }
 ```
 
-Il affichera le temps écoulé entre sa création et sa destruction(c'est à dire à la fin du bloc de code, c'est pourquoi il est déclaré dans un bloc entre accolades (**Scope**)).
+Elle affichera le temps écoulé entre sa création et sa destruction(c'est à dire à la fin du bloc de code, c'est pourquoi il est déclaré dans un bloc entre accolades (**Scope**) dans l'exemple ci-dessus).
 
 ### bibliothèque standard
 
@@ -135,7 +130,7 @@ Avec cette fonction, vous pouvez comparer les temps d'exécution de vos algorith
 
 ## Exercice 3 (dichotomie)
 
-1. Écrire une fonction `search` qui prend en paramètre un tableau d'entiers (`std::vector`) trié par ordre croissant et une valeur entière et retourne l'indice de la valeur dans le tableau. Si la valeur n'est pas présente dans le tableau, la fonction retournera `-1`.
+1. Écrire une fonction `search` qui prend en paramètre un tableau d'entiers (`std::vector`) trié par ordre croissant et une valeur entière et retourne l'indice de la valeur dans le tableau. Si la valeur n'est pas présente dans le tableau, la fonction retournera `-1` (on pourrait utiliser quelques chose de plus propre comme `std::optional` que l'on découvrira dans le prochain cours pour éviter de retourner `-1` pour indiquer que l'on ne trouve pas la valeur).
 
 la fonction devra utiliser l'algorithme de recherche **dichotomique**.
 
@@ -161,4 +156,3 @@ Exemple simple avec le tableau suivant `[1, 2, 2, 3, 4, 8, 12]` (nombre d'élém
    - `[2, 2, 3, 4, 5, 8, 12, 15, 16]` (valeur recherchée: `16`)
    - `[5, 6, 7, 8, 9, 10, 11, 12, 13]` (valeur recherchée: `6`)
    - `[1, 2, 3, 4, 5, 6, 7, 8, 9]` (valeur recherchée: `10`)
-
