@@ -6,8 +6,11 @@ Dans ce TD nous allons mettre en pratique les notions vues en cours sur les tabl
 
 ## Exercice 1 (fonction de hachage)
 
-1. Écrire une fonction de hachage qui prend en paramètre une chaîne de caractères, fait la somme des valeurs ASCII des caractères et renvoie un entier compris entre 0 et un maximum donné nommé `max`.
+1. Écrire une fonction de hachage qui prend en paramètre une chaîne de caractères, fait la somme des valeurs ASCII des caractères et renvoie un entier compris entre 0 et un maximum donné nommé `max` (le type de retour du hash doit être `size_t`).
 > Nous utiliserons une simple somme des codes ASCII des caractères suivie d'un modulo pour obtenir un entier compris entre 0 et `max`.
+```cpp
+size_t folding_string_hash(std::string const& s, size_t max);
+```
 
 Ce que nous venons de faire s'appel la technique dite de **folding** (pliage en français). Cela consiste à découper notre donnée (ici une chaîne de caractères) en plusieurs parties, calculer une valeur pour chacune de ces parties, sommer ces valeurs et enfin appliquer un modulo pour obtenir un entier compris entre 0 et `max`.
 
@@ -18,16 +21,22 @@ Le choix de `max` dépend du contexte d'utilisation de la table de hachage, gén
 
 2. Écrire une nouvelle fonction de hachage sur une chaîne de caractères pour laquelle l'ordre des caractères a de l'importance. Par exemple, les chaînes de caractères "abc" et "cba" ne doivent pas avoir la même valeur hachée. Ce qui est le cas avec la fonction de hachage précédente.
 > Utiliser par exemple la somme des codes ASCII des caractères multipliée par leur position dans la chaîne de caractères.
+```cpp
+size_t folding_string_ordered_hash(std::string const& s, size_t max);
+```
 
 3. Écrire une fonction de hachage sur une chaîne de caractères utilisant la technique de **polynomial rolling hash**.
 
-> Voila le prototype de la fonction à écrire: `size_t polynomialRollingHash(const std::string& s, size_t p, size_t m)`.
+> Voila le prototype de la fonction à écrire:
+```cpp
+size_t polynomial_rolling_hash(const std::string& s, size_t p, size_t m);
+```
 
 > Nous allons utiliser la technique dite de **polynomial rolling hash**. Cette technique consiste à calculer le hash d'une chaîne de caractères en fonction du hash de la chaîne de caractères précédente. Cela permet de prendre en compte l'ordre des caractères dans la chaîne de caractères.
 >
 > Pour cela, nous allons utiliser la formule suivante:
 > $$
-> \text{hash}(s) = \sum_{i=0}^{n-1} (s[i] \times p^i \mod m)
+> \text{hash}(s) = \sum_{i=0}^{n-1} (s[i] \times p^i) \mod m
 > $$
 >
 > Avec:
@@ -48,33 +57,39 @@ Voilà la fonction qui génère la liste des réparations effectuées en donnant
 ```cpp
 #include <iostream>
 #include <vector>
+#include <string>
+#include <cstdlib>
 
-std::vector<std::pair<std::string, float>> getRobotsFix(size_t size) {
-    std::vector<std::pair<std::string, float>> robotsFix;
-    robotsFix.reserve(size);
+std::string random_name(size_t size) {
+    std::string name {""};
+    name.reserve(size);
+    for(size_t i {0}; i < size; ++i) {
+        name.push_back('A' + std::rand() % 26);
+    }
+    return name;
+}
+
+std::vector<std::pair<std::string, float>> get_robots_fix(size_t size) {
+    std::vector<std::pair<std::string, float>> robots_fix {};
+    robots_fix.reserve(size);
     for (size_t i {0}; i < size; ++i) {
         // random name 
-        std::string robotName {""};
-        robotName.reserve(2);
-        for(size_t j {0}; j < 2; ++j) {
-            robotName.push_back('A' + rand() % 26);
-        }
-
+        std::string robotName { random_name(2) };
         // random cost
-        float cost {static_cast<float>(rand()) / RAND_MAX * 1000.0f};
-        robotsFix.push_back(std::make_pair(robotName, cost));
+        float cost {static_cast<float>(std::rand()) / RAND_MAX * 1000.0f};
+        robots_fix.push_back(std::make_pair(robotName, cost));
     }
-    return robotsFix;
+    return robots_fix;
 }
 ```
 
 J'aimerai être capable de lister pour un robot donné l'ensemble des réparations effectuées pour ce robot. Par exemple, pour le robot "AB", j'aimerai avoir la liste des réparations effectuées pour ce robot.
 
-1. Pour cela, je vous demande d'écrire une fonction qui prend en paramètre la liste des réparations effectuées et qui retourne une table associative (un `std::unordered_map`) qui associe à chaque robot la liste des réparations effectuées pour ce robot (sous forme de `std::vector<float>`).
+1. Pour cela, je vous demande d'écrire une fonction qui prend en paramètre la liste des réparations effectuées et qui retourne une table associative (un `std::unordered_map`) qui associe à chaque nom de robot la liste des réparations effectuées pour ce robot (sous forme de `std::vector<float>`).
 
 2. Écrire une fonction qui prend en un `std::vector<float>` et qui retourne la somme des éléments de ce vecteur.
 
-3. Utiliser les deux fonctions précédentes pour afficher la somme des réparations effectuées pour chaque robot. (à partir de la liste des réparations effectuées obtenue avec la fonction `getRobotsFix`).
+3. Utiliser les deux fonctions précédentes pour afficher la somme des réparations effectuées pour chaque robot. (à partir de la liste des réparations effectuées obtenue avec la fonction `get_robots_fix`).
 
 ## Exercice 3 (hash sur une structure)
 
@@ -144,20 +159,49 @@ Je vous donne également une fonction qui permet de générer une liste de carte
 
 ```cpp
 #include <vector>
-std::vector<Card> getCards(size_t size) {
+std::vector<Card> get_cards(size_t size) {
     std::vector<Card> cards;
     cards.reserve(size);
     for (size_t i {0}; i < size; ++i) {
-        Card card;
-        card.kind = static_cast<CardKind>(rand() % 4);
-        card.value = static_cast<CardValue>(rand() % 13);
-        cards.push_back(card);
+        cards.emplace_back(static_cast<CardKind>(rand() % 4), static_cast<CardValue>(rand() % 13));
     }
     return cards;
 }
 ```
 
-3. Utiliser la fonction `getCards` pour générer une liste de 100 cartes aléatoires. Utiliser une table de hachage `std::unordered_map` pour compter le nombre de fois que chaque carte apparaît dans la liste et afficher le résultat.
+3. Utiliser la fonction `get_cards` pour générer une liste de **100** cartes aléatoires. Utiliser une table de hachage `std::unordered_map` pour compter le nombre de fois que chaque carte apparaît dans la liste et afficher le résultat.
+
+Pour pouvoir afficher, je vous donne la fonction suivante qui permet d'obtenir une représentation sous forme de chaîne de caractères de notre structure `Card`:
+```cpp
+std::string card_name(Card const& card) {
+    std::string name {};
+
+    unsigned int card_value {(static_cast<unsigned int>(card.value)+2) % 14};
+
+    if (card_value < 10) {
+        name += '0' + card_value;
+    }else if (card_value == 10) {
+        name += "10";
+    }else if (card_value == 11) {
+        name += 'V';
+    }else if (card_value == 12) {
+        name += 'Q';
+    }else if (card_value == 13) {
+        name += 'K';
+    }
+
+    if (card.kind == CardKind::Heart) {
+        name += "Heart";
+    }else if (card.kind == CardKind::Diamond) {
+        name += "Diamond";
+    }else if (card.kind == CardKind::Club) {
+        name += "Club";
+    }else if (card.kind == CardKind::Spade) {
+        name += "Spade";
+    }
+    return name;
+}
+```
 
 4. Trouver une fonction de hachage de notre structure `Card` revient à trouver une façon de transformer une carte en un entier. Il y a de nombreuses façon se s'y prendre mais pour ce cas précis il existe une fonction de hachage dite **parfaite**. On peux se rendre compte qu'il y a seulement **52** cartes différentes. On peux donc utiliser une fonction de hachage qui retourne un entier compris entre 0 et 51 avec un nombre différent pour chaque carte et donc sans collision.
 
