@@ -17,17 +17,28 @@ Vous pouvez trouver la documentation de la fonction `std::count` [ici](https://e
 
 Étant donnée une phrase composée de mots séparés par des espaces.
 
+Nous avons utilisé dans le TD précédent une astuce avec les stream C++ qui permet de séparer les mots d'une phrase. L'idée est de coder une autre façon d'arriver au même résultat sans utiliser les stream.
+
+Je vous donne la fonction lambda suivante qui permet de savoir si un caractère est un espace:
+```cpp
+auto const isSpace = [](char letter){ return letter == ' '; };
+```
+
+Le mot clé `auto` ici permet de "stocker" la fonction dans une variable pour la passé en paramètre. En réalité se cache derrière des pointeur de fonction ou le type `std::function` qui permet d'avoir une variable qui représente une fonction comme cela. 
+
+Cela va permettre d'utiliser les fonctions `std::find_if_not` et `find_if` (qui retourne des itérateurs) pour rechercher ou non des espaces dans une chaîne de caractère.
+
+1. Écrire une fonction (à l'aide des fonctions `std::find` et `std::distance`) qui prendre en paramètre une référence constante sur une `std::string` et qui retourne le nombre de lettres du premier mot de la phrase.
+
 :::info
 Vous allez avoir besoin de la fonction `std::distance`, qui retourne la distance entre deux itérateurs, sous forme d’un nombre entier.
 :::
-
-1. Écrire une fonction (à l'aide des fonctions `std::find` et `std::distance`) qui prendre en paramètre une référence constante sur une `std::string` et qui retourne le nombre de lettres du premier mot de la phrase.
 
 2. Écrire une fonction qui permet de découper la phrase en mots et de les stocker dans un `std::vector` de `std::string`.
 Voilà le prototype de la fonction :
 
 ```cpp
-std::vector<std::string> split(std::string const& str, std::string const& delimiter = " ");
+std::vector<std::string> split_string(std::string const& str);
 ```
 
 ## Exercice 3 (Palindrome)
