@@ -6,7 +6,7 @@ title: TD6 - Arbres binaires
 
 Dans ce TD, nous allons voir comment implémenter un arbre binaire de recherche.
 
-## Implémentation
+## Exercice 1 (Implémentation)
 
 Donnons nous pour commencer la structure suivante pour représenter un nœud d'un arbre binaire.
 
@@ -30,6 +30,29 @@ src/
 CmakeLists.txt
 ```
 :::
+
+<details>
+<summary>Affichage dans la console</summary>
+
+Je vous fourni une fonction qui permet d'afficher une représentation ASCII dans la console d'un arbre binaire:
+```cpp
+void pretty_print_left_right(Node const& node, std::string const& prefix, bool is_left) {
+    if (node.right) {
+        pretty_print_left_right(*node.right, prefix + (is_left ? "|   " : "    "), false);
+    }
+    std::cout << prefix << (is_left ? "+-- " : "+-- ") << node.value << std::endl;
+    if (node.left) {
+        pretty_print_left_right(*node.left, prefix + (is_left ? "    " : "|   "), true);
+    }
+}
+
+void pretty_print_left_right(Node const& node) {
+    pretty_print_left_right(node, "", true);
+}
+```
+
+</details>
+
 
 1. Écrire une **fonction** `createNode` qui prend en paramètre une valeur et permet de créer (sur la heap avec **new**) un nœud contenant cette valeur et dont les fils sont pointeur nuls.
 ```cpp
@@ -96,7 +119,7 @@ Cela va permettre de concaténer dans un seul vecteur les nœuds des sous arbres
 
 si tu le souhaites, tu peux essayer de le faire de manière itérative (sans récursivité).
 
-Pour faire cela tu peux utiliser une pile (`std::stack`) pour stocker les nœuds à parcourir. L'idée est de parcourir l'arbre en commençant par la racine (premier élément de la pile). Puis, de déplier un nœud de la pile, s'il a un fils droit, on le met dans la pile et on recommence. Sinon, s'il a un fils gauche, on le met dans la pile et on recommence. enfin s'il n'a pas de fils, on le traite (on peut l'ajouter à un vecteur par exemple). Il faut aussi faire attention à conserver un pointeur vers le noeud précédent afin de savoir si on remonte ou si on descend dans l'arbre.
+Pour faire cela tu peux utiliser une pile (`std::stack`) pour stocker les nœuds à parcourir. L'idée est de parcourir l'arbre en commençant par la racine (premier élément de la pile). Puis, de déplier un nœud de la pile, s'il a un fils droit, on le met dans la pile et on recommence. Sinon, s'il a un fils gauche, on le met dans la pile et on recommence. enfin s'il n'a pas de fils, on le traite (on peut l'ajouter à un vecteur par exemple). Il faut aussi faire attention à conserver un pointeur vers le nœud précédent afin de savoir si on remonte ou si on descend dans l'arbre.
 
 Exemple: 
 Si on a l'arbre suivant:
@@ -106,12 +129,12 @@ Si on a l'arbre suivant:
   3   7
  / \ / \
  ```
-on va commencer par mettre le nœud 5 dans la pile. (le noeud précédent est nul)
-On va lire le nœud 5 et se rendre compte qu'il a un fils gauche, on le met dans la pile et on recommence (le noeud précédent est 5).
-On va lire le nœud 3 et se rendre compte qu'il n'a pas de fils, on le traite et on le retire de la pile. (le noeud précédent est 3).
-On va lire de nouveau le nœud 5 mais comme on a déjà traité le fils gauche (on le sait car le noeud précédent est le nœud 3), on va mettre le fils droit dans la pile et recommencer. (le noeud précédent devient 5).
-On va lire le nœud 7 et se rendre compte qu'il n'a pas de fils, on le traite et on le retire de la pile. (le noeud précédent est 7).
-On va lire de nouveau le nœud 5 mais comme on a déjà traité le fils droit (on le sait car le noeud précédent est le nœud 7), on va enfin traiter le nœud 5 et le retirer de la pile.
+on va commencer par mettre le nœud 5 dans la pile. (le nœud précédent est nul)
+On va lire le nœud 5 et se rendre compte qu'il a un fils gauche, on le met dans la pile et on recommence (le nœud précédent est 5).
+On va lire le nœud 3 et se rendre compte qu'il n'a pas de fils, on le traite et on le retire de la pile. (le nœud précédent est 3).
+On va lire de nouveau le nœud 5 mais comme on a déjà traité le fils gauche (on le sait car le nœud précédent est le nœud 3), on va mettre le fils droit dans la pile et recommencer. (le nœud précédent devient 5).
+On va lire le nœud 7 et se rendre compte qu'il n'a pas de fils, on le traite et on le retire de la pile. (le nœud précédent est 7).
+On va lire de nouveau le nœud 5 mais comme on a déjà traité le fils droit (on le sait car le nœud précédent est le nœud 7), on va enfin traiter le nœud 5 et le retirer de la pile.
 
 Ce qui nous donne l'ordre postfixe: 3, 7, 5.
 
@@ -174,7 +197,7 @@ std::vector<Node const*> Node::postfixe() const {
 bool remove(Node*& node, int value);
 ```
 
-Prendre en paramètre une référence vers un pointeur permet de modifier directement le pointeur du nœud parent si le nœud est supprimé. C'est important dans le cas par exemple où l'on supprime une feuille de l'arbre il faut pouvoir réassigner le pointeur du nœud parent vers un pointeur nul pour éviter d'avoir un pointeur qui pointe vers un nœud supprimé.
+Prendre en paramètre une **référence vers un pointeur** permet de modifier directement le pointeur du nœud parent si le nœud est supprimé. C'est important dans le cas par exemple où l'on supprime une feuille de l'arbre il faut pouvoir réassigner le pointeur du nœud parent vers un pointeur nul pour éviter d'avoir un pointeur qui pointe vers un nœud supprimé.
 
 ```cpp
 if (value == node->value && node->isLeaf()) {
@@ -211,7 +234,7 @@ void deleteTree(Node* node);
 
 12. (**BONUS**) Écrire des méthodes `min` et `max` qui retournent respectivement les valeurs minimales et maximales de l'arbre binaire.
 
-## Pointeurs intelligents
+## Exercice 2 (Pointeurs intelligents)
 
 Nous allons maintenant améliorer et simplifier notre code en utilisant des pointeurs intelligents. En effet la partie la plus compliquée de notre code est la gestion de la mémoire et des pointeurs. Les pointeurs intelligents vont nous permettre de nous débarrasser de cette gestion et de nous passer de la fonction `deleteTree` par exemple.
 
@@ -244,7 +267,7 @@ std::unique_ptr<SmartNode>& SmartNode::mostLeft(std::unique_ptr<SmartNode>& node
 bool remove(std::unique_ptr<SmartNode>& node, int value);
 ```
 
-14.  Modifier la fonction `isLeaf` pour utiliser le fait qu'un pointeur intelligent peut être converti implicitement en [booléen](https://en.cppreference.com/w/cpp/memory/unique_ptr/operator_bool) (il vaut `false` si le pointeur est nul et `true` sinon).
+1.  Modifier la fonction `isLeaf` pour utiliser le fait qu'un pointeur intelligent peut être converti implicitement en [booléen](https://en.cppreference.com/w/cpp/memory/unique_ptr/operator_bool) (il vaut `false` si le pointeur est nul et `true` sinon).
 ```cpp
 std::unique_ptr<float> ptr {nullptr};
 if (ptr) {
@@ -254,38 +277,39 @@ if (ptr) {
 }
 ```
 
-15.  Renommer et modifier la fonction `createNode` (en `createSmartNode`) pour qu'elle retourne un pointeur intelligent `std::unique_ptr` au lieu d'un pointeur brut (on utilisera la fonction `std::make_unique` pour créer le pointeur).
+2.  Renommer et modifier la fonction `createNode` (en `createSmartNode`) pour qu'elle retourne un pointeur intelligent `std::unique_ptr` au lieu d'un pointeur brut (on utilisera la fonction `std::make_unique` pour créer le pointeur).
 
 Elle s'utilise de la manière suivante:
 ```cpp
 std::unique_ptr<float> ptr {std::make_unique<float>(3.14)};
 ```
 
-16.  Modifier la méthode `mostLeft` pour qu'elle retourne une référence vers un pointeur intelligent au lieu d'un pointeur brut.
+3.  Modifier la méthode `mostLeft` pour qu'elle retourne une référence vers un pointeur intelligent au lieu d'un pointeur brut.
 
-17.  Modifier la méthode `insert` pour qu'elle utilise des pointeurs intelligents.
+4.  Modifier la méthode `insert` pour qu'elle utilise des pointeurs intelligents.
 
-18. (**BONUS**) Modifier la méthode `remove` pour qu'elle utilise des pointeurs intelligents.
+5. (**BONUS**) Modifier la méthode `remove` pour qu'elle utilise des pointeurs intelligents.
 
 :::tip
 C'est un peu plus compliqué car il faut utiliser des références vers des pointeurs intelligents pour pouvoir les modifier. On peut utiliser les méthodes `reset` et `release` pour gérer la mémoire et les pointeurs intelligents. Ou utiliser un concept plus avancé `std::move` pour transférer la propriété d'un pointeur intelligent d'un objet à un autre.
 Si vous voulez essayer, n'hésitez pas à demander de l'aide.
 :::
-## Utilisation
+## Exercice 3 (Utilisation)
 
 Testons maintenant notre implémentation en créant un programme qui permet de créer un arbre binaire et d'effectuer différentes opérations dessus.
 
-19. Créer un arbre binaire et insérer les valeurs suivantes: 5, 3, 7, 2, 4, 6, 8, 1, 9, 0.
+1. Créer un arbre binaire et insérer les valeurs suivantes: 5, 3, 7, 2, 4, 6, 8, 1, 9, 0.
 
-20. Afficher les valeurs des nœuds de l'arbre binaire dans l'ordre **infixe**.
+2. Afficher les valeurs des nœuds de l'arbre binaire dans l'ordre **infixe**.
 
-21. Afficher la valeur minimale et maximale de l'arbre.
+3. Afficher la valeur minimale et maximale de l'arbre.
 
-22. Afficher la somme des valeurs des nœuds de l'arbre binaire en utilisant la fonction `postfixe` qui retourne un vecteur contenant les nœuds parcourus dans l'ordre **postfixe**.
+4. Afficher la somme des valeurs des nœuds de l'arbre binaire en utilisant la fonction `postfixe` qui retourne un vecteur contenant les nœuds parcourus dans l'ordre **postfixe**.
 
-23. Afficher la hauteur de l'arbre binaire.
+5. Afficher la hauteur de l'arbre binaire.
 
-## Aller plus loin: Encapsulation
+## Aller plus loin
+## Exercice 4 (Encapsulation)
 
 Le but est de créer une structure `BinaryTree` qui encapsule la structure `Node` ou `SmartNode` et qui permet d'utiliser les même méthodes sans connaître la structure interne de l'arbre binaire. Cela permet aussi de gérer le cas où l'arbre binaire est vide (c'est à dire que la racine est un pointeur nul).
 
@@ -313,4 +337,4 @@ struct BinaryTree {
 bool contains(std::unique_ptr<SmartNode>& node, int value);
 ```
 
-24.  Créer un fichier `binaryTree.cpp` et implémenter les méthodes de la structure `BinaryTree`.
+1.  Créer un fichier `binaryTree.cpp` et implémenter les méthodes de la structure `BinaryTree`.

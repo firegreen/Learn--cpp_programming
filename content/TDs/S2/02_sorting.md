@@ -65,10 +65,39 @@ void merge_sort(std::vector<float> & vec) {
 Dans ces deux algorithmes, on va trier des **plages** du tableau par **récursivité**. C'est pour cela que les fonctions prennent en paramètre les indices de début et de fin de la plage à trier (`left` et `right`).
 De plus, dans les deux algorithmes, on va utiliser une **fonction auxiliaire** pour séparer le tableau en deux parties (`quick_sort_partition`) ou pour fusionner deux tableaux triés (`merge_sort_merge`).
 
+
+:::tip
+Pour l'étape de merge du merge sort (`merge_sort_merge`), il faudra copier les valeurs dans des **vecteurs temporaires** pour stocker les deux parties du tableau à fusionner.
+
+Il existe plusieurs façons de copier les valeurs d'un vecteur dans un autre. La plus simple est de donner à la construction du vecteur les itérateurs de début et de fin du vecteur à copier.
+Cela fonctionne de la manière suivante:
+```cpp
+std::vector<int> vec1 {1, 2, 3, 4, 5};
+
+// copie de vec1 dans vec2
+std::vector<int> vec2(vec1.begin(), vec1.end());
+
+// copie des éléments de vec1 dans vec3 à partir de l'élément d'indice 2
+std::vector<int> vec3(vec1.begin() + 2, vec1.end());
+
+// copie des éléments de vec1 dans vec4 à partir de l'élément d'indice 1 jusqu'à l'élément d'indice 3
+std::vector<int> vec4(vec1.begin() + 1, vec1.begin() + 4);
+
+// il est également possible de copier un vecteur dans un autre à l'aide de la fonction std::copy
+std::vector<int> vec5(vec1.size());
+std::copy(vec1.begin(), vec1.end(), vec5.begin());
+// il faut que le vecteur de destination ait la bonne taille pour pouvoir copier les valeurs
+
+// ou à l'aide de la méthode assign
+std::vector<int> vec6;
+vec6.assign(vec1.begin(), vec1.end());
+```
+:::
+
 ## Pour aller plus loin: Counting sort
 
 Le **counting sort** est un algorithme de tri qui permet de trier un tableau d'entiers en temps linéaire (c'est à dire en $O(n)$).
-Il est cependant limité par le fait qu'il ne peut trier que des **entiers** ("positifs" pour le cas le plus simple) et que la valeur **maximale** des entiers du tableau doit être connu (à calculer avant le tri ou connue en fonction du contexte).
+Il est cependant limité par le fait qu'il ne peut trier que des **entiers** ("positifs" pour le cas le plus simple) et que la valeur **maximale** des entiers du tableau doit être connue (à calculer avant le tri ou connue en fonction du contexte).
 
 Essaye d'implémenter cet algorithme de tri.
 Voilà le prototype de la fonction:
@@ -141,16 +170,16 @@ On utilisera deux indices pour définir la partie du tableau à traiter:
 
 Exemple simple avec le tableau suivant `[1, 2, 2, 3, 4, 8, 12]` (nombre d'éléments: 7) et la valeur recherchée `8`:
 
-1. `left = 0` et `right = 6` (indice du premier et dernier élément du tableau)
+2. `left = 0` et `right = 6` (indice du premier et dernier élément du tableau)
     `middle = (left + right) / 2 = (0 + 6) / 2 = 3` (indice de l'élément au milieu du tableau)
     la valeur au milieu du tableau est `3` qui est inférieure à la valeur recherchée `8`, on ne garde que la partie droite du tableau.
     `left` devient `middle + 1 = 3 + 1 = 4` (indice du premier élément de la partie droite du tableau)
-2. `left = 4` et `right = 6`
+3. `left = 4` et `right = 6`
     `middle = (left + right) / 2 = (4 + 6) / 2 = 5`
     la valeur au milieu du tableau est `8` qui est égale à la valeur recherchée, on retourne l'indice `5` de la valeur dans le tableau.
 :::
 
-1. tester la fonction `search` avec les tableaux suivants et afficher le résultat de la recherche:
+4. tester la fonction `search` avec les tableaux suivants et afficher le résultat de la recherche:
    - `[1, 2, 2, 3, 4, 8, 12]` (valeur recherchée: `8`)
    - `[1, 2, 3, 3, 6, 14, 12, 15]` (valeur recherchée: `15`)
    - `[2, 2, 3, 4, 5, 8, 12, 15, 16]` (valeur recherchée: `16`)

@@ -43,7 +43,7 @@ std::vector<std::string> split_string(std::string const& str);
 
 ## Exercice 3 (Palindrome)
 
-Écrire une fonction qui prend en paramètre une référence constante sur une `std::string` et qui retourne `true` si la chaîne de caractères est un palindrome (qui peut se lire dans les deux sens), `false` sinon.
+1. Écrire une fonction qui prend en paramètre une référence constante sur une `std::string` et qui retourne `true` si la chaîne de caractères est un palindrome (qui peut se lire dans les deux sens), `false` sinon.
 
 Utiliser la fonctions `std::equal` pour comparer les valeurs de deux itérateurs.
 Utiliser les fonctions `std::begin`, `std::end`  et `std::rbegin`, `std::rend` pour obtenir les itérateurs de début et de fin d'une chaîne de caractères et de sa version inversée.

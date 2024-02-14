@@ -63,7 +63,7 @@ void fill_encoding_table(Node const* node, std::unordered_map<char, std::string>
 std::unordered_map<char, std::string> build_encoding_table(Node const* root);
 ```
 
-1. Écrire une fonction `encode` qui prend en paramètre une chaîne de caractères et un `std::unordered_map<char, std::string>` et qui retourne une chaîne de caractères représentant la chaîne de caractères encodée en utilisant le code de Huffman.
+7. Écrire une fonction `encode` qui prend en paramètre une chaîne de caractères et un `std::unordered_map<char, std::string>` et qui retourne une chaîne de caractères représentant la chaîne de caractères encodée en utilisant le code de Huffman.
 
 ```cpp
 std::string encode(std::string str, std::unordered_map<char, std::string> const& table);
@@ -85,9 +85,7 @@ Pour faire cela il faut manipuler des **bits**. En C++, on peut manipuler des bi
 
 Pour ensuite pouvoir écrire en binaire dans un fichier on va utiliser des **octets**. Un octet est un ensemble de 8 bits. En C++, on peut manipuler des octets en utilisant le type `unsigned char` (ou `uint8_t`).
 
-Le but est donc dans un premier temps de transformer l'association caractère -> chaîne de caractères (`std::unordered_map<char, std::string>`) en une association caractère -> octet (`std::unordered_map<char, std::tuple<uint8_t, uint8_t>>`). Chaque caractère est associé à un tuple qui contient un octet pour stocker la représentation binaire du caractère et un entier pour stocker le nombre de bits utilisés dans l'octet. Par exemple pour le caractère `a` avec le code `110`, on va stocker `0b00000110` et `3` (car on a utilisé 3 bits et les autres bits sont à `0`).
-
-Ensuite, au lieu de retourner une chaîne de caractères, on va retourner un `std::vector<uint8_t>` qui contient les octets. C'est un jeu d'operation binaire et de décalage qui permet de mettre bout à bout les octets pour obtenir la représentation binaire de la chaîne de caractères encodée.
+Ensuite, au lieu de retourner une chaîne de caractères, on va retourner un `std::vector<uint8_t>` qui contient les octets composés des bits de chaque caractère mis bout à bout. C'est un jeu d'operation binaire et de décalage qui permet de mettre bout à bout les octets pour obtenir la représentation binaire de la chaîne de caractères encodée.
 
 On obtient ensuite un `std::vector<uint8_t>` qui contient la représentation binaire de la chaîne de caractères encodée. On peut ensuite écrire cet `std::vector<uint8_t>` dans un fichier.
 
@@ -97,7 +95,6 @@ Si l'on souhaite faire un programme qui compresse de bout en bout une chaîne de
 
 Afin, de pouvoir décoder ce fichier, il faut pouvoir lire les octets du fichier et les transformer en une représentation binaire. Cela se fait en utilisant la classe `std::ifstream` qui permet de lire dans un fichier. Il suffira de lire octet par octet et de transformer chaque octet en une représentation binaire.
 
-Enfin, pour décoder totalement et retrouver la chaîne originale, il faut non seulement avoir la représentation binaire de la chaîne de caractères encodée, mais également avoir l'arbre de Huffman pour pouvoir décoder la représentation binaire en caractères et ainsi retrouver la chaîne de caractères originale. Lorsqu'un arbre binaire est **localement complet** (c'est à dire un arbre dont tous les nœuds possèdent zéro ou deux fils) il est possible de stocker "facilement" sa représentation en parcours postfixe ou préfixe dans un fichier (car il n'y a pas besoin de marquer les nœuds vides mais seulement de savoir si le nœud est une feuille ou un nœud interne pour pouvoir reconstruire l'arbre).
-Il faudra donc ajouter à ce fichier la représentation de l'arbre de Huffman pour pouvoir décoder totalement la chaîne de caractères encodée.
+Enfin, pour décoder totalement et retrouver la chaîne originale, il faut non seulement avoir la représentation binaire de la chaîne de caractères encodée, mais également avoir l'arbre de Huffman pour pouvoir décoder la représentation binaire en caractères et ainsi retrouver la chaîne de caractères originale. Il faudra donc ajouter à ce fichier la représentation de l'arbre de Huffman pour pouvoir décoder totalement la chaîne de caractères encodée.
 
 Je ne vous demande pas de faire cela, mais c'est pour vous donner une idée de ce à quoi cela peut servir en pratique et comment cela peut être utilisé.

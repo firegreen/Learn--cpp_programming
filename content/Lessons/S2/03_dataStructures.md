@@ -222,7 +222,7 @@ La classe `std::variant` (définie dans la bibliothèque `<variant>`) permet de 
 #include <iostream>
 #include <string>
 
-std::variant<int, float, std::string> v;
+std::variant<int, float, std::string> v {};
 
 v = 42; // v contient un int
 v = 3.14f; // v contient un float
@@ -252,7 +252,7 @@ Pour représenter un élément optionnel qui ne contient rien, on peut utiliser 
 #include <iostream>
 #include <string>
 
-std::optional<int> o;
+std::optional<int> o {};
 
 o = 42; // o contient un int
 

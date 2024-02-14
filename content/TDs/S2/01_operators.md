@@ -37,7 +37,7 @@ Il existe une autre façon de faire en comparant les produits en croix des fract
 - Transformer les méthodes `add`, `sub`, `mul` et `div` en surcharge des opérateurs d'affectation `+=`, `-=`, `*=` et `/=` 
 - Réécrire les opérateurs `+`, `-`, `*` et `/` en utilisant les opérateurs affectation afin d'éviter de dupliquer le code.
 
-## Exercice 7 (conversion)
+## Exercice 6 (conversion)
 
 1. Définir et implémenter une méthode `to_float` qui retourne la valeur de la fraction sous forme de `float`.
 

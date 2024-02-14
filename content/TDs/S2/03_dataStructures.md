@@ -2,11 +2,11 @@
 title: TD3 - Structures de données
 ---
 
-## Evaluation NPI
+## Exercice 1 (Evaluation NPI)
 
-La notation polonaise inversée (**NPI**) est une notation mathématique qui permet d'exprimer des expressions arithmétiques sans utiliser de parenthèses. Elle a été inventée par le mathématicien polonais Jan Lukasiewicz en 1924.
+La notation polonaise inversée (**NPI**) est une notation mathématique qui permet d'exprimer des expressions arithmétiques sans utiliser de parenthèses. Elle a été inventée par le mathématicien polonais **Jan Lukasiewicz** en 1924.
 
-La notation polonaise inversée est une notation postfixe, c'est-à-dire que l'opérateur est placé après les deux opérandes. Par exemple, l'expression `3 + 4` s'écrit `3 4 +` en NPI.
+La notation polonaise inversée est une notation **postfixe**, c'est-à-dire que l'opérateur est placé après les deux opérandes. Par exemple, l'expression `3 + 4` s'écrit `3 4 +` en **NPI**.
 
 Ce qui permet ensuite d'interpréter l'expression de gauche à droite, en empilant les opérandes sur une pile, et en déclenchant l'opération lorsque l'on rencontre un opérateur.
 
@@ -19,19 +19,18 @@ Par exemple, l'expression `3 4 +` s'interprète comme suit :
 
 On va donc pouvoir se servir d'une **pile** pour évaluer une expression en **NPI**.
 
-:::tip
-Il faut cependant faire attention au opérateur non commutatifs, comme `-` ou `/`. `3 4 /` ne s'interprète pas comme `3 / 4`, mais comme `4 / 3`. Il faut donc écrire `3 4 /` pour évaluer `3 / 4`.
+:::info
+Il faut cependant faire attention aux opérateurs non commutatifs, comme `-` ou `/`. `3 4 /` ne s'interprète pas comme `3 / 4`, mais comme `4 / 3`. Il faut donc écrire `3 4 /` pour évaluer `3 / 4`.
 :::
 
-Le but de cet exercice est d'écrire une fonction qui prend en paramètre une expression en **NPI** sous forme d'une chaîne de caractères (les différents éléments de l'expression sont séparés par des espaces), et qui retourne le résultat de l'expression.
+Le but de cet exercice est d'écrire un programme qui permet d'évaluer une expression en **NPI** sous forme d'une chaîne de caractères (les différents éléments de l'expression sont séparés par des espaces), et retourner le résultat de l'expression.
 
 1. Écrire un programme qui permet de lire une entrée utilisateur (`std::cin`) sous la forme d'une chaines de caractères composée des différents éléments de l'expression (nombre, opérateur) espacés par des espaces en **notation polonaise inversée** (**NPI**).
-  :::note
-  Par simplicité, on se limitera à des expressions contenant des **nombres** (flottants), et les opérateurs `+`, `-`, `*` et `/` (Dans une expression en NPI il y a plus de **parenthèses** (`(` et `)` car l'order des opérations est déterminé par l'ordre des opérateurs dans l'expression).
-  la chaîne de caractères sera donc composée uniquement des caractères suivants: `0123456789+-*/` sans espaces(pour s'éviter d'avoir à gérer les espaces dans un premier temps). :warning: `12` représente donc bien la succession des chiffres `1` et `2`, et non pas le nombre `12`.
-  :::
+:::note
+Par simplicité, on se limitera à des expressions contenant des **nombres** (flottants), et les opérateurs `+`, `-`, `*` et `/` (Dans une expression en NPI il y a plus de **parenthèses** (`(` et `)` car l'order des opérations est déterminé par l'ordre des opérateurs dans l'expression).
+:::
 
-2. Je vous donne le code suivant qui permet à l'aide d'une particularité des streams de séparer les éléments de la chaîne de caractères en utilisant les espaces comme séparateurs:
+2. Je vous donne le code suivant qui permet à l'aide d'une particularité des **streams** de séparer les éléments(mots) de la chaîne de caractères en utilisant les espaces comme séparateurs:
 
 ```cpp
 #include <vector>
@@ -46,21 +45,20 @@ std::vector<std::string> split_string(std::string const& s)
 }
 ```
 
-Utilisez ce code pour séparer les éléments de l'expression en NPI entrée par l'utilisateur et créer un `std::vector<std::string>` qui représenterons les éléments `tokens` de l'expression en **NPI**.
+Utilisez ce code pour séparer les éléments de l'expression en NPI entrée par l'utilisateur et créer un `std::vector<std::string>` qui représenterons les éléments (`tokens`) de l'expression en **NPI**.
 
-3. Écrire une fonction qui prends une chaîne de caractères et permet de dire si celle-ci représente un nombre ou non.
+3. Écrire une fonction qui prends une chaîne de caractères et permet de dire si celle-ci représente un nombre flottant ou non.
 On utilisera le prototype suivant:
 ```cpp
 bool is_floating(std::string const& s);
 ```
 
 :::tip
+Pour y arriver il faut parcourir la chaîne de caractères et de tester si chaque caractère est un chiffre ou un point `.` (pour gérer les nombres flottants). Si c'est le cas, on continue, sinon on retourne `false`.
 Vous pouvez utiliser la fonction `std::isdigit` de la bibliothèque `<cctype>` qui permet de tester si un caractère représente un chiffre.
 :::
 
-Pour y arriver il faut parcourir la chaîne de caractères et de tester si chaque caractère est un chiffre (ou un point `.` pour gérer les nombres flottants). Si c'est le cas, on continue, sinon on retourne `false`.
-
-Cela va être utile pour distinguer si un token (sous forme de chaîne de caractère) est un nombre(opérandes) ou un opérateur dans l'expression en NPI.
+Cela va être utile pour distinguer si un **token** (sous forme d'une chaîne de caractère) est un nombre(opérandes) ou un opérateur dans l'expression en NPI.
 
 <details>
 <summary>solution C++17</summary>
@@ -82,7 +80,7 @@ Vous pouvez utiliser cette fonction si vous le souhaitez pour confirmer votre so
 Mais il est important de faire soit même l'implémentation de la fonction `is_floating` pour apprendre à manipuler les chaînes de caractères.
 </details>
 
-4. Écrire une fonction qui prend en paramètre un vecteur de chaînes de caractères représentant les tokens de l'expression en NPI, et qui retourne le résultat de l'expression.
+4. Écrire une fonction qui prend en paramètre un vecteur de chaînes de caractères représentant les **tokens** de l'expression en **NPI**, et qui retourne le résultat de l'expression.
 
 On utilisera le prototype suivant:
 ```cpp
@@ -92,13 +90,18 @@ float npi_evaluate(std::vector<std::string> const& tokens);
 Utilisez une **pile** (`std::stack`) pour évaluer l'expression comme dans l'exemple précédent.
 
 :::tip
-En utilisant la fonction de la question précédente, on peut déterminer si un élément de l'expression est un nombre ou un opérateur.
-Il faut utiliser la fonction `std::stof` de la bibliothèque `<string>` pour convertir une chaîne de caractères en nombre flottant si c'est le cas avant d'ajouter le nombre à la pile.
+En utilisant la fonction `is_floating` de la question précédente, on peut déterminer si un élément de l'expression est un nombre ou un opérateur.
+Il faut ensuite utiliser la fonction `std::stof` de la bibliothèque `<string>` pour convertir la chaîne de caractères en nombre flottant si c'est le cas.
 :::
 
-5. Enfin, utiliser les fonctions précédentes pour afficher le résultat d'une expression en NPI entrée par l'utilisateur.
+5. Enfin, utiliser les fonctions précédentes pour afficher le résultat d'une expression en **NPI** entrée par l'utilisateur.
 
-### Utiliser une structure et des énumérations
+Vous pouvez tester avec les expressions suivantes:
+- `3 4 +`
+- `3 4 2 * +`
+- `3 4 2 * 1 5 - 6 ^ / +`
+
+### Exercice 2 (Utiliser une structure et des énumérations)
 
 Le but est de réécrire le programme précédent en utilisant un **enum** pour représenter les différents **opérateurs** ainsi qu'une structure pour représenter un **token** (un élément de l'expression) avec un champ pour le type (opérateur ou opérande) et des champs pour les valeurs (opérateur ou opérande).
 
@@ -122,21 +125,21 @@ Token make_token(float value)
 Token make_token(Operator op);
 ```
 
-1. Créer une fonction `tokenize` qui prends en paramètre un vecteur de chaîne de caractères (représentant les "mots" d'une phrase, nos anciens tokens) et retourne un vecteur de `Token`.
+2. Créer une fonction `tokenize` qui prends en paramètre un vecteur de chaîne de caractères (représentant les "mots" d'une phrase, nos anciens tokens) et retourne un vecteur de `Token`.
 ```cpp
 std::vector<Token> tokenize(std::vector<std::string> const& words);
 ```
 
-1. Créer une nouvelle fonction `npi_evaluate` qui utilise cette fois un vecteur de `Token` au lieu de manipuler directement des chaînes de caractères. 
+3. Créer une nouvelle fonction `npi_evaluate` qui utilise cette fois un vecteur de `Token` au lieu de manipuler directement des chaînes de caractères. 
 ```cpp
 float npi_evaluate(std::vector<Token<float>> const& tokens);
 ```
 
 ## Pour aller plus loin
 
-### Conversion en NPI
+### Exercice 3 (Conversion en NPI)
 
-Nous avons précédemment vu comment évaluer une expression en **NPI**. Mais comment faire pour convertir une expression en notation infixe (c'est-à-dire de manière "classique" avec des parenthèses) en une expression en NPI ?
+Nous avons précédemment vu comment évaluer une expression en **NPI**. Mais comment faire pour convertir une expression en notation **infixe** (c'est-à-dire de manière "classique" avec des parenthèses) en une expression en NPI ?
 
 Pour cela, il existe un algorithme appelé **Shunting-yard algorithm** (littéralement "algorithme de la cour de triage").
 
@@ -174,12 +177,16 @@ Voici un exemple d'application de l'algorithme  avec l'expression `3 + 4 ^ 2 / (
 
 **Résultat final** : `3 4 2 ^ 1 5 - 6 ^ / +` 
 
-9. Écrire une fonction `operator_precedence` qui prends en paramètre un `Operator` et retour sous forme d'un **nombre entier positif** la priorité de cet opérateur.
+:::info
+La suite de l'exercice est présenté en utilisant les fonctions et structures de l'exercice précédent. Si vous n'avez pas fait l'exercice 2 vous pouvez tout aussi bien travailler avec un vecteur de chaînes de caractères sans utiliser la structure `Token`.
+:::
+
+1. Écrire une fonction `operator_precedence` qui prends en paramètre un `Operator` et retour sous forme d'un **nombre entier positif** la priorité de cet opérateur.
 ```cpp
 size_t operator_precedence(Operator const op);
 ```
 
-10. Écrire une fonction qui prend en paramètre une chaîne de caractères représentant une expression en **notation infixe**, qui retourne un tableau de `Token` représentant l'expression en **NPI**.
+2. Écrire une fonction qui prend en paramètre une chaîne de caractères représentant une expression en **notation infixe**, qui retourne un tableau de `Token` représentant l'expression en **NPI**.
 
 ```cpp
 std::vector<Token> infix_to_npi_tokens(std::string const& expression);
@@ -191,8 +198,6 @@ On utilisera la même structure `Token` que dans l'exercice précédent et les f
 C'est ici que parenthèses en tant qu'opérateur vont être utile mais elles ne devrons pas se retrouver dans la liste de `Token` en NPI.
 :::
 
-### Réaliser un calculatrice
 
 Maintenant que nous savons évaluer une expression en NPI et que nous savons convertir une expression en notation infixe en NPI, nous pouvons réaliser une **calculatrice**.
-
-11. Essayez de réaliser un programme qui permet de lire une expression en notation infixe, de la convertir en NPI, de l'évaluer et d'afficher le résultat.
+3. Essayez de réaliser un programme qui permet de **lire** une expression en notation **infixe**, de la convertir en **NPI**, de l'**évaluer** et d'**afficher** le résultat.
