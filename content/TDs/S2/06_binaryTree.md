@@ -76,6 +76,8 @@ On utilisera la fonction `createNode` pour créer le nouveau nœud.
 ```cpp
 int Node::height() const;
 ```
+<!-- Qu'est ce que tu préconises comme nomenclature pour les méthodes ? pour les méthodes qui calculent ou retournent une valeur, j'aurais
+tendance à mettre `"get"` -> `getHeight()` dans ce cas là -->
 
 :::tip
 On peut utiliser de la récursivité pour calculer la hauteur de l'arbre.
@@ -93,26 +95,26 @@ On peut utiliser de la récursivité pour supprimer les nœuds de l'arbre.
 
 On va se donner la convention qu'un arbre binaire contenant un seul nœud a une hauteur de 1.
 
-6. Écrire une **méthode** `display_infixe` qui affiche les valeurs des nœuds parcourus dans l'ordre **infixe**.
+6. Écrire une **méthode** `displayInfixe` qui affiche les valeurs des nœuds parcourus dans l'ordre [**infixe**](https://dsmte.github.io/Learn--cpp_programming/Lessons/S2/BinaryTree#parcours-en-profondeur).
 ```cpp
-void Node::display_infixe() const;
+void Node::displayInfixe() const;
 ```
 
-7. Écrire une **méthode** `prefixe` qui retourne un vecteur contenant des pointeurs vers les nœuds de l'arbre binaire parcourus en **prefixe**.
+7. Écrire une **méthode** `prefixe` qui retourne un vecteur contenant des pointeurs vers les nœuds de l'arbre binaire parcourus en [**prefixe**](https://dsmte.github.io/Learn--cpp_programming/Lessons/S2/BinaryTree#parcours-en-profondeur).
 ```cpp
-std::vector<Node const*> Node::infixe() const;
+std::vector<Node const*> Node::prefixe() const;
 ```
 
 :::tip
 Pour le faire par **récursivité** on pourra utiliser la méthode `insert` du `std::vector` qui permet d’insérer plusieurs éléments à l'aide d’itérateurs.
 ```cpp
-auto left_nodes {left->infixe()};
+auto left_nodes {left->prefixe()};
 nodes.insert(nodes.end(), left_nodes.begin(), left_nodes.end());
 ```
 Cela va permettre de concaténer dans un seul vecteur les nœuds des sous arbres gauche et droit.
 :::
 
-8. De même, écrire une autre méthode `postfixe` qui retournent les nœuds parcourus dans l'ordre **postfixe**.
+8. De même, écrire une autre méthode `postfixe` qui retournent les nœuds parcourus dans l'ordre [**postfixe**](https://dsmte.github.io/Learn--cpp_programming/Lessons/S2/BinaryTree#parcours-en-profondeur).
 
 <details>
 <summary>BONUS: Itératif</summary>
@@ -238,7 +240,7 @@ void deleteTree(Node* node);
 
 Nous allons maintenant améliorer et simplifier notre code en utilisant des pointeurs intelligents. En effet la partie la plus compliquée de notre code est la gestion de la mémoire et des pointeurs. Les pointeurs intelligents vont nous permettre de nous débarrasser de cette gestion et de nous passer de la fonction `deleteTree` par exemple.
 
-13. Copier coller votre fichier pour garder une version de votre code précédent et créer un nouveau fichier `smartNode.hpp` dans lequel vous allez réécrire votre code en utilisant des **pointeurs intelligents**.
+13. Copier coller votre fichier pour garder une version de votre code précédent et créer un nouveau fichier `smartNode.hpp` dans lequel vous allez réécrire votre code en utilisant des [**pointeurs intelligents**](https://dsmte.github.io/Learn--cpp_programming/Lessons/S1/MemoryAllocation).
 Renommer la structure `Node` en `SmartNode` pour pouvoir faire la différence entre les deux versions et remplacer les pointeurs "bruts" par des pointeurs intelligents `std::unique_ptr` dans la structure `SmartNode`.
 
 Je vous donne le contenu du fichier `smartNode.hpp`:
@@ -294,6 +296,9 @@ std::unique_ptr<float> ptr {std::make_unique<float>(3.14)};
 C'est un peu plus compliqué car il faut utiliser des références vers des pointeurs intelligents pour pouvoir les modifier. On peut utiliser les méthodes `reset` et `release` pour gérer la mémoire et les pointeurs intelligents. Ou utiliser un concept plus avancé `std::move` pour transférer la propriété d'un pointeur intelligent d'un objet à un autre.
 Si vous voulez essayer, n'hésitez pas à demander de l'aide.
 :::
+
+<!-- est ce qu'on rendrait pas cet exercice à la fin et on le rendrait pas optionnel ? -->
+
 ## Exercice 3 (Utilisation)
 
 Testons maintenant notre implémentation en créant un programme qui permet de créer un arbre binaire et d'effectuer différentes opérations dessus.
