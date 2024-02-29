@@ -69,15 +69,14 @@ float d1 {static_cast<float>(f1)}; // conversion explicite avec static_cast
 ## Aller plus loin
 
 1. Ajouter des fonction libres pour les opérateurs `+`, `-`, `*` et `/` afin de pouvoir faire des opérations avec des fractions et des entiers.
-   exemple: `Fraction f1 {1, 2}; int i1 {2}; Fraction f2 {f1 + i1};`
+   exemple: `Fraction f1 {1, 2}; int i {2}; Fraction f2 {f1 + i};`
    ```cpp
-    Fraction operator+(const Fraction& f, int i);
+    Fraction operator+(const Fraction& f, int const i);
     ```
 
     :::tip
     Pour que ce soit commutatif, il faut aussi définir la fonction avec l'entier en premier paramètre. Réutiliser la fonction précédente pour éviter de dupliquer le code.
     :::
-
 
 2. Ajouter des méthodes pour appliquer des **opérations mathématiques** sur les fractions.
    - `abs`: valeur absolue

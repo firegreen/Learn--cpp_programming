@@ -12,7 +12,7 @@ Dans ce TD nous allons mettre en pratique les notions vues en cours sur les tabl
 size_t folding_string_hash(std::string const& s, size_t max);
 ```
 
-Ce que nous venons de faire s'appel la technique dite de **folding** (pliage en français). Cela consiste à découper notre donnée (ici une chaîne de caractères) en plusieurs parties, calculer une valeur pour chacune de ces parties, sommer ces valeurs et enfin appliquer un modulo pour obtenir un entier compris entre 0 et `max`.
+Ce que nous venons de faire s'appel la technique dite de **folding** (pliage en français). Cela consiste à découper notre donnée (ici une chaîne de caractères) en plusieurs parties, calculer une valeur(hash) pour chacune de ces parties, sommer ces valeurs et enfin appliquer un modulo pour obtenir un entier compris entre 0 et `max`.
 
 :::info
 On veux se ramener à un entier compris entre 0 et `max` car cette valeur hachée sert généralement d'index dans un tableau (table de hachage). Hors on souhaite un tableau de taille "raisonnable" en mémoire, donc on limite la taille de ce tableau à `max`.

@@ -28,8 +28,8 @@ if (is_sorted(array)) {
 Dans cet exercice, vous devez écrire une fonction qui prend en paramètre un tableau d'entiers (`std::vector`) et le trie par ordre croissant.
 
 Vous avez le choix entre deux algorithmes de tri:
-- **tri à bulle**
-- **tri par sélection**
+- [**tri à bulle**](/Lessons/S2/Sorting#tri-à-bulles-bubble-sort)
+- [**tri par sélection**](/Lessons/S2/Sorting#tri-par-sélection-selection-sort)
 
 Voilà les prototypes des fonctions:
 ```cpp
@@ -44,8 +44,8 @@ De nouveau, vous devez écrire une fonction qui prend en paramètre un tableau d
 Cette fois-ci, vous devez utiliser un algorithme de tri récursif.
 
 Vous avez le choix entre deux algorithmes de tri:
-- **tri fusion**
-- **tri rapide**
+- [**tri fusion**](/Lessons/S2/Sorting#tri-fusion-merge-sort)
+- [**tri rapide**](/Lessons/S2/Sorting#tri-rapide-quick-sort)
 
 Voilà les prototypes des fonctions à utiliser et implémenter:
 ```cpp
@@ -94,18 +94,7 @@ vec6.assign(vec1.begin(), vec1.end());
 ```
 :::
 
-## Pour aller plus loin: Counting sort
-
-Le **counting sort** est un algorithme de tri qui permet de trier un tableau d'entiers en temps linéaire (c'est à dire en $O(n)$).
-Il est cependant limité par le fait qu'il ne peut trier que des **entiers** ("positifs" pour le cas le plus simple) et que la valeur **maximale** des entiers du tableau doit être connue (à calculer avant le tri ou connue en fonction du contexte).
-
-Essaye d'implémenter cet algorithme de tri.
-Voilà le prototype de la fonction:
-```cpp
-void counting_sort(std::vector<int> & vec, int const max);
-```
-
-## Comparaison des algorithmes de tri
+## Exercice 3 (Comparaison des algorithmes de tri)
 
 Une fois nos algorithmes de tri implémentés, nous allons les comparer en terme de complexité temporelle.
 
@@ -157,7 +146,7 @@ Avec cette fonction, vous pouvez comparer les temps d'exécution de vos algorith
 - Que pouvez-vous en dire ?
 
 
-## Exercice 3 (dichotomie)
+## Exercice 4 (dichotomie)
 
 1. Écrire une fonction `search` qui prend en paramètre un tableau d'entiers (`std::vector`) trié par ordre croissant et une valeur entière et retourne l'indice de la valeur dans le tableau. Si la valeur n'est pas présente dans le tableau, la fonction retournera `-1` (on pourrait utiliser quelques chose de plus propre comme `std::optional` que l'on découvrira dans le prochain cours pour éviter de retourner `-1` pour indiquer que l'on ne trouve pas la valeur).
 
@@ -185,3 +174,14 @@ Exemple simple avec le tableau suivant `[1, 2, 2, 3, 4, 8, 12]` (nombre d'élém
    - `[2, 2, 3, 4, 5, 8, 12, 15, 16]` (valeur recherchée: `16`)
    - `[5, 6, 7, 8, 9, 10, 11, 12, 13]` (valeur recherchée: `6`)
    - `[1, 2, 3, 4, 5, 6, 7, 8, 9]` (valeur recherchée: `10`)
+
+## Pour aller plus loin: Counting sort
+
+Le [**counting sort**](/Lessons/S2/Sorting#tri-par-dénombrement-counting-sort) est un algorithme de tri qui permet de trier un tableau d'entiers en temps linéaire (c'est à dire en $O(n)$).
+Il est cependant limité par le fait qu'il ne peut trier que des **entiers** ("positifs" pour le cas le plus simple) et que la valeur **maximale** des entiers du tableau doit être connue (à calculer avant le tri ou connue en fonction du contexte).
+
+Essaye d'implémenter cet algorithme de tri.
+Voilà le prototype de la fonction:
+```cpp
+void counting_sort(std::vector<int> & vec, int const max);
+```

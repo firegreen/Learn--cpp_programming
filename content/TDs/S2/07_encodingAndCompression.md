@@ -37,6 +37,10 @@ struct Node {
 };
 ```
 
+:::info
+on n'utilise pas de `std::unique_ptr` dans cet exercice pour simplifier l'écriture des fonctions. En effet, l'utilisation de `std::unique_ptr` impose de passer par des `std::move` pour déplacer les pointeurs et cela rendrait l'écriture des fonctions plus complexe. Cela nous forcerait même à créer notre propre file de priorité (`priority_queue`) pour pouvoir utiliser des `std::unique_ptr` dans la file de priorité. Ce n'est pas l'objet de cet exercice.
+:::
+
 2. Surcharger l'opérateur `<` pour la structure `Node` de telle sorte que l'opérateur `<` retourne `true` si la fréquence du nœud de gauche est inférieure à la fréquence du nœud de droite.
 3. Écrire une fonction `createNode` qui prend en paramètre un caractère et une fréquence et qui retourne un `Node*`.
 4. Écrire une fonction `createSymbolNode` qui prend en paramètre (par valeur) deux `Node*` et qui retourne un `Node*` dont le caractère est `0` et la fréquence est la somme des fréquences des deux nœuds passés en paramètre et les deux nœuds passés en paramètre sont les fils du nœud retourné.

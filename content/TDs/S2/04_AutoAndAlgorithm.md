@@ -21,7 +21,7 @@ Nous avons utilisé dans le TD précédent une astuce avec les stream C++ qui pe
 
 Je vous donne la fonction lambda suivante qui permet de savoir si un caractère est un espace:
 ```cpp
-auto const isSpace = [](char letter){ return letter == ' '; };
+auto const is_space = [](char letter){ return letter == ' '; };
 ```
 
 Le mot clé `auto` ici permet de "stocker" la fonction dans une variable pour la passé en paramètre. En réalité se cache derrière des pointeur de fonction ou le type `std::function` qui permet d'avoir une variable qui représente une fonction comme cela. 
