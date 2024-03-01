@@ -12,11 +12,13 @@ Dans ce TD nous allons mettre en pratique les notions vues en cours sur les tabl
 size_t folding_string_hash(std::string const& s, size_t max);
 ```
 
-Ce que nous venons de faire s'appel la technique dite de **folding** (pliage en français). Cela consiste à découper notre donnée (ici une chaîne de caractères) en plusieurs parties, calculer une valeur(hash) pour chacune de ces parties, sommer ces valeurs et enfin appliquer un modulo pour obtenir un entier compris entre 0 et `max`.
+Ce que nous venons de faire s'appel la technique dite de **folding** (pliage en français). Cela consiste à découper notre donnée en plusieurs parties, calculer une valeur(hash) pour chacune de ces parties, sommer ces valeurs et enfin appliquer un modulo pour obtenir un entier compris entre 0 et `max`. Ici on traite une chaine de caractère, on va donc faire la somme des valeurs de hashage de chaque caractère.
 
 :::info
 On veux se ramener à un entier compris entre 0 et `max` car cette valeur hachée sert généralement d'index dans un tableau (table de hachage). Hors on souhaite un tableau de taille "raisonnable" en mémoire, donc on limite la taille de ce tableau à `max`.
 Le choix de `max` dépend du contexte d'utilisation de la table de hachage, généralement on choisit une valeur qui est une puissance de 2 (par exemple 1024, 2048, 4096, etc.).
+<!-- est ce que tu aurais un article qui parle de cette norme, j'arrive pas à trouver un article précis, j'ai trouvé ça mais c'est pour un tableau 3D
+https://stackoverflow.com/questions/9515482/performance-advantages-of-powers-of-2-sized-data -->
 :::
 
 2. Écrire une nouvelle fonction de hachage sur une chaîne de caractères pour laquelle l'ordre des caractères a de l'importance. Par exemple, les chaînes de caractères "abc" et "cba" ne doivent pas avoir la même valeur hachée. Ce qui est le cas avec la fonction de hachage précédente.
@@ -48,7 +50,7 @@ size_t polynomial_rolling_hash(const std::string& s, size_t p, size_t m);
 
 ## Exercice 2 (Réparation de Robots)
 
-l'idée de cet exercice est d'utiliser une **table associative** pour résoudre un problème.
+l'idée de cet exercice est d'utiliser une [table associative](https://dsmte.github.io/Learn--cpp_programming/Lessons/S2/HashAndAssociativeTables#tableau-associatif) pour résoudre un problème.
 
 Nous avons des robots qui sont en panne. Chaque robot est identifié par son nom composé de 2 lettres majuscules. Je vous donne la liste des robots en panne et les différentes dépenses pour les réparer.
 
@@ -62,6 +64,9 @@ Voilà la fonction qui génère la liste des réparations effectuées en donnant
 
 std::string random_name(size_t size) {
     std::string name {""};
+    // optimisation pour que la chaine de caractere ne realloue pas
+    // de la memoire a chaque caractere ajoute
+    // https://cplusplus.com/reference/string/string/reserve/
     name.reserve(size);
     for(size_t i {0}; i < size; ++i) {
         name.push_back('A' + std::rand() % 26);
@@ -71,6 +76,8 @@ std::string random_name(size_t size) {
 
 std::vector<std::pair<std::string, float>> get_robots_fix(size_t size) {
     std::vector<std::pair<std::string, float>> robots_fix {};
+    // meme optimisation que dans random_name()
+    // https://cplusplus.com/reference/vector/vector/reserve/
     robots_fix.reserve(size);
     for (size_t i {0}; i < size; ++i) {
         // random name 
@@ -85,7 +92,7 @@ std::vector<std::pair<std::string, float>> get_robots_fix(size_t size) {
 
 J'aimerai être capable de lister pour un robot donné l'ensemble des réparations effectuées pour ce robot. Par exemple, pour le robot "AB", j'aimerai avoir la liste des réparations effectuées pour ce robot.
 
-1. Pour cela, je vous demande d'écrire une fonction qui prend en paramètre la liste des réparations effectuées et qui retourne une table associative (`std::unordered_map`) qui associe à chaque nom de robot la liste des réparations effectuées pour ce robot (sous forme de `std::vector<float>`).
+1. Pour cela, je vous demande d'écrire une fonction qui prend en paramètre la liste des réparations effectuées et qui retourne une [table associative](https://dsmte.github.io/Learn--cpp_programming/Lessons/S2/HashAndAssociativeTables#tableau-associatif) (`std::unordered_map`) qui associe à chaque nom de robot la liste des réparations effectuées pour ce robot (sous forme de `std::vector<float>`).
 
 2. Écrire une fonction qui prend en un `std::vector<float>` et qui retourne la somme des éléments de ce vecteur.
 
@@ -139,6 +146,8 @@ Il faut deux choses pour pouvoir utiliser une **structure** comme clé dans une 
 1. **Surchargez l'opérateur** `==` pour la structure `Card` (deux cartes sont égales si elles ont la même valeur et la même couleur).
 
 2. Écrire une **méthode** `hash` pour la structure `Card` qui retourne un entier;
+<!-- Qu'est ce que tu souhaite avoir comme méthode de hashage ici ? j'ai l'impression qu'on a besoin de la méthode décrite dans la question 4 pour que le
+unordered map fonctionne correctement -->
 
 Voilà le code qui va faire en sorte que la bibliothèque standard utilise notre méthode `hash` pour la structure `Card`:
 
@@ -153,7 +162,7 @@ namespace std {
 }
 ```
 
-> Je ne vous demande pas de comprendre ce code, il y a des notions plus complexes que vous découvrirez l'année prochaine. Gardez simplement en tête que ce code permet de faire en sorte que la bibliothèque standard utilise notre méthode `hash` pour la structure `Card`.
+> Je ne vous demande pas de comprendre ce code, il y a des notions plus complexes que vous découvrirez l'année prochaine. Gardez simplement en tête que ce code permet de faire en sorte que la bibliothèque standard utilise notre méthode `hash` pour la structure `Card` (Notamment les tables associatives ont besoin de ça pour indexer les objects).
 
 Je vous donne également une fonction qui permet de générer une liste de cartes aléatoires:
 
