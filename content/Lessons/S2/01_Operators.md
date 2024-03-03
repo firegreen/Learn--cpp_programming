@@ -80,11 +80,11 @@ int main() {
 }
 ```
 
-### Définition libre ou membre
+### Fonction ou méthode
 
-On peut définir l'opérateur d'égalité comme une **fonction libre** (en dehors de la définition de la structure) ou comme une **méthode** membre.
+On peut définir l'opérateur d'égalité comme une **fonction** (en dehors de la définition de la structure) ou comme une **méthode** (à l'intérieur de la définition de la structure).
 
-La différence est que dans le cas d'une méthode membre, le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode.
+La différence est que dans le cas d'une méthode, le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode.
 
 ```cpp
 struct Point {
@@ -103,7 +103,7 @@ Cela a une influence sur la façon dont on utilise l'**opérateur**.
 Ici la méthode est définie comme `const` car elle ne modifie pas l'instance sur laquelle on l'appelle. Cela permet d'appeler la méthode sur une instance constante.
 :::
 
-Par exemple si l'on souhaite multiplier un point par un nombre, on peut définir l'opérateur comme une **méthode membre**.
+Par exemple si l'on souhaite multiplier un point par un nombre, on peut définir l'opérateur comme une **méthode**.
 
 ```cpp
 struct Point {
@@ -121,7 +121,7 @@ int main() {
 }
 ```
 
-Mais si l'on souhaite multiplier un nombre par un point, on ne peut pas définir l'opérateur comme une méthode membre car le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode.
+Mais si l'on souhaite multiplier un nombre par un point, on ne peut pas définir l'opérateur comme une méthode car le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode.
 
 Il faut donc définir l'opérateur comme une fonction libre.
 
@@ -141,7 +141,7 @@ int main() {
 }
 ```
 
-Les deux syntaxes sont donc valables, mais il faut garder en tête que la syntaxe avec une méthode membre implique que le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode. Il y a plusieurs écoles, en général on préfère la syntaxe avec une **fonction libre** concernant les opérateurs binaires (qui prennent deux paramètres). Cela permet par exemple, dans le cas d'opérateurs binaires commutatifs (dans lequel l'ordre des paramètres n'a pas d'importance), de définir les deux opérateurs en fonction l'un de l'autre.
+Les deux syntaxes sont donc valables, mais il faut garder en tête que la syntaxe avec une méthode implique que le premier paramètre est implicite et correspond à l'instance sur laquelle on appelle la méthode. Il y a plusieurs écoles, en général on préfère la syntaxe avec une **fonction libre** concernant les opérateurs binaires (qui prennent deux paramètres). Cela permet par exemple, dans le cas d'opérateurs binaires commutatifs (dans lequel l'ordre des paramètres n'a pas d'importance), de définir les deux opérateurs en fonction l'un de l'autre.
 
 ```cpp
 struct Point {
@@ -170,7 +170,7 @@ Je vous ai déjà parlé de l’intérêt de la **réutilisation** avec les fonc
 
 L’habitude que beaucoup prennent est de définir les opérateurs `==` et `<`, puis de définir les autres en fonction de ces deux-là.
 
-On va donc définir l'opérateur `!=` en fonction de `==` et l'opérateur `>` en fonction de `<`.
+On va donc définir l'opérateur `!=` en fonction de `==`.
 
 ```cpp
 struct Point {
@@ -185,15 +185,11 @@ bool operator==(Point const& a, Point const& b) {
 bool operator!=(Point const& a, Point const& b) {
     return !(a == b);
 }
-
-bool operator<(Point const& a, Point const& b) {
-    return a.x < b.x || (a.x == b.x && a.y < b.y);
-}
-
-bool operator>(Point const& a, Point const& b) {
-    return b < a;
-}
 ```
+
+Dans notre cas définir les opérateurs de comparaison `<`, `<=`, `>`, `>=` fait moins sens car on ne peut pas vraiment dire qu'un point est plus grand qu'un autre.
+
+```cpp
 
 ## default et C++ 20
 
@@ -234,7 +230,7 @@ Les opérateurs d'assignation composés permettent de combiner une opération et
 
 Il est aussi possible de définir des opérateurs d'assignation composés pour nos structures. Par exemple, on peut définir l'opérateur `+=` pour notre structure `Point` qui permet d'additionner un point à un autre point et de stocker le résultat dans le premier point.
 
-Cela fait sens dans ce cas de les définir comme des méthodes membres.
+Cela fait sens dans ce cas de les définir comme des méthodes.
 ```cpp
 struct Point {
     int x;
@@ -357,6 +353,8 @@ struct Point {
     }
 };
 ```
+
+C'est intéressant de le définir s'il a un comportement spécifique à notre structure. Sinon, il est préférable de ne pas le définir car il y a déjà un opérateur d'affectation par copie par défaut qui fait une copie membre à membre. Ce qui correspond souvent à ce que l'on veut (c'est le cas pour notre structure `Point`).
 
 ## Quelques bonnes pratiques
 

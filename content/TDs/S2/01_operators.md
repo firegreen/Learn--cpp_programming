@@ -35,7 +35,7 @@ Il existe une autre façon de faire en comparant les produits en croix des fract
 ## Exercice 5 (opérations d'affectation)
 
 - Transformer les méthodes `add`, `sub`, `mul` et `div` en surcharge des opérateurs d'affectation `+=`, `-=`, `*=` et `/=` 
-- Réécrire les opérateurs `+`, `-`, `*` et `/` en utilisant les opérateurs affectation afin d'éviter de dupliquer le code.
+- Réécrire les opérateurs `+`, `-`, `*` et `/` en utilisant les opérateurs affectation afin d'éviter de dupliquer le code ([deux-en-un](/Lessons/S2/Operators#deux-en-un)).
 
 ## Exercice 6 (conversion)
 
@@ -51,7 +51,7 @@ operator type() const {
 }
 ```
 
-2. Ajouter l'opérateur de conversion `float` pour pouvoir convertir une fraction en `float`.
+2. Ajouter l'opérateur de conversion `float` pour pouvoir convertir une fraction en `float` en utilisant la méthode `to_float`.
 
 le prototype de la méthode pour notre structure `Fraction` sera le suivant:
 
@@ -69,9 +69,10 @@ float d1 {static_cast<float>(f1)}; // conversion explicite avec static_cast
 ## Aller plus loin
 
 1. Ajouter des fonction libres pour les opérateurs `+`, `-`, `*` et `/` afin de pouvoir faire des opérations avec des fractions et des entiers.
-   exemple: `Fraction f1 {1, 2}; int i {2}; Fraction f2 {f1 + i};`
-   ```cpp
-    Fraction operator+(const Fraction& f, int const i);
+    exemple: `Fraction f1 {1, 2}; int i {2}; Fraction f2 {f1 + i};`
+    ```cpp
+    Fraction operator+(Fraction const& f, int const i);
+    Fraction operator+(int const i, Fraction const& f);
     ```
 
     :::tip

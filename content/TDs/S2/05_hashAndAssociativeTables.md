@@ -12,20 +12,20 @@ Dans ce TD nous allons mettre en pratique les notions vues en cours sur les tabl
 size_t folding_string_hash(std::string const& s, size_t max);
 ```
 
-Ce que nous venons de faire s'appel la technique dite de **folding** (pliage en français). Cela consiste à découper notre donnée (ici une chaîne de caractères) en plusieurs parties, calculer une valeur(hash) pour chacune de ces parties, sommer ces valeurs et enfin appliquer un modulo pour obtenir un entier compris entre 0 et `max`.
+Ce que nous venons de faire s'appel la technique dite de **folding** (pliage en français). Cela consiste à découper notre donnée en plusieurs parties, calculer une valeur(hash) pour chacune de ces parties, sommer ces valeurs et enfin appliquer un modulo pour obtenir un entier compris entre 0 et `max`.  Ici on traite une chaîne de caractère, on va donc faire la somme des valeurs de hachage de chaque caractère.
 
 :::info
 On veux se ramener à un entier compris entre 0 et `max` car cette valeur hachée sert généralement d'index dans un tableau (table de hachage). Hors on souhaite un tableau de taille "raisonnable" en mémoire, donc on limite la taille de ce tableau à `max`.
 Le choix de `max` dépend du contexte d'utilisation de la table de hachage, généralement on choisit une valeur qui est une puissance de 2 (par exemple 1024, 2048, 4096, etc.).
 :::
 
-2. Écrire une nouvelle fonction de hachage sur une chaîne de caractères pour laquelle l'ordre des caractères a de l'importance. Par exemple, les chaînes de caractères "abc" et "cba" ne doivent pas avoir la même valeur hachée. Ce qui est le cas avec la fonction de hachage précédente.
+1. Écrire une nouvelle fonction de hachage sur une chaîne de caractères pour laquelle l'ordre des caractères a de l'importance. Par exemple, les chaînes de caractères "abc" et "cba" ne doivent pas avoir la même valeur hachée. Ce qui est le cas avec la fonction de hachage précédente.
 > Utiliser par exemple la somme des codes ASCII des caractères multipliée par leur position dans la chaîne de caractères.
 ```cpp
 size_t folding_string_ordered_hash(std::string const& s, size_t max);
 ```
 
-3. Écrire une fonction de hachage sur une chaîne de caractères utilisant la technique de **polynomial rolling hash**.
+1. Écrire une fonction de hachage sur une chaîne de caractères utilisant la technique de **polynomial rolling hash**.
 
 > Voila le prototype de la fonction à écrire:
 ```cpp
@@ -48,7 +48,7 @@ size_t polynomial_rolling_hash(const std::string& s, size_t p, size_t m);
 
 ## Exercice 2 (Réparation de Robots)
 
-l'idée de cet exercice est d'utiliser une **table associative** pour résoudre un problème.
+l'idée de cet exercice est d'utiliser une [table associative](/Lessons/S2/HashAndAssociativeTables#tableau-associatif) pour résoudre un problème.
 
 Nous avons des robots qui sont en panne. Chaque robot est identifié par son nom composé de 2 lettres majuscules. Je vous donne la liste des robots en panne et les différentes dépenses pour les réparer.
 
@@ -62,6 +62,8 @@ Voilà la fonction qui génère la liste des réparations effectuées en donnant
 
 std::string random_name(size_t size) {
     std::string name {""};
+    // Optimisation pour que la chaîne de caractère ne réalloue pas de la mémoire à chaque caractère ajouté
+    // https://cplusplus.com/reference/string/string/reserve/
     name.reserve(size);
     for(size_t i {0}; i < size; ++i) {
         name.push_back('A' + std::rand() % 26);
@@ -71,6 +73,8 @@ std::string random_name(size_t size) {
 
 std::vector<std::pair<std::string, float>> get_robots_fix(size_t size) {
     std::vector<std::pair<std::string, float>> robots_fix {};
+    // Meme optimisation que dans random_name()
+    // https://cplusplus.com/reference/vector/vector/reserve/
     robots_fix.reserve(size);
     for (size_t i {0}; i < size; ++i) {
         // random name 
@@ -85,7 +89,7 @@ std::vector<std::pair<std::string, float>> get_robots_fix(size_t size) {
 
 J'aimerai être capable de lister pour un robot donné l'ensemble des réparations effectuées pour ce robot. Par exemple, pour le robot "AB", j'aimerai avoir la liste des réparations effectuées pour ce robot.
 
-1. Pour cela, je vous demande d'écrire une fonction qui prend en paramètre la liste des réparations effectuées et qui retourne une table associative (`std::unordered_map`) qui associe à chaque nom de robot la liste des réparations effectuées pour ce robot (sous forme de `std::vector<float>`).
+1. Pour cela, je vous demande d'écrire une fonction qui prend en paramètre la liste des réparations effectuées et qui retourne une [table associative](/Lessons/S2/HashAndAssociativeTables#tableau-associatif) (`std::unordered_map`) qui associe à chaque nom de robot la liste des réparations effectuées pour ce robot (sous forme de `std::vector<float>`).
 
 2. Écrire une fonction qui prend en un `std::vector<float>` et qui retourne la somme des éléments de ce vecteur.
 
@@ -133,33 +137,43 @@ De la même façon que l'on a surchargé les opérateurs pour nos structures, on
 
 Il faut deux choses pour pouvoir utiliser une **structure** comme clé dans une table de hachage:
 
-- une fonction de hachage de cette structure
 - un opérateur `==` pour comparer deux structures
+- une fonction de hachage de cette structure
 
 1. **Surchargez l'opérateur** `==` pour la structure `Card` (deux cartes sont égales si elles ont la même valeur et la même couleur).
 
-2. Écrire une **méthode** `hash` pour la structure `Card` qui retourne un entier;
+2. Écrire une **méthode** `hash` pour la structure `Card` qui retourne un entier.
 
-Voilà le code qui va faire en sorte que la bibliothèque standard utilise notre méthode `hash` pour la structure `Card`:
+Vous pouvez utiliser la méthode de hachage que vous souhaitez et qui vous semble la plus adaptée. Mais je vous donne un indice pour trouver une fonction de hachage **parfaite** pour notre structure `Card` dans la question suivante (vous pouvez donc passer à la question suivante si vous le souhaitez).
+
+1. Trouvez un moyen simple (à l'aide d'une multiplication et de static_cast) d'améliorer la fonction de hachage de notre structure `Card` pour quelle soit **parfaite**.
+
+:::tip
+Trouver une bonne fonction de hachage de notre structure `Card` revient à trouver une façon de transformer une carte en un entier unique. Il y a de nombreuses façons de s'y prendre comme on l'a vu précédemment. Mais pour ce cas précis, il existe une fonction de hachage dite **parfaite**. On peut se rendre compte qu'il y a seulement **52** cartes différentes. On peut donc utiliser une fonction de hachage qui retourne un entier compris entre 0 et 51 avec un nombre différent pour chaque carte et donc sans collision.
+:::
+
+---
+
+Je vous donne ensuite le code suivant qui permet de faire en sorte que la bibliothèque standard utilise notre méthode `hash` pour la structure `Card`:
 
 ```cpp
 namespace std {
     template<>
     struct hash<Card> {
-        size_t operator()(const Card& card) const {
+        size_t operator()(Card const& card) const {
             return card.hash();
         }
     };
 }
 ```
 
-> Je ne vous demande pas de comprendre ce code, il y a des notions plus complexes que vous découvrirez l'année prochaine. Gardez simplement en tête que ce code permet de faire en sorte que la bibliothèque standard utilise notre méthode `hash` pour la structure `Card`.
+> Je ne vous demande pas de comprendre ce code, il y a des notions plus complexes que vous découvrirez l'année prochaine. Gardez simplement en tête que ce code permet de faire en sorte que la bibliothèque standard utilise notre méthode `hash` pour la structure `Card`. (Notamment les tables associatives ont besoin de ça pour indexer les objects).
 
 Je vous donne également une fonction qui permet de générer une liste de cartes aléatoires:
 
 ```cpp
 #include <vector>
-std::vector<Card> get_cards(size_t size) {
+std::vector<Card> get_cards(size_t const size) {
     std::vector<Card> cards;
     cards.reserve(size);
     for (size_t i {0}; i < size; ++i) {
@@ -169,7 +183,7 @@ std::vector<Card> get_cards(size_t size) {
 }
 ```
 
-3. Utiliser la fonction `get_cards` pour générer une liste de **100** cartes aléatoires. Utiliser une table de hachage `std::unordered_map` pour compter le nombre de fois que chaque carte apparaît dans la liste et afficher le résultat.
+4. Utiliser la fonction `get_cards` pour générer une liste de **100** cartes aléatoires. Utiliser une table de hachage `std::unordered_map` pour compter le nombre de fois que chaque carte apparaît dans la liste et afficher le résultat.
 
 Pour pouvoir afficher, je vous donne la fonction suivante qui permet d'obtenir une représentation sous forme de chaîne de caractères de notre structure `Card`:
 ```cpp
@@ -190,6 +204,8 @@ std::string card_name(Card const& card) {
         name += 'K';
     }
 
+    name += " of ";
+
     if (card.kind == CardKind::Heart) {
         name += "Heart";
     }else if (card.kind == CardKind::Diamond) {
@@ -202,7 +218,3 @@ std::string card_name(Card const& card) {
     return name;
 }
 ```
-
-4. Trouver une fonction de hachage de notre structure `Card` revient à trouver une façon de transformer une carte en un entier. Il y a de nombreuses façon se s'y prendre mais pour ce cas précis il existe une fonction de hachage dite **parfaite**. On peux se rendre compte qu'il y a seulement **52** cartes différentes. On peux donc utiliser une fonction de hachage qui retourne un entier compris entre 0 et 51 avec un nombre différent pour chaque carte et donc sans collision.
-
-   Trouvez un moyen simple (à l'aide d'une simple multiplication et des cast) d'améliorer la fonction de hachage de notre structure `Card` pour quelle soit **parfaite**.
