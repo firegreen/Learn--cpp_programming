@@ -19,13 +19,13 @@ On veux se ramener à un entier compris entre 0 et `max` car cette valeur haché
 Le choix de `max` dépend du contexte d'utilisation de la table de hachage, généralement on choisit une valeur qui est une puissance de 2 (par exemple 1024, 2048, 4096, etc.).
 :::
 
-1. Écrire une nouvelle fonction de hachage sur une chaîne de caractères pour laquelle l'ordre des caractères a de l'importance. Par exemple, les chaînes de caractères "abc" et "cba" ne doivent pas avoir la même valeur hachée. Ce qui est le cas avec la fonction de hachage précédente.
+2. Écrire une nouvelle fonction de hachage sur une chaîne de caractères pour laquelle l'ordre des caractères a de l'importance. Par exemple, les chaînes de caractères "abc" et "cba" ne doivent pas avoir la même valeur hachée. Ce qui est le cas avec la fonction de hachage précédente.
 > Utiliser par exemple la somme des codes ASCII des caractères multipliée par leur position dans la chaîne de caractères.
 ```cpp
 size_t folding_string_ordered_hash(std::string const& s, size_t max);
 ```
 
-1. Écrire une fonction de hachage sur une chaîne de caractères utilisant la technique de **polynomial rolling hash**.
+3. Écrire une fonction de hachage sur une chaîne de caractères utilisant la technique de **polynomial rolling hash**.
 
 > Voila le prototype de la fonction à écrire:
 ```cpp
@@ -146,7 +146,7 @@ Il faut deux choses pour pouvoir utiliser une **structure** comme clé dans une 
 
 Vous pouvez utiliser la méthode de hachage que vous souhaitez et qui vous semble la plus adaptée. Mais je vous donne un indice pour trouver une fonction de hachage **parfaite** pour notre structure `Card` dans la question suivante (vous pouvez donc passer à la question suivante si vous le souhaitez).
 
-1. Trouvez un moyen simple (à l'aide d'une multiplication et de static_cast) d'améliorer la fonction de hachage de notre structure `Card` pour quelle soit **parfaite**.
+3. Trouvez un moyen simple (à l'aide d'une multiplication et de static_cast) d'améliorer la fonction de hachage de notre structure `Card` pour quelle soit **parfaite**.
 
 :::tip
 Trouver une bonne fonction de hachage de notre structure `Card` revient à trouver une façon de transformer une carte en un entier unique. Il y a de nombreuses façons de s'y prendre comme on l'a vu précédemment. Mais pour ce cas précis, il existe une fonction de hachage dite **parfaite**. On peut se rendre compte qu'il y a seulement **52** cartes différentes. On peut donc utiliser une fonction de hachage qui retourne un entier compris entre 0 et 51 avec un nombre différent pour chaque carte et donc sans collision.
