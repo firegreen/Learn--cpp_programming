@@ -95,8 +95,8 @@ Vous pouvez trouver tous les caractères d'échappement [ici](https://en.cpprefe
 
 Voilà les plus utiles en pratique:
 
-- <kbd>\'</kbd> qui permet d’afficher un guillemet simple <kbd>'</kbd>
-- <kbd>\"</kbd> qui permet d’afficher un guillemet double <kbd>"</kbd>
+- <kbd>\\'</kbd> qui permet d’afficher un guillemet simple <kbd>'</kbd>
+- <kbd>\\"</kbd> qui permet d’afficher un guillemet double <kbd>"</kbd>
 - <kbd>\n</kbd> qui permet d’aller à la ligne, comme std::endl
 - <kbd>\t</kbd> qui permet de faire une tabulation horizontale
 - <kbd>\\\\</kbd> qui permet d’afficher un antislash <kbd>\\</kbd>
