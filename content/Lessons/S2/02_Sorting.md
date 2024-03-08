@@ -305,7 +305,7 @@ Le choix du pivot est très important, car il va déterminer la complexité de l
 
 Si on choisit un pivot qui est toujours le plus petit élément du tableau, on va avoir une complexité en $O(n^2)$, car on va devoir parcourir tout le tableau à chaque itération (de même si on choisit le plus grand élément du tableau).
 
-Il existe plusieurs méthodes pour choisir le pivot, la plus simple est de choisir le premier élément du tableau. Mais cela peut être problématique si le tableau est déjà trié car on va diviser le tableau en deux parties de tailles très différentes.
+Il existe plusieurs méthodes pour choisir le pivot, la plus simple est de choisir le premier ou le dernier élément du tableau. Mais cela peut être problématique si le tableau est déjà trié car on va diviser le tableau en deux parties de tailles très différentes.
 
 :::info
 L'idéal est de choisir un pivot qui est proche de la valeur médiane du tableau, c'est-à-dire qui va diviser le tableau en deux parties égales.
@@ -313,29 +313,28 @@ L'idéal est de choisir un pivot qui est proche de la valeur médiane du tableau
 Il existe plusieurs méthodes pour choisir un pivot proche de la valeur médiane du tableau, mais elles sont plus compliquées à mettre en oeuvre.
 :::
 
-Nous allons préférer choisir un pivot aléatoire ou plus simplement l'élément au milieu du sous-tableau considéré pour minimiser les risques de cas défavorables.
-
 #### Partitionnement
 
 Une fois le pivot choisi, on va parcourir le tableau et placer tous les éléments plus petits que le pivot à gauche du pivot, et tous les éléments plus grands que le pivot à droite du pivot.
 
 Il y a plusieurs approches pour gérer le pivot, dans notre cas, on va choisir de premièrement placer le pivot à la fin du tableau.
+Ou tout simplement choisir le pivot comme étant le dernier élément du tableau.
 
-Pour cela, on va utiliser **deux indices**, un indice pour parcourir le tableau de gauche à droite, et un indice pour parcourir le tableau de droite à gauche.
+On va s'aider d'un indice qui va nous indiquer le **premier élément plus grand que le pivot** et qui va nous permettre de placer le pivot à sa place définitive.
 
-On va **incrémenter** l'indice de **gauche** tant que l'élément est **plus petit** que le pivot, et on va **décrémenter** l'indice de **droite** tant que l'élément est **plus grand** que le pivot.
+On va ensuite parcourir le tableau pour placer les éléments plus petits que le pivot à gauche du pivot, et les éléments plus grands que le pivot à droite du pivot.
 
-Si l'indice de gauche est inférieur à l'indice de droite, on va **échanger** les deux éléments et on recommence l'opération.
+Si l'élément que l'on parcourt est plus petit que le pivot, on va l'échanger avec l'élément à l'indice du premier élément plus grand que le pivot, et on va incrémenter l'indice du premier élément plus grand que le pivot.
 
-Une fois que les deux indices se sont croisés, on sait que tous les éléments plus petits que le pivot sont à gauche du pivot, et tous les éléments plus grands que le pivot sont à droite du pivot.
+Une fois qu'on a parcouru tout le tableau, on va **échanger** le pivot avec l'élément à l'indice du premier élément plus grand que le pivot pour que le pivot soit à sa place définitive (entre les éléments plus petits et les éléments plus grands).
 
-Enfin, on va **échanger** le pivot avec l'élément à l'indice de gauche (l'indice pointant sur le premier élément plus grand que le pivot) pour que le pivot soit à sa place définitive.
+Enfin, on va renvoyer l'indice du pivot pour pouvoir appeler récursivement l'algorithme sur les deux sous-tableaux.
 
 #### Récursion
 
 On obtient ainsi un tableau avec le pivot à sa place définitive, et tous les éléments plus petits que le pivot à gauche du pivot, et tous les éléments plus grands que le pivot à droite du pivot et on connaît l'indice du pivot.
 
-On va donc pouvoir appeler récursivement l'algorithme sur les deux sous-tableaux, en ignorant le pivot.
+On va donc pouvoir appeler récursivement l'algorithme sur les deux sous-tableaux, en ignorant la place du pivot.
 
 ## Tri par dénombrement (counting sort)
 
