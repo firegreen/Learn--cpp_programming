@@ -25,9 +25,9 @@ Il faut cependant faire attention aux opérateurs non commutatifs, comme `-` ou 
 
 Le but de cet exercice est d'écrire un programme qui permet d'évaluer une expression en **NPI** sous forme d'une chaîne de caractères (les différents éléments de l'expression sont séparés par des espaces), et retourner le résultat de l'expression.
 
-1. Écrire un programme qui permet de lire une entrée utilisateur (`std::cin`) sous la forme d'une chaines de caractères composée des différents éléments de l'expression (nombre, opérateur) espacés par des espaces en **notation polonaise inversée** (**NPI**).
+1. Écrire un programme qui permet de lire une entrée utilisateur (`std::cin`) sous la forme d'une chaines de caractères composée des différents éléments de l'expression (nombre, opérateur) séparés par des espaces en **notation polonaise inversée** (**NPI**).
 :::note
-Par simplicité, on se limitera à des expressions contenant des **nombres** (flottants), et les opérateurs `+`, `-`, `*` et `/` (Dans une expression en NPI il y a plus de **parenthèses** (`(` et `)` car l'order des opérations est déterminé par l'ordre des opérateurs dans l'expression).
+Par simplicité, on se limitera à des expressions contenant des **nombres** (flottants), et les opérateurs `+`, `-`, `*` et `/` (Dans une expression en NPI il y a plus de **parenthèses** (`(` et `)` car l'ordre des opérations est déterminé par l'ordre des opérateurs dans l'expression).
 :::
 
 2. Je vous donne le code suivant qui permet à l'aide d'une particularité des **streams** de séparer les éléments(mots) de la chaîne de caractères en utilisant les espaces comme séparateurs:
@@ -40,8 +40,9 @@ Par simplicité, on se limitera à des expressions contenant des **nombres** (fl
 
 std::vector<std::string> split_string(std::string const& s)
 {
-    std::istringstream in(s);
-    return std::vector<std::string>(std::istream_iterator<std::string>(in), std::istream_iterator<std::string>());
+    std::istringstream in(s); // transforme une chaîne en flux de caractères, cela simule un flux comme l'est std::cin
+    // l’itérateur va lire chaque element de "in", comme un flux d'entrée, chaque élément est séparé par un espace
+    return std::vector<std::string>(std::istream_iterator<std::string>(in), std::istream_iterator<std::string>()); 
 }
 ```
 
@@ -101,7 +102,7 @@ Vous pouvez tester avec les expressions suivantes:
 - `3 4 2 * +`
 - `3 4 2 * 1 5 - 6 ^ / +`
 
-### Exercice 2 (Utiliser une structure et des énumérations)
+## Exercice 2 (Utiliser une structure et des énumérations)
 
 Le but est de réécrire le programme précédent en utilisant un **enum** pour représenter les différents **opérateurs** ainsi qu'une structure pour représenter un **token** (un élément de l'expression) avec un champ pour le type (opérateur ou opérande) et des champs pour les valeurs (opérateur ou opérande).
 
@@ -135,7 +136,7 @@ std::vector<Token> tokenize(std::vector<std::string> const& words);
 float npi_evaluate(std::vector<Token<float>> const& tokens);
 ```
 
-## Pour aller plus loin
+## Pour aller plus loin (Optionnel)
 
 ### Exercice 3 (Conversion en NPI)
 
