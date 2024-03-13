@@ -2,7 +2,7 @@
 title: TD7 - Encodage et compression
 ---
 
-# Exercice 1 (Run-length encoding)
+## Exercice 1 (Run-length encoding)
 
 1. Écrire une fonction qui prend en paramètre une chaîne de caractères composée uniquement de caractères alphabétiques et qui retourne une chaîne de caractères encodée en utilisant le **run-length encoding**.
 
@@ -22,7 +22,7 @@ title: TD7 - Encodage et compression
 
 6. Écrire une fonction qui permet de décoder une chaîne de caractères encodée en utilisant un caractère de contrôle.
 
-# Exercice 2 (Huffman encoding)
+## Exercice 2 (Huffman encoding)
 
 1. Écrire une fonction `frequency` qui prend en paramètre une chaîne de caractères et retourne un `std::unordered_map<char, size_t>` qui associe à chaque caractère le nombre d'occurrences de ce caractère dans la chaîne de caractères.
 

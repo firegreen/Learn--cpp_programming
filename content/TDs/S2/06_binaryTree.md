@@ -112,7 +112,7 @@ nodes.insert(nodes.end(), left_nodes.begin(), left_nodes.end());
 Cela va permettre de concaténer dans un seul vecteur les nœuds des sous arbres gauche et droit.
 :::
 
-8. De même, écrire une autre méthode `postfixe` qui retournent les nœuds parcourus dans l'ordre [**postfixe**](/Lessons/S2/BinaryTree#parcours-en-profondeur).
+8. (**BONUS**) De même, écrire une autre méthode `postfixe` qui retournent les nœuds parcourus dans l'ordre [**postfixe**](/Lessons/S2/BinaryTree#parcours-en-profondeur).
 
 <details>
 <summary>BONUS: Itératif</summary>
@@ -242,7 +242,7 @@ Testons maintenant notre implémentation en créant un programme qui permet de c
 
 2. Afficher les valeurs des nœuds de l'arbre binaire dans l'ordre **infixe**.
 
-3. Afficher la valeur minimale et maximale de l'arbre.
+3. (**BONUS**) Afficher la valeur minimale et maximale de l'arbre.
 
 4. Afficher la somme des valeurs des nœuds de l'arbre binaire en utilisant la fonction `postfixe` qui retourne un vecteur contenant les nœuds parcourus dans l'ordre **postfixe**.
 

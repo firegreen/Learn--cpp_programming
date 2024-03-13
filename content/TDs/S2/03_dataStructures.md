@@ -30,6 +30,10 @@ Le but de cet exercice est d'écrire un programme qui permet d'évaluer une expr
 Par simplicité, on se limitera à des expressions contenant des **nombres** (flottants), et les opérateurs `+`, `-`, `*` et `/` (Dans une expression en NPI il y a plus de **parenthèses** (`(` et `)` car l'ordre des opérations est déterminé par l'ordre des opérateurs dans l'expression).
 :::
 
+:::tip
+Pour lire une chaîne de caractères depuis l'entrée standard, on peut utiliser la fonction `std::getline` de la bibliothèque `<string>`.
+:::
+
 2. Je vous donne le code suivant qui permet à l'aide d'une particularité des **streams** de séparer les éléments(mots) de la chaîne de caractères en utilisant les espaces comme séparateurs:
 
 ```cpp
@@ -98,9 +102,12 @@ Il faut ensuite utiliser la fonction `std::stof` de la bibliothèque `<string>` 
 5. Enfin, utiliser les fonctions précédentes pour afficher le résultat d'une expression en **NPI** entrée par l'utilisateur.
 
 Vous pouvez tester avec les expressions suivantes:
-- `3 4 +`
-- `3 4 2 * +`
-- `3 4 2 * 1 5 - 6 ^ / +`
+- `3 + 4` =>  `3 4 +`  =  7
+- `2 + 12 + 5`  =>  `2 12 + 5 +`  =  19
+- `3 + 4 / ( 11 + 5 )`  =>  `3 4 11 5 + / +`  =  3.25
+- `4 + 5 * 2`  =>  `4 5 2 * +`  =  14
+(une plus complexe avec l'opérateur **puissance** en plus pour l'exemple si vous voulez ajouter cette fonctionnalité plus tard)
+- `3 + 4 ^ 2 / ( 1 - 5 ) ^ 6`  =>  `3 4 2 ^ 1 5 - 6 ^ / +`  =  3.00391
 
 ## Exercice 2 (Utiliser une structure et des énumérations)
 
@@ -138,7 +145,7 @@ float npi_evaluate(std::vector<Token<float>> const& tokens);
 
 ## Pour aller plus loin (Optionnel)
 
-### Exercice 3 (Conversion en NPI)
+## Exercice 3 (Conversion en NPI)
 
 Nous avons précédemment vu comment évaluer une expression en **NPI**. Mais comment faire pour convertir une expression en notation **infixe** (c'est-à-dire de manière "classique" avec des parenthèses) en une expression en NPI ?
 
@@ -201,4 +208,5 @@ C'est ici que parenthèses en tant qu'opérateur vont être utile mais elles ne 
 
 
 Maintenant que nous savons évaluer une expression en NPI et que nous savons convertir une expression en notation infixe en NPI, nous pouvons réaliser une **calculatrice**.
+
 3. Essayez de réaliser un programme qui permet de **lire** une expression en notation **infixe**, de la convertir en **NPI**, de l'**évaluer** et d'**afficher** le résultat.
