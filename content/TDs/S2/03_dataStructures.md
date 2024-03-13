@@ -17,7 +17,7 @@ Par exemple, l'expression `3 4 +` s'interprète comme suit :
 - On rencontre `+`, on dépile `4` et `3`, on calcule `3 + 4 = 7`, et on empile le résultat `7`
 - On a terminé, le résultat est `7`
 
-On va donc pouvoir se servir d'une **pile** pour évaluer une expression en **NPI**.
+On va donc pouvoir se servir d'une **pile**(`std::stack`) pour évaluer une expression en **NPI**.
 
 :::info
 Il faut cependant faire attention aux opérateurs non commutatifs, comme `-` ou `/`. `3 4 /` ne s'interprète pas comme `3 / 4`, mais comme `4 / 3`. Il faut donc écrire `3 4 /` pour évaluer `3 / 4`.
@@ -94,6 +94,34 @@ float npi_evaluate(std::vector<std::string> const& tokens);
 
 Utilisez une **pile** (`std::stack`) pour évaluer l'expression comme dans l'exemple précédent.
 
+:::info Fonctionnement de l'algorithme
+L'algorithme va parcourir les éléments de l'expression en **NPI** (tokens) de gauche à droite.
+
+- Lorsque l'on rencontre un nombre, on l'empile sur la pile des valeurs.
+- Lorsque l'on rencontre un **opérateur**, on dépile les deux derniers nombres, on effectue l'opération, et on empile le résultat.
+
+Voilà un bout de code pour vous aider dans cette étape pour effectuer une opération:
+```cpp
+  // Je récupère l'élément en haut de la pile
+  float rightOperand { stack.top() };
+  // Je l'enlève de la stack (la méthode top ne fait que lire l’élément en dessus de la pile)
+  stack.pop();
+  float leftOperand { stack.top() };
+  stack.pop();
+
+  // Il faut ensuite en fonction de l'opérateur calculer le résultat pour le remettre dans la pile
+  float result { /* TODO */};
+  stack.push(result);
+```
+
+l'algorithme se termine lorsque l'on a parcouru tous les éléments de l'expression, et que la pile ne contient plus qu'un seul élément, qui est le résultat de l'expression.
+:::
+
+:::warning Expression invalide
+Si il reste plus d'un élément dans la pile à la fin de l'algorithme, cela signifie que l'expression en **NPI** est invalide.
+En effet, si l'expression est correcte, il ne doit rester qu'un seul élément dans la pile. Chaque opérateur binaire s'applique à deux nombres ainsi il doit normalement y avoir pour $n$ nombres dans l'expression $n-1$ opérateurs.
+:::
+
 :::tip
 En utilisant la fonction `is_floating` de la question précédente, on peut déterminer si un élément de l'expression est un nombre ou un opérateur.
 Il faut ensuite utiliser la fonction `std::stof` de la bibliothèque `<string>` pour convertir la chaîne de caractères en nombre flottant si c'est le cas.
@@ -106,6 +134,7 @@ Vous pouvez tester avec les expressions suivantes:
 - `2 + 12 + 5`  =>  `2 12 + 5 +`  =  19
 - `3 + 4 / ( 11 + 5 )`  =>  `3 4 11 5 + / +`  =  3.25
 - `4 + 5 * 2`  =>  `4 5 2 * +`  =  14
+
 (une plus complexe avec l'opérateur **puissance** en plus pour l'exemple si vous voulez ajouter cette fonctionnalité plus tard)
 - `3 + 4 ^ 2 / ( 1 - 5 ) ^ 6`  =>  `3 4 2 ^ 1 5 - 6 ^ / +`  =  3.00391
 
