@@ -20,7 +20,9 @@ Par exemple, l'expression `3 4 +` s'interprète comme suit :
 On va donc pouvoir se servir d'une **pile**(`std::stack`) pour évaluer une expression en **NPI**.
 
 :::info
-Il faut cependant faire attention aux opérateurs non commutatifs, comme `-` ou `/`. `3 4 /` ne s'interprète pas comme `3 / 4`, mais comme `4 / 3`. Il faut donc écrire `3 4 /` pour évaluer `3 / 4`.
+Il faut cependant faire attention aux opérateurs **non commutatifs**, comme `-` ou `/`. `3 4 /` ne s'interprète pas comme `4 / 3`, mais comme `3 / 4`. Il faut donc écrire `3 4 /` pour évaluer `3 / 4`.
+
+Dans l'algorithmique de l'évaluation, le premier élément défilé de la pile sera l'**opérande de droite** et le deuxième élément défilé sera l'**opérande de gauche**.
 :::
 
 Le but de cet exercice est d'écrire un programme qui permet d'évaluer une expression en **NPI** sous forme d'une chaîne de caractères (les différents éléments de l'expression sont séparés par des espaces), et retourner le résultat de l'expression.
