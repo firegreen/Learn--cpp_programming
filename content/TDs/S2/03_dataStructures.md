@@ -169,7 +169,7 @@ std::vector<Token> tokenize(std::vector<std::string> const& words);
 
 3. Créer une nouvelle fonction `npi_evaluate` qui utilise cette fois un vecteur de `Token` au lieu de manipuler directement des chaînes de caractères. 
 ```cpp
-float npi_evaluate(std::vector<Token<float>> const& tokens);
+float npi_evaluate(std::vector<Token> const& tokens);
 ```
 
 ## Pour aller plus loin (Optionnel)
