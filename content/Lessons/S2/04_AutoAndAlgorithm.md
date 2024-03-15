@@ -232,7 +232,7 @@ Je ne vais pas rentrer dans les détails des **fonctions lambda** mais sachez qu
 
 Cela reste une notion avancée et je ne vais pas rentrer dans les détails des **fonctions lambda** dans ce cours. Vous pouvez seulement retenir deux choses :
 - La syntaxe est la suivante : `[] (paramètres) { instructions }`. 
-- Si l'on souhaite accéder à une variable définie en dehors de la fonction lambda (sans que ce soit un paramètre),  il faut ajouter le symbole `&` entre les crochets et les paramètres de la fonction lambda (`[&] (paramètres) { instructions }`) (c'est ce que l'on appelle une **capture**).
+- Si l'on souhaite accéder aux variables définies en dehors de la fonction lambda (sans que ce soit un paramètre),  il faut ajouter le symbole `&` entre les crochets et les paramètres de la fonction lambda (`[&] (paramètres) { instructions }`) (c'est ce que l'on appelle une **capture**).
 
 Je vais présenter quelques algorithmes qui utilisent des fonctions lambda pour vous montrer comment cela fonctionne.
 </details>
