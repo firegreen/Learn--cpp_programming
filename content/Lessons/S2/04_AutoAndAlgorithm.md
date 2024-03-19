@@ -215,7 +215,7 @@ v.erase(std::remove(v.begin(), v.end(), 5), v.end());
 
 C'est ce qu'on appelle l'**idiome** *remove-erase*.
 
-A partir du **C++20**, il existe de nouvelles fonctions qui permettent de supprimer des éléments d'un conteneur de manière générique: `std::erase_if` et `std::erase_if`. Ces fonctions prennent en paramètre des itérateurs et fonctionnent donc avec tous les conteneurs.
+A partir du **C++20**, il existe de nouvelles fonctions qui permettent de supprimer des éléments d'un conteneur de manière générique: `std::erase` et `std::erase_if`. Ces fonctions prennent en paramètre des itérateurs et fonctionnent donc avec tous les conteneurs.
 
 Vous trouverez une explication [ici](https://en.wikipedia.org/wiki/Erase%E2%80%93remove_idiom).
 
