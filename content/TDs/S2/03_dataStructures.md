@@ -26,14 +26,14 @@ Dans l'algorithmique de l'évaluation, le premier élément défilé de la pile 
 :::
 
 Le but de cet exercice est d'écrire un programme qui permet d'évaluer une expression en **NPI** sous forme d'une chaîne de caractères (les différents éléments de l'expression sont séparés par des espaces), et retourner le résultat de l'expression.
-
-1. Écrire un programme qui permet de lire une entrée utilisateur (`std::cin`) sous la forme d'une chaines de caractères composée des différents éléments de l'expression (nombre, opérateur) séparés par des espaces en **notation polonaise inversée** (**NPI**).
 :::note
 Par simplicité, on se limitera à des expressions contenant des **nombres** (flottants), et les opérateurs `+`, `-`, `*` et `/` (Dans une expression en NPI il y a plus de **parenthèses** (`(` et `)` car l'ordre des opérations est déterminé par l'ordre des opérateurs dans l'expression).
 :::
 
+1. Écrire un programme qui permet de saisir une expression arithmétique en **notation polonaise inversée** (**NPI**) en tant que chaine de caractère. On veut que les éléments de cette expression soient séparés par des espaces.
+
 :::tip
-Pour lire une chaîne de caractères depuis l'entrée standard, on peut utiliser la fonction `std::getline` de la bibliothèque `<string>`.
+Vous pouvez utiliser [`getline`](https://en.cppreference.com/w/cpp/string/basic_string/getline) pour récupérer d'un flux (comme `std::cin`) une chaine de caractères comportant des espaces.
 :::
 
 2. Je vous donne le code suivant qui permet à l'aide d'une particularité des **streams** de séparer les éléments(mots) de la chaîne de caractères en utilisant les espaces comme séparateurs:
