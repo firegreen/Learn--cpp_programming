@@ -14,7 +14,7 @@ On peut appliquer une simplification sur les fractions retournées par les opér
 
 ## Exercice 2 (affichage)
 
-Transformer la fonction `display` en surcharge de l'opérateur `<<` pour pouvoir afficher une fraction avec `std::cout`.
+Transformer la fonction `display` en surcharge de l'opérateur `<<` pour pouvoir afficher une fraction avec `std::cout` ([opérateurs de flux](Lessons/S2/Operators#opérateurs-de-flux)).
 
 ## Exercice 3 (égalité)
 
@@ -24,7 +24,7 @@ Transformer la fonction `display` en surcharge de l'opérateur `<<` pour pouvoir
 :::tip
 Attention, cela ne fonctionnera pas si on compare deux fractions non simplifiées. (ex: `1/2 == 2/4`) Une autre solution serait de simplifier les fractions dans l'opérateur avant de les comparer.
 
-Il existe une autre façon de faire en comparant les produits en croix des fractions. (ex: `a/b == d/c` \<=> `a * c == b * d`)
+Il existe une autre façon de faire en comparant les **produits en croix des fractions**: (ex: `a/b == d/c` \<=> `a * c == b * d`)
 :::
 
 ## Exercice 4 (comparaison)
@@ -34,8 +34,9 @@ Il existe une autre façon de faire en comparant les produits en croix des fract
 
 ## Exercice 5 (opérations d'affectation)
 
-- Transformer les méthodes `add`, `sub`, `mul` et `div` en surcharge des opérateurs d'affectation `+=`, `-=`, `*=` et `/=` 
-- Réécrire les opérateurs `+`, `-`, `*` et `/` en utilisant les opérateurs affectation afin d'éviter de dupliquer le code ([deux-en-un](/Lessons/S2/Operators#deux-en-un)).
+- Ajouter les opérateurs d'affectation `+=`, `-=`, `*=` et `/=`.
+- Réécrire les opérateurs `+`, `-`, `*` et `/` en utilisant les opérateurs affectation afin d'éviter de dupliquer le code ([deux-en-un](/Lessons/S2/Operators#deux-en-un)) (Commenter l'ancienne version des opérateurs par exemple)
+
 
 ## Exercice 6 (conversion)
 
@@ -65,6 +66,10 @@ Grâce à cet opérateur, on pourra convertir une fraction en `float` de la mani
 Fraction f1 {1, 2};
 float d1 {static_cast<float>(f1)}; // conversion explicite avec static_cast
 ```
+
+:::note
+On pourrait très bien mettre directement le code de la conversion dans l'opérateur `float` sans passer par une méthode `to_float`. Mais je vous demande de le faire pour l'exercice et pour avoir la possibilité de réutiliser la méthode `to_float` ailleurs.
+:::
 
 ## Aller plus loin
 

@@ -156,10 +156,30 @@ Pour parcourir un graphe en largeur, on utilise une **file**. On commence par aj
 Voici le déroulement du parcours en largeur au départ du nœud A pour le graphe précédent :
 
 - On commence par ajouter le sommet **A** dans la file.
+
+| File | A |
+|------|---|
+
 - Comme la file n'est pas vide, on retire le premier élément (**A**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **B** et **C** dans la file.
-- On retire le premier élément (**B**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **D** et **E** dans la file. La file contient maintenant **C**, **D** et **E**.
-- On retire le premier élément (**C**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **F** et **G** dans la file. La file contient maintenant **D**, **E**, **F** et **G**.
-- On retire le premier élément (**D**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc rien dans la file. La file contient maintenant **E**, **F** et **G**.
+
+| File | C | B |
+|------|---|---|
+
+- On retire le premier élément (**B**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **D** et **E** dans la file.
+
+| File | E | D | C |
+|------|---|---|---|
+
+- On retire le premier élément (**C**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc **F** et **G** dans la file.
+
+| File | G | F | E | D |
+|------|---|---|---|---|
+
+- On retire le premier élément (**D**) de la file. On ajoute ensuite tous les sommets adjacents de ce sommet dans la file. On ajoute donc rien dans la file.
+
+| File | G | F | E |
+|------|---|---|---|
+
 - On fait de même pour **E**, **F** et **G**. La file est maintenant vide. On a donc parcouru tous les sommets du graphe.
 
 Cela nous donne donc le parcours suivant : **A, B, C, D, E, F, G**.
@@ -173,11 +193,36 @@ Pour parcourir un graphe en profondeur, on utilise une **pile**. On commence par
 Voici le déroulement du parcours en profondeur au départ du nœud **A** pour le graphe précédent :
 
 - On commence par ajouter le sommet **A** dans la pile.
-- Comme la pile n'est pas vide, on retire le premier élément (**A**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **B** et **C** dans la pile.
-- On retire le premier élément (**C**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **F** et **G** dans la pile. La pile contient maintenant **B**, **F** et **G**.
-- On retire le premier élément (**G**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant **B** et **F**.
-- On retire le premier élément (**F**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile. La pile contient maintenant **B**.
-- On retire le premier élément (**B**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **D** et **E** dans la pile. La pile contient maintenant **D** et **E**.
+
+| Pile | A |
+|------|---|
+
+- Comme la pile n'est pas vide, on retire le premier élément (**A**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile (**B** et **C**).
+
+| Pile | B | C |
+|------|---|---|
+
+- On retire le premier élément (**C**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc **F** et **G** dans la pile.
+
+| Pile | B | F | G |
+|------|---|---|---|
+
+- On retire le premier élément (**G**) de la pile. On ajoute ensuite tous les sommets adjacents de ce sommet dans la pile. On ajoute donc rien dans la pile.
+
+| Pile | B | F |
+|------|---|---|
+
+
+- On retire le premier élément (**F**) de la pile, il n'a pas de sommets adjacents. On ajoute donc rien dans la pile.
+
+| Pile | B |
+|------|---|
+
+- On recommence avec **B**. On ajoute **D** et **E** dans la pile.
+
+| Pile | D | E |
+|------|---|---|
+
 - On fait de même pour **E** et **D**. La pile est maintenant vide. On a donc parcouru tous les sommets du graphe.
 
 Ce qui nous donne le parcours suivant : **A, C, G, F, B, E, D**.
@@ -192,16 +237,19 @@ Maintenant que nous avons vu ce qu'est un graphe il est légitime de se demander
 - Les problèmes de transport : les graphes sont utilisés pour modéliser les réseaux de transport (routes, métro, etc.) et permettent de résoudre des problèmes d'optimisation (par exemple, trouver le plus court chemin entre deux villes).
 - Des algorithmes de programmation dynamique : les graphes sont beaucoup utilisés dans les algorithmes dis de programmation **dynamique** où le problème est si complexe qu'il est nécessaire de le décomposer en sous-problèmes, de faire des estimations et d'explorer les solutions possibles à travers un graphe de solutions.
 
-### Dijkstra
+## Dijkstra
 
 Je vous propose de voir un exemple d'algorithme de graphe : l'algorithme de **Dijkstra**. Cet algorithme permet de trouver le plus court chemin entre deux sommets d'un graphe **pondéré**. Il est très répandu et est utilisé dans de nombreux domaines.
 
 L'algorithme de Dijkstra est simplement une application du parcours en largeur. On part d'un sommet de départ et on visite tous les sommets adjacents. On ajoute ensuite les sommets adjacents de ces sommets adjacents dans la file. On recommence jusqu'à ce qu'on ait trouvé le sommet d'arrivée. On peut alors remonter le chemin en partant du sommet d'arrivée et en remontant les sommets précédents jusqu'au sommet de départ.
 
-Il faut une liste de même taille que le nombre de sommets du graphe pour stocker les distances. On initialise toutes les distances à l'infini sauf la distance du sommet de départ qui est à 0. On utilise également une file pour stocker les sommets à visiter et une liste pour stocker les sommets déjà visités. On commence par ajouter le sommet de départ dans la file des sommets à visiter. Tant que la file n'est pas vide, on retire le premier élément de la file et on l'ajoute à la liste des sommets visités. Ensuite, on ajoute tous les sommets adjacents de ce sommet dans la file s'ils n'ont pas déjà été visités. Pour chaque sommet adjacent, on met à jour sa distance si la distance actuelle est plus grande que la distance du sommet actuel plus le poids de l'arête entre le sommet actuel et le sommet adjacent. On recommence jusqu'à ce que la file soit vide.
+Pour l'illustrer on peut prendre une liste de même taille que le nombre de sommets du graphe pour représenter les distances. On initialise toutes les distances à l'infini sauf la distance du sommet de départ qui est à 0. On utilise également une file pour stocker les sommets à visiter et une liste pour stocker les sommets déjà visités. On commence par ajouter le sommet de départ dans la file des sommets à visiter. Tant que la file n'est pas vide, on retire le premier élément de la file et on l'ajoute à la liste des sommets visités. Ensuite, on ajoute tous les sommets adjacents de ce sommet dans la file s'ils n'ont pas déjà été visités. Pour chaque sommet adjacent, on met à jour sa distance si la distance actuelle est plus grande que la distance du sommet actuel plus le poids de l'arête entre le sommet actuel et le sommet adjacent. On recommence jusqu'à ce que la file soit vide.
 
 :::tip
-Dans la pratique, on utilise une file de priorité pour stocker les sommets à visiter. Cela permet de toujours retirer le sommet avec la plus petite distance en premier. Cela permet d'optimiser l'algorithme.
+Dans la pratique:
+- On utilise une **file de priorité** `std::priority_queue` pour stocker les sommets à visiter. Cela permet de retirer le sommet avec la plus petite distance facilement et de manière efficace.
+
+- On utilise un **tableau associatif** pour stocker les distances. Cela permet de ne pas avoir à créer une liste de taille fixe de tout les noeuds avec une distance infinie initialement. On peut simplement ajouter les distances au fur et à mesure que l'on parcourt le graphe et cela permet au passage de savoir quels noeuds ont déjà été visités sans avoir de liste de noeuds visités supplémentaire.
 De plus, généralement, cet algorithme est utilisé pour trouver le plus court chemin entre deux sommets. On peut donc s'arrêter dès qu'on a trouvé le sommet d'arrivée.
 :::
 
@@ -214,53 +262,86 @@ Pour illustrer l'algorithme de Dijkstra, donnons-nous le graphe suivant :
 ```mermaid
 graph LR
     A --1--> B
-    A --3--> C
+    A --2--> C
     B --1--> C
-    B --2--> D
-    C --1--> E
-    D --1--> E
+    C --3--> D
+    B --5--> D
+    C --6--> E
+    D --2--> E
 ```
 
-on considère que le sommet de départ est **A** .
+L'idée de l'algorithme est de partir d'un sommet de départ que l'on ajoute à un ensemble de sommets à visiter (on va également noter la distance depuis le sommet de départ pour aller jusqu'à ce sommet (ce qui va permettre de prioriser les sommets à visiter)).
 
-| A | B        | C        | D        | E        | Sommets à visiter | Sommets visités |
-|---|----------|----------|----------|----------|-------------------|-----------------|
-| 0 | $\infty$ | $\infty$ | $\infty$ | $\infty$ | [A]               | [-]             |
+On va se servir d'un **tableau associatif** pour associer à chaque sommet visité la distance la plus courte connue pour aller du sommet de départ à ce sommet et d'où on vient pour atteindre cette distance (ce qui permet de reconstruire le chemin le plus court à la fin).
+Cela permet au passage de marquer les sommets comme visités sans avoir de liste ou structure de données supplémentaire.
 
-On commence par ajouter le sommet de départ **A** dans la file de priorité des sommets à visiter. On initialise également la distance du sommet de départ à 0 et les autres distances à l'infini.
+Ensuite on va **itérer** sur les sommets à visiter en choisissant à chaque fois le sommet le plus proche du sommet de départ. Pour cela, on va se servi d'une file de priorité `std::priority_queue` qui va nous permettre de choisir le sommet le plus proche à chaque itération.
 
-**B** et **C** sont les sommets adjacents de **A**. On ajoute donc **B** et **C** dans la file de priorité des sommets à visiter. On met également à jour les distances de **B** et **C**. La distance de **B** est la distance de **A** plus le poids de l'arête entre **A** et **B**. La distance de **C** est la distance de **A** plus le poids de l'arête entre **A** et **C**.
+Si le sommet choisi n'a pas encore été visité, on va le marquer comme visité (mettre à jour le tableau associatif) et on va ajouter à la liste des sommets à visiter tous les sommets voisins de ce sommet.
 
-| A | B    | C    | D        | E        | Sommets à visiter | Sommets visités |
-|---|------|------|----------|----------|-------------------|-----------------|
-| 0 | 1(A) | 3(A) | $\infty$ | $\infty$ | [B, C]            | [A]             |
+Si le sommet choisi a déjà été visité, on va regarder si la distance la plus courte connue pour aller à ce sommet (la valeur dans le **tableau associatif**) est plus grande en passant par le sommet choisi. Si c'est le cas, on va mettre à jour la distance la plus courte et le sommet d'où on vient pour atteindre cette distance et on va de nouveau ajouter le sommet à la liste des sommets à visiter car l'on a trouvé un chemin plus court pour y arriver, on dois propager cette information.
 
-On continue en retirant le sommet **B**. Il a comme sommets adjacents **C** et **D**. **C** a déjà une distance de 3(venant de **A**) mais la distance depuis **B** est plus petite (1 venant de **A** plus 1 venant de **B**). On met donc à jour la distance de **C**. La distance de **D** est la distance de **B** plus le poids de l'arête entre **B** et **D**. On ajoute ensuite **D** dans la file de priorité des sommets à visiter (**C** est déjà dans la file).
+### Illustration de l'algorithme de Dijkstra
 
-| A | B    | C    | D    | E        | Sommets à visiter | Sommets visités |
-|---|------|------|------|----------|-------------------|-----------------|
-| 0 | 1(A) | 2(B) | 3(B) | $\infty$ | [C, D]            | [A, B]          |
+on considère que le sommet de départ est **A** et le sommet d'arrivée est **E**.
 
-Voilà l'étape suivante en considérant **C**. **C** a comme sommets adjacents **E**. La distance de **E** est la distance de **C** plus le poids de l'arête entre **C** et **E**. On ajoute ensuite **E** dans la file de priorité des sommets à visiter.
+On ajoute le sommet `A` à la liste des sommets à visiter avec une distance de 0 (on est déjà sur le sommet de départ) et d'où on vient (on est déjà sur le sommet de départ).
+| Distances | A visiter |
+|:---------:|:---------:|
+|     -     |   A(0)    |
 
-| A | B    | C    | D    | E    | Sommets à visiter | Sommets visités |
-|---|------|------|------|------|-------------------|-----------------|
-| 0 | 1(A) | 2(B) | 3(B) | 3(C) | [D, E]            | [A, B, C]       |
+Il reste des éléments dans la liste à visiter on récupère le sommet qui a la plus petite distance (**A**) et on le retire de la liste à visiter.
+On parcours la liste des voisins de **A** (B et C), les deux ne sont pas déjà visités, on les ajoutes à la liste à visiter et au tableau associatif avec la distance en passant par **A** (0 + poids de l'arête) et d'où on vient (A).
 
-On continue en retirant le sommet **D**. Il a comme sommets adjacents **E**. La distance de **E** est la distance de **D** plus le poids de l'arête entre **D** et **E**. Or la distance actuelle de **E** (venant de **C**) est plus petite. On ne met donc pas à jour la distance de **E**. **E** est déjà dans la file de priorité des sommets à visiter. On ne fait donc rien.
+|      Distances       |   A visiter    |
+|:--------------------:|:--------------:|
+| **B(1, A), C(2, A)** | **B(1), C(2)** |
 
-| A | B    | C    | D    | E    | Sommets à visiter | Sommets visités |
-|---|------|------|------|------|-------------------|-----------------|
-| 0 | 1(A) | 2(B) | 3(B) | 3(C) | [E]               | [A, B, C, D]    |
+Je récupère maintenant **B** qui est le sommet prioritaire dans la liste à visiter (plus petites distance).
 
-Enfin on retire le sommet **E**. Il n'a pas de sommets adjacents. On ne fait donc rien.
+Je parcours la liste des voisins de **B** (C et D). **C** est déjà présent dans le tableau associatif ce qui indique qu'il a déjà été visité ou marqué à visiter. Ici le poids actuellement dans le tableau des distances est égale au poids en passant par B (1 + 1) donc on ne fait rien les deux chemins sont aussi cours l'un que l'autre.
 
-On a fini de parcourir le graphe. On a donc trouvé les distances de tous les sommets depuis le sommet de départ **A**. Si l'on souhaite trouver le plus court chemin entre **A** et **E**, il suffit de remonter le chemin en partant de E et en remontant les sommets précédents jusqu'à **A**. Le plus court chemin entre **A** et **E** est donc **A** $\rightarrow$ **B** $\rightarrow$ **C** $\rightarrow$ **E**.
+pour **D** on ajoute comme précédemment ce qui donne:
 
-:::tip
-En pratique pour pouvoir remonter le chemin, il faut stocker pour chaque sommet la distance la plus courte depuis le sommet de départ mais aussi le sommet précédent (d'où l'on vient pour obtenir cette distance). On peut stocker cela dans une liste de paires (distance, sommet précédent).
+|           Distances           |   A visiter    |
+|:-----------------------------:|:--------------:|
+| B(1, A), C(2, A), **D(6, B)** | C(2), **D(6)** |
 
-On peut aussi stocker si un sommet a déjà été visité ou non dans une liste de booléens de la taille du nombre de sommets plutôt que dans une liste de sommets visités.
+Je recommence de nouveau avec **C** qui est le sommet prioritaire dans la liste à visiter (plus petites distance).
+**D** a déjà été visité **mais** ici le coût en passant par **C** est plus faible ($2 + 3 < 6$), je mets donc à jour la distance et je rajoute de nouveau **D** dans la liste à visiter:
+
+|           Distances            |   A visiter    |
+|:------------------------------:|:--------------:|
+| B(1, A), C(2, A),  **D(5, C)** | D(6), **D(5)** |
+
+:::note
+Ici il y a deux fois **D** dans la liste, ce n'est pas grave car avec la priorité on va de toute façon choisir le plus petit. Puis au moment de traiter une deuxième fois **D** on va voir que la distance est plus grande et on ne va rien faire.
+:::
+
+Enfin on ajoute aussi **E** l'autre sommet adjacent à **C**:
+
+|               Distances                |      A visiter       |
+|:--------------------------------------:|:--------------------:|
+| B(1, A), C(2, A), D(5, C), **E(8, C)** | D(6), D(5), **E(8)** |
+
+Je continue avec **D** :
+
+|               Distances                |        A visiter         |
+|:--------------------------------------:|:------------------------:|
+| B(1, A), C(2, A), D(5, C), **E(7, D)** | D(6), **E(8)**, **E(7)** |
+
+De nouveau avec D car il était en doublon dans la liste mais cela ne va avoir aucun effet car E est listé avec un poids donc plus faible.
+
+|               Distances                |     A visiter      |
+|:--------------------------------------:|:------------------:|
+| B(1, A), C(2, A), D(5, C), **E(7, D)** | **E(8)**, **E(7)** |
+
+Enfin on récupère **E**, il n'a pas d'arrêtes donc on ne fait rien, mais c'est le sommet de destination on a atteins notre destination, on peut s'arrêter et retourner le tableau associatif.
+
+On peut s'amuser à retrouver la succession des arrêtes à parcours grâce au tableau associatif: **A** $\rightarrow$ **C** $\rightarrow$ **D** $\rightarrow$ **E**.
+
+:::note
+Vous pouvez trouver une autre façon de représenter l'algorithme avec une liste de distances pour tout les sommets (initialisée à l'infini) et une liste de sommets visités. Néanmoins, cette méthode est plus coûteuse en mémoire et moins proche de l'implémentation de l'algorithme de Dijkstra. C'est pour cela que j'ai choisi de vous présenter cette illustration (avec un tableau associatif (Distances) et une file de priorité (A visiter)).
 :::
 
 ### Pour aller plus loin: A*

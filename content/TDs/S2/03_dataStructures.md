@@ -17,10 +17,12 @@ Par exemple, l'expression `3 4 +` s'interprète comme suit :
 - On rencontre `+`, on dépile `4` et `3`, on calcule `3 + 4 = 7`, et on empile le résultat `7`
 - On a terminé, le résultat est `7`
 
-On va donc pouvoir se servir d'une **pile** pour évaluer une expression en **NPI**.
+On va donc pouvoir se servir d'une **pile**(`std::stack`) pour évaluer une expression en **NPI**.
 
 :::info
-Il faut cependant faire attention aux opérateurs non commutatifs, comme `-` ou `/`. `3 4 /` ne s'interprète pas comme `3 / 4`, mais comme `4 / 3`. Il faut donc écrire `3 4 /` pour évaluer `3 / 4`.
+Il faut cependant faire attention aux opérateurs **non commutatifs**, comme `-` ou `/`. `3 4 /` ne s'interprète pas comme `4 / 3`, mais comme `3 / 4`. Il faut donc écrire `3 4 /` pour évaluer `3 / 4`.
+
+Dans l'algorithmique de l'évaluation, le premier élément défilé de la pile sera l'**opérande de droite** et le deuxième élément défilé sera l'**opérande de gauche**.
 :::
 
 Le but de cet exercice est d'écrire un programme qui permet d'évaluer une expression en **NPI** sous forme d'une chaîne de caractères (les différents éléments de l'expression sont séparés par des espaces), et retourner le résultat de l'expression.
@@ -94,6 +96,34 @@ float npi_evaluate(std::vector<std::string> const& tokens);
 
 Utilisez une **pile** (`std::stack`) pour évaluer l'expression comme dans l'exemple précédent.
 
+:::info Fonctionnement de l'algorithme
+L'algorithme va parcourir les éléments de l'expression en **NPI** (tokens) de gauche à droite.
+
+- Lorsque l'on rencontre un nombre, on l'empile sur la pile des valeurs.
+- Lorsque l'on rencontre un **opérateur**, on dépile les deux derniers nombres, on effectue l'opération, et on empile le résultat.
+
+Voilà un bout de code pour vous aider dans cette étape pour effectuer une opération:
+```cpp
+  // Je récupère l'élément en haut de la pile
+  float rightOperand { stack.top() };
+  // Je l'enlève de la stack (la méthode top ne fait que lire l’élément en dessus de la pile)
+  stack.pop();
+  float leftOperand { stack.top() };
+  stack.pop();
+
+  // Il faut ensuite en fonction de l'opérateur calculer le résultat pour le remettre dans la pile
+  float result { /* TODO */};
+  stack.push(result);
+```
+
+l'algorithme se termine lorsque l'on a parcouru tous les éléments de l'expression, et que la pile ne contient plus qu'un seul élément, qui est le résultat de l'expression.
+:::
+
+:::warning Expression invalide
+Si il reste plus d'un élément dans la pile à la fin de l'algorithme, cela signifie que l'expression en **NPI** est invalide.
+En effet, si l'expression est correcte, il ne doit rester qu'un seul élément dans la pile. Chaque opérateur binaire s'applique à deux nombres ainsi il doit normalement y avoir pour $n$ nombres dans l'expression $n-1$ opérateurs.
+:::
+
 :::tip
 En utilisant la fonction `is_floating` de la question précédente, on peut déterminer si un élément de l'expression est un nombre ou un opérateur.
 Il faut ensuite utiliser la fonction `std::stof` de la bibliothèque `<string>` pour convertir la chaîne de caractères en nombre flottant si c'est le cas.
@@ -102,9 +132,13 @@ Il faut ensuite utiliser la fonction `std::stof` de la bibliothèque `<string>` 
 5. Enfin, utiliser les fonctions précédentes pour afficher le résultat d'une expression en **NPI** entrée par l'utilisateur.
 
 Vous pouvez tester avec les expressions suivantes:
-- `3 4 +`
-- `3 4 2 * +`
-- `3 4 2 * 1 5 - 6 ^ / +`
+- `3 + 4` =>  `3 4 +`  =  7
+- `2 + 12 + 5`  =>  `2 12 + 5 +`  =  19
+- `3 + 4 / ( 11 + 5 )`  =>  `3 4 11 5 + / +`  =  3.25
+- `4 + 5 * 2`  =>  `4 5 2 * +`  =  14
+
+(une plus complexe avec l'opérateur **puissance** en plus pour l'exemple si vous voulez ajouter cette fonctionnalité plus tard)
+- `3 + 4 ^ 2 / ( 1 - 5 ) ^ 6`  =>  `3 4 2 ^ 1 5 - 6 ^ / +`  =  3.00391
 
 ## Exercice 2 (Utiliser une structure et des énumérations)
 
@@ -137,12 +171,12 @@ std::vector<Token> tokenize(std::vector<std::string> const& words);
 
 3. Créer une nouvelle fonction `npi_evaluate` qui utilise cette fois un vecteur de `Token` au lieu de manipuler directement des chaînes de caractères. 
 ```cpp
-float npi_evaluate(std::vector<Token<float>> const& tokens);
+float npi_evaluate(std::vector<Token> const& tokens);
 ```
 
 ## Pour aller plus loin (Optionnel)
 
-### Exercice 3 (Conversion en NPI)
+## Exercice 3 (Conversion en NPI)
 
 Nous avons précédemment vu comment évaluer une expression en **NPI**. Mais comment faire pour convertir une expression en notation **infixe** (c'est-à-dire de manière "classique" avec des parenthèses) en une expression en NPI ?
 
@@ -205,4 +239,5 @@ C'est ici que parenthèses en tant qu'opérateur vont être utile mais elles ne 
 
 
 Maintenant que nous savons évaluer une expression en NPI et que nous savons convertir une expression en notation infixe en NPI, nous pouvons réaliser une **calculatrice**.
+
 3. Essayez de réaliser un programme qui permet de **lire** une expression en notation **infixe**, de la convertir en **NPI**, de l'**évaluer** et d'**afficher** le résultat.
