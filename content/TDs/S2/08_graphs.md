@@ -6,6 +6,12 @@ Pour ce TD, nous allons travailler sur les graphes. Les graphes peuvent être re
 
 Je vous donne les structures suivantes pour représenter un graphe ainsi que les méthodes et fonctions que l'on va implémenter:
 
+<!-- je pense que le using NodeId peut etre un peu confusant, est ce que tu tiens à leur montrer ça ? -->
+<!-- je changerai bien l'attribut "to" en "destination", ça me parait plus claire -->
+<!-- Tu as une question pour implémenter l'operateur == du graph mais tu as un default dans le code, 
+comment gérer les étudiant qui font le code parce qu'ils nont pas la version C++20 par rapport à ceux qui utilisent
+le default ? -->
+
 ```cpp
 #include <vector>
 #include <unordered_map>
@@ -58,20 +64,21 @@ Un exemple ici: [Defaulted equality comparison](https://en.cppreference.com/w/cp
 
 ## Exercice 1 (construire un graphe)
 
-1. Implémenter la méthode `add_vertex` qui prend en paramètre un identifiant de sommet et ajoute un sommet au graphe si il n'existe pas déjà. Il faut donc tester si le sommet existe déjà avant de créer la liste des edges. (vous pouvez utiliser la méthode `find` de `std::unordered_map` pour cela).
+1. Implémenter la méthode `add_vertex` qui prend en paramètre un identifiant de sommet et ajoute un sommet au graphe si il n'existe pas déjà. Il faut donc tester si le sommet existe déjà avant de créer la liste des edges. (vous pouvez utiliser la méthode [`find`](https://cplusplus.com/reference/unordered_map/unordered_map/find) de `std::unordered_map` pour cela).
 
-2. Implémenter la méthode `add_directed_edge` qui prend en paramètre les IDs des deux noeuds à connecter (source vers destination) et le poids de l'arrête.
+2. Implémenter la méthode `add_directed_edge` qui ajoute une arrête dans le graphe en prenant en paramètre les IDs des deux noeuds à connecter (source vers destination) et le poids de l'arrête.
 :::note
 Si le noeuds de destination n'existe pas il est possible et recommander de l'ajouter au passage (en utilisant add_vertex). Cela va permettre d'obtenir la liste des noeuds du graphe en parcourant juste les clés de la map `adjacency_list` sans avoir besoin de parcourir les listes d'adjacences.
+<!-- g pa kampri le lien entre la première phrase et la deuxième -->
 :::
 
-3. Implémenter la méthode `add_undirected_edge` en utilisant `add_directed_edge` pour ajouter deux edges dans les deux sens pour connecter deux noeuds passés en paramètre.
+4. Implémenter la méthode `add_undirected_edge` en utilisant `add_directed_edge` pour ajouter deux edges dans les deux sens pour connecter deux noeuds passés en paramètre.
 
-4. De même, ajouter les opérateurs de comparaison pour la structure `WeightedGraph` (cela va permettre de vérifier si la fonction de la question suivante fonctionne bien en comparants les listes d'adjacences de deux graphes).
+5. De même, ajouter les opérateurs de comparaison pour la structure `WeightedGraph` (cela va permettre de vérifier si la fonction de la question suivante fonctionne bien en comparants les listes d'adjacences de deux graphes).
 
-5. Implémenter la fonction `adjacency_list_from_adjacency_matrix` qui prend en paramètre une **matrice d'adjacence** (sous la forme d'un vecteur de vecteurs d'entiers) et qui retourne un graphe.
+6. Implémenter la fonction `adjacency_list_from_adjacency_matrix` qui prend en paramètre une **matrice d'adjacence** (sous la forme d'un vecteur de vecteurs d'entiers) et qui retourne un graphe.
 
-6. Écrire dans la fonction `main` un exemple d'utilisation de la fonction `adjacency_list_from_adjacency_matrix` pour créer un graphe à partir d'une matrice d'adjacence et créer un deuxième graphe en utilisant les méthodes `add_vertex` et `add_undirected_edge` pour ajouter les mêmes sommets et les mêmes arrêtes que dans le premier graphe. Ensuite, comparer les deux graphes pour vérifier qu'ils sont égaux.
+7. Écrire dans la fonction `main` un exemple d'utilisation de la fonction `adjacency_list_from_adjacency_matrix` pour créer un graphe à partir d'une matrice d'adjacence et créer un deuxième graphe en utilisant les méthodes `add_vertex` et `add_undirected_edge` pour ajouter les mêmes sommets et les mêmes arrêtes que dans le premier graphe. Ensuite, comparer les deux graphes pour vérifier qu'ils sont égaux.
 
 ## Exercice 2 (traverser un graphe)
 
