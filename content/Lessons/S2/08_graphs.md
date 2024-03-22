@@ -39,7 +39,11 @@ graph LR
 ```
 
 Un graphe est dit **connexe** si tous les sommets sont reliés entre eux par une arête ou une suite d'arêtes.
-
+<!-- 
+pour etre un peu tatillon, on peut utiliser "connexe" pour un graphe non-orienté, pour un orienté, on 
+a des termes comme connexe unilatéral ou fortement connexe
+https://fr.wikipedia.org/wiki/Graphe_connexe
+-->
 ```mermaid
 graph LR
     A --> B
