@@ -12,11 +12,8 @@ Je vous donne les structures suivantes pour représenter un graphe ainsi que les
 #include <utility>
 
 namespace Graph {
-    // Permet de créer un alias pour le type de l'identifiant d'un sommet
-    using NodeId = int;
-
     struct WeightedGraphEdge {
-        NodeId to {};
+        int to {};
         float weight {1.0f};
 
         // default ici permet de définit les opérateurs de comparaison membres à membres automatiquement
@@ -26,21 +23,20 @@ namespace Graph {
     };
 
     struct WeightedGraph {
-        // Utilisation d'une map pour représenter la liste d'adjacence ce qui permet d'utiliser des identifiants de sommets de n'importe quel type (string, char, int, ...) et pas seulement des entiers
-        // la clé est l'identifiant du sommet et la valeur est la liste des arêtes qui partent de ce sommet
-        std::unordered_map<NodeId, std::vector<WeightedGraphEdge>> adjacency_list {};
+        // L'utilisation d'un tableau associatif permet d'avoir une complexité en O(1) pour l'ajout et la recherche d'un sommet. Cela permet de stocker les sommets dans un ordre quelconque (et pas avoir la contrainte d'avoir des identifiants (entiers) de sommets consécutifs lors de l'ajout de sommets). Cela permet également de pouvoir utiliser des identifiants de sommets de n'importe quel type (string, char, int, ...) et pas seulement des entiers
+        std::unordered_map<int, std::vector<WeightedGraphEdge>> adjacency_list {};
 
-        void add_vertex(NodeId const id);
+        void add_vertex(int const id);
 
-        void add_directed_edge(NodeId const from, NodeId const to, float const weight = 1.0f);
-        void add_undirected_edge(NodeId const from, NodeId const to, float const weight = 1.0f);
+        void add_directed_edge(int const from, int const to, float const weight = 1.0f);
+        void add_undirected_edge(int const from, int const to, float const weight = 1.0f);
         
         // Même fonctionnement que pour WeightedGraphEdge
         bool operator==(WeightedGraph const& other) const = default;
         bool operator!=(WeightedGraph const& other) const = default;
 
-        void print_DFS(NodeId const start) const;
-        void print_BFS(NodeId const start) const;
+        void print_DFS(int const start) const;
+        void print_BFS(int const start) const;
     };
 
     WeightedGraph build_from_adjacency_matrix(std::vector<std::vector<float>> const& adjacency_matrix);
@@ -49,20 +45,48 @@ namespace Graph {
 ```
 
 :::info Opérateurs de comparaison
-Pour se simplifier la vie ici car c'est des structures simples et que l'on souhaite une égalité membres à membres, on peut utiliser le **C++20** et le mot clé `défault` ici:
+Pour se simplifier la vie ici car c'est des structures simples et que l'on souhaite une égalité membres à membres, on peut utiliser le **C++20** et le mot clé `défault` ici.
 
-Il faut ajouter à droite de la définition du prototype (dans le header directement) `= default;` comme je vous le fourni. Si vous n'avez pas accès à cette version, vous pouvez implémenter les opérateurs de comparaison à la main comme vu dans le premier TPs (n'hésiter pas à demander de l'aide si vous n'y arrivez pas).
+Il faut indiquer la version dans le fichier `CMakeLists.txt` pour utiliser le C++20 en ajoutant la ligne suivante:
+```cmake
+set(CMAKE_CXX_STANDARD 20)
+```
+ou alors pour une target spécifique:
+```cmake
+target_compile_features(${TARGET_NAME} PUBLIC cxx_std_20)
+```
 
-Un exemple ici: [Defaulted equality comparison](https://en.cppreference.com/w/cpp/language/default_comparisons#:~:text=Defaulted%20equality%20comparison);
+Il faut ajouter à droite de la définition du prototype (dans le header directement) `= default;` comme je vous le fourni. Un exemple ici: [Defaulted equality comparison](https://en.cppreference.com/w/cpp/language/default_comparisons#:~:text=Defaulted%20equality%20comparison).
+
+Si vous n'avez pas accès à cette version, je vous donne les implémentations des opérateurs de comparaison à ajouter dans le fichier source (`.cpp`):
+
+```cpp
+namespace Graph {
+    bool WeightedGraphEdge::operator==(WeightedGraphEdge const& other) const {
+        return to == other.to && weight == other.weight;
+    }
+    bool WeightedGraphEdge:: operator!=(WeightedGraphEdge const& other) const {
+        return !(*this == other);
+    }
+
+    bool WeightedGraph::operator==(WeightedGraph const& other) const {
+        return adjacency_list == other.adjacency_list;
+    }
+
+    bool WeightedGraph::operator!=(WeightedGraph const& other) const {
+        return !(*this == other);
+    }
+} // namespace
+```
 :::
 
 ## Exercice 1 (construire un graphe)
 
-1. Implémenter la méthode `add_vertex` qui prend en paramètre un identifiant de sommet et ajoute un sommet au graphe si il n'existe pas déjà. Il faut donc tester si le sommet existe déjà avant de créer la liste des edges. (vous pouvez utiliser la méthode `find` de `std::unordered_map` pour cela).
+1. Implémenter la méthode `add_vertex` qui prend en paramètre un identifiant de sommet et ajoute un sommet au graphe si il n'existe pas déjà. Il faut donc tester si le sommet existe déjà avant de créer la liste des edges. (vous pouvez utiliser la méthode [`find`](https://cplusplus.com/reference/unordered_map/unordered_map/find) de `std::unordered_map` pour cela).
 
-2. Implémenter la méthode `add_directed_edge` qui prend en paramètre les IDs des deux noeuds à connecter (source vers destination) et le poids de l'arrête.
+2. Implémenter la méthode `add_directed_edge` qui ajoute une arrête dans le graphe en prenant en paramètre les IDs des deux noeuds à connecter (source vers destination) et le poids de l'arrête.
 :::note
-Si le noeuds de destination n'existe pas il est possible et recommander de l'ajouter au passage (en utilisant add_vertex). Cela va permettre d'obtenir la liste des noeuds du graphe en parcourant juste les clés de la map `adjacency_list` sans avoir besoin de parcourir les listes d'adjacences.
+Si le noeuds de destination n'existe pas (comme clé du tableau associatif `adjacency_list`) il est possible et recommandé de l'ajouter au passage (en utilisant add_vertex). Ainsi, tout les sommets du graphe sont ajoutés automatiquement lors de l'ajout d'une arrête.
 :::
 
 3. Implémenter la méthode `add_undirected_edge` en utilisant `add_directed_edge` pour ajouter deux edges dans les deux sens pour connecter deux noeuds passés en paramètre.
@@ -82,7 +106,7 @@ Si le noeuds de destination n'existe pas il est possible et recommander de l'ajo
 3. Bonus : Implémenter le parcours en profondeur (BFS) à prenant en paramètre une fonction de **callback** pour chaque sommet visité. L'idée est de ne pas contraindre l'utilisateur à afficher les sommets mais de lui donner la possibilité de faire ce qu'il veut avec les sommets visités.
 Voilà la signature de la méthode à implémenter:
 ```cpp
-void DFS(NodeId const start, std::function<void(NodeId const)> const& callback) const;
+void DFS(int const start, std::function<void(int const)> const& callback) const;
 ```
 
 `std::function` (`#include <functional>`) est un objet qui peut "stocker" n'importe quelle fonction qui a la même signature que celle donnée en paramètre (entre  <kbd> < </kbd> et <kbd> > </kbd>). Cela permet de passer une fonction en paramètre d'une autre fonction. C'est très utile pour faire des fonctions génériques qui peuvent être utilisées de différentes manières. On peut passer en paramètre une fonction définit dans le code ou une fonction **lambda** (une fonction anonyme) qui est définie directement dans le code. C'est comme cela que fonctionne les fonctions `std::sort`, `std::find_if`, `std::accumulate`, ... de la STL.
@@ -90,7 +114,7 @@ void DFS(NodeId const start, std::function<void(NodeId const)> const& callback) 
 Voilà à quoi ressemble l'appel de cette méthode avec une fonction **lambda** qui affiche les sommets visités (pour reproduire le comportement de la méthode `print_DFS`):
 ```cpp
 std::cout << "DFS from node 0:" << std::endl << "Visited nodes: ";
-graph.DFS(0, [](NodeId const node_id) { std::cout << node_id << " "; });
+graph.DFS(0, [](int const node_id) { std::cout << node_id << " "; });
 std::cout << std::endl;
 ```
 
@@ -122,17 +146,16 @@ Je vous invite à relire l'explication du cours [ici](/Lessons/S2/graphs#dijkstr
 1. (BONUS) En se donnant un bout de code pour démarrer l'implémentation de l'algorithme de Dijkstra, complétez le code pour implémenter l'algorithme de Dijkstra.
 2. (BONUS) Testez votre implémentation avec le graphe donné en exemple pour trouver le plus court chemin entre le sommet `A` et le sommet `E`.
 ```cpp
-using NodeId = int;
-std::unordered_map<NodeId, std::pair<float, NodeId>> dijkstra(WeightedGraph const& graph, NodeId const& start) {
+std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& graph, int const& start) {
     // On crée un tableau associatif pour stocker les distances les plus courtes connues pour aller du sommet de départ à chaque sommet visité
     // La clé est l'identifiant du sommet et la valeur est un pair (distance, sommet précédent)
-    std::unordered_map<NodeId, std::pair<float, NodeId>> distances {};
+    std::unordered_map<int, std::pair<float, int>> distances {};
 
     // On crée une file de priorité pour stocker les sommets à visiter
     // la pair contient la distance pour aller jusqu'au sommet et l'identifiant du sommet
 
     // Ce type compliqué permet d'indiquer que l'on souhaite trier les éléments par ordre croissant (std::greater) et donc les éléments les plus petits seront au début de la file (top) (Min heap)
-    std::priority_queue<std::pair<float, NodeId>, std::vector<std::pair<float, NodeId>>, std::greater<std::pair<float, NodeId>>> to_visit {};
+    std::priority_queue<std::pair<float, int>, std::vector<std::pair<float, int>>, std::greater<std::pair<float, int>>> to_visit {};
 
     // 1. On ajoute le sommet de départ à la liste des sommets à visiter avec une distance de 0 (on est déjà sur le sommet de départ)
     

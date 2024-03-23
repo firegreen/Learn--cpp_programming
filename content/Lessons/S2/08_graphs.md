@@ -48,6 +48,13 @@ graph LR
     D
 ```
 
+:::note graphe orienté connexe
+Pour un graphe orienté il y a plusieurs notions plus précises de connexité:
+- **Connexité forte**: un graphe orienté est dit fortement connexe si pour chaque paire de sommets $u$ et $v$, il existe un chemin de $u$ à $v$ et un chemin de $v$ à $u$.
+- **Connexité unilatérale**: un graphe orienté est dit unilatéralement connexe si pour chaque paire de sommets $u$ et $v$, il existe un chemin de $u$ à $v$ ou un chemin de $v$ à $u$.
+- **Connexité faible**: un graphe orienté est dit faiblement connexe si le graphe sous-jacent non orienté est connexe.
+:::
+
 Un graphe est dit **cyclique** si il contient au moins un cycle. Un cycle est une suite d'arêtes qui permet de revenir au point de départ.
 
 ```mermaid
