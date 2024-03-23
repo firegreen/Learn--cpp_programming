@@ -4,7 +4,7 @@ title: TD7 - Encodage et compression
 
 ## Exercice 1 (Run-length encoding)
 
-1. Écrire une fonction qui prend en paramètre une chaîne de caractères composée uniquement de caractères alphabétiques et qui retourne une chaîne de caractères encodée en utilisant le **run-length encoding**.
+1. Écrire une fonction qui prend en paramètre une chaîne de caractères composée uniquement de caractères alphabétiques et qui retourne une chaîne de caractères encodée en utilisant le [**run-length encoding**](/Lessons/S2/EncodingAndCompression#codage-par-plages-run-length-encoding).
 
     Par exemple, si la chaîne de caractères en entrée est `AAAABBBCCDAA`, la chaîne de caractères encodée est `4A3B2C1D2A`.
 
@@ -16,7 +16,7 @@ title: TD7 - Encodage et compression
 
 4. Écrire une fonction qui permet d'encoder en utilisant un caractère spécial (**caractère de contrôle**) suivit d'un **nombre** pour indiquer le nombre de fois qu'un caractère doit être répété.
 
-    Par exemple, en se donnant le caractère de contrôle `*`, si la chaîne de caractères en entrée est `AAAABBBCCDAA`, la chaîne de caractères encodée est `*4A*3B*2C1D2A`.
+    Par exemple, en se donnant le caractère de contrôle `*`, si la chaîne de caractères en entrée est `AAAABBBCCDAA`, la chaîne de caractères encodée est `*4A*3B*2CD*2A`.
 
 5. Améliorer la fonction précédente pour rendre le caractère de contrôle paramétrable et retourner la chaîne de caractères originale si la longueur de la chaîne de caractères encodée est plus grande que la chaîne de caractères originale.
 
@@ -37,8 +37,9 @@ struct Node {
 };
 ```
 
-:::info
-on n'utilise pas de `std::unique_ptr` dans cet exercice pour simplifier l'écriture des fonctions. En effet, l'utilisation de `std::unique_ptr` impose de passer par des `std::move` pour déplacer les pointeurs et cela rendrait l'écriture des fonctions plus complexe. Cela nous forcerait même à créer notre propre file de priorité (`priority_queue`) pour pouvoir utiliser des `std::unique_ptr` dans la file de priorité. Ce n'est pas l'objet de cet exercice.
+:::warning
+Ce warning s'adresse à ceux qui ont essayé d'utiliser des **smart pointers** (`std::unique_ptr`) sur le TD précédent sur les arbres binaires et qui souhaitent continuer à utiliser des smart pointers pour cet exercice.
+Ici, on ne veut pas utiliser de `std::unique_ptr` pour simplifier l'écriture des fonctions. En effet, l'utilisation de `std::unique_ptr` impose de passer par des `std::move` (notion que l'on a pas encore vu) pour transférer la propriété d'un pointeur intelligent. Cela rendrait l'écriture des fonctions plus complexe et cela nous forcerait même à créer notre propre file de priorité (`priority_queue`) pour pouvoir les utiliser dans une file de priorité. Ce n'est pas l'objet de cet exercice on se limitera donc à des pointeurs classiques.
 :::
 
 2. Surcharger l'opérateur `<` pour la structure `Node` de telle sorte que l'opérateur `<` retourne `true` si la fréquence du nœud de gauche est inférieure à la fréquence du nœud de droite.
