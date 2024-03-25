@@ -8,10 +8,10 @@ title: TD4 - Déduction de type et bibliothèque standard
 2. Utiliser les **itérateurs** et les méthodes `begin` et `end` pour afficher les valeurs du vecteur à l'aide d'une boucle `for`.
 3. Chercher si un nombre saisi par l'utilisateur est présent dans le vecteur à l'aide de la fonction `std::find` et afficher un message
    adapté.
-4. Utiliser la fonction `std::count` pour compter le nombre d'occurrences d'un autre nombre entier le vecteur.
+4. Utiliser la fonction `std::count` pour compter le nombre d'occurrences d'un nombre entier dans le vecteur.
 Vous pouvez trouver la documentation de la fonction `std::count` [ici](https://en.cppreference.com/w/cpp/algorithm/count).
-5. Utiliser la fonction `std::sort` pour trier le vecteur.
-6. Utiliser la fonction `std::accumulate` pour calculer la **somme** des éléments du vecteur (par défaut, la fonction `std::accumulate` utilise l'opérateur `+` entre les éléments).
+1. Utiliser la fonction `std::sort` pour trier le vecteur.
+2. Utiliser la fonction `std::accumulate` pour calculer la **somme** des éléments du vecteur (par défaut, la fonction `std::accumulate` utilise l'opérateur `+` entre les éléments).
 
 ## Exercice 2 (String)
 
