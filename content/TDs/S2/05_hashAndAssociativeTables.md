@@ -32,11 +32,10 @@ size_t folding_string_ordered_hash(std::string const& s, size_t max);
 size_t polynomial_rolling_hash(const std::string& s, size_t p, size_t m);
 ```
 
-> Nous allons utiliser la technique dite de **polynomial rolling hash**. Cette technique consiste à calculer le hash d'une chaîne de caractères en fonction du hash de la chaîne de caractères précédente. Cela permet de prendre en compte l'ordre des caractères dans la chaîne de caractères.
->
+> Nous allons utiliser la technique dite de **polynomial rolling hash**. Cette technique consiste à calculer le hash d'une chaîne de caractères en incorporant la position d'une manière plus complexe pour éviter les collisions. On va donc multiplier la valeur de chaque caractère par une puissance de `p` qui dépend de la position du caractère dans la chaîne de caractères.
 > Pour cela, nous allons utiliser la formule suivante:
 > $$
-> \text{hash}(s) = \sum_{i=0}^{n-1} (s[i] \times p^i) \mod m
+> \text{hash}(s) = \sum_{i=0}^{n-1} (s[i] \times p^i \mod m)
 > $$
 >
 > Avec:
@@ -45,6 +44,11 @@ size_t polynomial_rolling_hash(const std::string& s, size_t p, size_t m);
 > - $s[i]$ le code ASCII du caractère à l'index $i$ dans la chaîne de caractères
 > - $p$ un nombre (généralement un nombre premier)
 > - $m$ un nombre (généralement une puissance de 2)
+
+:::warning
+On ne veux pas utiliser la fonction [`std::pow`](https://en.cppreference.com/w/c/numeric/math/pow) de la bibliothèque standard car elle est lente est fonctionne avec des **flottants**. On va donc nous même faire les multiplications.
+On va donc utiliser une variable `power` et multiplier cette variable par `p` à chaque itération pour obtenir le nombre représentant $p^i$;
+:::
 
 ## Exercice 2 (Réparation de Robots)
 
@@ -90,6 +94,12 @@ std::vector<std::pair<std::string, float>> get_robots_fix(size_t size) {
 J'aimerai être capable de lister pour un robot donné l'ensemble des réparations effectuées pour ce robot. Par exemple, pour le robot "AB", j'aimerai avoir la liste des réparations effectuées pour ce robot.
 
 1. Pour cela, je vous demande d'écrire une fonction qui prend en paramètre la liste des réparations effectuées et qui retourne une [table associative](/Lessons/S2/HashAndAssociativeTables#tableau-associatif) (`std::unordered_map`) qui associe à chaque nom de robot la liste des réparations effectuées pour ce robot (sous forme de `std::vector<float>`).
+
+Vous pouvez utiliser la signature suivante pour cette fonction:
+
+```cpp
+std::unordered_map<std::string, std::vector<float>> robots_fixes_map(std::vector<std::pair<std::string, float>> const& robots_fixes);
+```
 
 2. Écrire une fonction qui prend en un `std::vector<float>` et qui retourne la somme des éléments de ce vecteur.
 

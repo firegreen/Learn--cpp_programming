@@ -90,6 +90,7 @@ Implicitement, cette classe utilise la fonction de hachage `std::hash` pour calc
 Elle utilise aussi la fonction `std::equal_to` pour comparer les clés dans le cas des collisions. Cette fonction est aussi définie pour les types de base et les types de la bibliothèque standard.
 
 On utilise la méthode `insert` pour ajouter une valeur associée à une clé et la méthode `find` pour retrouver la valeur associée à une clé.
+Je vous invite à relire le cours précédent sur les [itérateurs](/Lessons/S2/AutoAndAlgorithm#find) pour comprendre comment utiliser ces méthodes.
 
 ```cpp
 #include <unordered_map>
@@ -111,9 +112,9 @@ int main() {
     std::cout << "Entrez un nom de jour : ";
     std::cin >> dayName;
 
-    auto dayNumber = days.find(dayName);
+    auto dayNumber { days.find(dayName) };
     if (dayNumber != days.end()) {
-        std::cout << "Le jour " << dayName << " est le jour numéro " << dayNumber->second << std::endl;
+        std::cout << "Le jour " << dayName << " est le jour numéro " << (*dayNumber).second << std::endl;
     } else {
         std::cout << "Le jour " << dayName << " n'existe pas" << std::endl;
     }
