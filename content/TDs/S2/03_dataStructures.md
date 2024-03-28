@@ -174,9 +174,7 @@ std::vector<Token> tokenize(std::vector<std::string> const& words);
 float npi_evaluate(std::vector<Token> const& tokens);
 ```
 
-## Pour aller plus loin (Optionnel)
-
-## Exercice 3 (Conversion en NPI)
+## Exercice 3 (Conversion en NPI) (Optionnel)
 
 Nous avons précédemment vu comment évaluer une expression en **NPI**. Mais comment faire pour convertir une expression en notation **infixe** (c'est-à-dire de manière "classique" avec des parenthèses) en une expression en NPI ?
 
