@@ -17,7 +17,7 @@ namespace Graph {
         float weight {1.0f};
 
         // default ici permet de définit les opérateurs de comparaison membres à membres automatiquement
-        // Cela ne fonction qu'en C++20, je vous laisse le soin de les implémenter à la main si vous n'avez pas accès à cette version
+        // Cela ne fonction qu'en C++20, si vous n'avez pas accès à cette version je vous donne les implémentations des opérateurs plus bas
         bool operator==(WeightedGraphEdge const& other) const = default;
         bool operator!=(WeightedGraphEdge const& other) const = default;
     };
