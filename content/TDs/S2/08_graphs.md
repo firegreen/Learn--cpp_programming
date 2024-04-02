@@ -146,7 +146,7 @@ Je vous invite à relire l'explication du cours [ici](/Lessons/S2/graphs#dijkstr
 1. (BONUS) En se donnant un bout de code pour démarrer l'implémentation de l'algorithme de Dijkstra, complétez le code pour implémenter l'algorithme de Dijkstra.
 2. (BONUS) Testez votre implémentation avec le graphe donné en exemple pour trouver le plus court chemin entre le sommet `A` et le sommet `E`.
 ```cpp
-std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& graph, int const& start) {
+std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& graph, int const& start, int const end) {
     // On crée un tableau associatif pour stocker les distances les plus courtes connues pour aller du sommet de départ à chaque sommet visité
     // La clé est l'identifiant du sommet et la valeur est un pair (distance, sommet précédent)
     std::unordered_map<int, std::pair<float, int>> distances {};
@@ -161,31 +161,31 @@ std::unordered_map<int, std::pair<float, int>> dijkstra(WeightedGraph const& gra
     
     // Tant qu'il reste des sommets à visiter
     while (!to_visit.empty()) {
-        // 2. On récupère le sommet le plus proche du sommet de départ
+        // 2. On récupère le sommet le plus proche du sommet de départ dans la liste de priorité to_visit
 
-        // 3. On marque le sommet comme visité en l'ajoutant au tableau associatif distances
-        
-        // 4. On parcoure la liste des voisins (grâce à la liste d'adjacence) du noeud courant
+        // 3.Si on atteins le point d'arrivé, on s'arrête
+        if (/* TODO */) {
+            return distances;
+        }
+        // 3. On parcoure la liste des voisins (grâce à la liste d'adjacence) du noeud courant
         for (/* TODO */) {
-            // 5. on regarde si le noeud existe dans le tableau associatif (si oui il a déjà été visité)
+            // 4. on regarde si le noeud existe dans le tableau associatif (si oui il a déjà été visité)
+
+            auto find_node { /* TODO */ };
+            bool const visited { /* TODO */ };
+
              if (!visited) {
-                    // 6. Si le noeud n'a pas été visité, on l'ajoute au tableau associatif en calculant la distance pour aller jusqu'à ce noeud
+                    // 5. Si le noeud n'a pas été visité, on l'ajoute au tableau associatif en calculant la distance pour aller jusqu'à ce noeud
                     // la distance actuelle + le point de l'arrête)
 
-                    // 7. On ajout également le noeud de destination à la liste des noeud à visité (avec la distance également pour prioriser les noeuds les plus proches)
-
+                    // 6. On ajout également le noeud de destination à la liste des noeud à visité (avec la distance également pour prioriser les noeuds les plus proches)
                 }else {
-                    // 8. Si il a déjà été visité, On test si la distance dans le tableau associatif est plus grande
+                    // 7. Si il a déjà été visité, On test si la distance dans le tableau associatif est plus grande
                     // Si c'est le cas on à trouvé un plus court chemin, on met à jour le tableau associatif et on ajoute de nouveau le sommet de destination dans la liste à visité
                     if (/* TODO */) {
                         
                     }
-                }
-
-                // Si on atteins le point d'arrivé, on s'arrête
-                if (/* TODO */) {
-                    return distances;
-                }
+                } 
         }
     }
 
